@@ -1,0 +1,88 @@
+.progress-modal .modal-body {
+    text-align: center;
+    padding-top: 100px;
+    height: 100%;
+}
+
+.progress-modal i {
+    font-size: 50px;
+    color: #0f0;
+    animation: progress-modal-icon 2s infinite linear;
+}
+
+@keyframes progress-modal-icon {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.box-footer .box-title {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+}
+
+.text-white{color:#fff;}
+
+.logo i {
+    line-height: 50px;
+}
+
+.navbar-nav .title {
+    line-height: 50px;
+    font-size: 120%;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 50px;
+}
+
+.side-menu {
+    background-color: #222d32;
+    border: none;
+    width: 230px !important;
+}
+
+    .side-menu a {
+        color: #b8c7ce;
+    }
+
+.box-foot-title {
+    padding: 10px 0;
+    font-size: 18px;
+    line-height: 1;
+}
+
+#line-main, #line-main > section {
+    display: flex;
+    flex-direction: column;
+}
+
+    #line-main > section, #line-main > section > div {
+        flex: 1;
+        margin: 0;
+    }
+
+.kanban-toggel {
+    position: absolute;
+    top: 70px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    line-height: 40px;
+}
+
+.log2 {
+    background-color: #d73925;
+    color: #fff;
+}
+
+.log1 {
+    background-color: #d58512;
+    color: #fff;
+}

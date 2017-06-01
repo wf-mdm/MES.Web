@@ -1,0 +1,77 @@
+﻿@using MES.Web.Models
+@model LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MES</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/bundles/css");
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            MES LOGO
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">登录到系统</p>
+            @using (Html.BeginForm("Index", "Session", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor((m => m.AppId), new { @class = "col-sm-4 control-label"})
+                    <div class="col-sm-8">
+                        @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.LabelFor((m => m.UserId), new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.LabelFor((m => m.Password), new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe, new { @class = "col-sm-4 control-label" })
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+
+</html>

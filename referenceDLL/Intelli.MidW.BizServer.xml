@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intelli.MidW.BizServer</name>
+    </assembly>
+    <members>
+        <member name="T:Intelli.MidW.BizServer.BaseBizServer">
+            <summary>
+            业务服务的基类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.#ctor">
+            <summary>
+            构造一个服务
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.LoadUsers">
+            <summary>
+            加载服务的用户, 在APP_USERS中定义
+            </summary>
+            <returns>返回对应本ServerID的用户/密码清单</returns>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.Init">
+            <summary>
+            服务初始化
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.Uninit">
+            <summary>
+            服务释放
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.RunCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            RunCmd 实现
+            </summary>
+            <param name="cmd"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizServer.RunDbCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            RunDBCmd实现
+            </summary>
+            <param name="cmd"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Config">
+            <summary>
+            Server对应的参数
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Status">
+            <summary>
+            Server的运行状态
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.DB">
+            <summary>
+            数据库访问接口
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Log">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.SystemConfig">
+            <summary>
+            系统配置参数
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Message">
+            <summary>
+            系统消息库
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Parent">
+            <summary>
+            父server
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Lib">
+            <summary>
+            Server的Lib
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Dispatch">
+            <summary>
+            服务分发，可以执行其他服务的命令
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizServer.Children">
+            <summary>
+            子server
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BaseBizServer.RunningStatus">
+            <summary>
+            Server的运行状态
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BaseEvent">
+            <summary>
+            事件对象
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseEvent.Init">
+            <summary>
+            事件对象初始化
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseEvent.Uninit">
+            <summary>
+            事件对象释放
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseEvent.RunEvt(System.String,System.Object)">
+            <summary>
+            触发事件
+            </summary>
+            <param name="EventType"></param>
+            <param name="v"></param>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseEvent.DB">
+            <summary>
+            数据库访问接口
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseEvent.Cmd">
+            <summary>
+            命令访问接口
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseEvent.logger">
+            <summary>
+            运行日志对象
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BizContext">
+            <summary>
+            业务执行的
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.RetrunCode">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.ReturnMsg">
+            <summary>
+            返回消息
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.ErrorMsg">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.Log">
+            <summary>
+            系统运行日志
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.BizObject">
+            <summary>
+            业务过程中使用到的对象
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.Data">
+            <summary>
+            运行时数据
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.BizServer.BizContext.ReturnData">
+            <summary>
+            返回客户端的数据
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BizException">
+            <summary>
+            业务异常
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizException.#ctor(System.String)">
+            <summary>
+            constructor to create bizException with bizReturnCode as errorCode
+            </summary>
+            <param name="BizReturnCode">error code</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizException.#ctor(System.String,System.String)">
+            <summary>
+            constructor to create bizException with bizReturnCode as errorCode
+            </summary>
+            <param name="BizReturnCode">error code</param>
+            <param name="Message">err msg</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            constructor to create bizException with bizReturnCode as errorCode
+            </summary>
+            <param name="BizReturnCode">error code</param>
+            <param name="Message">err msg </param>
+            <param name="Llangid">language ID</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            constructor to create bizException with bizReturnCode as errorCode
+            </summary>
+            <param name="BizReturnCode">err code</param>
+            <param name="Message">err msg</param>
+            <param name="ex">original exception</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizException.#ctor(System.String,System.String,System.String,System.Exception)">
+            <summary>
+            constructor to create bizException with bizReturnCode as errorCode
+            </summary>
+            <param name="BizReturnCode">err code</param>
+            <param name="Message">err msg</param>
+            <param name="Llangid">mapped language id</param>
+            <param name="ex">original exception</param>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BizException.Message">
+            <summary>
+            acquire err message, if there is language ID, then map to its language
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BizException.ReturnCode">
+            <summary>
+            业务返回码
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BaseBizLib">
+            <summary>
+            Server对应的业务处理逻辑对象
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.Init">
+            <summary>
+            函数库初始化
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.SetLock(System.String)">
+            <summary>
+            set LockObject-ID, it will be used for Lock command execute
+            </summary>
+            <param name="lckid"></param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.QuitSys(Intelli.MidW.Interface.BizRequest,Intelli.MidW.BizServer.BizContext)">
+            <summary>
+            quit the whole service
+            </summary>
+            <param name="request"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.Sayhello(Intelli.MidW.Interface.BizRequest,Intelli.MidW.BizServer.BizContext)">
+            <summary>
+            shake hands message
+            </summary>
+            <param name="request"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.Uninit">
+            <summary>
+            函数库释放
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.getcmdlist(Intelli.MidW.Interface.BizRequest,Intelli.MidW.BizServer.BizContext)">
+            <summary>
+            return current serverLib's all command handle
+            </summary>
+            <param name="request">request from client</param>
+            <param name="context">context contains transferring object</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.SetCmdHandler(System.String,System.String,Intelli.MidW.BizServer.BaseBizLib.CmdHandler)">
+            <summary>
+            设置或者删除指定的command处理
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="name">handler名称，系统执行时会按照该名称的字符顺序执行</param>
+            <param name="handler">执行函数</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.SetCmdHandler(System.String,System.Collections.Generic.Dictionary{System.String,Intelli.MidW.BizServer.BaseBizLib.CmdHandler})">
+            <summary>
+            设置或者删除指定的command处理
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="handlers">执行函数集合，如果为null，则删除该命令</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.SetDataSetCmdHandler(System.String,System.String,Intelli.MidW.BizServer.BaseBizLib.DataSetCmdHandler)">
+            <summary>
+            设置或者删除指定的DataSet Command处理
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="name">handler名称，系统执行时会按照该名称的字符顺序执行</param>
+            <param name="handler">执行函数</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.SetDataSetCmdHandler(System.String,System.Collections.Generic.Dictionary{System.String,Intelli.MidW.BizServer.BaseBizLib.DataSetCmdHandler})">
+            <summary>
+            设置或者删除指定的DataSet Command处理
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="handlers">执行函数集合，如果为null，则删除该命令</param>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.RunCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            执行命令, 如果需要显式上锁让命令串列执行，需要在初始化时候调用SetLock(cmdname)
+            </summary>
+            <param name="cmd"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.RunCmd(System.String,Intelli.MidW.Interface.BizRequest,Intelli.MidW.BizServer.BizContext)">
+            <summary>
+            执行命令，为内部其他服务开放接口，公用一个事物
+            </summary>
+            <param name="cmd"></param>
+            <param name="request"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.CreateTransactionScope(Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            创建事物
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BaseBizLib.CreateTransactionScope">
+            <summary>
+            创建事物
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizLib.Server">
+            <summary>
+            Lib对应的Server对象
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizLib.logger">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizServer.BaseBizLib.DB">
+            <summary>
+            数据库
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BaseBizLib.CmdHandler">
+            <summary>
+            执行Command
+            </summary>
+            <param name="request"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BaseBizLib.DataSetCmdHandler">
+            <summary>
+            执行DataSet command
+            </summary>
+            <param name="request"></param>
+            <param name="context"></param>
+            <param name="ds"></param>
+        </member>
+        <member name="T:Intelli.MidW.BizServer.BizServerConfig">
+            <summary>
+            bizserver的配置信息
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizServer.BizServerConfig.ParseXml(System.Xml.XmlNode,Intelli.MidW.BizServer.BizServerConfig)">
+            <summary>
+            从Xml节点解析
+            </summary>
+            <param name="node">XML节点</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

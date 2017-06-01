@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <resource name="message">
+    <item name="locale">cn</item>
+    <item name="resources">Message;MESMessage</item>
+  </resource>
+  <resource name="local">
+    <item name="voice">1</item>
+    <item name="readmsg">1</item>
+  </resource>
+  <resource name="server">
+    <item name="userid">test</item>
+    <item name="password">123456</item>
+    <item name="program">Test</item>
+    <resource name="listener">
+      <item name="1">tcp:121.196.217.189:3802</item>
+      <item name="2">wcf:121.196.217.189:3800</item>
+    </resource>
+  </resource>
+</resources>

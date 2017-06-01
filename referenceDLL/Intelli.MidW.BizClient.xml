@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intelli.MidW.BizClient</name>
+    </assembly>
+    <members>
+        <member name="T:Intelli.MidW.BizClient.ClientMgr">
+            <summary>
+            客户端接口对象
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizClient.IAsyncCommand">
+            <summary>
+            异步Command接口
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.IAsyncCommand.RunAsyncCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            发起异步调用
+            </summary>
+            <param name="name">接口名称</param>
+            <param name="request">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.Uninit">
+            <summary>
+            结束时释放资源
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.RunCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            执行Run Command
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="request">请求参数</param>
+            <returns>返回结果</returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.RunDbCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            执行Run DataSet
+            </summary>
+            <param name="cmd">命令名称</param>
+            <param name="request">请求参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.getTable(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.ChangeServer">
+            <summary>
+            更换一个Server
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.GetErrorMsg(Intelli.MidW.Interface.BizRequest,Intelli.MidW.Interface.BizResponse)">
+            <summary>
+            返回错误信息
+            </summary>
+            <param name="request">请求参数</param>
+            <param name="response">返回结果</param>
+            <returns>如果有错误，就返回错误消息，否则返回空字符串</returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.CreateRequest(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            创建BizRequest对象
+            </summary>
+            <param name="ServerId">server id</param>
+            <param name="ClientId">client id</param>
+            <param name="CmdName">command name</param>
+            <param name="EntityId">entity id</param>
+            <param name="Parameters">parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.CreateTextRequest(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            创建BizRequest对象,并且设置text格式的parameter
+            </summary>
+            <param name="ServerId">server id</param>
+            <param name="ClientId">client id</param>
+            <param name="CmdName">command name</param>
+            <param name="EntityId">entity id</param>
+            <param name="Parameters">parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.InitServer">
+            <summary>
+            初始化到Server的连接
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.RunAsyncCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            执行异步请求
+            </summary>
+            <param name="name"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.FireAsyncReponse(System.String,Intelli.MidW.Interface.BizRequest,Intelli.MidW.Interface.BizResponse)">
+            <summary>
+            触发异步请求返回事件
+            </summary>
+            <param name="id"></param>
+            <param name="request"></param>
+            <param name="response"></param>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.Update(System.String,System.Object[])">
+                    public System.Data.DataSet Query(string sql, params object[] args)
+                    {
+                        if (!HasDbServices)
+                            throw new Exception("DBService is not support.");
+                        return _DBServers[0].Query(new QueryRequest()
+                        {
+                            sql = sql,
+                            args = args
+                        }).QueryResult;
+                    }
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.Query(System.String,System.Object[])">
+            <summary>
+            执行SQL查询
+            </summary>
+            <param name="sql"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.ClientMgr.QueryEx(System.String,System.String,System.Object[])">
+            <summary>
+            执行SQL查询
+            </summary>
+            <param name="db"></param>
+            <param name="sql"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.BizClient.ClientMgr.Instance">
+            <summary>
+            Client 访问接口
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizClient.ClientMgr.Message">
+            <summary>
+            参数化的消息内容
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizClient.ClientMgr.Config">
+            <summary>
+            客户端配置参数
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizClient.ClientMgr.Retry">
+            <summary>
+            访问服务器连接失败之后重试的次数
+            </summary>
+        </member>
+        <member name="E:Intelli.MidW.BizClient.ClientMgr.OnAsyncResponse">
+            <summary>
+            Async response event
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.BizClient.ClientMgr.HasDbServices">
+            <summary>
+            是否配置了数据库服务接口
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.BizClient.ResponseHandler">
+            <summary>
+            异步回调函数声明
+            </summary>
+            <param name="request"></param>
+            <param name="response"></param>
+        </member>
+        <member name="T:Intelli.MidW.BizClient.Server.ClientFactory">
+            <summary>
+            Client的工厂对象
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.Server.ClientFactory.CreateClient(System.String,System.String)">
+            <summary>
+            根据参数自动创建Client对象
+            </summary>
+            <param name="name"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.BizClient.Server.MQClient">
+            <summary>
+            MQ Client
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.BizClient.Server.MQClient.RunAsyncCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            Run async command
+            </summary>
+            <param name="name"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WCFServiceClient.#ctor">
+            <summary>
+            constructor to create WCF client
+            </summary>
+        </member>
+        <member name="M:WCFServiceClient.#ctor(System.String)">
+            <summary>
+            constrcutor to create WCF client
+            </summary>
+            <param name="endpointConfigurationName"></param>
+        </member>
+        <member name="M:WCFServiceClient.#ctor(System.String,System.String)">
+            <summary>
+            constructor to create WCF client
+            </summary>
+            <param name="endpointConfigurationName"></param>
+            <param name="remoteAddress"></param>
+        </member>
+    </members>
+</doc>

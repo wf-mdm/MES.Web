@@ -1,0 +1,1871 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intelli.MidW.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:Intelli.MidW.Utils.Common.CommUtils">
+            <summary>
+            一般的工具类函数库
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.decryptstring(System.String)">
+            <summary>
+            decrypt string: start with END@:
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.encryptstring(System.String)">
+            <summary>
+            encrypt string
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Asc(System.Char)">
+            <summary>
+            convert single char to ASC code 
+            </summary>
+            <param name="character">char</param>
+            <returns>character ASCcode : int</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Asc(System.String)">
+            <summary>
+            convert string to ASC code, however, only first char is converted, if NULL, return -1
+            </summary>
+            <param name="strval">source string</param>
+            <returns>ASCcode of first character in strval</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Chr(System.Int32)">
+            <summary>
+            convert ASCII code to character
+            </summary>
+            <param name="intcode"> integer value for character </param>
+            <returns>character as string value to return, if ASCII code is illegal (out of 0~255), return empty string""</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Fetchalphalist(System.String)">
+            <summary>
+            convert string to purestring : number , alphabet
+            </summary>
+            <param name="src"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FetchNumCharlist(System.String)">
+            <summary>
+            retrieve only number from string
+            </summary>
+            <param name="src">inputted string </param>
+            <returns>number list in source string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Format(System.String,System.Object[])">
+            <summary>
+            format parameterlist as format string
+            </summary>
+            <param name="format">format string</param>
+            <param name="param">parameterlist</param>
+            <returns>formatted string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.SetPropVal(System.Object,System.String,System.Object,System.Boolean)">
+            <summary>
+            set object property value 
+            </summary>
+            <param name="targetobj">target object</param>
+            <param name="propname">target property, can be field</param>
+            <param name="val">value</param>
+            <param name="asobj"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.SetPropVal(System.Object,System.String,System.Object,System.Int32)">
+            <summary>
+            set object property value 
+            </summary>
+            <param name="targetobj">target object</param>
+            <param name="propname">target property, can be field</param>
+            <param name="val">value</param>
+            <param name="idx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetAllPropsAndFields(System.Object)">
+            <summary>
+            get all property and field value list
+            </summary>
+            <param name="targetobj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.SetPropVal(System.Object,System.String,System.String)">
+            <summary>
+            set object property value as convertable string:val
+            </summary>
+            <param name="targetobj">target object</param>
+            <param name="propname">target property, can be field</param>
+            <param name="val">value as string, if string cannot converted to property value type, then setpropval fail and return false</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetProperties(System.Object,System.String,System.Boolean)">
+            <summary>
+            获取内存对象的属性值
+            </summary>
+            <param name="targetobj"></param>
+            <param name="prfixname"></param>
+            <param name="digsub"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetPropVal(System.Object,System.String)">
+            <summary>
+            get property value as string
+            </summary>
+            <param name="targetobj"></param>
+            <param name="propname"></param>
+            <returns>property value as string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            get property value as string
+            </summary>
+            <param name="targetobj"></param>
+            <param name="propname"></param>
+            <returns>property value as string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatSQL(System.String,System.String,System.Object[])">
+            <summary>
+            format SQL for information
+            </summary>
+            <param name="varprefix">SQL Statement varname's prefix, SQL-Server:@; Oracle: :</param>
+            <param name="sql">source SQL</param>
+            <param name="param">parameterlist </param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatSQL(System.String,System.Object[])">
+            <summary>
+            format SQL for information
+            </summary>
+            <param name="sql">source SQL</param>
+            <param name="param">parameterlist </param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetDTFormattedString(System.DateTime,System.String)">
+            <summary>
+            format datevalue as fmtstring
+            </summary>
+            <param name="dtval">date value</param>
+            <param name="fmtstring">formatstring</param>
+            <returns>formatted date string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetDayOfWeek(System.DateTime,System.Int32)">
+            <summary>
+            get day of week
+            </summary>
+            <param name="dtval"></param>
+            <param name="shiftcounter">1~7,if shift=1 then it means monday will be used as 1st day, if shift=2 then it means tuesday will be used as 1st day</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetWeekOfYear(System.DateTime)">
+            <summary>
+            get week no of year
+            </summary>
+            <param name="dtval">target date</param>
+            <returns>week no of year</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatArray(System.Object[])">
+            <summary>
+            format array of object to a string
+            </summary>
+            <param name="arr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatArray(System.Single[])">
+            <summary>
+            convert array of float to string
+            </summary>
+            <param name="arr">array of float</param>
+            <returns>string of float array: float0;float1;...</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatArray(System.UInt16[])">
+            <summary>
+            convert Uint16 array to string
+            </summary>
+            <param name="arr">array of Uint16</param>
+            <returns>string of Uint16 array: int0;int1;int2;...</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatArray(System.UInt32[])">
+            <summary>
+            convert array of Uint32 to string
+            </summary>
+            <param name="arr">array of Uint32</param>
+            <returns>string of Uint32 array: int0;int1;int2;...</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatArray(System.Int32[])">
+            <summary>
+            convert int array to string
+            </summary>
+            <param name="arr">array of int32</param>
+            <returns>string of int32 array: int0;int1;int2;...</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.FormatByteArray(System.Byte[])">
+            <summary>
+            convert array of byte to string
+            </summary>
+            <param name="data">array of byte</param>
+            <returns>string of byte array: byte0;byte1;byte2;...</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.ProgramIsStarted(System.String)">
+            <summary>
+            check whether process is started already
+            </summary>
+            <param name="prgname">program name</param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.KillProgram(System.String)">
+            <summary>
+            kill process by its processname
+            </summary>
+            <param name="prgname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.ProcessinstanceCount(System.String)">
+            <summary>
+            count processname's process count
+            </summary>
+            <param name="procname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.CloseProcess(System.String)">
+            <summary>
+            close process, by kill
+            </summary>
+            <param name="CloseProcessName">target process name</param>
+            <returns>true if succeeds, false if failed</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.runshellcmd(System.String,System.String)">
+            <summary>
+            run shell command
+            </summary>
+            <param name="cmdname"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.PortIsUsed(System.Int32)">
+            <summary>
+            check whether port is in use
+            </summary>
+            <param name="Port"> port number</param>
+            <returns>true inuse, false free</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetStringAttr(System.Xml.XmlNode,System.String)">
+            <summary>
+            get XMLNode's attribute value by attribute name
+            </summary>
+            <param name="node">XMLNode</param>
+            <param name="attrname">attribute name</param>
+            <returns>attribute value, string format</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetIntAttr(System.Xml.XmlNode,System.String,System.Int32)">
+            <summary>
+            get XMLNode's attribute value by attribute name
+            </summary>
+            <param name="node">XMLnode</param>
+            <param name="attrname">attribute name</param>
+            <param name="defaultvalue">default value for xmlnode attribute</param>
+            <returns>int value by parsing attribute value</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetFloatAttr(System.Xml.XmlNode,System.String,System.Single)">
+            <summary>
+            get XMLNode's attribute value by attribute name
+            </summary>
+            <param name="node">XMLnode</param>
+            <param name="attrname">attribute name</param>
+            <param name="defaultvalue">default value for xmlnode attribute</param>
+            <returns>float value by parsing attribute value</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetHexString(System.Int32,System.Int32)">
+            <summary>
+            X-Based number to string
+            </summary>
+            <param name="srcnum">source number</param>
+            <param name="basenumX">X-base X=?</param>
+            <returns>string value of X-Base, for ex.: 25, 20-base, will be 15</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetHexString(System.Int32,System.Char[],System.Int32)">
+            <summary>
+            convert number to Nbit-based string for ex.: 38 20-base converted to: 1I
+            </summary>
+            <param name="srcnum">source number</param>
+            <param name="basearr">character mapto number</param>
+            <param name="length">length</param>
+            <returns>return string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetHexStringValue(System.String,System.Char[])">
+            <summary>
+            convert number string to int value
+            </summary>
+            <param name="hex"></param>
+            <param name="basearr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.Split(System.String)">
+            <summary>
+            split string to array of string, use ";" as separator, if no ";", then use "," as separator
+            </summary>
+            <param name="args">source string</param>
+            <returns>array of string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetParameterText(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            convert parameter list dictionary[string,string] to string : parname1={parval1};parname2={parval2};...
+            </summary>
+            <param name="paramlist">Dictionary[string,string]</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.TransposeParameters(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            convert 2 dimension DATA to dataRow
+            </summary>
+            <param name="paramlist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.TransposeDataTableToDictList(System.Data.DataTable)">
+            <summary>
+            CONVERT TABLE TO LIST OF DICT-ROW
+            </summary>
+            <param name="dt">DATATABLE FOR DATA-SOURCE</param>
+            <returns>A LIST OF DICTIONARY, EX.: DATATABLE-FLD1,FLD2 ROW1 ID1,VAL1; ROW2 ID2;VAL2, RETURN: LIST-0: [FLD1,ID1],[FLD2,VAL1]; LIST-1: [FLD1,ID2],[FLD2,VAL2]</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.TransposeParametersToTable(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.String}})">
+            <summary>
+            convert 2 dimension DATA to dataTable
+            </summary>
+            <param name="paramlist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.CommUtils.GetParameters(System.String)">
+            <summary>
+            convert string to dictionary : parname=parvalue;parname=parvalue;...partname;...
+            semicomma as : {@@}; comma as: {@}
+            only semicomma as separator, if no semmicomma, then use comma as separator
+            ex.: a1=ba;a2=x2;c1=df{@@}ab{@};d1=xd2
+            </summary>
+            <param name="paramtext">string to be splitted to dictionary of parameter</param>
+            <returns>dictionary[string,string] as parameter list</returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Common.DictionaryEx`2">
+            <summary>
+            可以使用XmlSerialize进行序列化操作的Dictionary
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Common.FileUtils">
+            <summary>
+            文件以及目录处理根据类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.GetFiles(System.String,System.String)">
+            <summary>
+            根据pattern获取目录下面的所有的文件列表
+            </summary>
+            <param name="path"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.getBaseDirectory">
+            <summary>
+            get base directory name of application
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.getDirectoryForURL(System.String)">
+            <summary>
+            get physical directory name for webpath : /xxx/ddd.../xxd
+            </summary>
+            <param name="webpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.ConvertWordToPDF(System.String,System.String)">
+            <summary>
+            convert word file to PDF file
+            </summary>
+            <param name="srcfile"></param>
+            <param name="aimfile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.getNextLine(System.String)">
+            <summary>
+            get next line from file 
+            </summary>
+            <param name="fname"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.RetrieveMatchedLinesInFileToStream(System.String,System.String,System.String)">
+            <summary>
+            write matched line in sourcefile to target writingfile
+            </summary>
+            <param name="fname">source file name</param>
+            <param name="pattern">matching pattern , regular expression</param>
+            <param name="writingfile">target file to received matched lines in source file</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.RetrieveMatchedLinesInFileToStream(System.String,System.String,System.IO.StreamWriter@)">
+            <summary>
+            write matched line in target file to streamwriter
+            </summary>
+            <param name="fname">target file name</param>
+            <param name="pattern">pattern : regular expression</param>
+            <param name="sw">stream writer</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.getMatchedLinesInFile(System.String,System.String)">
+            <summary>
+            get matching lines in file, pattern is regular expression
+            </summary>
+            <param name="fname">filename to be searched</param>
+            <param name="pattern">regular expression for searching matching</param>
+            <returns>if failure, get  NULL, otherwise get matched lines</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.FileUtils.ConvertPDFToImage(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            将pdf文档转换为图片的方法      
+            </summary>
+            <param name="originFilePath">pdf文件路径</param>
+            <param name="imageOutputDirPath">图片输出路径，如果为空，默认值为pdf所在路径</param>       
+            <param name="startPageNum">从PDF文档的第几页开始转换，如果为0，默认值为1</param>
+            <param name="endPageNum">从PDF文档的第几页开始停止转换，如果为0，默认值为pdf总页数</param>       
+            <param name="resolution">设置图片的像素，数字越大越清晰，如果为0，默认值为128，建议最大值不要超过1024</param>
+        </member>
+        <!-- 对于成员“M:Intelli.MidW.Utils.Common.FileUtils.ConvertWordToImage(System.String,System.String,System.Int32,System.Int32,System.Drawing.Imaging.ImageFormat,System.Int32)”忽略有格式错误的 XML 注释 -->
+        <member name="T:Intelli.MidW.Utils.Common.JsonUtils">
+            <summary>
+            Json处理工具类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.JsonUtils.Populate(Newtonsoft.Json.Linq.JObject,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            将Json转化为对象
+            </summary>
+            <param name="jo"></param>
+            <param name="o"></param>
+            <param name="mapping"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.JsonUtils.Populate(Newtonsoft.Json.Linq.JToken,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            将Json转化为对象
+            </summary>
+            <param name="jo"></param>
+            <param name="o"></param>
+            <param name="mapping"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.JsonUtils.ToBool(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            convert JToken jo to boolean value
+            </summary>
+            <param name="jo"></param>
+            <returns>"Y" or "1" : true ; "N" or "0" or "" : false</returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Common.unitConverter">
+            <summary>
+            unit convert container
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.unitConverter.Convert(System.String,System.String,System.String,System.Double)">
+            <summary>
+            convert unit
+            </summary>
+            <param name="hosttype">convert host name, if null, then use"GLB" from Global unit list</param>
+            <param name="fromunit"></param>
+            <param name="tounit"></param>
+            <param name="srcvalue">value to be converted</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.unitConverter.uninit">
+            <summary>
+            dispose
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.unitConverter.Finalize">
+            <summary>
+            destructure
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Common.XmlUtils">
+            <summary>
+            Xml工具类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.XmlUtils.GetNodeAttr(System.Xml.XmlNode,System.String)">
+            <summary>
+            取Xml节点的属性值
+            </summary>
+            <param name="n"></param>
+            <param name="attrName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.XmlUtils.GetNodeBoolAttr(System.Xml.XmlNode,System.String)">
+            <summary>
+            取Xml节点的bool属性值
+            </summary>
+            <param name="n"></param>
+            <param name="attrName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.Zip.ZipFile(System.String,System.String,System.String)">
+            <summary>
+            compress file
+            </summary>
+            <param name="filePath"></param>
+            <param name="fileName"></param>
+            <param name="zipedFile"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Common.ByteUtils">
+            <summary>
+            This is a object to byte utility class
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.ByteUtils.BytesToObject(System.Byte[],System.Type)">
+            <summary>
+            convert byte array to object
+            </summary>
+            <param name="bytes"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.ByteUtils.ObjectToBytes(System.Object)">
+            <summary>
+            Convert object to byte array
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.ByteUtils.Uint16Convert(System.UInt16)">
+            <summary>
+            switch UINT16 : high 8bits switch.to: low 8bits exchange. for ex. : ABE2 , after switched: E2AB
+            </summary>
+            <param name="v">source UINT16 </param>
+            <returns>switched UINT16, ex.: ABE0 to E0AB</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.ByteUtils.Uint32Convert(System.UInt32)">
+            <summary>
+            switch 32Bit number, ex.: ABCDE123 to: 23E1CDAB
+            </summary>
+            <param name="v">source num</param>
+            <returns>switched number</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Common.ByteUtils.FloatConvert(System.Single)">
+            <summary>
+            convert float number
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.DB.DBHelper">
+            <summary>
+            数据库访问帮助类，支持简便的数据库访问接口
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.RegisterDbProvider(System.String,System.String)">
+            <summary>
+            注册数据库类型
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="provider">数据库provider名称</param>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBHelper.DEFAULT">
+            <summary>
+            Default Connection name
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBHelper.CURRENT">
+            <summary>
+            当前默认的数据库
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.RegisterDB(System.String,System.String,System.String,System.String)">
+            <summary>
+            注册数据库
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="dbType">数据库类型</param>
+            <param name="connString">连接参数</param>
+            <param name="varprfx">数据库SQL语句中的变量前缀符号</param>
+            <exception cref="T:System.Data.DataException">数据库连接出错</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.RegisterDB(System.String,System.String,System.String)">
+            <summary>
+            注册数据库
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="dbType">数据库类型</param>
+            <param name="connString">连接参数</param>
+            <exception cref="T:System.Data.DataException">数据库连接出错</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.UnregisterDb(System.String)">
+            <summary>
+            卸载数据库连接
+            </summary>
+            <param name="name">数据库名称</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.GetDBType(System.String)">
+            <summary>
+            获取数据库类型
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.GetConnection(System.String,System.Boolean)">
+            <summary>
+            获取指定的数据库连接对象
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="requiredTrans">是否开启事物</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper._GetConnection(System.String)">
+            <summary>
+            返回指定名称的新连接
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.CloseConnection(System.Data.Common.DbConnection)">
+            <summary>
+            关闭数据库连接
+            </summary>
+            <param name="conn"></param>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBHelper.DBTypesMapping">
+            <summary>
+            数据类型和数据库类型映射
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.PrepareCommand(System.Data.Common.DbCommand,System.Object[])">
+            <summary>
+            设置Command对象参数
+            </summary>
+            <param name="cmd"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.Query(System.String,System.Object[])">
+            <summary>
+            执行默认数据库的查询操作
+            </summary>
+            <param name="SQL">SQL 语句，如果SQL语句使用了参数，必须按照parameters的Index来定义参数的命名，例如： SELECT　SYSDATE FROM DUAL WHERE 1 == :1</param>
+            <exception cref="T:System.NullReferenceException">指定的数据库没有注册</exception>
+            <exception cref="T:System.Data.DataException">查询数据库失败</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.UpdateExChkSQLSave(System.Boolean,System.Data.Common.DbTransaction,System.String,System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="ISSaveSQL"> always false!</param>
+            <param name="dbTrans"></param>
+            <param name="name"></param>
+            <param name="SQL"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.UpdateChkSSQLSave(System.Boolean,System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            save data by dbtransaction
+            </summary>
+            <param name="ISSaveSQL">always false!</param>
+            <param name="dbTrans"></param>
+            <param name="SQL"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.QueryEx(System.String,System.String,System.Object[])">
+            <summary>
+            执行数据库查询操作
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="SQL">SQL 语句</param>
+            <param name="parameters">SQL 语句，如果SQL语句使用了参数，必须按照parameters的Index来定义参数的命名，例如： SELECT　SYSDATE FROM DUAL WHERE 1 == :1</param>
+            <exception cref="T:System.NullReferenceException">指定的数据库没有注册</exception>
+            <exception cref="T:System.Data.DataException">查询数据库失败</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.Update(System.String,System.Object[])">
+            <summary>
+            执行默认数据库更新操作
+            </summary>
+            <param name="SQL">SQL 语句，如果SQL语句使用了参数，必须按照parameters的Index来定义参数的命名，例如： SELECT　SYSDATE FROM DUAL WHERE 1 == :1</param>
+            <param name="parameters">SQL 参数</param>
+            <returns>返回更新的数据记录数</returns>
+            <exception cref="T:System.NullReferenceException">指定的数据库没有注册</exception>
+            <exception cref="T:System.Data.DataException">更新数据库失败</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.UpdateEx(System.String,System.String,System.Object[])">
+            <summary>
+            执行数据库更新操作
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="SQL">SQL 语句，如果SQL语句使用了参数，必须按照parameters的Index来定义参数的命名，例如： SELECT　SYSDATE FROM DUAL WHERE 1 == :1</param>
+            <param name="parameters">SQL 参数</param>
+            <returns>返回更新的数据记录数</returns>
+            <exception cref="T:System.NullReferenceException">指定的数据库没有注册</exception>
+            <exception cref="T:System.Data.DataException">更新数据库失败</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.UpdateEx(System.Data.Common.DbTransaction,System.String,System.String,System.Object[])">
+            <summary>
+            执行数据库更新操作
+            </summary>
+            <param name="dbTrans">更新事物</param>
+            <param name="SQL">SQL 语句，如果SQL语句使用了参数，必须按照parameters的Index来定义参数的命名，例如： SELECT　SYSDATE FROM DUAL WHERE 1 == :1</param>
+            <param name="parameters">SQL 参数</param>
+            <returns>返回更新的数据记录数</returns>
+            <exception cref="T:System.NullReferenceException">指定的数据库没有注册</exception>
+            <exception cref="T:System.Data.DataException">更新数据库失败</exception>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.Update(System.Data.Common.DbTransaction,System.String,System.Object[])">
+            <summary>
+            执行数据库更新操作
+            </summary>
+            <param name="dbTrans">数据库事物对象</param>
+            <param name="SQL"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.RunSp(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="spName">存储过程名称</param>
+            <param name="parameters">输入时按照存储过程参数名称作为输入值，输出时按照参数名称获取输出参数值</param>
+            <returns>存储过程返回值</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBHelper.RunSp(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="name">数据库名称</param>
+            <param name="spName">存储过程名称</param>
+            <param name="parameters">输入时按照存储过程参数名称作为输入值，输出时按照参数名称获取输出参数值</param>
+            <returns>存储过程返回值</returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.DB.DBUtils">
+            <summary>
+            数据库操作工具类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBUtils.Row2Obj(System.Data.DataRow,System.Object,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            将DataRow的字段值赋值到对象的属性或者字段上
+            </summary>
+            <param name="row"></param>
+            <param name="o"></param>
+            <param name="map"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBUtils.Db2Obj(System.Object,System.Type)">
+            <summary>
+            将Db类型转化为对象类型
+            </summary>
+            <param name="v">db值</param>
+            <param name="t">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBUtils.Db2Obj``1(System.Object)">
+            <summary>
+            将数据库类型转化为对象类型
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="v">数据库类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.DB.SPID">
+            <summary>
+            生成序列号
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.SPID.DEFAULT">
+            <summary>
+            设置ID生成的数据库名称
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.SPID.GetIntSID(System.String)">
+            <summary>
+            获取序列号
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.SPID.GetIntSID(System.String,System.Int32)">
+            <summary>
+            获取序列号
+            </summary>
+            <param name="name"></param>
+            <param name="type">序列号类型。0:累加,1:按天累加</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.SPID._GetIntSID(System.String,System.Int32)">
+            <summary>
+            获取序列号
+            </summary>
+            <param name="name"></param>
+            <param name="type">序列号类型。0:累加,1:按天累加</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.SPID.GetSID(System.String,System.String,System.Object)">
+            <summary>
+            按照格式获取序列号
+            </summary>
+            <param name="name"></param>
+            <param name="template"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.SPID.GetSID(System.String,System.Int32,System.String,System.Object)">
+            <summary>
+            按照格式获取序列号
+            </summary>
+            <param name="name"></param>
+            <param name="type">序列号类型。0:累加,1:按天累加</param>
+            <param name="template"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.DB.SPID.DB">
+            <summary>
+            初始化设置数据库访问对象
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.DB.DBTransactionScope">
+            <summary>
+            实现DBHelper的事物处理
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._Instance">
+            <summary>
+            当前事物实例
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._PrevInstance">
+            <summary>
+            父事物实例
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._isComplete">
+            <summary>
+            当前事物是否完成
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._Trans">
+            <summary>
+            当前事物列表
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._option">
+            <summary>
+            事物管理类型
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope._level">
+            <summary>
+            事物隔离级别
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.#ctor(Intelli.MidW.Utils.DB.DBTransactionScope.TransactionOption,System.Data.IsolationLevel)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.#ctor(Intelli.MidW.Utils.DB.DBTransactionScope.TransactionOption,System.Data.IsolationLevel,Intelli.MidW.Utils.DB.DBTransactionScope)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.Complete">
+            <summary>
+            设置事物提交标志
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.SetTransaction(System.String,System.Data.Common.DbTransaction)">
+            <summary>
+            设置指定数据库的事物
+            </summary>
+            <param name="name">名称</param>
+            <param name="trans">事物</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.GetTransaction(System.String)">
+            <summary>
+            根据名称获取事物，如果没有当前事物返回null
+            </summary>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.Dispose">
+            <summary>
+            释放事物，如果没有设置完成，则rollback，否则commit，并且关闭事物连接
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.DB.DBTransactionScope.Clone">
+            <summary>
+            Clone一个新对象，共享事物控制
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.DB.DBTransactionScope.Instance">
+            <summary>
+            获取当前事物实例
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Utils.DB.DBTransactionScope.IsolationLevel">
+            <summary>
+            事物隔离级别
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.DB.DBTransactionScope.TransactionOption">
+            <summary>
+            事物管理类型
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope.TransactionOption.Managed">
+            <summary>
+            处于事物管理中
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.DB.DBTransactionScope.TransactionOption.Unmanaged">
+            <summary>
+            不处于事物管理中
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Email.MailSender">
+            <summary>
+            SMTP mail sender
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Email.MailSender.#ctor(System.String,System.Int32,System.Boolean,System.String,System.String)">
+            <summary>
+            邮件发送类
+            </summary>
+            <param name="host">发送服务器</param>
+            <param name="port">端口号</param>
+            <param name="enableSsl">是否SSL加密</param>
+            <param name="name">用户名</param>
+            <param name="pwd">密码</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Email.MailSender.SendMail(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="from">发送人</param>
+            <param name="title">标题</param>
+            <param name="content">内容，HTML格式</param>
+            <param name="to">接收人列表，多人用逗号隔开</param>
+            <param name="cc">抄送人列表，多人用逗号隔开</param>
+            <param name="bcc">密送人列表，多人用逗号隔开</param>
+            <param name="attach">附件路径，多附件使用分号分割,如果为空，或者文件不存在，则不带附件</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Email.MailSender.SendMail(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="from">发送人</param>
+            <param name="title">标题</param>
+            <param name="content">内容，HTML格式</param>
+            <param name="to">接收人列表，多人用逗号隔开</param>
+            <param name="cc">抄送人列表，多人用逗号隔开</param>
+            <param name="bcc">密送人列表，多人用逗号隔开</param>
+            <param name="attach">附件路径，多附件使用分号分割,如果为空，或者文件不存在，则不带附件</param>
+        </member>
+        <member name="T:Intelli.MidW.Utils.ExcelProc.Excel_RowDataProc">
+            <summary>
+            Excel import rowdata process
+            </summary>
+            <param name="rowdata"></param>
+        </member>
+        <member name="T:Intelli.MidW.Utils.ExcelProc.ExcelImp">
+            <summary>
+            import excel by row.col, read cell one by one
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.OnRowDataProc">
+            <summary>
+            process rowdata row by row
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.filepattern">
+            <summary>
+            excel file pattern
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.#ctor">
+            <summary>
+            excel import
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.#ctor(System.String)">
+            <summary>
+            excel import name will be used as configID for setting loading: normally it likes : Excel.Imp.ID
+            </summary>
+            <param name="name"> ID </param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.#ctor(System.String,System.String)">
+            <summary>
+            excel import, define import directory and filepattern
+            </summary>
+            <param name="impdir"> import directory</param>
+            <param name="filepat"> file match pattern must be regular expression </param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            excel import, define import directory and filepattern, and fieldmaplist
+            </summary>
+            <param name="impdir"> import directory</param>
+            <param name="filepat"> file match pattern must be regular expression </param>
+            <param name="fieldmaplist">field and row header mapping list : header : fieldname</param>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.fieldmap">
+            <summary>
+            fieldmaplist : headercolContent,fieldname
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.Dispose(System.Boolean)">
+            <summary>
+            dispose
+            </summary>
+            <param name="disposing">is disposing</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.Finalize">
+            <summary>
+            destructor
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.NullAsZeroFields">
+            <summary>
+            fieldname which will fill 0 to replace NULL fieldvalue
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.initExcelApp">
+            <summary>
+            initialize Excep APP
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.init(System.String)">
+            <summary>
+            initialize excel import setting: load fieldmaplist, define import directory, define backup directory, define warnning email receiver, 
+            define fields which will be filled with 0 while fieldvalue is null
+            </summary>
+            <param name="cfgid">config ID </param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.CreateHeaderPattern(System.String)">
+            <summary>
+            生成标题行匹配表达式清单，所有匹配表达式为正则表达式清单
+            </summary>
+            <param name="patternstring"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.CreateFieldMapList(System.String)">
+            <summary>
+            create fieldmap: headerRowCellContent,TargetFieldName ; use semicolon as separator, if there is colon or semicolon in source fieldname then use : {@@} as semicolon, use {@} as colon
+            </summary>
+            <param name="mapsetting">headerRowCellContent1,TargetFieldName1;headerRowCellContent2=TargetFieldName2;...</param>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.errLogcontent">
+            <summary>
+            err log msg
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.ProcImpfiles">
+            <summary>
+            processing excel file import
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.ExcelProc.ExcelImp.ColumnNames">
+            <summary>
+            columnidx,fieldname; it is converted from fieldmap[srcheaderfieldname, fieldname] by checking header row
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.CreateColumnFieldMaps(Microsoft.Office.Interop.Excel.Worksheet,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="sheet"></param>
+            <param name="headerrowidx">headerrowidex</param>
+            <param name="colstartidx"></param>
+            <returns>return max column index for fieldmapsetting</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.getmappedfieldname(System.String)">
+            <summary>
+            get mapped fieldname: sourcefieldname=targetfieldname; [srcfield1][srcfield2]...=targetfieldname
+            </summary>
+            <param name="fld">sourcefieldname or srcfield1,srcfield2,....</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.AddressLastCell(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Office.Interop.Excel.Worksheet,System.Int32@,System.Int32@)">
+            <summary>
+            address last row
+            </summary>
+            <param name="startrow"></param>
+            <param name="startcol"></param>
+            <param name="_maxrow"></param>
+            <param name="maxcol"></param>
+            <param name="sht"></param>
+            <param name="LastRow"></param>
+            <param name="LastCol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.AddressFirstCell(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.Office.Interop.Excel.Worksheet,System.Int32@,System.Int32@)">
+            <summary>
+            address first CELL position
+            </summary>
+            <param name="startrow">search start row</param>
+            <param name="startcol">search start column</param>
+            <param name="maxrow">max row index</param>
+            <param name="_maxcol">max column index </param>
+            <param name="sht">work sheet</param>
+            <param name="firstrow">output result: addressed first row, while not found, it is : -1</param>
+            <param name="firstcol">output result: addressed first column, while not found, it is : -1</param>
+            <returns>true:found first cell, false: not found</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetDataArea(Microsoft.Office.Interop.Excel.Worksheet,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            get work data area
+            </summary>
+            <param name="sheet"></param>
+            <param name="startrow"></param>
+            <param name="startcol"></param>
+            <param name="endrow"></param>
+            <param name="endcol"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.ProcessFile(System.String)">
+            <summary>
+            process Excel file import row by row
+            first read header for field map
+            then read data row by row
+            </summary>
+            <param name="f"> file name </param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.SaveWorkBook(Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            save Excel
+            </summary>
+            <param name="wb"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.CloseExcelWorkBook(Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            close workbook
+            </summary>
+            <param name="wb">excel workbook</param>
+            <returns>true while closed, false if error or wb is null</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.CloseExcelApp(Microsoft.Office.Interop.Excel.Application)">
+            <summary>
+            close excel
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.OpenWorkBook(System.String)">
+            <summary>
+            open excel file as workbook
+            </summary>
+            <param name="filename">filename</param>
+            <returns>excel workbook</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetSheet(System.Int32,Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            get worksheet by index in workbook's sheet list
+            </summary>
+            <param name="i">index</param>
+            <param name="_wb">workbook</param>
+            <returns>worksheet</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetSheet(System.String,Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            get worksheet in workbook by sheetname
+            </summary>
+            <param name="name">sheetname</param>
+            <param name="_wb">workbook</param>
+            <returns>target worksheet</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcellAsDataSet(System.String)">
+            <summary>
+            get excel file as DataSet, each worksheet as a single table in dataset tables
+            </summary>
+            <param name="filename">excel file name</param>
+            <returns>dataset contains all worksheet</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcellAsDataSet(Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            get Excel file as DataSet
+            </summary>
+            <param name="wb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetRange(Microsoft.Office.Interop.Excel.Worksheet,System.String,System.String)">
+            <summary>
+            get EXCEL range according to start CELL and end CELL, if end CELL is null/empty, then return start CELL
+            </summary>
+            <param name="sheet"></param>
+            <param name="startcell">start cell like : A1, B3, ...</param>
+            <param name="endcell">end cell like : D3, E5,...; if it is null, then return startcell</param>
+            <returns>the rectangle area from startcell to endcell</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetRange(Microsoft.Office.Interop.Excel.Worksheet,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            get a rectangle area of range : startrow,startcol,endrow,endcol in sheet
+            </summary>
+            <param name="sheet"></param>
+            <param name="startrow"></param>
+            <param name="startcol"></param>
+            <param name="endrow"></param>
+            <param name="endcol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetRowData(Microsoft.Office.Interop.Excel.Worksheet,System.Int32,System.Int32,System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.String})">
+            <summary>
+            get ROW data at row index: rowidx
+            </summary>
+            <param name="sheet"></param>
+            <param name="rowidx"></param>
+            <param name="startcol"></param>
+            <param name="endcol"></param>
+            <param name="mapfieldnamelist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.getColString(System.Int32)">
+            <summary>
+            convert Excel column index to Char: column 1 =>A, column 2 =>B, ...
+            </summary>
+            <param name="colidx">column index</param>
+            <returns>character mapped to column index</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.getCellRangeString(System.Int32,System.Int32)">
+            <summary>
+            convert CELL[rowindex,colindex] to : ColumnNameRowIndex format: A1,B2,....
+            </summary>
+            <param name="rowidx">row index</param>
+            <param name="colidx">column index</param>
+            <returns>A1,B2,....</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetCellPosition(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            convert A1,A2,... format to CELL[rowidx,colidx] 
+            </summary>
+            <param name="cellposstring">A1,B2,... formatted</param>
+            <param name="rowidx"> row index</param>
+            <param name="colidx"> column index </param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetAsOriginalTable(Microsoft.Office.Interop.Excel.Worksheet)">
+            <summary>
+            get EXCEL sheet as Table: columnname = COL1,COL2,...
+            </summary>
+            <param name="sheet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetAsOriginalTable(System.String,Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            get worksheet as dataTable, by sheetname in workbook
+            </summary>
+            <param name="sheetname">sheetname in workbook</param>
+            <param name="wb">work book</param>
+            <returns>returned dataTable</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetAsOriginalTable(System.Int32,Microsoft.Office.Interop.Excel.Workbook)">
+            <summary>
+            get sheet as DataTable by index, indexed from 0 as first
+            </summary>
+            <param name="sheetIndex"></param>
+            <param name="wb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetAsOriginalTable(System.Int32,System.String)">
+            <summary>
+            get worksheet as dataTable in Excel file
+            </summary>
+            <param name="sheetIndex">sheet index</param>
+            <param name="excelfilename">filename</param>
+            <returns>datatable as result</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetExcelSheetAsOriginalTable(System.String,System.String)">
+            <summary>
+            get worksheet as dataTable in Excel file
+            </summary>
+            <param name="sheetname"> sheet name</param>
+            <param name="excelfilename">excel filename</param>
+            <returns>datatable as result</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetCellContent(Microsoft.Office.Interop.Excel.Worksheet,System.Int32,System.Int32)">
+            <summary>
+            get Excel CELL(row,col) content as TEXT
+            </summary>
+            <param name="sheet">excel worksheet object</param>
+            <param name="row">row index</param>
+            <param name="col">column index</param>
+            <returns>cell content as text, if leading "'" and "'" is the only "'" in cell content, then delete it</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.WriteCellContent(Microsoft.Office.Interop.Excel.Worksheet,System.Int32,System.Int32,System.Object)">
+            <summary>
+            write value to EXCEL Cell： sheet.cells[row,col] = cellvalue
+            </summary>
+            <param name="sheet"></param>
+            <param name="row"></param>
+            <param name="col"></param>
+            <param name="cellvalue"></param>
+            <returns>true while succeed, false while fail</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.GetCellContent(Microsoft.Office.Interop.Excel.Worksheet,System.String)">
+            <summary>
+            get CELL content 
+            </summary>
+            <param name="sheet">worksheet object</param>
+            <param name="cellpos">cell ID name format : A1,B2,...</param>
+            <returns>cell text, if null then return "",if leading "'" and "'" is the only "'" in cell content, then delete it</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.ExcelProc.ExcelImp.WriteCellContent(Microsoft.Office.Interop.Excel.Worksheet,System.String,System.Object)">
+            <summary>
+            write cellvalue to sheet.cell(cellpos)
+            </summary>
+            <param name="sheet"></param>
+            <param name="cellpos"></param>
+            <param name="cellvalue"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.ExcelProc.ExcelImp.logger">
+            <summary>
+            logger for file log
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Utils.ExcelProc.ExcelImp.ExcelApp">
+            <summary>
+            Excel application process
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Expert.IExpertCmd">
+            <summary>
+            expert command: Map data to normalized format
+                            Reduce nonmeaningful data by check rules; can recursive
+                            Deduct data by rules, then return output; can recursive
+                            
+            </summary>
+        </member>
+        <!-- 对于成员“T:Intelli.MidW.Utils.Expert.ExpertRule”忽略有格式错误的 XML 注释 -->
+        <member name="M:Intelli.MidW.Utils.Expert.Expert.RunExpertList(System.Object,System.String,System.String)">
+            <summary>
+            run expert by check each rule file, filenameformat is  BASEDIRECTORY\dimension\[targetobjectTypeName.]PropertyName.txt
+            </summary>
+            <param name="targetobject">targetobject</param>
+            <param name="dimension">dimension to be used as rule sub directory name</param>
+            <param name="cbntype">C: combine, M: All matched</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.FTP.FtpWeb.DirectoryExist(System.String)">
+            <summary>
+            判断当前目录下指定的子目录是否存在
+            </summary>
+            <param name="RemoteDirectoryName">指定的目录名</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.FTP.FtpWeb.FileExist(System.String)">
+            <summary>
+            判断当前目录下指定的文件是否存在
+            </summary>
+            <param name="RemoteFileName">远程文件名</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.FTP.FtpWeb.GotoDirectory(System.String,System.Boolean)">
+            <summary>
+            切换当前目录
+            </summary>
+            <param name="DirectoryName"></param>
+            <param name="IsRoot">true 绝对路径   false 相对路径</param>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Log.Log">
+            <summary>
+            Log 对象，用来实实现记录日志文件
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.#ctor(log4net.ILog)">
+            <summary>
+            构造日志对象，log为要生成后的目的对象，由传入对象来赋值
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Debug(System.String)">
+            <summary>
+            记录调试日志
+            </summary>
+            <param name="message">要记录的日志信息</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Debug(System.String,System.Object[])">
+            <summary>
+            记录调试日志
+            </summary>
+            <param name="message">日志信息内容，可以包含参数，然后在args中提供具体值进行替代</param>
+            <param name="args">日志信息参数</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Info(System.String)">
+            <summary>
+            记录调试日志
+            </summary>
+            <param name="message">日志信息，不能带参数</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Info(System.String,System.Object[])">
+            <summary>
+            记录调试日志
+            </summary>
+            <param name="message">日志信息内容，可以包含参数，然后在args中提供具体值进行替代</param>
+            <param name="args">日志信息参数</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Error(System.String)">
+            <summary>
+            记录错误信息
+            </summary>
+            <param name="message">信息内容，不能带参数</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.Log.Error(System.String,System.Exception)">
+            <summary>
+            记录错误信息
+            </summary>
+            <param name="message">信息内容，不能带参数</param>
+            <param name="ex">错误异常</param>
+        </member>
+        <member name="P:Intelli.MidW.Utils.Log.Log.IsDebugEnabled">
+            <summary>
+            是否允许记录调试日志
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Log.LogFactory">
+            <summary>
+            日志工厂类
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Log.LogFactory.DEFAULT_LOG">
+            <summary>
+            默认日志名称
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Log.LogFactory.LOG_BACKUPPATH">
+            <summary>
+            logfile的存储路径
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.StartLog(System.String)">
+            <summary>
+            开始记录日志
+            </summary>
+            <param name="name">日志名称，日志文件为：日志名称.LOG</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.StartLog(System.String,System.String)">
+            <summary>
+            开始记录日志
+            homeDirectory下的Resources\logname.log.config可以配置日志选项，其中最重要的就是logLevel，可以配置为： level value="Debug"  或者 ： level value="Error"  或者： level value="Info" 
+            </summary>
+            <param name="name">日志分类名称</param>
+            <param name="path">日志文件路径</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.StopLog(System.String)">
+            <summary>
+            停止记录日志
+            </summary>
+            <param name="name">日志分类名称</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.EnableLog(System.String,System.Boolean)">
+            <summary>
+            设置是否记录调试日志
+            </summary>
+            <param name="name">日志分类名称</param>
+            <param name="enabled">是否允许调试日志</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.GetLog(System.String)">
+            <summary>
+            获取日志对象
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Log.LogFactory.GetLog(System.String,System.String)">
+            <summary>
+            获取日志对象
+            </summary>
+            <param name="name"></param>
+            <param name="logName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Message.Messages">
+            <summary>
+            multi-language supported message system
+            message_langid.ini map to language: messages.ini map to global(default + multi-lang); 
+               message_cn.ini map to Chinese; 
+               message_en.ini map to English
+            if messages.ini : 
+               msgid=msgtxt as default
+               msgid_langid=msgtxt as multi-lang
+            System init first with messages.ini
+            then load message_langid on demand
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Message.Messages.messageList">
+            <summary>
+            message list [msgid, msgitem]
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Message.Messages.msgfilename">
+            <summary>
+            MESSAGE FILE; CONTENT FORMAT: MSGID=msgtext which include placeholder {0} {1} ... to be replaced by variable
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.init">
+            <summary>
+            init message file
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Message.Messages.langid">
+            <summary>
+            global Lang ID
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.loadmsgfile(System.String)">
+            <summary>
+            load language file: message_langid.txt
+            file format: msgid=message with placeholder
+            </summary>
+            <param name="langnum">language ID</param>
+            <returns>load successfully then return true otherwise false</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.GetMessage(System.String,System.String)">
+            <summary>
+            get message text for langid / msgid
+            </summary>
+            <param name="msgid">message id, messagetext is set in message.xml</param>
+            <param name="messagetext">message text passed in, if no lang-message is set, then use it to return</param>
+            <returns>message text refer to langid/msgid</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.GetMessage(System.String,System.String,System.Object[])">
+            <summary>
+            get message text for langid / msgid
+            </summary>
+            <param name="msgid">message id, messagetext is set in message.xml</param>
+            <param name="messagetext">message text passed in, if no lang-message is set, then use it to return</param>
+            <param name="variablevalues">use passed paramter value to replace variable in message ex. : {0},{1}, "s1","s2"</param>
+            <returns>message text refer to langid/msgid</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.GetLMessage(System.String,System.String,System.String)">
+            <summary>
+            get message text for langid / msgid
+            </summary>
+            <param name="langnum">message id, messagetext is set in message.xml</param>
+            <param name="msgid">message id, messagetext is set in message.xml</param>
+            <param name="messagetext">message text passed in, if no lang-message is set, then use it to return</param>
+            <returns>message text refer to langid/msgid</returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Message.Messages.GetLMessage(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            get message text for langid / msgid
+            </summary>
+            <param name="langnum">message id, messagetext is set in message.xml</param>
+            <param name="msgid">message id, messagetext is set in message.xml</param>
+            <param name="messagetext">message text passed in, if no lang-message is set, then use it to return</param>
+            <param name="variablevalues">use passed paramter value to replace variable in message ex. : {0},{1}, "s1","s2"</param>
+            <returns>message text refer to langid/msgid</returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Message.Messages.msgitem">
+            <summary>
+            msgitem : [msgid,msgtext]
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Message.Messages.msgitem.langtexts">
+            <summary>
+            [langid,messagetext]
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.Printer">
+            <summary>
+            打印机基类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.ParseParam(System.String)">
+            <summary>
+            解析打印机参数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.DoPrint(System.String,System.Text.Encoding)">
+            <summary>
+            打印
+            </summary>
+            <param name="content"></param>
+            <param name="coding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.DoPrintFile(System.String)">
+            <summary>
+            打印文件内容
+            </summary>
+            <param name="path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.Connect">
+            <summary>
+            连接打印机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.Close">
+            <summary>
+            关闭打印机连接
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.Printer.IsConnected">
+            <summary>
+            打印机是否连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.Printer.PrinterType">
+            <summary>
+            打印机类型
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.EthPrinter">
+            <summary>
+            以太网打印机
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.FilePrinter">
+            <summary>
+            打印到文件
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.LPTPrinter">
+            <summary>
+            打印到并行打印口
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.PrinterFactory">
+            <summary>
+            打印机工厂类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.PrinterFactory.Register(System.String,System.Type)">
+            <summary>
+            注册打印机类型
+            </summary>
+            <param name="t">打印机类型</param>
+            <param name="pt">打印机类</param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.PrinterFactory.IsSupported(System.String)">
+            <summary>
+            判断当前打印机类型是否支持
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Printer.PrinterFactory.Create(System.String)">
+            <summary>
+            创建打印机对象
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Printer.SpoolerPrinter">
+            <summary>
+            Windows spooler打印机
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Resources.IResourcesPool">
+            <summary>
+            资源池接口，用于获取对应的资源文件里面的资源对象
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Resources.IResourcesPool.Format(System.String,System.Object[])">
+            <summary>
+            格式化参数值
+            </summary>
+            <param name="name"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.Resources.IResourcesPool.Item(System.String)">
+            <summary>
+            获取对应的资源
+            </summary>
+            <param name="name">资源名称</param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.Resources.IResourcesPool.Keys">
+            <summary>
+            获取所有配置参数的Key
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Resources.ResourceBuilder">
+            <summary>
+            初始化系统的所有资源池
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Resources.ResourceBuilder.InitBuilder">
+            <summary>
+            初始化应用的所有资源
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Resources.ResourceBuilder.InitConfig">
+            <summary>
+            init system.config.xml
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Resources.ResourceBuilder.InitConfig(System.String)">
+            <summary>
+            init xmlcfgfile which is : appdir\resources\*.xml
+            </summary>
+            <param name="xmlcfgfile"></param>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Resources.ResourceBuilder.ParseXml(System.String)">
+            <summary>
+            获取XML格式的资源池
+            </summary>
+            <param name="path">XML文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="P:Intelli.MidW.Utils.Resources.ResourceBuilder.ConfigPool">
+            <summary>
+            配置参数池
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Utils.Resources.ResourceBuilder.MessagePool">
+            <summary>
+            消息池
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Resources.ResourceBuilder.ResourceType">
+            <summary>
+            资源池的资源类型
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Resources.ResourceBuilder.ResourceType.Config">
+            <summary>
+            系统配置参数
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Resources.ResourceBuilder.ResourceType.Msg">
+            <summary>
+            系统消息
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Resources.XMLResourcesPool">
+            <summary>
+            ACC系统资源池类，每一个对象对应一个资源池
+            对应的资源文件是xml文件，文件格式如下
+            <resources>
+                <resource name="name">value</resource>
+            </resources>
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Script.ScriptHelper">
+            <summary>
+            脚本处理工具类
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Script.ScriptHelper.LoadScript(System.String,System.String)">
+            <summary>
+            加载指定脚本，并且返回对象
+            </summary>
+            <param name="sourcePath"></param>
+            <param name="typeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Script.ScriptHelper.LoadScript(System.String,System.String,System.String[])">
+            <summary>
+            加载指定脚本文件，并且返回对象
+            </summary>
+            <param name="sourcePath"></param>
+            <param name="typeName"></param>
+            <param name="References"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Script.ScriptHelper.LoadScript(System.String[],System.String[])">
+            <summary>
+            加载指定脚本
+            </summary>
+            <param name="References"></param>
+            <param name="sources"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Script.ScriptHelper.LoadScript(System.String,System.String,System.String,System.String[])">
+            <summary>
+            从script加载 ==> 从library加载
+            </summary>
+            <param name="typeName"></param>
+            <param name="library"></param>
+            <param name="sourcePath"></param>
+            <param name="References"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Script.ScriptHelper.LoadAssembly(System.String)">
+            <summary>
+            加载Assembly
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.Template.TemplateHelper">
+            <summary>
+            模版处理类
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Template.TemplateHelper.Rules">
+            <summary>
+            模版规则定义
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Utils.Template.TemplateHelper.dt">
+            <summary>
+            预设时间设置
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Template.TemplateHelper.Translate(System.String,System.Object)">
+            <summary>
+            消息翻译
+            </summary>
+            <param name="msg"></param>
+            <param name="data">转换规则可以是DataRow，IDictionary或者一般的Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.Template.TemplateHelper.AppendRule">
+            <summary>
+            添加转换规则
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.WebService.WebServiceHelper">
+            <summary>
+            执行WebService
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.WebService.WebServiceHelper.InvokeWs(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            执行WebService
+            </summary>
+            <param name="url">URL</param>
+            <param name="service">服务名称</param>
+            <param name="method">方法名称</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.WebService.WebServiceHelper.InvokeWs(System.String,System.String,System.Object[])">
+            <summary>
+            执行WebService的默认Service
+            </summary>
+            <param name="url">URL</param>
+            <param name="method">方法名称</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Utils.WebService.WebServiceProxy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Utils.XMLSerializble.XMLSerializeUtil">
+            <summary>
+            对象到XML的转化操作
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Utils.XMLSerializble.XMLSerializeUtil.Serialize(System.Object)">
+            <summary>
+            将对象序列化为XML
+            </summary>
+            <param name="o">要序列化的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Utils.XMLSerializble.XMLSerializeUtil.Deserialize(System.Type,System.String)">
+            <summary>
+            将xml反序列化为对象
+            </summary>
+            <param name="t">对象类型</param>
+            <param name="xml">要反序列化的xml</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

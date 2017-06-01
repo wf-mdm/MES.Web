@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MES - Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/bundles/css")
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a class="logo" href="#">
+                <span class="logo-mini">MES</span>
+                <span class="logo-lg">MES Admin</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        @Html.Partial("_UserMenu")
+                        <li>
+                            <a href="#" class="text-yellow">
+                                <i class="fa fa-info-circle"></i><span class="hidden-xs"> 帮助</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="treeview">
+                        <a href="@Url.Action("Index", "Line")">
+                            <i class="fa fa-dashboard"></i> <span>现场管理</span>
+                        </a>
+                    </li>
+                    <li class="header">管理菜单</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>BOM管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i>BOM管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>产线管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="admin.line.html"><i class="fa fa-circle-o"></i>产线管理</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>工序管理</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>工站管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>系统管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>用户管理</span></a></li>
+                            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>权限管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Admin</h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+                    <li class="active">Admin</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+
+        @Html.Partial("_Foot")
+    </div>
+
+
+    @Scripts.Render("~/bundles/js")
+</body>
+
+</html>

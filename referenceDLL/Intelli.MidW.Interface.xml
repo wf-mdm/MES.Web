@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intelli.MidW.Interface</name>
+    </assembly>
+    <members>
+        <member name="T:Intelli.MidW.Interface.ParamType">
+            <summary>
+            参数编码类型
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.ParamType.Text">
+            <summary>
+            参数类型是简单的文本方式，例如：param1=v1;param2=v2
+            </summary>
+        </member>
+        <!-- 对于成员“F:Intelli.MidW.Interface.ParamType.Xml”忽略有格式错误的 XML 注释 -->
+        <member name="F:Intelli.MidW.Interface.ParamType.Json">
+            <summary>
+            参数类型是json，例如{param1:v1,param2:v2}
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Interface.BizRequest">
+            <summary>
+            Biz request definition
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizRequest.GetParameter(System.String)">
+            <summary>
+            获取参数，如果参数不存在返回null
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizRequest.SetJsonParameter(System.String)">
+            <summary>
+            设置Json格式的Parameter
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizRequest.SetTextParameter(System.String)">
+            <summary>
+            设置text格式的parameter
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizRequest.REQUEST">
+            <summary>
+            request的encoder格式
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizRequest.Encode">
+            <summary>
+            encode the request to XML format
+            </summary>
+            <returns>request xml string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizRequest.Decode(System.String)">
+            <summary>
+            Decode a xml format string to BizRequest
+            </summary>
+            <param name="xml">xml format BizRequest</param>
+            <returns>decoded request</returns>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.ClientId">
+            <summary>
+            Client ID
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.ServerId">
+            <summary>
+            Server ID
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.EntityId">
+            <summary>
+            Request entity id
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.CmdName">
+            <summary>
+            Command name
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.Parameters">
+            <summary>
+            request parameter 
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.Program">
+            <summary>
+            the client program name
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.EventId">
+            <summary>
+            the event id
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.ProcessId">
+            <summary>
+            client programe processid
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.UserId">
+            <summary>
+            the client operator id
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizRequest.Password">
+            <summary>
+            the client operator id
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Interface.BizResponse">
+            <summary>
+            Biz response definition
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizResponse.Encode">
+            <summary>
+            encode the respnse to XML format
+            </summary>
+            <returns>response xml string</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.BizResponse.Decode(System.String)">
+            <summary>
+            Decode a xml format string to BizRequest
+            </summary>
+            <param name="xml">xml format BizRequest</param>
+            <returns>decoded request</returns>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizResponse.ReturnCode">
+            <summary>
+            Return code from server
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizResponse.ErrorCode">
+            <summary>
+            the error code from server
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizResponse.ReturnMessage">
+            <summary>
+            return message
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizResponse.ErrorMessage">
+            <summary>
+            error message
+            </summary>
+        </member>
+        <member name="P:Intelli.MidW.Interface.BizResponse.Data">
+            <summary>
+            return data
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Interface.BizResponses">
+            <summary>
+            系统预定义的一些Response
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.OK">
+            <summary>
+            OK
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.NOK">
+            <summary>
+            NOK
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.ServerUnreachable">
+            <summary>
+            不能访问server
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.ServerIsNotExist">
+            <summary>
+            请求的server不存在
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.ServerIsNotStart">
+            <summary>
+            请求的服务没有运行
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.CmdIsNotExist">
+            <summary>
+            CMD不存在
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.NoPermission">
+            <summary>
+            没有权限
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.UnwellFormatRequest">
+            <summary>
+            请求格式不正确
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.RESP_OK">
+            <summary>
+            OK Response
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.RESP_CMDISNOTEXIST">
+            <summary>
+            Cmd is not exist Response
+            </summary>
+        </member>
+        <member name="F:Intelli.MidW.Interface.BizResponses.RESP_NOPERMISSION">
+            <summary>
+            No permission
+            </summary>
+        </member>
+        <member name="T:Intelli.MidW.Interface.IBizCommand">
+            <summary>
+            the interface of command
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Interface.IBizCommand.RunCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            invoke the command
+            </summary>
+            <param name="cmd">command name</param>
+            <param name="request">command request</param>
+            <returns>command response</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.IBizCommand.RunDbCmd(System.String,Intelli.MidW.Interface.BizRequest)">
+            <summary>
+            invoke a dataset command
+            </summary>
+            <param name="cmd">command name</param>
+            <param name="request">command request</param>
+            <returns></returns>
+        </member>
+        <member name="T:Intelli.MidW.Interface.ISqlCommand">
+            <summary>
+            the interface of sql command
+            </summary>
+        </member>
+        <member name="M:Intelli.MidW.Interface.ISqlCommand.Query(System.String,System.Object[])">
+            <summary>
+            执行一个查询，返回查询的结果集
+            </summary>
+            <param name="sql">查询的SQL语句</param>
+            <param name="args">查询参数</param>
+            <returns>返回的结果集</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.ISqlCommand.QueryEx(System.String,System.String,System.Object[])">
+            <summary>
+            执行一个查询，返回查询的结果集
+            </summary>
+            <param name="name">数据源名称</param>
+            <param name="sql">查询的SQL语句</param>
+            <param name="args">查询参数</param>
+            <returns>返回的结果集</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.ISqlCommand.Update(System.String,System.Object[])">
+            <summary>
+            执行一个更新的SQL
+            </summary>
+            <param name="sql">SQL</param>
+            <param name="args">参数</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.ISqlCommand.UpdateEx(System.String,System.String,System.Object[])">
+            <summary>
+            执行一个更新的SQL
+            </summary>
+            <param name="name">数据源名称</param>
+            <param name="sql">SQL</param>
+            <param name="args">参数</param>
+            <returns>影响的记录数</returns>
+        </member>
+        <member name="M:Intelli.MidW.Interface.ISqlCommand.GetSID(System.String)">
+            <summary>
+            获取指定名称的唯一序列号
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

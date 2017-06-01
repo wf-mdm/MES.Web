@@ -1,0 +1,64 @@
+﻿@model MES.Web.Models.LineModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MES - Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/bundles/css")
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="logo dropdown-toggel" data-toggle="dropdown">MES Admin<i class="fa fa-angle-down pull-right"></i></a>
+                        <div class="dropdown-menu side-menu">
+                            <ul class="sidebar-menu">
+                                <li class="treeview"><a href="#Kanban"><i class="fa fa-circle-o"></i><span>生产线主页</span></a></li>
+                                <li class="treeview"><a href="#Line"><i class="fa fa-circle-o"></i><span>启动/停止</span></a></li>
+                                <li class="treeview"><a href="#Wo"><i class="fa fa-circle-o"></i><span>启动工单</span></a></li>
+                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>停止工单</span></a></li>
+                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>员工登入</span></a></li>
+                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>员工登出</span></a></li>
+                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="title">@Html.DisplayFor(m => m.DispName)</li>
+                </ul>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        @Html.Partial("_UserMenu")
+                        <li>
+                            <a href="#" class="text-yellow">
+                                <i class="fa fa-info-circle"></i><span class="hidden-xs"> 帮助</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content-wrapper" id="line-main">
+
+        </div>
+
+        @Html.Partial("_Foot")
+    </div>
+    <script>
+        var Line = {
+            info: {
+                name: "@Html.DisplayFor(model => model.Name)",
+                disp: "@Html.DisplayFor(model => model.DispName)",
+                app: "@Url.Content("~/")"
+            }
+        };
+    </script>
+    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/js/line")
+</body>
+
+</html>

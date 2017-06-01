@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <resource name="init">
+    <item name="server.portisused">端口[{0}]已经被使用.</item>
+  </resource>
+
+  <resource name="interface">
+    <resource name="global">
+      <item name="SYS-00001">不能访问服务器</item>
+      <item name="SYS-00002">请求的服务不存在</item>
+      <item name="SYS-00003">请求的服务没有启动</item>
+      <item name="SYS-00004">请求的命令没有配置</item>
+      <item name="SYS-00005">没有权限请求该服务</item>
+    </resource>
+  </resource>
+</resources>
