@@ -49,5 +49,10 @@ namespace MES.Web.Controllers
 
             return View(line);
         }
+
+        public ActionResult Ops(String id)
+        {
+            return Json(db.Ops.Where(op => op.Line.Equals(id)));
+        }
     }
 }

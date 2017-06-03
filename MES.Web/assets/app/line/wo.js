@@ -5,18 +5,22 @@ Line.Wo = {
 
     show: function () {
         var $this = this;
-        if (Line.Pns) {
-            Line.loadTemp("temp-wo", function ($temp) {
-                $("#line-main").html($temp(Line));
-                $("#wo-form").submit($this.doStartNewWo).find("select").select2();
-                $this.show2();
-            });
-        } else {
-            $.post("/api/Cmd/RunDb", { Server: "mes", Client: Line.info.name, Entity: Line.info.name, Cmd: "GETLNPN", Args: {} }, function (rs) {
+        if (!Line.Pns) {
+            Line.runDb("GETLNPN", Line.info.name, {}, function (rs) {
                 Line.Pns = rs.PARTDATA;
                 $this.show();
             });
+            return;
         }
+        Line.runDb("getwolst2", "", {}, function (d) {
+            $this.Wos = d.WOLIST;
+            Line.loadTemp("temp-wo", function ($temp) {
+                Line.updateMain($temp({Wos: $this.Wos, Pns: Line.Pns}));
+                $("#wo-form").submit($this.doStartNewWo).find("select").select2();
+                $("#wo-list a.btn").click($this.doStartStop);
+                $this.show2();
+            });
+        });
     },
     show2: function () {
         if (!Line.Pns) return;
@@ -24,19 +28,13 @@ Line.Wo = {
             Line.loadTemp("temp-log-list", function ($temp) {
                 $("#log-list").html($temp(Line));
             });
-        if (Line.Status && Line.Status.STINFO)
-            Line.loadTemp("temp-wo-list", function ($temp) {
-                $("#wo-list").html($temp(Line));
-            });
-
-        $("#wo-list a.btn").click(this.doPost);
     },
 
     doStartStop: function (event) {
         if (event) event.preventDefault();
         var cmd = $(this).attr("data-cmd"),
             woid = $(this).attr("data-woid");
-        this.doPost(cmd, woid, { type: "1" });
+        Line.Wo.doPost(cmd, woid, { t: "3" });
     },
 
     doStartNewWo: function (event) {
@@ -45,14 +43,15 @@ Line.Wo = {
             args = {}, args1 = $form.serializeArray();
         for (var i in args1)
             args[args1[i].name] = args1[i].value;
-        args.type = "2";
-        if (args.pn && args.woid && args.qty)
+        args.t = "2";
+        if (args.woid)
             Line.Wo.doPost("wostart", args.woid, args);
         else
             alert("请输入工单信息");
     },
 
     doPost: function (cmd, woid, args) {
+        var $this = this;
         Line.Progress.show();
         $.ajax({
             type: "POST",
@@ -61,6 +60,7 @@ Line.Wo = {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (rs) {
+                $this.show();
                 Line.updateStatus();
             }
         }).fail(function (e) {

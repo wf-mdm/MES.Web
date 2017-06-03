@@ -15,7 +15,7 @@ Line.Kanban = {
                     edgeSymbolSize: [1, 8],
                     data: Line.KanbanData[Line.info.name].data,
                     links: Line.KanbanData[Line.info.name].links,
-                    label: { normal: { show: true, textStyle: { fontSize: 8 } } },
+                    label: { normal: { show: true, textStyle: { fontSize: 12 } } },
                     itemStyle: { normal: { color: "#c23531" } },
                     lineStyle: { normal: { color: "source", opacity: 0.9, width: 2, curveness: 0 } },
                     categories: [

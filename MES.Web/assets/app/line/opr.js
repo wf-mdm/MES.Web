@@ -6,7 +6,7 @@ Line.Opr = {
     show: function () {
         var $this = this;
         Line.loadTemp("temp-opr", function ($temp) {
-            $("#line-main").html($temp(Line));
+            Line.updateMain($temp(Line));
             $("#opr-form").submit(function () { return false; }).find("button").click($this.doPost);
             $this.show2();
         });

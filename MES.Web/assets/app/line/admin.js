@@ -4,12 +4,12 @@ Line.Admin = {
     },
 
     show: function () {
-        var $main = $("#line-main");
+        var $this = this;
         Line.loadTemp("temp-admin", function ($temp) {
-            $main.html($temp(Line));
-            var $btns = $main.find("#line-line button");
-            $($btns[0]).click(this.doStart);
-            $($btns[1]).click(this.doStop);
+            Line.updateMain($temp(Line));
+            var $btns = $("#line-admin button");
+            $($btns[0]).click($this.doStart);
+            $($btns[1]).click($this.doStop);
             if (Line.Status && Line.Status.LOGTAB)
                 Line.loadTemp("temp-log-list", function ($temp1) {
                     $("#log-list").html($temp1(Line));

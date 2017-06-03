@@ -6,7 +6,7 @@ Line.Summary = {
     show: function () {
         var $this = this;
         Line.loadTemp("temp-summary", function ($temp) {
-            $("#line-main").html($temp(Line));
+            Line.updateMain($temp(Line));
             $this.doUpdate();
         });
     },

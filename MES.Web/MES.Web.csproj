@@ -225,8 +225,10 @@
     <Content Include="assets\app\line\admin.js" />
     <Content Include="assets\app\line\summary.js" />
     <Content Include="assets\app\line\opr.js" />
+    <Content Include="assets\app\line\ldmtl.js" />
     <Content Include="assets\app\line\wo.js" />
     <Content Include="assets\app\stn\0.js" />
+    <Content Include="assets\app\stn\kanban.js" />
     <Content Include="assets\css\AdminLTE.css" />
     <Content Include="assets\css\AdminLTE.min.css" />
     <Content Include="assets\css\alt\AdminLTE-bootstrap-social.css" />
@@ -1121,11 +1123,8 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\template\stn.html" />
     <Content Include="assets\template\line.html" />
-    <Content Include="assets\template\line\admin.html" />
-    <Content Include="assets\template\line\opr.html" />
-    <Content Include="assets\template\line\summary.html" />
-    <Content Include="assets\template\line\wo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -1148,10 +1147,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Admin.cshtml" />
     <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Stn\Index.cshtml" />
+    <Content Include="Views\Stn\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\template\op\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

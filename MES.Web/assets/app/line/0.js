@@ -1,6 +1,6 @@
 $(function () {
     var curFeature = undefined,
-        INTERVAL = 1000 * 30,
+        UPDATE_INTERVAL = 1000 * 30,
         $templates;
 
     function doSwitch(path) {
@@ -12,9 +12,7 @@ $(function () {
     }
 
     Line.switch = function (appid) {
-        if (Line.info.features.indexOf("#" + appid + "#") == -1) {
-            return;
-        }
+        //if (Line.info.features.indexOf("#" + appid + "#") == -1) return;
 
         var f = Line[appid];
         if (f === curFeature) return;
@@ -28,10 +26,6 @@ $(function () {
         curFeature.active = true;
         curFeature.init();
         curFeature.show();
-
-        var $main = $("#line-main"),
-            $content = $main.find("section.content>div");
-        $content.css({ "min-height": $main.height() });
     };
 
     Line.loadTemp = function (id, proc) {
@@ -50,6 +44,11 @@ $(function () {
                 $this.loadTemp(id, proc);
             }, "text");
         }
+    };
+    Line.updateMain = function (txt) {
+        var $main = $("#line-main").html(txt),
+            $content = $main.find("section.content>div");
+        $content.css({ "min-height": $main.height() });
     };
 
     Line.Progress = {
@@ -77,8 +76,30 @@ $(function () {
         }).fail(function (e) {
             Line.Status.Error = e;
         }).always(function () {
-            timeid = setTimeout(Line.updateStatus, INTERVAL);
+            timeid = setTimeout(Line.updateStatus, UPDATE_INTERVAL);
             if (Line.onUpdate) Line.onUpdate.apply(curFeature);
+        });
+    };
+
+    Line.run = function (cmd, entity, args, proc) {
+        return $.ajax({
+            type: "POST",
+            url: "/api/Cmd/Run",
+            data: JSON.stringify({ Server: "mes", Client: Line.info.name, Entity: entity, Cmd: cmd, Args: args }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: proc
+        });
+    };
+
+    Line.runDb = function (cmd, entity, args, proc) {
+        return $.ajax({
+            type: "POST",
+            url: "/api/Cmd/RunDb",
+            data: JSON.stringify({ Server: "mes", Client: Line.info.name, Entity: entity, Cmd: cmd, Args: args }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: proc
         });
     };
 

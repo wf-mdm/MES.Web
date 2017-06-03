@@ -19,34 +19,42 @@
         transform: rotate(360deg);
     }
 }
+
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
-    left:0;
-    right:auto;
+    left: 0;
+    right: auto;
 }
 
 .table .btn, form .btn {
     min-width: 80px;
 }
 
-.table.compact .btn{
+.table.compact .btn {
     line-height: 1.2;
 }
 
 .table.compact th {
     padding: 5px;
 }
+
 .table.compact td {
     padding: 3px;
+    overflow: hidden;
 }
 
 .select2 .select2-selection {
     padding: 0 12px;
 }
+
+.box {
+    margin-bottom: 0;
+}
+
 .box-footer .box-title {
-display: inline-block;
-font-size: 18px;
-margin: 0;
-line-height: 1;
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
 }
 
 .text-white {
@@ -64,37 +72,17 @@ line-height: 1;
     color: #fff;
     margin-left: 50px;
 }
-/*
-.side-menu {
-    background-color: #222d32;
-    border: none;
-    width: 230px !important;
-}
 
-    .side-menu a {
-        color: #b8c7ce;
-    }
-*/
 .box-foot-title {
     padding: 10px 0;
     font-size: 18px;
     line-height: 1;
 }
 
-#line-main, #line-main > section {
-    display: flex;
-    flex-direction: column;
-}
-
-    #line-main > section, #line-main > section > div {
-        flex: 1;
-        margin: 0;
-    }
-
 .kanban-toggel {
     position: absolute;
     top: 70px;
-    right: 50px;
+    right: 20px;
     width: 50px;
     height: 50px;
     font-size: 25px;
@@ -113,17 +101,21 @@ line-height: 1;
 
 .log-list {
     min-height: 10em;
-    max-height: 20em;
+    max-height: 15em;
     overflow-y: auto;
 }
 
-.opr-login {
+.line-form {
     text-align: center;
 }
 
-#opr-form{
-    margin: 10px auto;
-    width: 38%;
+    .line-form > * {
+        margin: 10px auto;
+        width: 38%;
+        text-align: left;
+    }
+
+#wo-list {
+    max-height: 12em;
+    overflow-y: scroll;
 }
-#opr-form .form-group{text-align:left;}
-    #opr-form p {line-height:30px;}

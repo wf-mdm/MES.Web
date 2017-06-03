@@ -19,7 +19,7 @@
             <tbody>
                 {{#each Status.STINFO}}
                 <tr>
-                    <td><a href="Stn?{{../LINEINFO.0.LINENAME}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
+                    <td><a href="Stn?{{../info.name}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
                     <td>{{DISPLAYNAME}}</td>
                     <td>{{WOID}}</td>
                     <td>{{OPRLST}}</td>
@@ -34,8 +34,8 @@
     <script type="text/plain" id="temp-log-list">
         <table class="table compact">
             <colgroup>
-                <col width="150" />
-                <col />
+                <col width="150px" />
+                <col/>
             </colgroup>
             <tbody>
                 {{#each Status.LOGTAB}}
@@ -48,37 +48,39 @@
         </table>
     </script>
 
-    <script type="text/plain" id="temp-wo-list">
+    <script type="text/plain" id="temp-lot-list">
         <table class="table compact table-striped table-hover">
             <thead>
                 <tr>
-                    <th>工单</th>
                     <th>料号</th>
-                    <th>说明</th>
-                    <th>规格</th>
-                    <th>计划下达日</th>
-                    <th>计划产出数量</th>
-                    <th>已产出数量</th>
-                    <th>投入数量</th>
+                    <th>名称</th>
+                    <th>单耗量</th>
+                    <th>当前已经扫描投入数量</th>
+                    <th>在线批次号</th>
+                    <th>剩余数量</th>
+                    <th>最近扫描时间</th>
                     <th width="90px"></th>
                 </tr>
             </thead>
-            <tbody id="wo-list">
-                {{#each Status.WOLIST}}
+            <tbody>
+                {{#each this}}
                 <tr>
-                    <td>{{ WOID }}</td>
-                    <td>{{ PARTNO }}</td>
-                    <td>{{ DESCRIPTION }}</td>
-                    <td>{{ SPEC }}</td>
-                    <td></td>
-                    <td>{{ PSUM }}</td>
-                    <td>{{ OSUM }}</td>
-                    <td>{{ ISUM }}</td>
+                    <td>{{ COMPPN }}</td>
+                    <td>{{ COMPPN }}</td>
+                    <td>{{ UNITCONSUME }}</td>
+                    <td>{{ INQTY }}</td>
+                    <td>{{ LOTNO }}</td>
                     <td>
-                        {{#eq STATUS 'A'}}
-                        <a href="#" class="btn btn-danger  btn-sm" data-cmd="WOSTOP" data-woid="{{WOID}}">关闭</a>
-                        {{ else}}
-                        <a href="#" class="btn btn-info btn-sm" data-cmd="WOSTART" data-woid="{{WOID}}">启动</a>
+                        {{#eq LOTNO ''}}
+                        {{else}}
+                        <input type="text" name="leftQty" value="{{ LEFTQTY }}" />
+                        {{/eq}}
+                    </td>
+                    <td>{{ dt SCANDT }}</td>
+                    <td>
+                        {{#eq LOTNO ''}}
+                        {{else}}
+                        <a href="#" class="btn btn-danger btn-sm" data-lot="{{LOTNO}}">退料</a>
                         {{/eq}}
                     </td>
                 </tr>
@@ -97,26 +99,28 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
-                            {{#if Status.LINEINFO}}
-                            <p>
-                                OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
-                            </p>
-                            {{/if}}
+                    <div class="line-form">
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
+                                {{#if Status.LINEINFO}}
+                                <p>
+                                    OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
+                                </p>
+                                {{/if}}
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-line-chart"></i>
+                            </div>
+                            <a href="#" class="smll-box-footer">&nbsp;</a>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-line-chart"></i>
-                        </div>
-                        <a href="#" class="smll-box-footer">&nbsp;</a>
-                    </div>
-                    <div class="row" id="line-line">
-                        <div class="col-sm-offset-2 col-sm-3">
-                            <button class="btn btn-lg btn-primary btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
-                        </div>
-                        <div class="col-sm-offset-1 col-sm-3">
-                            <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
+                        <div class="row" id="line-admin">
+                            <div class="col-sm-offset-2 col-sm-3">
+                                <button class="btn btn-lg btn-primary btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
+                            </div>
+                            <div class="col-sm-offset-1 col-sm-3">
+                                <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,6 +164,42 @@
                     </div>
                 </div>
                 <div class="box-body" id="wo-list">
+                    <table class="table compact table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>工单</th>
+                                <th>料号</th>
+                                <th>说明</th>
+                                <th>规格</th>
+                                <th>计划下达日</th>
+                                <th>计划产出数量</th>
+                                <th>已产出数量</th>
+                                <th>投入数量</th>
+                                <th width="90px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each Wos}}
+                            <tr>
+                                <td>{{ WOID }}</td>
+                                <td>{{ PARTNO }}</td>
+                                <td>{{ DESCRIPTION }}</td>
+                                <td>{{ SPEC }}</td>
+                                <td>{{dt PLANSTART}}</td>
+                                <td>{{ PSUM }}</td>
+                                <td>{{ OSUM }}</td>
+                                <td>{{ ISUM }}</td>
+                                <td>
+                                    {{#eq STATUS 'A'}}
+                                    <a href="#" class="btn btn-danger  btn-sm" data-cmd="WOEND" data-woid="{{WOID}}">停止</a>
+                                    {{ else}}
+                                    <a href="#" class="btn btn-info btn-sm" data-cmd="WOSTART" data-woid="{{WOID}}">启动</a>
+                                    {{/eq}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="box-header with-border">
                     <h3 class="box-title">启动新工单</h3>
@@ -204,7 +244,7 @@
                         <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
-                <div class="box-body opr-login">
+                <div class="box-body line-form">
                     <form id="opr-form">
                         <div class="form-group">
                             <label>账号</label>
@@ -223,6 +263,87 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线日志</h3>
+                </div>
+                <div class="box-body log-list" id="log-list">
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/plain" id="temp-ldmtl">
+        <section class="content">
+            <div class="box box-success box-solid" ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">上料</h3>
+                    <div class="box-tools pull-right">
+                        <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="box-body line-form">
+                    <form id="ldmtl-form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">工单</label>
+                            <div class="col-sm-8">
+                                <select name="woid" class="form-control select2" style="width:100%;">
+                                    <option value="">--请选择--</option>
+                                    {{#each Status.WOLIST}}
+                                    {{#eq STATUS 'A'}}
+                                    <option value="{{WOID}}">{{WOID}} - {{PARTNO}} - {{DESCRIPTION}}</option>
+                                    {{/eq}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">工序</label>
+                            <div class="col-sm-8">
+                                <select name="op" class="form-control select2" style="width:100%;">
+                                    <option value="">--请选择--</option>
+                                    {{#each Ops}}
+                                    <option value="{{Op}}">{{Op}} - {{Name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">批次号</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="lot" class="form-control" placeholder="批次号" />
+                            </div>
+                        </div>
+<!--
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">料号</label>
+                            <div class="col-sm-8">
+                                <select name="pn" class="form-control select2" style="width:100%">
+                                    <option value="">--请选择--</option>
+                                    {{#each Pns}}
+                                    <option value="{{PARTNO}}">{{PARTNO}} - {{DESCRIPTION}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">数量</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="qty" class="form-control" placeholder="数量" />
+                            </div>
+                        </div>
+-->
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-primary btn-block" data-cmd="MSCAN">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">物料清单</h3>
+                </div>
+                <div class="box-body lot-list" id="lot-list">
                 </div>
                 <div class="box-header with-border">
                     <h3 class="box-title">产线日志</h3>

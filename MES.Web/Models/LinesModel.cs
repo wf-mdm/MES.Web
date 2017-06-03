@@ -22,4 +22,28 @@ namespace MES.Web.Models
         [NotMapped]
         public String Userid { get; set; }
     }
+    [Table("ENG_LINEOP")]
+    public class OpModel
+    {
+        [Key, Column("LINENAME", Order =1)]
+        public String Line { get; set; }
+        [Key, Column("L_OPNO", Order = 2)]
+        public String Op { get; set; }
+        [Column("DISPLAYNAME")]
+        public String Name { get; set; }
+    }
+
+    [Table("ENG_LINESTATION")]
+    public class StnModel
+    {
+        [Key, Column("LINENAME", Order = 1)]
+        public String Line { get; set; }
+        [Key, Column("L_OPNO", Order = 2)]
+        public String Op { get; set; }
+        [Key, Column("L_STNO", Order = 3)]
+        public String Stn { get; set; }
+        [Column("DISPLAYNAME")]
+        public String Name { get; set; }
+
+    }
 }

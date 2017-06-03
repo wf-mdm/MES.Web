@@ -15,5 +15,7 @@ namespace MES.Web.Models
 
         public DbSet<SysUserModel> AppUsers { get; set; }
         public DbSet<LineModel> Lines { get; set; }
+        public DbSet<OpModel> Ops { get; set; }
+        public DbSet<StnModel> Stns { get; set; }
     }
 }

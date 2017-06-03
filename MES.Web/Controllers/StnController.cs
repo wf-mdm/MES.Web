@@ -19,35 +19,26 @@ namespace MES.Web.Controllers
 
         public ActionResult Index(String id)
         {
-            String line = String.IsNullOrEmpty(id) ? (String.IsNullOrEmpty(Request.Url.Query) ? "" : Request.Url.Query.Substring(1)) : id;
+            String str = String.IsNullOrEmpty(id) ? (String.IsNullOrEmpty(Request.Url.Query) ? "" : Request.Url.Query.Substring(1)) : id;
+            var strs = str.Split(';');
+            String line = strs[0];
+            String op = strs.Length > 1 ? strs[1] : null;
+            String stn = strs.Length > 2 ? strs[2] : null;
 
-            var lines = db.Lines.Where(l => String.IsNullOrEmpty(line) ? true : l.Name.Equals(line, StringComparison.OrdinalIgnoreCase));
-            if (lines.Count() == 1)
-                return ShowLine(lines.Single());
+            var model = db.Stns.Where(s => 
+                s.Line.Equals(line, StringComparison.OrdinalIgnoreCase) 
+                && s.Op.Equals(op, StringComparison.OrdinalIgnoreCase) 
+                && s.Stn.Equals(stn, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
+            if (model != null)
+                return ShowStn(model);
             else
-                return View("List", lines);
+                return View("Error", str);
         }
 
-        private ActionResult ShowLine(LineModel line)
+        private ActionResult ShowStn(StnModel stn)
         {
-            BizRequest req = ClientMgr.Instance.CreateRequest("mes", line.Name, line.Name, "GETUSRLNFNS", new Dictionary<String, String> {
-                { "uid", User.Identity.Name}
-            });
-            req.UserId = User.Identity.Name;
-            DataSet ds = ClientMgr.Instance.RunDbCmd(req.CmdName, req);
-
-            ViewBag.Features = ds.Tables["APP_MASTDATA"].Rows;
-            StringBuilder sb = new StringBuilder();
-            foreach(var r in ViewBag.Features)
-            {
-                sb.Append("#");
-                sb.Append(r["APP_ID"]);
-            }
-            sb.Append("#");
-            ViewBag.FeatureStr = sb.ToString();
-            ViewBag.User = User.Identity.Name;
-
-            return View(line);
+            ViewBag.Line = db.Lines.Where(l => l.Name.Equals(stn.Line)).SingleOrDefault();
+            return View(stn);
         }
     }
 }
