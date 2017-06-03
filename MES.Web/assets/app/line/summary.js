@@ -4,20 +4,22 @@ Line.Summary = {
     },
 
     show: function () {
-        this.doUpdate();
+        var $this = this;
+        Line.loadTemp("temp-summary", function ($temp) {
+            $("#line-main").html($temp(Line));
+            $this.doUpdate();
+        });
     },
 
     doUpdate: function () {
-        if (!Line.Summary.active) return;
-        var $this = Line.Summary;
-        if ($this.$template)
-            $("#line-main").html($this.$template(Line.Status));
-        else {
-            Line.loadTemp("summary", function (txt) {
-                $this.$template = Handlebars.compile(txt);
-                $this.doUpdate();
+        if (Line.Status && Line.Status.LOGTAB)
+            Line.loadTemp("temp-log-list", function ($temp) {
+                $("#log-list").html($temp(Line));
             });
-        }
+        if (Line.Status && Line.Status.STINFO)
+            Line.loadTemp("temp-stn-list", function ($temp) {
+                $("#stn-list").html($temp(Line));
+            });
     },
 
     uninit: function () {

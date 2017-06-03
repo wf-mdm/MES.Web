@@ -1,4 +1,4 @@
-    Line.Wo = {
+Line.Wo = {
     init: function (line) {
         Line.onUpdate = this.show2;
     },
@@ -6,40 +6,30 @@
     show: function () {
         var $this = this;
         if (Line.Pns) {
-            this.show2();
+            Line.loadTemp("temp-wo", function ($temp) {
+                $("#line-main").html($temp(Line));
+                $("#wo-form").submit($this.doStartNewWo).find("select").select2();
+                $this.show2();
+            });
         } else {
             $.post("/api/Cmd/RunDb", { Server: "mes", Client: Line.info.name, Entity: Line.info.name, Cmd: "GETLNPN", Args: {} }, function (rs) {
                 Line.Pns = rs.PARTDATA;
-                $this.show2();
+                $this.show();
             });
         }
     },
     show2: function () {
         if (!Line.Pns) return;
-        var $this = this,
-            $main = $("#line-main"),
-            $form = $main.find("#wo-form");
-        if ($this.$template1 && $form.length > 0) {
-            var $wos = $("#wo-list"),
-                $logs = $("#log-list");
-            $wos.html($this.$template1(Line));
-            $logs.html($this.$template2(Line));
-        } else {
-            Line.loadTemp("wo", function (data) {
-                var tmp = $(data),
-                    tmp1 = tmp.find("#wo-list-template").html(),
-                    tmp2 = tmp.find("#log-list-template").html();
-                tmp.find("#wo-list").html(" ").end().find("#log-list").html(" ");
-                var $template = Handlebars.compile(tmp.html());
-                $this.$template1 = Handlebars.compile(tmp1);
-                $this.$template2 = Handlebars.compile(tmp2);
-                $main.html($template(Line))
-                    .find("#wo-list a.btn").click($this.doPost).end()
-                    .find("select").select2();
-                $("#wo-form").submit($this.doStartNewWo);
-                $this.show2();
+        if (Line.Status && Line.Status.LOGTAB)
+            Line.loadTemp("temp-log-list", function ($temp) {
+                $("#log-list").html($temp(Line));
             });
-        }
+        if (Line.Status && Line.Status.STINFO)
+            Line.loadTemp("temp-wo-list", function ($temp) {
+                $("#wo-list").html($temp(Line));
+            });
+
+        $("#wo-list a.btn").click(this.doPost);
     },
 
     doStartStop: function (event) {

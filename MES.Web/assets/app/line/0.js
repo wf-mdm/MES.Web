@@ -1,6 +1,7 @@
 $(function () {
     var curFeature = undefined,
-        INTERVAL = 1000 * 30;
+        INTERVAL = 1000 * 30,
+        $templates;
 
     function doSwitch(path) {
         if ("" == path && undefined == curFeature) path = "Kanban";
@@ -34,21 +35,21 @@ $(function () {
     };
 
     Line.loadTemp = function (id, proc) {
-        $.get(Line.info.app + "assets/template/line/" + id + ".html", function (data, status) {
-            if (proc) proc(data);
-        }, "text");
-    };
-
-    Line.showLog = function (logs) {
-        var $log = $("#line-log");
-        if ($log.length == 0) return;
-        var tmp = "<div class=\"box-foot-title\">操作日志</div>" +
-            "<table class=\"table compact\"><colgroup><col width=\"30\"></col><col width=\"100\"></col><col></col></colgroup><tbody>";
-        for (var i = logs.length - 1; i >= 0; i--) {
-            tmp += "<tr class=\"log" + (logs[i].level) + "\"><td>" + (i + 1) + "</td><td>" + logs[i].time + "</td><td>" + logs[i].msg + "</td></tr>";
+        var $this = this;
+        if ($templates) {
+            if (proc) proc($templates[id]);
+        } else {
+            $.get(Line.info.app + "assets/template/line.html", function (data, status) {
+                $templates = {};
+                $(data).find("script").each(function () {
+                    var $tmp = $(this),
+                        $id = $tmp.attr("id"),
+                        $txt = $tmp.html();
+                    $templates[$id] = Handlebars.compile($txt);
+                });
+                $this.loadTemp(id, proc);
+            }, "text");
         }
-        tmp += "</tbody></table>";
-        $log.html(tmp);
     };
 
     Line.Progress = {
@@ -107,6 +108,7 @@ $(function () {
     Handlebars.registerHelper("dt", function (d) {
         return new Handlebars.SafeString(d ? new Date(d).Format("yyyy-MM-dd hh:mm:ss") : "");
     });
+    Line.loadTemp("");
     Line.updateStatus();
     routie("*", doSwitch);
 });

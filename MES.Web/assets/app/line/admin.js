@@ -1,25 +1,20 @@
 Line.Admin = {
     init: function (line) {
-        Line.onUpdate = this.show2;
+        Line.onUpdate = this.show;
     },
 
     show: function () {
-        var $this = this;
-        if (this.$template) $this.show2();
-        else
-            Line.loadTemp("admin", function (data) {
-                $this.$template = Handlebars.compile(data);
-                $this.show2();
-            });
-    },
-
-    show2: function () {
-        if (this.$template) {
-            var $main = $("#line-main"),
-                $btns = $main.html(this.$template(Line)).find("#line-line button");
+        var $main = $("#line-main");
+        Line.loadTemp("temp-admin", function ($temp) {
+            $main.html($temp(Line));
+            var $btns = $main.find("#line-line button");
             $($btns[0]).click(this.doStart);
             $($btns[1]).click(this.doStop);
-        }
+            if (Line.Status && Line.Status.LOGTAB)
+                Line.loadTemp("temp-log-list", function ($temp1) {
+                    $("#log-list").html($temp1(Line));
+                });
+        });
     },
 
     doStart: function (event) {

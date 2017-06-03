@@ -1,0 +1,235 @@
+﻿<div>
+    <script type="text/plain" id="temp-kanban-tooltip">
+        {{DISPLAYNAME}}
+        <br />工单:{{WOID}}
+        <br />投入数:{{IWIP}}
+    </script>
+    <script type="text/plain" id="temp-stn-list">
+        <table class="table compact table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>工站代码</th>
+                    <th>名称</th>
+                    <th>工单</th>
+                    <th>操作工</th>
+                    <th>WIP</th>
+                    <th>状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each Status.STINFO}}
+                <tr>
+                    <td><a href="Stn?{{../LINEINFO.0.LINENAME}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
+                    <td>{{DISPLAYNAME}}</td>
+                    <td>{{WOID}}</td>
+                    <td>{{OPRLST}}</td>
+                    <td>{{ISUM}}</td>
+                    <td>{{STATUS}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+
+    <script type="text/plain" id="temp-log-list">
+        <table class="table compact">
+            <colgroup>
+                <col width="150" />
+                <col />
+            </colgroup>
+            <tbody>
+                {{#each Status.LOGTAB}}
+                <tr class="log-{{LEVEL}}">
+                    <td>{{dt CTIME}}</td>
+                    <td>{{CONTENT}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+
+    <script type="text/plain" id="temp-wo-list">
+        <table class="table compact table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>工单</th>
+                    <th>料号</th>
+                    <th>说明</th>
+                    <th>规格</th>
+                    <th>计划下达日</th>
+                    <th>计划产出数量</th>
+                    <th>已产出数量</th>
+                    <th>投入数量</th>
+                    <th width="90px"></th>
+                </tr>
+            </thead>
+            <tbody id="wo-list">
+                {{#each Status.WOLIST}}
+                <tr>
+                    <td>{{ WOID }}</td>
+                    <td>{{ PARTNO }}</td>
+                    <td>{{ DESCRIPTION }}</td>
+                    <td>{{ SPEC }}</td>
+                    <td></td>
+                    <td>{{ PSUM }}</td>
+                    <td>{{ OSUM }}</td>
+                    <td>{{ ISUM }}</td>
+                    <td>
+                        {{#eq STATUS 'A'}}
+                        <a href="#" class="btn btn-danger  btn-sm" data-cmd="WOSTOP" data-woid="{{WOID}}">关闭</a>
+                        {{ else}}
+                        <a href="#" class="btn btn-info btn-sm" data-cmd="WOSTART" data-woid="{{WOID}}">启动</a>
+                        {{/eq}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+
+    <script type="text/plain" id="temp-admin">
+        <section class="content">
+            <div class="box box-success box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线控制</h3>
+                    <div class="box-tools pull-right">
+                        <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
+                            {{#if Status.LINEINFO}}
+                            <p>
+                                OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
+                            </p>
+                            {{/if}}
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        <a href="#" class="smll-box-footer">&nbsp;</a>
+                    </div>
+                    <div class="row" id="line-line">
+                        <div class="col-sm-offset-2 col-sm-3">
+                            <button class="btn btn-lg btn-primary btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
+                        </div>
+                        <div class="col-sm-offset-1 col-sm-3">
+                            <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线日志</h3>
+                </div>
+                <div class="box-body log-list" id="log-list">
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/plain" id="temp-summary">
+        <section class="content">
+            <div class="box box-success box-solid" ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线看板</h3>
+                    <div class="box-tools pull-right">
+                        <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="box-body" id="stn-list">
+                </div>
+
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线日志</h3>
+                </div>
+                <div class="box-body log-list" id="log-list">
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/plain" id="temp-wo">
+        <section class="content">
+            <div class="box box-success box-solid" ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">工单控制</h3>
+                    <div class="box-tools pull-right">
+                        <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="box-body" id="wo-list">
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">启动新工单</h3>
+                </div>
+                <div class="box-body">
+                    <form class="form-inline" id="wo-form">
+                        <div class="form-group">
+                            <label>工单号</label>
+                            <input type="text" name="woid" class="form-control" placeholder="工单号" />
+                        </div>
+                        <div class="form-group">
+                            <label>料号</label>
+                            <select name="pn" class="form-control select2" style="width:400px;">
+                                <option value="">--请选择--</option>
+                                {{#each Pns}}
+                                <option value="{{PARTNO}}">{{PARTNO}} - {{DESCRIPTION}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>数量</label>
+                            <input type="text" name="qty" class="form-control" placeholder="数量" />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn">启动</button>
+                    </form>
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线日志</h3>
+                </div>
+                <div class="box-body log-list" id="log-list">
+                </div>
+            </div>
+        </section>
+    </script>
+
+    <script type="text/plain" id="temp-opr">
+        <section class="content">
+            <div class="box box-success box-solid" ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">操作工</h3>
+                    <div class="box-tools pull-right">
+                        <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="box-body opr-login">
+                    <form id="opr-form">
+                        <div class="form-group">
+                            <label>账号</label>
+                            <input type="text" name="uid" class="form-control" placeholder="账号" />
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" name="pwd" class="form-control" placeholder="密码" />
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-primary btn-block" data-cmd="OprLogin">登录</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-danger btn-block" data-cmd="OprLogout">登出</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">产线日志</h3>
+                </div>
+                <div class="box-body log-list" id="log-list">
+                </div>
+            </div>
+        </section>
+    </script>
+</div>

@@ -1121,6 +1121,7 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\template\line.html" />
     <Content Include="assets\template\line\admin.html" />
     <Content Include="assets\template\line\opr.html" />
     <Content Include="assets\template\line\summary.html" />

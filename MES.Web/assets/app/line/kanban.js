@@ -2,7 +2,6 @@ Line.Kanban = {
     init: function (line) {
         Line.onUpdate = this.doUpdate;
         if (this.option) return;
-        this.$template = Handlebars.compile("{{DISPLAYNAME}}<br/>工单:{{WOID}}<br/>投入数:{{IWIP}}");
         this.option = {
             animation: false,
             tooltip: {},
@@ -32,7 +31,11 @@ Line.Kanban = {
                                     break;
                                 }
                             }
-                            return Line.Kanban.$template(stn);
+                            var rs;
+                            Line.loadTemp("temp-kanban-tooltip", function ($temp) {
+                                rs = $temp(stn);
+                            });
+                            return rs;
                         }
                     }
                 }

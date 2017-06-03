@@ -39,11 +39,14 @@
     padding: 3px;
 }
 
+.select2 .select2-selection {
+    padding: 0 12px;
+}
 .box-footer .box-title {
-    display: inline-block;
-    font-size: 18px;
-    margin: 0;
-    line-height: 1;
+display: inline-block;
+font-size: 18px;
+margin: 0;
+line-height: 1;
 }
 
 .text-white {

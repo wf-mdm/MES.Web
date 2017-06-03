@@ -5,22 +5,17 @@ Line.Opr = {
 
     show: function () {
         var $this = this;
-        if ($this.$logtemp) {
-            this.show2();
-        } else {
-            Line.loadTemp("opr", function (txt) {
-                $this.$template = txt;
-                $("#line-main").html(txt);
-                $this.$logtemp = Handlebars.compile($("#log-list-template").html());
-                $this.show2();
-                $("#opr-form").submit(function () { return false; }).find("button").click($this.doPost);
-            });
-        }
+        Line.loadTemp("temp-opr", function ($temp) {
+            $("#line-main").html($temp(Line));
+            $("#opr-form").submit(function () { return false; }).find("button").click($this.doPost);
+            $this.show2();
+        });
     },
     show2: function () {
-        if (this.$logtemp) 
-        $("#log-list").html(this.$logtemp(Line));
-        else this.show();
+        if (Line.Status && Line.Status.LOGTAB)
+            Line.loadTemp("temp-log-list", function ($temp) {
+                $("#log-list").html($temp(Line));
+            });
     },
 
     doPost: function (event) {
