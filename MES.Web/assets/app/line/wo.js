@@ -1,4 +1,4 @@
-Line.Wo = {
+    Line.Wo = {
     init: function (line) {
         Line.onUpdate = this.show2;
     },

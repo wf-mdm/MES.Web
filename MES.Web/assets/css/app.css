@@ -19,6 +19,10 @@
         transform: rotate(360deg);
     }
 }
+.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
+    left:0;
+    right:auto;
+}
 
 .table .btn, form .btn {
     min-width: 80px;
@@ -57,7 +61,7 @@
     color: #fff;
     margin-left: 50px;
 }
-
+/*
 .side-menu {
     background-color: #222d32;
     border: none;
@@ -67,7 +71,7 @@
     .side-menu a {
         color: #b8c7ce;
     }
-
+*/
 .box-foot-title {
     padding: 10px 0;
     font-size: 18px;
@@ -116,7 +120,7 @@
 
 #opr-form{
     margin: 10px auto;
-    width: 320px;
+    width: 38%;
 }
 #opr-form .form-group{text-align:left;}
     #opr-form p {line-height:30px;}

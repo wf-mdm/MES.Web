@@ -10,28 +10,12 @@
     @Styles.Render("~/assets/css/all")
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
-    <div class="wrapper">
+    <aside class="wrapper">
         <header class="main-header">
             <nav class="navbar navbar-static-top">
                 <ul class="nav navbar-nav">
                     <li class="dropdown messages-menu">
-                        <a href="#" class="logo dropdown-toggel" data-toggle="dropdown">MES Admin<i class="fa fa-angle-down pull-right"></i></a>
-                        <div class="dropdown-menu side-menu">
-                            <ul class="sidebar-menu">
-                                @foreach (DataRow r in ViewBag.Features)
-                                {
-                                    <li class="treeview"><a href="#@r["APP_ID"]"><i class="fa fa-circle-o"></i><span>@r["APP_DESCRIPTION"]</span></a></li>
-                                }
-                                <!--
-                                <li class="treeview"><a href="#Kanban"><i class="fa fa-circle-o"></i><span>生产线主页</span></a></li>
-                                <li class="treeview"><a href="#Summary"><i class="fa fa-circle-o"></i><span>产线看板</span></a></li>
-                                <li class="treeview"><a href="#Admin"><i class="fa fa-circle-o"></i><span>启动/停止</span></a></li>
-                                <li class="treeview"><a href="#Wo"><i class="fa fa-circle-o"></i><span>工单管理</span></a></li>
-                                <li class="treeview"><a href="#Opr"><i class="fa fa-circle-o"></i><span>操作工管理</span></a></li>
-                                -->
-                                <li class="treeview"><a href="Line"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
-                            </ul>
-                        </div>
+                        <a href="#" class="logo dropdown-toggel" data-toggle="control-sidebar">MES Admin<i class="fa fa-angle-down pull-right"></i></a>
                     </li>
                     <li class="title">@Html.DisplayFor(m => m.DispName)</li>
                 </ul>
@@ -47,6 +31,35 @@
                 </div>
             </nav>
         </header>
+        <aside class="sidebar control-sidebar control-sidebar-dark control-sidebar-left">
+            <ul class="sidebar-menu">
+                @foreach (DataRow r in ViewBag.Features)
+                {
+                    if (r["parent_id"] == DBNull.Value)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>@r["APP_DESCRIPTION"]</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                @foreach (DataRow r1 in ViewBag.Features)
+                                {
+                                    if (r["APP_ID"].Equals(r1["parent_id"]))
+                                    {
+                                        <li><a href="#@r1["APP_ID"]"><i class="fa fa-circle-o"></i>@r1["APP_DESCRIPTION"]</a></li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+                <li class="treeview"><a href="Line"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
+            </ul>
+        </aside>
+        <div class="control-sidebar-bg"></div>
 
         <div class="content-wrapper" id="line-main">
 

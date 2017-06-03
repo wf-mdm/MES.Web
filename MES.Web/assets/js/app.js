@@ -163,7 +163,7 @@ $(function () {
 
   //Enable sidebar tree view controls
   if (o.enableControlTreeView) {
-    $.AdminLTE.tree('.sidebar');
+      $.AdminLTE.tree('.sidebar');
   }
 
   //Enable control sidebar

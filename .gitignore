@@ -25,3 +25,4 @@ temp/
 *.psess
 /referenceDLL/Log
 /packages
+/MES.Web/Log

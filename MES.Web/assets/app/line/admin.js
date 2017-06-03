@@ -16,7 +16,7 @@ Line.Admin = {
     show2: function () {
         if (this.$template) {
             var $main = $("#line-main"),
-                $btns = $main.html(this.$template(Line.Status)).find("#line-line button");
+                $btns = $main.html(this.$template(Line)).find("#line-line button");
             $($btns[0]).click(this.doStart);
             $($btns[1]).click(this.doStop);
         }

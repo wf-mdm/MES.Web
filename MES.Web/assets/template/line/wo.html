@@ -78,14 +78,14 @@
             <div class="box-body log-list">
                 <table class="table compact">
                     <colgroup>
-                        <col width="200" />
+                        <col width="150" />
                         <col />
                     </colgroup>
                     <tbody id="log-list">
                         <script type="text/plain" id="log-list-template">
                             {{#each Status.LOGTAB}}
                             <tr class="log-{{LEVEL}}">
-                                <td>{{CTIME}}</td>
+                                <td>{{dt CTIME}}</td>
                                 <td>{{CONTENT}}</td>
                             </tr>
                             {{/each}}
