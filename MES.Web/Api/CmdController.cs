@@ -21,6 +21,7 @@ namespace MES.Web.Api
         public async Task<IHttpActionResult> Run([FromBody]CmdRequest request)
         {
             BizRequest req = ClientMgr.Instance.CreateRequest(request.Server, request.Client, request.Entity, request.Cmd, request.Args);
+            req.UserId = User.Identity.Name;
             BizResponse resp = await Task<BizResponse>.Run(() =>
             {
                 return ClientMgr.Instance.RunCmd(req.CmdName, req);
@@ -40,6 +41,7 @@ namespace MES.Web.Api
         public async Task<IHttpActionResult> RunDb([FromBody]CmdRequest request)
         {
             BizRequest req = ClientMgr.Instance.CreateRequest(request.Server, request.Client, request.Entity, request.Cmd, request.Args);
+            req.UserId = User.Identity.Name;
             try
             {
                 DataSet ds = await Task<IHttpActionResult>.Run(() =>

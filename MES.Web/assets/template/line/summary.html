@@ -1,13 +1,13 @@
 <section class="content">
-    <div class="box box-primary">
+    <div class="box box-success box-solid"">
         <div class="box-header with-border">
-            <h3 class="box-title">产线信息</h3>
+            <h3 class="box-title">产线看板</h3>
             <div class="box-tools pull-right">
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
         <div class="box-body">
-            <table class="table compact table-striped table-hover compact">
+            <table class="table compact table-striped table-hover">
                 <thead>
                     <tr>
                         <th>工站代码</th>
@@ -16,16 +16,37 @@
                         <th>操作工</th>
                         <th>WIP</th>
                         <th>状态</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {{#each STINFO}}
                     <tr>
-                        <td><a href="stn.html?{{../LINEINFO.0.LINENAME}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
+                        <td><a href="Stn?{{../LINEINFO.0.LINENAME}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
                         <td>{{DISPLAYNAME}}</td>
                         <td>{{WOID}}</td>
                         <td>{{OPRLST}}</td>
                         <td>{{ISUM}}</td>
                         <td>{{STATUS}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list">
+            <table class="table compact">
+                <colgroup>
+                    <col width="200" />
+                    <col/>
+                </colgroup>
+                <tbody>
+                    {{#each LOGTAB}}
+                    <tr class="log-{{LEVEL}}">
+                        <td>{{CTIME}}</td>
+                        <td>{{CONTENT}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

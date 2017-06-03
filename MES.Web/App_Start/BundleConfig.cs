@@ -7,31 +7,35 @@ namespace MES.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/bundles/css").Include(
+            bundles.Add(new StyleBundle("~/assets/css/all").Include(
                 "~/assets/css/bootstrap.css",
                 "~/assets/css/font-awesome.css",
                 "~/assets/css/AdminLTE.css",
                 "~/assets/css/skins/_all-skins.css",
                 "~/assets/plugins/iCheck/square/blue.css",
+                "~/assets/plugins/datatables/dataTables.bootstrap.css",
+                "~/assets/plugins/select2/select2.min.css",
                 "~/assets/css/app.css"
                 ));
-            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+            bundles.Add(new ScriptBundle("~/assets/js/base").Include(
                 "~/assets/plugins/jQuery/jquery-2.2.3.min.js",
                 "~/assets/js/bootstrap.js",
                 "~/assets/js/jquery.validate*",
                 "~/assets/plugins/iCheck/icheck.js",
                 "~/assets/plugins/slimScroll/jquery.slimscroll.min.js",
                 "~/assets/plugins/fastclick/fastclick.js",
+                "~/assets/plugins/select2/select2.min.js",
+                "~/assets/plugins/datatables/jquery.dataTables.js",
                 "~/assets/js/routie.js",
                 "~/assets/js/app.js"
                 ));
-            bundles.Add(new ScriptBundle("~/bundles/js/line").Include(
+            bundles.Add(new ScriptBundle("~/assets/js/line").Include(
                 "~/assets/js/handlebars.js",
                 "~/assets/app/line/*.js"
                 ));
-            bundles.Add(new ScriptBundle("~/bundles/js/op").Include(
+            bundles.Add(new ScriptBundle("~/assets/js/stn").Include(
                 "~/assets/js/handlebars.js",
-                "~/assets/app/op/*.js"
+                "~/assets/app/stn/*.js"
                 ));
         }
     }

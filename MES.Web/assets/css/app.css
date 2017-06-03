@@ -20,6 +20,21 @@
     }
 }
 
+.table .btn, form .btn {
+    min-width: 80px;
+}
+
+.table.compact .btn{
+    line-height: 1.2;
+}
+
+.table.compact th {
+    padding: 5px;
+}
+.table.compact td {
+    padding: 3px;
+}
+
 .box-footer .box-title {
     display: inline-block;
     font-size: 18px;
@@ -27,7 +42,9 @@
     line-height: 1;
 }
 
-.text-white{color:#fff;}
+.text-white {
+    color: #fff;
+}
 
 .logo i {
     line-height: 50px;
@@ -77,12 +94,29 @@
     line-height: 40px;
 }
 
-.log2 {
+.log-2 {
     background-color: #d73925;
     color: #fff;
 }
 
-.log1 {
+.log-1 {
     background-color: #d58512;
     color: #fff;
 }
+
+.log-list {
+    min-height: 10em;
+    max-height: 20em;
+    overflow-y: auto;
+}
+
+.opr-login {
+    text-align: center;
+}
+
+#opr-form{
+    margin: 10px auto;
+    width: 320px;
+}
+#opr-form .form-group{text-align:left;}
+    #opr-form p {line-height:30px;}

@@ -1,0 +1,39 @@
+<section class="content">
+    <div class="box box-success box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">产线控制</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row" id="line-line">
+                <div class="col-sm-offset-2 col-sm-3">
+                    <button class="btn btn-lg btn-primary btn-block" {{#if LINEINFO}}disabled="disabled"{{/if}}><i class="fa fa-play"></i> 启动</button>
+                </div>
+                <div class="col-sm-offset-1 col-sm-3">
+                    <button class="btn btn-lg btn-danger btn-block" {{#if LINEINFO}}{{else}}disabled="disabled"{{/if}}><i class="fa fa-stop"></i> 停止</button>
+                </div>
+            </div>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list">
+            <table class="table compact">
+                <colgroup>
+                    <col width="200" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    {{#each LOGTAB}}
+                    <tr class="log-{{LEVEL}}">
+                        <td>{{CTIME}}</td>
+                        <td>{{CONTENT}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

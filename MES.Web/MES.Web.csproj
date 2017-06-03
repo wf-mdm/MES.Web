@@ -217,16 +217,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\app\line\echarts.js" />
-    <Content Include="assets\app\line\kanbanData.js" />
-    <Content Include="assets\app\line\summary.js" />
-    <Content Include="assets\app\line\kanban.js" />
     <Content Include="assets\app\line\0.js" />
-    <Content Include="assets\app\line\line.js" />
+    <Content Include="assets\app\line\echarts.js" />
+    <Content Include="assets\app\line\kanban.js" />
+    <Content Include="assets\app\line\kanbanData.js" />
+    <Content Include="assets\app\line\admin.js" />
+    <Content Include="assets\app\line\summary.js" />
+    <Content Include="assets\app\line\opr.js" />
     <Content Include="assets\app\line\wo.js" />
-    <Content Include="assets\template\line\line.html" />
-    <Content Include="assets\template\line\summary.html" />
-    <Content Include="assets\template\line\wo.html" />
+    <Content Include="assets\app\stn\0.js" />
     <Content Include="assets\css\AdminLTE.css" />
     <Content Include="assets\css\AdminLTE.min.css" />
     <Content Include="assets\css\alt\AdminLTE-bootstrap-social.css" />
@@ -239,9 +238,15 @@
     <Content Include="assets\css\alt\AdminLTE-without-plugins.min.css" />
     <Content Include="assets\css\app.css" />
     <Content Include="assets\css\bootstrap-theme.css" />
+    <Content Include="assets\css\bootstrap-theme.css.map" />
     <Content Include="assets\css\bootstrap-theme.min.css" />
+    <Content Include="assets\css\bootstrap-theme.min.css.map" />
     <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.css.map" />
     <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
+    <Content Include="assets\css\font-awesome.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
     <Content Include="assets\css\skins\skin-black-light.css" />
     <Content Include="assets\css\skins\skin-black-light.min.css" />
     <Content Include="assets\css\skins\skin-black.css" />
@@ -268,12 +273,22 @@
     <Content Include="assets\css\skins\skin-yellow.min.css" />
     <Content Include="assets\css\skins\_all-skins.css" />
     <Content Include="assets\css\skins\_all-skins.min.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\app.min.js" />
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\handlebars.js" />
+    <None Include="assets\js\jquery.validate-vsdoc.js" />
+    <Content Include="assets\js\jquery.validate.js" />
+    <Content Include="assets\js\jquery.validate.min.js" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.js" />
+    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="assets\js\routie.js" />
     <Content Include="assets\js\routie.min.js" />
     <Content Include="assets\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -286,6 +301,7 @@
     <Content Include="assets\plugins\chartjs\Chart.min.js" />
     <Content Include="assets\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="assets\plugins\ckeditor\build-config.js" />
+    <Content Include="assets\plugins\ckeditor\CHANGES.md" />
     <Content Include="assets\plugins\ckeditor\ckeditor.js" />
     <Content Include="assets\plugins\ckeditor\config.js" />
     <Content Include="assets\plugins\ckeditor\contents.css" />
@@ -356,6 +372,7 @@
     <Content Include="assets\plugins\ckeditor\lang\vi.js" />
     <Content Include="assets\plugins\ckeditor\lang\zh-cn.js" />
     <Content Include="assets\plugins\ckeditor\lang\zh.js" />
+    <Content Include="assets\plugins\ckeditor\LICENSE.md" />
     <Content Include="assets\plugins\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="assets\plugins\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
     <Content Include="assets\plugins\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
@@ -436,8 +453,11 @@
     <Content Include="assets\plugins\ckeditor\plugins\magicline\images\icon-rtl.png" />
     <Content Include="assets\plugins\ckeditor\plugins\magicline\images\icon.png" />
     <Content Include="assets\plugins\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="assets\plugins\ckeditor\plugins\scayt\CHANGELOG.md" />
     <Content Include="assets\plugins\ckeditor\plugins\scayt\dialogs\options.js" />
     <Content Include="assets\plugins\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="assets\plugins\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="assets\plugins\ckeditor\plugins\scayt\README.md" />
     <Content Include="assets\plugins\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
     <Content Include="assets\plugins\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
     <Content Include="assets\plugins\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
@@ -499,6 +519,9 @@
     <Content Include="assets\plugins\ckeditor\plugins\wsc\dialogs\wsc.css" />
     <Content Include="assets\plugins\ckeditor\plugins\wsc\dialogs\wsc.js" />
     <Content Include="assets\plugins\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="assets\plugins\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="assets\plugins\ckeditor\plugins\wsc\README.md" />
+    <Content Include="assets\plugins\ckeditor\README.md" />
     <Content Include="assets\plugins\ckeditor\samples\css\samples.css" />
     <Content Include="assets\plugins\ckeditor\samples\img\github-top.png" />
     <Content Include="assets\plugins\ckeditor\samples\img\header-bg.png" />
@@ -521,6 +544,7 @@
     <Content Include="assets\plugins\ckeditor\samples\old\dialog\dialog.html" />
     <Content Include="assets\plugins\ckeditor\samples\old\divreplace.html" />
     <Content Include="assets\plugins\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="assets\plugins\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="assets\plugins\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
     <Content Include="assets\plugins\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
     <Content Include="assets\plugins\ckeditor\samples\old\htmlwriter\outputforflash.html" />
@@ -544,7 +568,11 @@
     <Content Include="assets\plugins\ckeditor\samples\old\wysiwygarea\fullpage.html" />
     <Content Include="assets\plugins\ckeditor\samples\old\xhtmlstyle.html" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\index.html" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
@@ -554,6 +582,7 @@
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
     <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
@@ -580,6 +609,7 @@
     <Content Include="assets\plugins\ckeditor\skins\moono\images\lock.png" />
     <Content Include="assets\plugins\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="assets\plugins\ckeditor\skins\moono\images\spinner.gif" />
+    <Content Include="assets\plugins\ckeditor\skins\moono\readme.md" />
     <Content Include="assets\plugins\ckeditor\styles.js" />
     <Content Include="assets\plugins\colorpicker\bootstrap-colorpicker.css" />
     <Content Include="assets\plugins\colorpicker\bootstrap-colorpicker.js" />
@@ -628,6 +658,7 @@
     <Content Include="assets\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.js" />
     <Content Include="assets\plugins\datatables\extensions\ColReorder\js\dataTables.colReorder.min.js" />
     <Content Include="assets\plugins\datatables\extensions\ColReorder\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\ColReorder\Readme.md" />
     <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colVis.css" />
     <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colvis.jqueryui.css" />
     <Content Include="assets\plugins\datatables\extensions\ColVis\css\dataTables.colVis.min.css" />
@@ -647,6 +678,7 @@
     <Content Include="assets\plugins\datatables\extensions\ColVis\js\dataTables.colVis.js" />
     <Content Include="assets\plugins\datatables\extensions\ColVis\js\dataTables.colVis.min.js" />
     <Content Include="assets\plugins\datatables\extensions\ColVis\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\ColVis\Readme.md" />
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.css" />
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\css\dataTables.fixedColumns.min.css" />
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\examples\bootstrap.html" />
@@ -666,6 +698,7 @@
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.js" />
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\js\dataTables.fixedColumns.min.js" />
     <Content Include="assets\plugins\datatables\extensions\FixedColumns\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\FixedColumns\Readme.md" />
     <Content Include="assets\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.css" />
     <Content Include="assets\plugins\datatables\extensions\FixedHeader\css\dataTables.fixedHeader.min.css" />
     <Content Include="assets\plugins\datatables\extensions\FixedHeader\examples\header_footer.html" />
@@ -688,6 +721,7 @@
     <Content Include="assets\plugins\datatables\extensions\KeyTable\js\dataTables.keyTable.min.js" />
     <Content Include="assets\plugins\datatables\extensions\KeyTable\Readme.txt" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\css\dataTables.responsive.scss" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\column-control.html" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\custom-renderer.html" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\examples\child-rows\disable-child-rows.html" />
@@ -715,6 +749,7 @@
     <Content Include="assets\plugins\datatables\extensions\Responsive\js\dataTables.responsive.js" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\js\dataTables.responsive.min.js" />
     <Content Include="assets\plugins\datatables\extensions\Responsive\License.txt" />
+    <Content Include="assets\plugins\datatables\extensions\Responsive\Readme.md" />
     <Content Include="assets\plugins\datatables\extensions\Scroller\css\dataTables.scroller.css" />
     <Content Include="assets\plugins\datatables\extensions\Scroller\css\dataTables.scroller.min.css" />
     <Content Include="assets\plugins\datatables\extensions\Scroller\examples\api_scrolling.html" />
@@ -760,10 +795,15 @@
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\pdf_hover.png" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\print.png" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\print_hover.png" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\collection.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\copy document.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\file_types.psd" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\printer.psd" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\xls.png" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\images\xls_hover.png" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.js" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\js\dataTables.tableTools.min.js" />
+    <Content Include="assets\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\swf\copy_csv_xls.swf" />
     <Content Include="assets\plugins\datatables\extensions\TableTools\swf\copy_csv_xls_pdf.swf" />
     <Content Include="assets\plugins\datatables\images\sort_asc.png" />
@@ -995,6 +1035,8 @@
     <Content Include="assets\plugins\input-mask\jquery.inputmask.numeric.extensions.js" />
     <Content Include="assets\plugins\input-mask\jquery.inputmask.phone.extensions.js" />
     <Content Include="assets\plugins\input-mask\jquery.inputmask.regex.extensions.js" />
+    <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
+    <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="assets\plugins\input-mask\phone-codes\readme.txt" />
     <Content Include="assets\plugins\ionslider\img\sprite-skin-flat.png" />
     <Content Include="assets\plugins\ionslider\img\sprite-skin-nice.png" />
@@ -1078,46 +1120,15 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\template\line\admin.html" />
+    <Content Include="assets\template\line\opr.html" />
+    <Content Include="assets\template\line\summary.html" />
+    <Content Include="assets\template\line\wo.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\css\bootstrap-theme.css.map" />
-    <Content Include="assets\css\bootstrap-theme.min.css.map" />
-    <Content Include="assets\css\bootstrap.css.map" />
-    <Content Include="assets\css\bootstrap.min.css.map" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="assets\plugins\ckeditor\CHANGES.md" />
-    <Content Include="assets\plugins\ckeditor\LICENSE.md" />
-    <Content Include="assets\plugins\ckeditor\plugins\scayt\CHANGELOG.md" />
-    <Content Include="assets\plugins\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="assets\plugins\ckeditor\plugins\scayt\README.md" />
-    <Content Include="assets\plugins\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="assets\plugins\ckeditor\plugins\wsc\README.md" />
-    <Content Include="assets\plugins\ckeditor\README.md" />
-    <Content Include="assets\plugins\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\config.json" />
-    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
-    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
-    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
-    <Content Include="assets\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
-    <Content Include="assets\plugins\ckeditor\skins\moono\readme.md" />
-    <Content Include="assets\plugins\datatables\extensions\ColReorder\Readme.md" />
-    <Content Include="assets\plugins\datatables\extensions\ColVis\Readme.md" />
-    <Content Include="assets\plugins\datatables\extensions\FixedColumns\Readme.md" />
-    <Content Include="assets\plugins\datatables\extensions\Responsive\css\dataTables.responsive.scss" />
-    <Content Include="assets\plugins\datatables\extensions\Responsive\Readme.md" />
-    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\collection.psd" />
-    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\copy document.psd" />
-    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\file_types.psd" />
-    <Content Include="assets\plugins\datatables\extensions\TableTools\images\psd\printer.psd" />
-    <Content Include="assets\plugins\datatables\extensions\TableTools\Readme.md" />
-    <Content Include="assets\plugins\input-mask\phone-codes\phone-be.json" />
-    <Content Include="assets\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="index.html" />
     <Content Include="Resources\Message_cn.xml" />
     <Content Include="Resources\System.config.xml" />
@@ -1138,6 +1149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\template\op\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1161,6 +1173,11 @@
     <Content Include="Views\Line\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

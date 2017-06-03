@@ -1,4 +1,5 @@
-﻿@model MES.Web.Models.LineModel
+﻿@using System.Data;
+@model MES.Web.Models.LineModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/assets/css/all")
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
     <div class="wrapper">
@@ -17,13 +18,18 @@
                         <a href="#" class="logo dropdown-toggel" data-toggle="dropdown">MES Admin<i class="fa fa-angle-down pull-right"></i></a>
                         <div class="dropdown-menu side-menu">
                             <ul class="sidebar-menu">
+                                @foreach (DataRow r in ViewBag.Features)
+                                {
+                                    <li class="treeview"><a href="#@r["APP_ID"]"><i class="fa fa-circle-o"></i><span>@r["APP_DESCRIPTION"]</span></a></li>
+                                }
+                                <!--
                                 <li class="treeview"><a href="#Kanban"><i class="fa fa-circle-o"></i><span>生产线主页</span></a></li>
-                                <li class="treeview"><a href="#Line"><i class="fa fa-circle-o"></i><span>启动/停止</span></a></li>
-                                <li class="treeview"><a href="#Wo"><i class="fa fa-circle-o"></i><span>启动工单</span></a></li>
-                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>停止工单</span></a></li>
-                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>员工登入</span></a></li>
-                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>员工登出</span></a></li>
-                                <li class="treeview"><a href="#"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
+                                <li class="treeview"><a href="#Summary"><i class="fa fa-circle-o"></i><span>产线看板</span></a></li>
+                                <li class="treeview"><a href="#Admin"><i class="fa fa-circle-o"></i><span>启动/停止</span></a></li>
+                                <li class="treeview"><a href="#Wo"><i class="fa fa-circle-o"></i><span>工单管理</span></a></li>
+                                <li class="treeview"><a href="#Opr"><i class="fa fa-circle-o"></i><span>操作工管理</span></a></li>
+                                -->
+                                <li class="treeview"><a href="Line"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -51,14 +57,17 @@
     <script>
         var Line = {
             info: {
+                user:"@ViewBag.User",
                 name: "@Html.DisplayFor(model => model.Name)",
                 disp: "@Html.DisplayFor(model => model.DispName)",
+                features:"@ViewBag.FeatureStr",
                 app: "@Url.Content("~/")"
-            }
+            },
+            Status: {}
         };
     </script>
-    @Scripts.Render("~/bundles/js")
-    @Scripts.Render("~/bundles/js/line")
+    @Scripts.Render("~/assets/js/base")
+    @Scripts.Render("~/assets/js/line")
 </body>
 
 </html>

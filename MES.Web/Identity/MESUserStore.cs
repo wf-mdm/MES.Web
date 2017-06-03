@@ -45,8 +45,8 @@ namespace MES.Web.Identity
             MESUser rs = u == null ? null : new MESUser()
             {
                 Id = u.ID,
-                Name = u.ID,
-                UserName = u.Name,
+                Name = u.Name,
+                UserName = u.ID,
                 Password = u.Passwd
             };
 

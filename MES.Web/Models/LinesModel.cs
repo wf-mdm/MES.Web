@@ -15,5 +15,11 @@ namespace MES.Web.Models
         public String Name { get; set; }
         [Column("DISPLAYNAME")]
         public String DispName { get; set; }
+
+        /// <summary>
+        /// UserID
+        /// </summary>
+        [NotMapped]
+        public String Userid { get; set; }
     }
 }

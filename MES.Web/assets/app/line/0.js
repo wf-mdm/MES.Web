@@ -9,6 +9,10 @@ $(function () {
     }
 
     Line.switch = function (appid) {
+        if (Line.info.features.indexOf("#" + appid + "#") == -1) {
+            return;
+        }
+
         var f = Line[appid];
         if (f === curFeature) return;
         delete Line.onUpdate;
@@ -62,14 +66,21 @@ $(function () {
     };
 
     Line.updateStatus = function () {
+        var timeid;
+        if (timeid) clearTimeout(timeid);
         $.post("/api/Cmd/RunDb", { Server: "mes", Client: Line.info.name, Entity: Line.info.name, Cmd: "getlineinfo", Args: {} }, function (rs) {
             Line.Status = rs;
-            if (Line.onUpdate) Line.onUpdate();
+            if (Line.onUpdate) Line.onUpdate.apply(curFeature);
+        }).fail(function (e) {
+            Line.Status.Error = e;
         }).always(function () {
-            setTimeout(Line.updateStatus, 1000 * 10);
+            timeid = setTimeout(Line.updateStatus, 1000 * 5);
         });
     };
 
+    Handlebars.registerHelper("eq", function (v1, v2, options) {
+        return v1 == v2 ? options.fn(this) : options.inverse(this);
+    });
     Line.updateStatus();
     routie("*", doSwitch);
 });

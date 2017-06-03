@@ -1,5 +1,6 @@
 Line.Kanban = {
     init: function (line) {
+        Line.onUpdate = this.doUpdate;
         if (this.option) return;
         this.$template = Handlebars.compile("{{DISPLAYNAME}}<br/>工单:{{WOID}}<br/>投入数:{{IWIP}}");
         this.option = {
@@ -54,8 +55,13 @@ Line.Kanban = {
         $main.append("<a href=\"#Summary\" class=\"btn btn-info kanban-toggel\" title=\"切换到表格显示\"><i class=\"fa fa-list\"></i></a>");
     },
 
+    doUpdate: function () {
+//        for(var i in )
+    },
+
     uninit: function () {
         if (this.charts) this.charts.dispose();
         delete this.charts;
+        delete Line.onUpdate;
     }
 };

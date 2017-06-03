@@ -90,7 +90,7 @@ namespace MES.Web.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.UserId, model.Password, false, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserId, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
