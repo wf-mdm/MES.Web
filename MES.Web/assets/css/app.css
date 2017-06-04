@@ -73,12 +73,6 @@
     margin-left: 50px;
 }
 
-.box-foot-title {
-    padding: 10px 0;
-    font-size: 18px;
-    line-height: 1;
-}
-
 .kanban-toggel {
     position: absolute;
     top: 70px;
@@ -118,4 +112,8 @@
 #wo-list {
     max-height: 12em;
     overflow-y: scroll;
+}
+
+#fn-list a.btn {
+    margin: 10px auto;
 }

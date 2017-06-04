@@ -33,7 +33,8 @@ Line.Wo = {
     doStartStop: function (event) {
         if (event) event.preventDefault();
         var cmd = $(this).attr("data-cmd"),
-            woid = $(this).attr("data-woid");
+            woid = $(this).attr("data-woid"),
+            txt = $(this).text();
         Line.Wo.doPost(cmd, woid, { t: "3" });
     },
 
@@ -44,8 +45,11 @@ Line.Wo = {
         for (var i in args1)
             args[args1[i].name] = args1[i].value;
         args.t = "2";
-        if (args.woid)
+        Line.Progress.show();
+        if (args.woid){
             Line.Wo.doPost("wostart", args.woid, args);
+            $form.find(":input").val("");
+        }
         else
             alert("请输入工单信息");
     },

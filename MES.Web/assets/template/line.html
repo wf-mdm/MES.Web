@@ -66,7 +66,7 @@
                 {{#each this}}
                 <tr>
                     <td>{{ COMPPN }}</td>
-                    <td>{{ COMPPN }}</td>
+                    <td>{{ DESCRIPTION }}</td>
                     <td>{{ UNITCONSUME }}</td>
                     <td>{{ INQTY }}</td>
                     <td>{{ LOTNO }}</td>
@@ -175,7 +175,7 @@
                                 <th>计划产出数量</th>
                                 <th>已产出数量</th>
                                 <th>投入数量</th>
-                                <th width="90px"></th>
+                                <th width="190px"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -191,9 +191,10 @@
                                 <td>{{ ISUM }}</td>
                                 <td>
                                     {{#eq STATUS 'A'}}
-                                    <a href="#" class="btn btn-danger  btn-sm" data-cmd="WOEND" data-woid="{{WOID}}">停止</a>
+                                    <a href="#" class="btn btn-info  btn-sm" data-cmd="WOEND" data-woid="{{WOID}}">停止</a>
+                                    <a href="#" class="btn btn-danger  btn-sm" data-cmd="WOCLOSE" data-woid="{{WOID}}">关闭</a>
                                     {{ else}}
-                                    <a href="#" class="btn btn-info btn-sm" data-cmd="WOSTART" data-woid="{{WOID}}">启动</a>
+                                    <a href="#" class="btn btn-success btn-sm" data-cmd="WOSTART" data-woid="{{WOID}}">启动</a>
                                     {{/eq}}
                                 </td>
                             </tr>
@@ -285,9 +286,9 @@
                 <div class="box-body line-form">
                     <form id="ldmtl-form" class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">工单</label>
-                            <div class="col-sm-8">
-                                <select name="woid" class="form-control select2" style="width:100%;">
+                            <label class="col-sm-3 control-label">工单</label>
+                            <div class="col-sm-9">
+                                <select name="wo" class="form-control select2" style="width:100%;">
                                     <option value="">--请选择--</option>
                                     {{#each Status.WOLIST}}
                                     {{#eq STATUS 'A'}}
@@ -298,8 +299,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">工序</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-3 control-label">工序</label>
+                            <div class="col-sm-9">
                                 <select name="op" class="form-control select2" style="width:100%;">
                                     <option value="">--请选择--</option>
                                     {{#each Ops}}
@@ -309,15 +310,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">批次号</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-3 control-label">批次号</label>
+                            <div class="col-sm-9">
                                 <input type="text" name="lot" class="form-control" placeholder="批次号" />
                             </div>
                         </div>
 <!--
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">料号</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-3 control-label">料号</label>
+                            <div class="col-sm-9">
                                 <select name="pn" class="form-control select2" style="width:100%">
                                     <option value="">--请选择--</option>
                                     {{#each Pns}}
@@ -327,14 +328,14 @@
                             </div>
                             </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">数量</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-3 control-label">数量</label>
+                            <div class="col-sm-9">
                                 <input type="text" name="qty" class="form-control" placeholder="数量" />
                             </div>
                         </div>
 -->
                         <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-8">
+                            <div class="col-sm-offset-3 col-sm-9">
                                 <button type="submit" class="btn btn-primary btn-block" data-cmd="MSCAN">提交</button>
                             </div>
                         </div>

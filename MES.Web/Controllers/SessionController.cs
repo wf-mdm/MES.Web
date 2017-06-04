@@ -62,9 +62,8 @@ namespace MES.Web.Controllers
         {
             SelectList sl = new SelectList(new List<SelectListItem>()
             {
-                new SelectListItem(){Text ="-- 选择 --", Value = "0"},
-                new SelectListItem(){Text ="管理端", Value = "Admin"},
                 new SelectListItem(){Text ="产线", Value = "Line"},
+                new SelectListItem(){Text ="管理端", Value = "Admin"}
             },
             "Value", "Text", model == null ? "" : model.AppId);
 

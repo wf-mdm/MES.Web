@@ -4,7 +4,7 @@ Stn.Kanban = {
 
     show: function () {
         Stn.loadTemp("temp-kanban", function ($temp) {
-            Stn.updateMain($temp(""));
+            Stn.updateMain($temp(Stn));
         });
     },
     uninit: function () {

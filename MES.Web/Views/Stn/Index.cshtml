@@ -49,7 +49,7 @@
                             <ul class="nav">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle box-title" data-toggle="dropdown">工单: WO000001 <i class="fa fa-angle-down pull-right"></i></a>
-                                    <ul class="dropdown-menu nav nav-pills nav-stacked">
+                                    <ul class="dropdown-menu nav nav-pills nav-stacked bg-green">
                                         <li><a href="#">WO00001</a></li>
                                     </ul>
                                 </li>
@@ -90,7 +90,13 @@
                 op: "@Html.DisplayFor(model => model.Op)",
                 stn: "@Html.DisplayFor(model => model.Stn)",
                 name: "@Html.DisplayFor(model => model.Name)",
-                features:"@ViewBag.FeatureStr",
+                features:[
+                    { APP_ID: "Cstart", APP_DESCRIPTION: "生产申报" },
+                    { APP_ID: "Cng", APP_DESCRIPTION: "不良申报" },
+                    { APP_ID: "Cstart", APP_DESCRIPTION: "生产申报" },
+                    { APP_ID: "Cng", APP_DESCRIPTION: "不良申报" },
+                    { APP_ID: "Rwk", APP_DESCRIPTION: "返工" }
+                ],
                 app: "@Url.Content("~/")"
             },
             Status: {}

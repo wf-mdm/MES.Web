@@ -78,11 +78,14 @@ $(function () {
     Stn.updateStatus = function () {
     };
 
+    function getClient() {
+        return Stn.info.line + ";" + Stn.info.op + ";" + Stn.info.stn;
+    }
     Stn.run = function (cmd, entity, args, proc) {
         return $.ajax({
             type: "POST",
             url: "/api/Cmd/Run",
-            data: JSON.stringify({ Server: "mes", Client: Stn.info.name, Entity: entity, Cmd: cmd, Args: args }),
+            data: JSON.stringify({ Server: "mes", Client: getClient(), Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
@@ -93,7 +96,7 @@ $(function () {
         return $.ajax({
             type: "POST",
             url: "/api/Cmd/RunDb",
-            data: JSON.stringify({ Server: "mes", Client: Stn.info.name, Entity: entity, Cmd: cmd, Args: args }),
+            data: JSON.stringify({ Server: "mes", Client: getClient(), Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc

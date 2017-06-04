@@ -17,9 +17,13 @@ Line.Ldmtl = {
         Line.loadTemp("temp-ldmtl", function ($temp) {
             Line.updateMain($temp(Line));
             $("#ldmtl-form").submit($this.doMscan).find("select").select2();
-            $("#ldmtl-form select[name=woid]").change(function (event) {
+            $("#ldmtl-form select").change(function (event) {
                 if (event) event.preventDefault();
-                $this.doListLots($(this).val());
+                var name = $(this).attr("name");
+                if (name == "wo")
+                    $this.doUpdateLots($(this).val());
+                else
+                    $this.doListLots();
             });
             $this.show2();
         });
@@ -34,18 +38,32 @@ Line.Ldmtl = {
                 });
         }
     },
-    doListLots: function (woid) {
+    doUpdateLots: function (wo) {
         var $this = this;
-        Line.runDb("GETCOMPLS", "", { wo: woid }, function (d) {
-            Line.loadTemp("temp-lot-list", function ($temp) {
-                $("#lot-list").html($temp(d.BOMITEMS)).find("a.btn").click($this.doMUnload);
-            });
+        Line.runDb("GETCOMPLS", "", { wo: wo }, function (d) {
+            $this.Comps = d.BOMITEMS;
         }).fail(function () {
-            $("#lot-list").html(" ");
+            $this.Comps = [];
         }).always(function () {
+            $this.doListLots();
             Line.Progress.hide();
         });
     },
+    doListLots: function () {
+        var $this = this,
+            datas = [],
+            op = $("#ldmtl-form select[name=op]").val();
+        if (op) {
+            for (var i in $this.Comps) {
+                if (op == $this.Comps[i]["OP"]) datas.push($this.Comps[i]);
+            }
+        } else
+            datas = this.Comps;
+        Line.loadTemp("temp-lot-list", function ($temp) {
+            $("#lot-list").html($temp(datas)).find("a.btn").click($this.doMUnload);
+        });
+    },
+
 
     doMscan: function (event) {
         if (event) event.preventDefault();
@@ -53,11 +71,16 @@ Line.Ldmtl = {
             args = {}, args1 = $form.serializeArray();
         for (var i in args1)
             args[args1[i].name] = args1[i].value;
-
-        if (args.lot && args.woid && args.op)
-            Line.run("MSCAN", args.lot, { t: "1", wo: args.wo });
-        else
-            alert("请输入批次信息");
+        args.t = "1";
+        if (args.lot && args.wo && args.op){
+            Line.Progress.show();
+            Line.run("MSCAN", args.lot, args).always(function () {
+                Line.updateStatus();
+                Line.Ldmtl.doUpdateLots($("#ldmtl-form select[name=wo]").val());
+                $form.find("input").val("");
+            });
+        }else
+            alert("请输入所有信息");
     },
     doMUnload: function (event) {
         if (event) event.preventDefault();
@@ -69,7 +92,7 @@ Line.Ldmtl = {
         Line.Progress.show();
         Line.run("MUnload", lot, { qty: qty }).always(function () {
             Line.updateStatus();
-            Line.Ldmtl.doListLots($("#ldmtl-form select[name=woid]").val());
+            Line.Ldmtl.doUpdateLots($("#ldmtl-form select[name=wo]").val());
         });
     },
 

@@ -36,6 +36,7 @@ Line.Opr = {
                 dataType: "json",
                 success: function (rs) {
                     Line.updateStatus();
+                    $form.find(":input").val("");
                 }
             }).fail(function (e) {
             }).always(function () {
