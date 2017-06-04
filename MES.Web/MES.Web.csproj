@@ -211,9 +211,9 @@
     <Compile Include="Identity\MESUserManager.cs" />
     <Compile Include="Identity\MESUserStore.cs" />
     <Compile Include="Models\CmdModels.cs" />
-    <Compile Include="Models\LinesModel.cs" />
+    <Compile Include="Models\LineModels.cs" />
     <Compile Include="Models\MESDbContext.cs" />
-    <Compile Include="Models\SessionModels.cs" />
+    <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1152,6 +1152,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Admin\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

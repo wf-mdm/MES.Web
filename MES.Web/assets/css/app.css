@@ -83,6 +83,43 @@
     line-height: 40px;
 }
 
+/**Idle**/
+.stn-status-I {
+    background-color: yellow;
+}
+/**Stop**/
+.stn-status-S {
+    background-color: gray;
+    color:#fff;
+}
+/**Run**/
+.stn-status-R {
+    background-color: green;
+    color: #fff;
+}
+/**Debug**/
+.stn-status-D {
+    background-color: brown;
+    color: #fff;
+}
+/**Maintain**/
+.stn-status-M {
+    background-color: brown;
+    color: #fff;
+}
+/**Other**/
+.stn-status-O {
+}
+/**Fault**/
+.stn-status-F {
+    background-color: red;
+    color: #fff;
+}
+
+.stn-status-I a, .stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
+    color: #fff;
+}
+
 .log-2 {
     background-color: #d73925;
     color: #fff;

@@ -5,7 +5,7 @@
         <br />投入数:{{IWIP}}
     </script>
     <script type="text/plain" id="temp-stn-list">
-        <table class="table compact table-striped table-hover">
+        <table class="table compact table-hover">
             <thead>
                 <tr>
                     <th>工站代码</th>
@@ -18,9 +18,9 @@
             </thead>
             <tbody>
                 {{#each Status.STINFO}}
-                <tr>
+                <tr class="stn-status-{{STATUS}}">
                     <td><a href="Stn?{{../info.name}};{{L_OPNO}};{{L_STNO}}">{{L_STNO}}</td>
-                    <td>{{DISPLAYNAME}}</td>
+                    <td><a href="Stn?{{../info.name}};{{L_OPNO}};{{L_STNO}}">{{DISPLAYNAME}}</td>
                     <td>{{WOID}}</td>
                     <td>{{OPRLST}}</td>
                     <td>{{ISUM}}</td>
