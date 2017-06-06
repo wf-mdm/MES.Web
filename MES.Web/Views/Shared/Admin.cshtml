@@ -36,59 +36,24 @@
 
         <aside class="main-sidebar">
             <section class="sidebar">
-                <ul class="sidebar-menu">
-                    <li class="treeview">
-                        <a href="@Url.Action("Index", "Line")">
-                            <i class="fa fa-dashboard"></i> <span>现场管理</span>
-                        </a>
-                    </li>
-                    <li class="header">管理菜单</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>BOM管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>BOM管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>产线管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="admin.line.html"><i class="fa fa-circle-o"></i>产线管理</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>工序管理</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>工站管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>系统管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>用户管理</span></a></li>
-                            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>权限管理</span></a></li>
-                        </ul>
-                    </li>
-                </ul>
+                @Html.Action("Menu", "Admin", new { Area = ""})
             </section>
         </aside>
 
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>Admin</h1>
+                <h1>@ViewBag.Title</h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
-                    <li class="active">Admin</li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i>系统管理</a></li>
+                    @if (ViewBag.SubTitle == null)
+                    {
+                        <li class="active">@ViewBag.Title</li>
+                    }
+                    else
+                    {
+                        <li><a href="#">@ViewBag.Title</a></li>
+                        <li class="active">@ViewBag.SubTitle</li>
+                    }
                 </ol>
             </section>
 
@@ -100,6 +65,7 @@
         @Html.Partial("_Foot")
     </div>
     @Scripts.Render("~/assets/js/base")
+    @Scripts.Render("~/assets/js/admin")
 </body>
 
 </html>

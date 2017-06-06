@@ -97,6 +97,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -199,6 +201,27 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OprRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OprsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OpsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoutesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StnsController.cs" />
+    <Compile Include="Areas\Admin\Models\APP_MASTDATA.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_BU.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_LINEOP.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_LINEOPPARAMCONF.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_LINESTATION.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_PRDLINE.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_ROUTE.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_RWKSCRCODE.cs" />
+    <Compile Include="Areas\Admin\Models\HR_OPERATORS.cs" />
+    <Compile Include="Areas\Admin\Models\HR_OPERCAPBMATRIX.cs" />
+    <Compile Include="Areas\Admin\Models\HR_PERMISSIONS.cs" />
+    <Compile Include="Areas\Admin\Models\HR_ROLES.cs" />
+    <Compile Include="Areas\Admin\Models\MESDbContext.cs" />
+    <Compile Include="Areas\Admin\Models\MESEnums.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\StnController.cs" />
     <Compile Include="Controllers\LineController.cs" />
@@ -218,6 +241,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\admin\base.js" />
     <Content Include="assets\app\line\0.js" />
     <Content Include="assets\app\line\echarts.js" />
     <Content Include="assets\app\line\kanban.js" />
@@ -287,6 +311,37 @@
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\handlebars.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Oprs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Lines\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Lines\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Lines\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Lines\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Lines\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Ops\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Ops\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Ops\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Ops\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Ops\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Routes\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.min.js" />
@@ -1149,10 +1204,12 @@
     <Content Include="Views\Session\Index.cshtml" />
     <Content Include="Views\Stn\Index.cshtml" />
     <Content Include="Views\Stn\Error.cshtml" />
+    <Content Include="Views\Admin\Menu.cshtml" />
+    <Content Include="Views\Admin\MenuError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Admin\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
@@ -1182,6 +1239,23 @@
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
     <Content Include="assets\fonts\fontawesome-webfont.woff2" />
     <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\List.vb.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,60 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_LINEOP
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Line.BUNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Line.BUNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISPLAYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISPLAYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPDEFAULTSEQ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPDEFAULTSEQ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CYCLETIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CYCLETIME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", "Index", "", new { @class="btn btn-success"})
+        </div>
+    }
+</div>

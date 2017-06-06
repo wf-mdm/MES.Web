@@ -86,6 +86,7 @@
 /**Idle**/
 .stn-status-I {
     background-color: yellow;
+    color:#000;
 }
 /**Stop**/
 .stn-status-S {
@@ -116,8 +117,11 @@
     color: #fff;
 }
 
-.stn-status-I a, .stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
+.stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
     color: #fff;
+}
+.stn-status-I a {
+    color:#000;
 }
 
 .log-2 {

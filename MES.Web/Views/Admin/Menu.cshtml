@@ -1,0 +1,36 @@
+﻿@model System.Data.DataSet
+@using System.Data
+<ul class="sidebar-menu">
+    <li class="treeview">
+        <a href="@Url.Action("Index", "Line")">
+            <i class="fa fa-dashboard"></i> <span>现场管理</span>
+        </a>
+    </li>
+    @foreach (DataRow r in Model.Tables[0].Rows)
+    {
+        if ("MESADMIN".Equals(r["PARENT_ID"]))
+        {
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>@r["APP_DESCRIPTION"]</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    @foreach (DataRow r1 in Model.Tables[0].Rows)
+                    {
+                        if (r["APP_ID"].Equals(r1["PARENT_ID"]))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", (String)r1["APP_ID"], new { Area="Admin"})">
+                                    <i class="fa fa-circle-o"></i> <span>@r1["APP_DESCRIPTION"]</span>
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+    }
+</ul>

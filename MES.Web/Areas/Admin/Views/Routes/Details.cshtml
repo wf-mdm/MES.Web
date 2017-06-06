@@ -1,0 +1,70 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_ROUTE
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Op.DISPLAYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Op.DISPLAYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUBLINENO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUBLINENO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PREV_OPLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PREV_OPLIST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NEXT_OPLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NEXT_OPLIST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFirst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsFirst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENTS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("返回", "Index")
+</p>

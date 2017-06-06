@@ -1,0 +1,46 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_PRDLINE
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BU.BUNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BU.BUNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISPLAYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISPLAYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LINEGRP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LINEGRP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.LINENAME }) |
+    @Html.ActionLink("返回", "Index")
+</p>

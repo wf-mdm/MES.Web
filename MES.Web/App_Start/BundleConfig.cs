@@ -29,6 +29,9 @@ namespace MES.Web
                 "~/assets/js/routie.js",
                 "~/assets/js/app.js"
                 ));
+            bundles.Add(new ScriptBundle("~/assets/js/admin").Include(
+                "~/assets/admin/*.js"
+                ));
             bundles.Add(new ScriptBundle("~/assets/js/line").Include(
                 "~/assets/js/handlebars.js",
                 "~/assets/app/line/*.js"

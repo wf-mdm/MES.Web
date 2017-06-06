@@ -1,0 +1,52 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_PRDLINE
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BU.BUNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BU.BUNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISPLAYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISPLAYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LINEGRP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LINEGRP)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", "Index", "", new { @class="btn btn-success"})
+        </div>
+    }
+</div>

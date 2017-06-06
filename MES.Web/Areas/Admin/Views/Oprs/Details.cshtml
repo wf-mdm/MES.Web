@@ -1,0 +1,78 @@
+﻿@model MES.Web.Areas.Admin.Models.HR_OPERATORS
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BU.BUNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BU.BUNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PWD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PWD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPTNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACTIVE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACTIVE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MOBILE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOBILE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENTS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.OPERID }) |
+    @Html.ActionLink("返回", "Index")
+</p>

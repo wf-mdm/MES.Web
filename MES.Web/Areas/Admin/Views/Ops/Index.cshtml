@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.ENG_LINEOP>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.LINENAME)</label>
+                @Html.DropDownList("LINENAME", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:200px" })
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+            <span class="separator" />
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Line.BUNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LINENAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DISPLAYNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OPDEFAULTSEQ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CYCLETIME)
+        </th>
+        <th>维护</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Line.BUNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Line.DISPLAYNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.L_OPNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DISPLAYNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OPDEFAULTSEQ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STDYIELDRATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CYCLETIME)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { LINENAME = item.LINENAME, L_OPNO = item.L_OPNO}, new { @class="btn btn-info"})
+            @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, L_OPNO = item.L_OPNO }, new { @class="btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>
