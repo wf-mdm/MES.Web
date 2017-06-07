@@ -12,6 +12,9 @@ namespace MES.Web.Areas.Admin.Models
         {
         }
 
+        public virtual DbSet<ENG_BOMDETAIL> ENG_BOMDETAIL { get; set; }
+        public virtual DbSet<ENG_BOMHEADER> ENG_BOMHEADER { get; set; }
+
         public virtual DbSet<ENG_LINEOP> ENG_LINEOP { get; set; }
         public virtual DbSet<ENG_LINESTATION> ENG_LINESTATION { get; set; }
         public virtual DbSet<ENG_PRDLINE> ENG_PRDLINE { get; set; }
@@ -24,5 +27,7 @@ namespace MES.Web.Areas.Admin.Models
         public virtual DbSet<ENG_BU> ENG_BU { get; set; }
         public virtual DbSet<HR_OPERCAPBMATRIX> HR_OPERCAPBMATRIX { get; set; }
         public virtual DbSet<HR_PERMISSIONS> HR_PERMISSIONS { get; set; }
+        public virtual DbSet<ENG_CODECFG> ENG_CODECFG { get; set; }
+        public virtual DbSet<V_USERANDROLES> V_USERANDROLES { get; set; }
     }
 }

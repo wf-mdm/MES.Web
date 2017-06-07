@@ -1,0 +1,38 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_BOMHEADER
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEFAULT_CONFNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEFAULT_CONFNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.PARTNO }) |
+    @Html.ActionLink("返回", "Index")
+</p>

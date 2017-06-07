@@ -190,7 +190,6 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         </div>
     </div>
 }
-
 	</div>
 </div>
 <#

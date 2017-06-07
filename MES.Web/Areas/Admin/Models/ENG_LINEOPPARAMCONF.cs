@@ -8,20 +8,20 @@ namespace MES.Web.Areas.Admin.Models
 
     public partial class ENG_LINEOPPARAMCONF
     {
+        [Key]
         [StringLength(20)]
         [Required, Display(Name = "参数集id")]
+        [Column(Order = 0)]
         public string CONFNAME { get; set; }
 
         [Key]
-        [Column(Order = 0, TypeName = "numeric")]
+        [Column(Order = 1, TypeName = "numeric")]
         [Required, Display(Name = "流水码")]
         public decimal CONFID { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
         [StringLength(20)]
         [Display(Name = "产线")]
-        public string LINEName { get; set; }
+        public string LINENAME { get; set; }
 
         [StringLength(10)]
         [Display(Name = "工序")]
@@ -45,9 +45,11 @@ namespace MES.Web.Areas.Admin.Models
 
         [StringLength(12)]
         [Display(Name = "数据类型")]
+        [Column("DATA_TYPE")]
         public string DATA_TYPE { get; set; }
 
         [StringLength(5)]
+        [Column("PARAM_TYPE")]
         [Display(Name = "参数类型")]
         public string PARAM_TYPE { get; set; }
 

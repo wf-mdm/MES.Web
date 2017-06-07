@@ -1,0 +1,116 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_BOMDETAIL
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTVER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTVER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_OPNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMP_PARTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMP_PARTNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UNITCONSUMEQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UNITCONSUMEQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LotControl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LotControl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SERIALCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SERIALCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsKeyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsKeyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNTCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNTCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISSEMI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISSEMI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SEMILINEGRP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEMILINEGRP)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", String.Format("Index/{0}_{1}", Model.PARTNO, Model.PARTVER), null, new { @class = "btn btn-info" })
+        </div>
+    }
+</div>

@@ -192,6 +192,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
     </div>
 }
 
+    </div>
+</div>
 <#
 if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {
 #>

@@ -18,41 +18,44 @@
     </div>
     <div class="box-body">
         <table class="table compact table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Op.LINENAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Op.DISPLAYNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.L_STNO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DISPLAYNAME)
-        </th>
-        <th>维护</th>
-    </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Op.LINENAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Op.DISPLAYNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.L_STNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DISPLAYNAME)
+                </th>
+                <th>维护</th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Op.LINENAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Op.DISPLAYNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.L_STNO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DISPLAYNAME)
-        </td>
-        <td>
-            @Html.ActionLink("编辑", "Edit", new { LINENAME = item.LINENAME, L_STNO = item.L_STNO}, new { @class="btn btn-info"})
-            @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, L_STNO = item.L_STNO }, new { @class="btn btn-danger"})
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Op.LINENAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Op.DISPLAYNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.L_STNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DISPLAYNAME)
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", "Edit", new { LINENAME = item.LINENAME, L_STNO = item.L_STNO }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, L_STNO = item.L_STNO }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

@@ -36,7 +36,7 @@ namespace MES.Web.Areas.Admin.Models
         public virtual ENG_LINEOP Op { get; set; }
 
         [StringLength(80)]
-        [Required, Display(Name = "前置工序")]
+        [Display(Name = "前置工序")]
         public string PREV_OPLIST { get; set; }
 
         [StringLength(80)]

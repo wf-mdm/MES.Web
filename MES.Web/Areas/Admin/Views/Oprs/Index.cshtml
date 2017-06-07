@@ -9,7 +9,7 @@
         <form class="form-inline" method="post">
             <div class="form-group">
                 @Html.DisplayNameFor(model => model.OPERNAME)
-                <input type="text" name="OPERNAME" value="@ViewBag.Query.OPERNAME"/>
+                <input type="text" name="OPERNAME" value="@ViewBag.Query.OPERNAME" />
             </div>
             <button type="submit" class="btn btn-primary">查询</button>
             <span class="separator" />
@@ -18,71 +18,74 @@
     </div>
     <div class="box-body">
         <table class="table compact table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BU.BUNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OPERID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OPERNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PWD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DEPTNO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ACTIVE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMAIL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MOBILE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.COMMENTS)
-        </th>
-        <th>维护</th>
-    </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BU.BUNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OPERID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OPERNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PWD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DEPTNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ACTIVE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EMAIL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MOBILE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.COMMENTS)
+                </th>
+                <th>维护</th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BU.BUNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPERID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPERNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PWD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DEPTNO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACTIVE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMAIL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MOBILE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.COMMENTS)
-        </td>
-        <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.OPERID }, new { @class="btn btn-info"})
-            @Html.ActionLink("删除", "Delete", new { id=item.OPERID }, new { @class="btn btn-danger"})
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BU.BUNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OPERID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OPERNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PWD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DEPTNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACTIVE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MOBILE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COMMENTS)
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", "Edit", new { id = item.OPERID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.OPERID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

@@ -21,6 +21,9 @@ namespace MES.Web.Areas.Admin.Models
         [Required]
         public string OPERNAME { get; set; }
 
+        [NotMapped]
+        public String Name { get { return String.Format("{0}:{1}", OPERID, OPERNAME); } }
+
         [StringLength(128)]
         [Column(Order = 2)]
         [Display(Name = "√‹¬Î")]

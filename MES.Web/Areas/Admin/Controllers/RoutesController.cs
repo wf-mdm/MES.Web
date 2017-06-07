@@ -22,13 +22,9 @@ namespace MES.Web.Areas.Admin.Controllers
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
-            ViewBag.LINENAME = new SelectList(db.ENG_PRDLINE, "LINENAME", "CodeName");
             var eNG_ROUTE = db.ENG_ROUTE.Include(e => e.Op);
             return View(await eNG_ROUTE
-                .Where( r => 
-                (String.IsNullOrEmpty(Query.LINENAME) && r.LINENAME.Equals(Query.LINENAME))
-                && (String.IsNullOrEmpty(Query.RT_NAME) && r.RT_NAME.Equals(Query.RT_NAME))
-                )
+                .Where( r => (String.IsNullOrEmpty(Query.RT_NAME) || r.RT_NAME.Equals(Query.RT_NAME)))
                 .ToListAsync());
         }
 
@@ -81,11 +77,11 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Routes/Edit/5
-        public async Task<ActionResult> Edit(string RT_NAME, decimal SEQ_NO)
+        public async Task<ActionResult> Edit(string RT_NAME, decimal SEQNO)
         {
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "编辑";
-            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQ_NO);
+            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQNO);
             if (eNG_ROUTE == null)
             {
                 return HttpNotFound();
@@ -118,11 +114,11 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Routes/Delete/5
-        public async Task<ActionResult> Delete(string RT_NAME, decimal SEQ_NO)
+        public async Task<ActionResult> Delete(string RT_NAME, decimal SEQNO)
         {
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "删除";
-            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQ_NO);
+            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQNO);
             if (eNG_ROUTE == null)
             {
                 return HttpNotFound();
@@ -133,12 +129,12 @@ namespace MES.Web.Areas.Admin.Controllers
         // POST: Admin/Routes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string RT_NAME, decimal SEQ_NO)
+        public async Task<ActionResult> DeleteConfirmed(string RT_NAME, decimal SEQNO)
         {
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "删除";
 
-            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQ_NO);
+            ENG_ROUTE eNG_ROUTE = await db.ENG_ROUTE.FindAsync(RT_NAME, SEQNO);
             db.ENG_ROUTE.Remove(eNG_ROUTE);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

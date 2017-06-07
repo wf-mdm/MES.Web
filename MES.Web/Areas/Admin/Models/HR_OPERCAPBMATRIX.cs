@@ -11,19 +11,27 @@ namespace MES.Web.Areas.Admin.Models
         [Key]
         [Column(Order = 0)]
         [StringLength(20)]
+        [Required, Display(Name = "用户ID")]
         public string OPERID { get; set; }
+
+        [ForeignKey("OPERID")]
+        [Required, Display(Name = "用户ID")]
+        public virtual V_USERANDROLES Oper { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [StringLength(20)]
-        public string LINEName { get; set; }
+        [Required, Display(Name = "产线")]
+        public string LINENAME { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [StringLength(10)]
+        [Required, Display(Name = "工序")]
         public string L_OPNO { get; set; }
 
         [StringLength(10)]
+        [Required, Display(Name = "工站")]
         public string L_STNO { get; set; }
 
         [StringLength(3)]

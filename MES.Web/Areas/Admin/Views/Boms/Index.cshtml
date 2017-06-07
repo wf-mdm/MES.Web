@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.ENG_BOMHEADER>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.PARTNO)</label>
+                <input type="text" name="PARTNO" value="@ViewBag.Query.PARTNO" />
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+            <span class="separator" />
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PARTNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RT_NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DEFAULT_CONFNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DESCRIPTION)
+                </th>
+                <th>维护</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PARTNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RT_NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DEFAULT_CONFNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                    </td>
+                    <td>
+                        @Html.ActionLink("清单", String.Format("Index/{0}_{1}", item.PARTNO, item.PARTVER), "BomDetail", null, new { @class = "btn btn-success" })
+                        @Html.ActionLink("编辑", "Edit", new { PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

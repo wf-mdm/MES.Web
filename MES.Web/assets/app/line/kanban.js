@@ -15,11 +15,18 @@ Line.Kanban = {
                     edgeSymbolSize: [1, 8],
                     data: Line.KanbanData[Line.info.name].data,
                     links: Line.KanbanData[Line.info.name].links,
-                    label: { normal: { show: true, textStyle: { fontSize: 12 } } },
+                    label: { normal: { show: true, textStyle: { fontSize: 12} } },
                     itemStyle: { normal: { color: "#c23531" } },
                     lineStyle: { normal: { color: "source", opacity: 0.9, width: 2, curveness: 0 } },
                     categories: [
-                        { name: "sub", itemStyle: { normal: { color: "#546570" } } }
+                        { name: "sub", itemStyle: { normal: { color: "#546570" } } },
+                        { name: "I", itemStyle: { normal: { color: "yellow" } }, label: { normal: { show:true, textStyle: { color: "0x000" } } } },
+                        { name: "S", itemStyle: { normal: { color: "gray" } }, label: { normal: { show: true, textStyle: { color: "0xfff" } } } },
+                        { name: "R", itemStyle: { normal: { color: "green" } }, label: { normal: { show: true, textStyle: { color: "0xfff" } } } },
+                        { name: "D", itemStyle: { normal: { color: "brown" } }, label: { normal: { show: true, textStyle: { color: "0xfff" } } } },
+                        { name: "M", itemStyle: { normal: { color: "brown" } }, label: { normal: { show: true, textStyle: { color: "0xfff" } } } },
+                        { name: "O"},
+                        { name: "F", itemStyle: { normal: { color: "red" } }, label: { normal: { show: true, textStyle: { color: "0xfff" } } } },
                     ],
                     tooltip: {
                         formatter: function (data) {
@@ -73,7 +80,8 @@ Line.Kanban = {
         for (var i in datas) {
             for (var j in stns) {
                 if (datas[i].name == stns[j]["L_STNO"]) {
-                    datas[i].itemStyle = { normal: { color: stns[j].COLOR } };
+                    //datas[i].itemStyle = { normal: { color: stns[j].COLOR } };
+                    datas[i].category = stns[j].STATUS;
                     break;
                 }
             }

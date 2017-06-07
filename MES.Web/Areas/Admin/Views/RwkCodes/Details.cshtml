@@ -1,0 +1,62 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_RWKSCRCODE
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QCTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QCTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LINENAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LINENAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEFAULTOOP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEFAULTOOP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FROMOP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FROMOP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENTS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.QCCODE }) |
+    @Html.ActionLink("返回", "Index")
+</p>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.ENG_BOMDETAIL>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.COMP_PARTNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DESCRIPTION)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.L_OPNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UNITCONSUMEQTY)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LotControl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SERIALCONTROL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsKeyID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CNTCONTROL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ISSEMI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SEMILINEGRP)
+                </th>
+                <th>维护</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COMP_PARTNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.L_OPNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UNITCONSUMEQTY)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LotControl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SERIALCONTROL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsKeyID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CNTCONTROL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISSEMI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SEMILINEGRP)
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", String.Format("Edit/{0}_{1}", item.PARTNO, item.PARTVER), new { id = item.ITEMID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", String.Format("Delete/{0}_{1}", item.PARTNO, item.PARTVER), new { id = item.ITEMID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

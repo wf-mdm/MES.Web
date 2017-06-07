@@ -14,47 +14,50 @@
     </div>
     <div class="box-body">
         <table class="table compact table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BU.BUNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LINENAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DISPLAYNAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.STDYIELDRATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LINEGRP)
-        </th>
-        <th>维护</th>
-    </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BU.BUNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LINENAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DISPLAYNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.STDYIELDRATE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LINEGRP)
+                </th>
+                <th>维护</th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BU.BUNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LINENAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DISPLAYNAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STDYIELDRATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LINEGRP)
-        </td>
-        <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.LINENAME }, new { @class="btn btn-info"})
-            @Html.ActionLink("删除", "Delete", new { id=item.LINENAME }, new { @class="btn btn-danger"})
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BU.BUNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LINENAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DISPLAYNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STDYIELDRATE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LINEGRP)
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", "Edit", new { id = item.LINENAME }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.LINENAME }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

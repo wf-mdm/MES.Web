@@ -16,6 +16,8 @@ namespace MES.Web.Identity
             this.PasswordHasher = new MESPasswordHasher();
         }
 
+        public override bool SupportsUserRole { get { return true; } }
+
         public override Task<bool> IsLockedOutAsync(string userId)
         {
             return Task<bool>.FromResult(false);
@@ -29,6 +31,16 @@ namespace MES.Web.Identity
         public override Task<bool> GetTwoFactorEnabledAsync(string userId)
         {
             return Task<bool>.FromResult(false);
+        }
+
+        public override Task<IList<string>> GetRolesAsync(string userId)
+        {
+            return base.GetRolesAsync(userId);
+        }
+
+        public override Task<bool> IsInRoleAsync(string userId, string role)
+        {
+            return base.IsInRoleAsync(userId, role);
         }
     }
 }

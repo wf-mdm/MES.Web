@@ -25,12 +25,14 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                if (String.IsNullOrEmpty(ViewBag.ReturnUrl)) { 
                 <div class="form-group">
                     @Html.LabelFor((m => m.AppId), new { @class = "col-sm-4 control-label"})
                     <div class="col-sm-8">
                         @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
                     </div>
                 </div>
+                }
                 <div class="form-group has-feedback">
                     @Html.LabelFor((m => m.UserId), new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">

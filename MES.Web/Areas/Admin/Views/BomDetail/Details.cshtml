@@ -1,0 +1,110 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_BOMDETAIL
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTVER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTVER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_OPNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMP_PARTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMP_PARTNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UNITCONSUMEQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UNITCONSUMEQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LotControl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LotControl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SERIALCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SERIALCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsKeyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsKeyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNTCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNTCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISSEMI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISSEMI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SEMILINEGRP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEMILINEGRP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.ITEMID }) |
+    @Html.ActionLink("返回", "Index")
+</p>
