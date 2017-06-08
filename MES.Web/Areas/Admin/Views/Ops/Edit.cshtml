@@ -16,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LINENAME, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.DropDownList("LINENAME",null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style="width:100%" })
+                @Html.DropDownList("LINENAME",null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style="width:100%", @readonly = "readonly" } })
                     </div>
                     <div class="col-md-5 error-msg">
                 @Html.ValidationMessageFor(model => model.LINENAME, "", new { @class = "text-danger" })
