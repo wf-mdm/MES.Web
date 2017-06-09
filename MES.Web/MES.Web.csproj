@@ -262,6 +262,7 @@
     <Content Include="assets\app\line\ldmtl.js" />
     <Content Include="assets\app\line\wo.js" />
     <Content Include="assets\app\stn\0.js" />
+    <Content Include="assets\app\stn\Cstart.js" />
     <Content Include="assets\app\stn\kanban.js" />
     <Content Include="assets\css\AdminLTE.css" />
     <Content Include="assets\css\AdminLTE.min.css" />
