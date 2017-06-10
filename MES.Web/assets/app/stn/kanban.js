@@ -1,5 +1,6 @@
 Stn.Kanban = {
     init: function () {
+        Stn.onUpdate = this.show;
     },
 
     show: function () {
@@ -8,5 +9,6 @@ Stn.Kanban = {
         });
     },
     uninit: function () {
+        delete Stn.onUpdate;
     }
 };

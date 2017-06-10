@@ -1,16 +1,205 @@
 ﻿<div>
     <script type="text/plain" id="temp-kanban">
-        <div class="box box-success box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">工站功能</h3>
-            </div>
-            <div class="box-body" id="fn-list">
-                <div class="row">
-                    {{#each info.features}}
-                    <div class="col-sm-3"><a href="#{{APP_ID}}" class="btn btn-primary btn-block btn-flat btn-lg">{{APP_DESCRIPTION}}</a></div>
-                    {{/each}}
+        <div class="box-header with-border">
+            <h3 class="box-title">工站功能</h3>
+        </div>
+        <div class="box-body row" id="fn-list">
+            {{#each info.features}}
+            <div class="col-sm-2"><a href="#{{APP_ID}}" class="btn btn-primary btn-block btn-flat">{{APP_DESCRIPTION}}</a></div>
+            {{/each}}
+        </div>
+        {{#if Status.PROCINFO}}
+        <div class="box-header with-border">
+            <h3 class="box-title">工站信息</h3>
+        </div>
+        <div class="row box-body">
+            {{#each Status.PROCINFO}}
+            <div class="col-sm-3">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{PARAMVAL}}</h3>
+                        <p>{{PARAMNAME}}</p>
+                    </div>
                 </div>
             </div>
+            {{/each}}
+        </div>
+        {{/if}}
+        {{#if Status.MRQINFO}}
+        <div class="box-header with-border bg-red">
+            <h3 class="box-title">缺料告警</h3>
+        </div>
+        <div class="box-body">
+            <table class="table compact table-hover">
+                {{#each Status.MRQINFO}}
+                <tr><td>{{COMP_PARTNO}}</td><td>{{DESCRIPTION}}</td></tr>
+                {{/each}}
+            </table>
+        </div>
+        {{/if}}
+    </script>
+    <script type="text/plain" id="temp-log-list">
+        <table class="table compact">
+            <colgroup>
+                <col width="150" />
+                <col />
+            </colgroup>
+            <tbody>
+                {{#each Status.LOGTAB}}
+                <tr class="log-{{LEVEL}}">
+                    <td>{{dt CTIME}}</td>
+                    <td>{{CONTENT}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+    <script type="text/plain" id="temp-sop-img">
+        {{#each SOPINFO}}
+        <div class="item">
+            <img class="img-responsive pad" src="{{SOPURL}}{{SOPPREFIX}}{{@index}}.{{SOPEXT}}" />
+        </div>
+        {{/each}}
+    </script>
+    <script type="text/plain" id="temp-wo-list">
+        {{#each WOLIST}}
+        <li><a href="#" data-woid="{{WOID}}">{{WOID}}</a></li>
+        {{/each}}
+    </script>
+    <script type="text/plain" id="temp-cstart">
+        <div class="box-header">
+            <h3 class="box-title">生产申报</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form class="form-horizontal" id="stn-scan-form">
+                <div class="row form-group">
+                    <label class="control-label col-sm-2">扫码</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="bc" class="form-control input-lg" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-lg btn-block">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="box-header">
+            <h3 class="box-title">已扫描</h3>
+        </div>
+        <div class="box-body" id="stn-cstart-scaned">
+            <table class="table compact">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>扫描的条码</th>
+                        <th>对应IDNAME</th>
+                        <th>料号</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-cstart-scans">
+        {{#each this}}
+        <tr>
+            <td>{{@index}}</td>
+            <td>{{bc}}</td>
+            <td>{{name}}</td>
+            <td>{{pn}}</td>
+        </tr>
+        {{/each}}
+    </script>
+    <script type="text/plain" id="temp-cng">
+        <div class="box-header">
+            <h3 class="box-title">不良申报</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form id="stn-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">不良原因代码</label>
+                    <select name="code" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Codes}}
+                        <option value="{{@key}}">{{@key}} - {{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block"">提交</button>
+            </form>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-mwait">
+        <div class="box-header">
+            <h3 class="box-title">缺料请求</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table compact">
+                <thead>
+                    <tr>
+                        <th>料号</th>
+                        <th>名称</th>
+                        <th>需求量</th>
+                        <th>已投入数量</th>
+                        <th>已消耗数</th>
+                        <th>在线批次号</th>
+                        <th>在线剩余数量</th>
+                        <th>理论缺料数</th>
+                        <th>已请求数</th>
+                        <th>请求数量</th>
+                        <th>最近扫描时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each REQTABLE}}
+                    <tr>
+                        <td>{{COMP_PARTNO}}</td>
+                        <td>{{DESCRIPTION}}</td>
+                        <td>{{SUMMRP_Q}}</td>
+                        <td>{{ISS_Q}}</td>
+                        <td>{{USE_Q}}</td>
+                        <td>{{LOTLST}}</td>
+                        <td>{{INLINE_Q}}</td>
+                        <td>{{MRP_Q}}</td>
+                        <td>{{R_Q}}</td>
+                        <td></td>
+                        <td>{{ISS_DT}}</td>
+                        <td><a href="#" class="btn btn-danger" data-pn="{{COMP_PARTNO}}">缺料请求</a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-lprint">
+        <div class="box-header">
+            <h3 class="box-title">打印标签</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form id="stn-scan-form">
+                <div class="form-group">
+                    <label class="control-label">标签ID(序列号)</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
         </div>
     </script>
 </div>

@@ -10,7 +10,7 @@
     @Styles.Render("~/assets/css/all")
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
-    <aside class="wrapper">
+    <div class="wrapper">
         <header class="main-header">
             <nav class="navbar navbar-static-top">
                 <ul class="nav navbar-nav">
@@ -61,10 +61,11 @@
         </aside>
         <div class="control-sidebar-bg"></div>
 
-        <div class="content-wrapper" id="line-main">
-
+        <div class="content-wrapper" id="line-content">
+            <section class="content">
+                <div class="box box-success box-solid" id="line-main"></div>
+            </section>
         </div>
-
         @Html.Partial("_Foot")
     </div>
     <script>

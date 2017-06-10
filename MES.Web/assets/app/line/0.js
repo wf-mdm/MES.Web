@@ -18,7 +18,7 @@ $(function () {
         if (f === curFeature) return;
         delete Line.onUpdate;
 
-        if (curFeature && curFeature.unit) {
+        if (curFeature && curFeature.uninit) {
             curFeature.active = false;
             curFeature.uninit();
         }

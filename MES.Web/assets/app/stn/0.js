@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
     var curFeature = undefined,
         UPDATE_INTERVAL = 1000 * 30,
         $templates;
@@ -18,7 +18,7 @@ $(function () {
         if (f === curFeature) return;
         delete Stn.onUpdate;
 
-        if (curFeature && curFeature.unit) {
+        if (curFeature && curFeature.uninit) {
             curFeature.active = false;
             curFeature.uninit();
         }
@@ -28,12 +28,16 @@ $(function () {
         curFeature.show();
     };
 
+    Stn.getWoid = function () {
+        return (Stn.Status && Stn.Status.STINFO) ? Stn.Status.STINFO[0].WOID : undefined;
+    };
+
     Stn.loadTemp = function (id, proc) {
         var $this = this;
         if ($templates) {
             if (proc) proc($templates[id]);
         } else {
-            $.get(Stn.info.app + "assets/template/Stn.html", function (data, status) {
+            return $.get(Stn.info.app + "assets/template/Stn.html", function (data, status) {
                 $templates = {};
                 $(data).find("script").each(function () {
                     var $tmp = $(this),
@@ -46,16 +50,18 @@ $(function () {
         }
     };
     Stn.updateMain = function (txt, hideSop) {
-        var $stnMain = $("#stn-main").html(txt),
+        var $stnMain = $("#stn-main"),
             $stnSop = $("#stn-sop"),
             $main = $("#stn-content"),
-            $content = $main.find("section.content>div>div.box");
-        $content.css({ "min-height": $main.height() - 33 });
+            $content = $("#stn-main-content");
+        if (txt) $content.html(txt);
+        $stnSop.find(">.box").css({ "min-height": $main.height() - 33 });
+        $stnMain.find(">.box").css({ "min-height": $main.height() - 33 });
         if (hideSop) {
             $stnSop.hide();
-            $stnMain.removeClass("col-sm-6");
+            $stnMain.removeClass("col-sm-6").addClass("col-sm-12");
         } else {
-            $stnMain.addClass("col-sm-6");
+            $stnMain.removeClass("col-sm-12").addClass("col-sm-6");
             $stnSop.show();
         }
     };
@@ -76,6 +82,54 @@ $(function () {
     };
 
     Stn.updateStatus = function () {
+        var timeid;
+        if (timeid) clearTimeout(timeid);
+
+        return Stn.runDb("GETSTNINFO", "", "", function (rs) {
+            Stn.Status = rs;
+            delete Stn.Status.Error;
+        }).fail(function (e) {
+            Stn.Status.Error = e;
+        }).always(function () {
+            timeid = setTimeout(Stn.updateStatus, UPDATE_INTERVAL);
+            Stn.updateLogs();
+            if (Stn.onUpdate) Stn.onUpdate.apply(curFeature);
+        });
+    };
+
+    function switchWo(event) {
+        if (event) event.preventDefault();
+        var woid = $(this).data("woid");
+        Stn.Progress.show();
+        Stn.run("ChangeStnWO", woid, {}, function () {
+        }).always(function () {
+            Stn.updateStatus().always(function () {
+                Stn.updateSop().always(function () {
+                    Stn.Progress.hide();
+                });
+            });
+        });
+    }
+
+    Stn.updateSop = function () {
+        var woid = (Stn.Status.STINFO && Stn.Status.STINFO[0] && Stn.Status.STINFO[0].WOID) ? Stn.Status.STINFO[0].WOID : "";
+        $("#stn-sop .box-header .box-title").html(woid ? "工单: " + woid : "无工单");
+
+        return Stn.runDb("GETSTNWOS", "", {}, function (rs) {
+            Stn.loadTemp("temp-sop-img", function ($temp) {
+                $("#stn-sop div.carousel-inner").html($temp(rs));
+            });
+            Stn.loadTemp("temp-wo-list", function ($temp) {
+                $("#stn-wo-list").html($temp(rs)).find("a").click(switchWo);
+            });
+        }).fail(function (e) {
+        });
+    };
+
+    Stn.updateLogs = function () {
+        this.loadTemp("temp-log-list", function ($temp) {
+            $("#log-list").html($temp(Stn));
+        });
     };
 
     function getClient() {
@@ -129,7 +183,10 @@ $(function () {
     Handlebars.registerHelper("dt", function (d) {
         return new Handlebars.SafeString(d ? new Date(d).Format("yyyy-MM-dd hh:mm:ss") : "");
     });
-    Stn.loadTemp("");
-    Stn.updateStatus();
-    routie("*", doSwitch);
+    Stn.loadTemp("", function () {
+        Stn.updateStatus().then(function () {
+            Stn.updateSop();
+        });
+        routie("*", doSwitch);
+    });
 });

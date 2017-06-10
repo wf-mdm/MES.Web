@@ -25,6 +25,20 @@
     right: auto;
 }
 
+section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.dropdown-menu-primary, .dropdown-menu-primary li a {
+    background-color: #fff !important;
+}
+
+    .dropdown-menu-primary li a:hover {
+        background-color: #00a65a !important;
+        color: #fff !important;
+    }
+
 .table .btn, form .btn {
     min-width: 80px;
 }
@@ -49,9 +63,26 @@
 .iradio_square-blue {
     margin-right: 10px;
 }
+
 .box {
     margin-bottom: 0;
 }
+
+.box-body {
+    padding: 5px;
+}
+
+.box-solid.box-success .box-header {
+    color: #ffffff;
+    background: #00a65a;
+    background-color: #00a65a;
+}
+
+    .box-solid.box-success .box-header a {
+        color: #ffffff;
+        background: #00a65a;
+        background-color: #00a65a;
+    }
 
 .box-footer .box-title {
     display: inline-block;
@@ -76,6 +107,24 @@
     margin-left: 50px;
 }
 
+#line-content, #line-content > .content, #line-main {
+    display: flex;
+    flex-direction: column;
+}
+
+    #line-content > .content {
+        padding: 15px !important;
+    }
+
+    #line-content > .content, #line-main, #line-main div.box-body {
+        flex: 1;
+        width: 100%;
+    }
+
+        #line-main div.box-header, #line-main div.box-footer, #line-main div.log-list {
+            flex: 0;
+        }
+
 .kanban-toggel {
     position: absolute;
     top: 70px;
@@ -86,15 +135,18 @@
     line-height: 40px;
 }
 
+#stn-sop {
+    padding-left: 0;
+}
 /**Idle**/
 .stn-status-I {
     background-color: yellow;
-    color:#000;
+    color: #000;
 }
 /**Stop**/
 .stn-status-S {
     background-color: gray;
-    color:#fff;
+    color: #fff;
 }
 /**Run**/
 .stn-status-R {
@@ -120,11 +172,12 @@
     color: #fff;
 }
 
-.stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
-    color: #fff;
-}
+    .stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
+        color: #fff;
+    }
+
 .stn-status-I a {
-    color:#000;
+    color: #000;
 }
 
 .log-2 {
@@ -135,12 +188,6 @@
 .log-1 {
     background-color: #d58512;
     color: #fff;
-}
-
-.log-list {
-    min-height: 10em;
-    max-height: 15em;
-    overflow-y: auto;
 }
 
 .line-form {
@@ -154,10 +201,28 @@
     }
 
 #wo-list {
-    max-height: 12em;
+    max-height: 16em;
     overflow-y: scroll;
 }
 
 #fn-list a.btn {
-    margin: 10px auto;
+    margin: 3px auto;
+}
+
+#stn-main > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#stn-main-content {
+    flex: 1;
+}
+
+#log-stn-wrap {
+    flex: 0;
+}
+
+#log-list {
+    height: 8em;
+    overflow: auto;
 }
