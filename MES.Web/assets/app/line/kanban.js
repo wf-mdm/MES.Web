@@ -53,6 +53,7 @@ Line.Kanban = {
 
     show: function () {
         var $main = $("#line-main");
+        $main.attr({ class: "" });
         this.$el = $main.html("<div></div>").find("div");
         this.$el.css({ height: $main.height() });
         this.charts = echarts.init(this.$el[0]);
@@ -93,6 +94,7 @@ Line.Kanban = {
 
     uninit: function () {
         if (this.charts) this.charts.dispose();
+        $("#line-main").attr({ class: "box box-primary box-solid" });
         delete this.charts;
         delete Line.onUpdate;
     }

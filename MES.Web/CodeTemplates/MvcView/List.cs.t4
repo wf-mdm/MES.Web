@@ -41,7 +41,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     PushIndent("    ");
 }
 #>
-<div class="box data-list">
+<div class="box box-primary data-list">
     <div class="box-header with-border">
         <form class="form-inline" method="post">
             <button type="submit" class="btn btn-primary">查询</button>

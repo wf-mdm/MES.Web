@@ -71,7 +71,7 @@ if (ReferenceScriptLibraries) {
 <#
 }
 #>
-<div class="box data-form">
+<div class="box box-primary data-form">
     <div class="box-body">
 @using (Html.BeginForm()) 
 {
