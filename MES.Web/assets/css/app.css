@@ -36,7 +36,7 @@ section.line-admin {
 
     .dropdown-menu-primary li a:hover {
         background-color: #3c8dbc !important;
-        color: #fff!important;
+        color: #fff !important;
     }
 
 .table .btn, form .btn {
@@ -108,7 +108,7 @@ section.line-admin {
     margin-left: 50px;
 }
 
-#line-content, #line-content > .content, #line-main {
+#line-content, #line-content > .content, #line-main, #stn-main > div {
     display: flex;
     flex-direction: column;
 }
@@ -117,13 +117,18 @@ section.line-admin {
         padding: 15px !important;
     }
 
-    #line-content > .content, #line-main, #line-main div.box-body {
-        flex: 1;
+    #line-content > .content, #line-main, #line-main div.box-body, #stn-main-content {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: auto;
         width: 100%;
     }
 
-        #line-main div.box-header, #line-main div.box-footer, #line-main div.log-list {
-            flex: 0;
+        #line-main div.box-header, #line-main div.box-footer, #line-main div.log-list, #log-stn-wrap {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+            width: 100%;
         }
 
 .kanban-toggel {
@@ -208,19 +213,6 @@ section.line-admin {
 
 #fn-list a.btn {
     margin: 3px auto;
-}
-
-#stn-main > div {
-    display: flex;
-    flex-direction: column;
-}
-
-#stn-main-content {
-    flex: 1;
-}
-
-#log-stn-wrap {
-    flex: 0;
 }
 
 #log-list {

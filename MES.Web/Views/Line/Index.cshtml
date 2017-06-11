@@ -33,28 +33,42 @@
         </header>
         <aside class="sidebar control-sidebar control-sidebar-dark control-sidebar-left">
             <ul class="sidebar-menu">
-                @foreach (DataRow r in ViewBag.Features)
+                @if (null != ViewBag.Features)
                 {
-                    if (r["parent_id"] == DBNull.Value)
+                    foreach (DataRow r in ViewBag.Features)
                     {
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>@r["APP_DESCRIPTION"]</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                @foreach (DataRow r1 in ViewBag.Features)
-                                {
-                                    if (r["APP_ID"].Equals(r1["parent_id"]))
+                        if (r["parent_id"] == DBNull.Value)
+                        {
+                            <li class="treeview active">
+                                <a href="#">
+                                    <i class="fa fa-dashboard"></i> <span>@r["APP_DESCRIPTION"]</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu menu-open" style="display: block;">
+                                    @foreach (DataRow r1 in ViewBag.Features)
                                     {
-                                        <li><a href="#@r1["APP_ID"]"><i class="fa fa-circle-o"></i>@r1["APP_DESCRIPTION"]</a></li>
+                                        if (r["APP_ID"].Equals(r1["parent_id"]))
+                                        {
+                                            <li><a href="#@r1["APP_ID"]"><i class="fa fa-circle-o"></i>@r1["APP_DESCRIPTION"]</a></li>
+                                        }
                                     }
-                                }
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        }
                     }
+                }
+                else
+                {
+                    <li>
+                        <div class="callout callout-danger">
+                            <h4>出错了!</h4>
+                            <p>
+                                获取用户菜单出错，请重试。
+                            </p>
+                        </div>
+                    </li>
                 }
                 <li class="treeview"><a href="Line"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
             </ul>

@@ -6,26 +6,21 @@ Line.Ldmtl = {
     show: function () {
         var $this = this;
         if (!(Line.Status && Line.Status.WOLIST)) return;
-        if (!Line.Ops) {
-            $.post("Line/Ops/" + Line.info.name, function (d) {
-                Line.Ops = d;
-                $this.show();
-            });
-            return;
-        }
 
-        Line.loadTemp("temp-ldmtl", function ($temp) {
-            Line.updateMain($temp(Line));
-            $("#ldmtl-form").submit($this.doMscan).find("select").select2();
-            $("#ldmtl-form select").change(function (event) {
-                if (event) event.preventDefault();
-                var name = $(this).attr("name");
-                if (name == "wo")
-                    $this.doUpdateLots($(this).val());
-                else
-                    $this.doListLots();
+        Line.getOps().then(function () {
+            Line.loadTemp("temp-ldmtl", function ($temp) {
+                Line.updateMain($temp(Line));
+                $("#ldmtl-form").submit($this.doMscan).find("select").select2();
+                $("#ldmtl-form select").change(function (event) {
+                    if (event) event.preventDefault();
+                    var name = $(this).attr("name");
+                    if (name == "wo")
+                        $this.doUpdateLots($(this).val());
+                    else
+                        $this.doListLots();
+                });
+                $this.show2();
             });
-            $this.show2();
         });
     },
     show2: function () {
@@ -72,14 +67,14 @@ Line.Ldmtl = {
         for (var i in args1)
             args[args1[i].name] = args1[i].value;
         args.t = "1";
-        if (args.lot && args.wo && args.op){
+        if (args.lot && args.wo && args.op) {
             Line.Progress.show();
             Line.run("MSCAN", args.lot, args).always(function () {
                 Line.updateStatus();
                 Line.Ldmtl.doUpdateLots($("#ldmtl-form select[name=wo]").val());
                 $form.find("input").val("");
             });
-        }else
+        } else
             alert("请输入所有信息");
     },
     doMUnload: function (event) {

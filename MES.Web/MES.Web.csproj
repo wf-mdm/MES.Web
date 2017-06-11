@@ -253,19 +253,22 @@
   <ItemGroup>
     <Content Include="assets\admin\base.js" />
     <Content Include="assets\app\line\0.js" />
+    <Content Include="assets\app\line\Rwk.js" />
     <Content Include="assets\app\line\echarts.js" />
     <Content Include="assets\app\line\kanban.js" />
     <Content Include="assets\app\line\kanbanData.js" />
     <Content Include="assets\app\line\admin.js" />
+    <Content Include="assets\app\line\Downgrade.js" />
     <Content Include="assets\app\line\summary.js" />
     <Content Include="assets\app\line\opr.js" />
     <Content Include="assets\app\line\ldmtl.js" />
     <Content Include="assets\app\line\wo.js" />
     <Content Include="assets\app\stn\0.js" />
+    <Content Include="assets\app\stn\StnOpr.js" />
     <Content Include="assets\app\stn\Lprint2.js" />
     <Content Include="assets\app\stn\Lprint.js" />
     <Content Include="assets\app\stn\Mwait.js" />
-    <Content Include="assets\app\stn\Scrap.js" />
+    <Content Include="assets\app\line\Scrap.js" />
     <Content Include="assets\app\stn\Cng.js" />
     <Content Include="assets\app\stn\Cstart.js" />
     <Content Include="assets\app\stn\kanban.js" />

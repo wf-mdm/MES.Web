@@ -17,7 +17,7 @@ namespace MES.Web.Controllers
     {
         MESDbContext db = new MESDbContext();
 
-        public ActionResult Index(String id)
+        public async Task<ActionResult> Index(String id)
         {
             String str = String.IsNullOrEmpty(id) ? (String.IsNullOrEmpty(Request.Url.Query) ? "" : Request.Url.Query.Substring(1)) : id;
             var strs = str.Split(';');
@@ -25,19 +25,50 @@ namespace MES.Web.Controllers
             String op = strs.Length > 1 ? strs[1] : null;
             String stn = strs.Length > 2 ? strs[2] : null;
 
-            var model = db.Stns.Where(s => 
-                s.Line.Equals(line, StringComparison.OrdinalIgnoreCase) 
-                && s.Op.Equals(op, StringComparison.OrdinalIgnoreCase) 
+            var model = db.Stns.Where(s =>
+                s.Line.Equals(line, StringComparison.OrdinalIgnoreCase)
+                && s.Op.Equals(op, StringComparison.OrdinalIgnoreCase)
                 && s.Stn.Equals(stn, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
             if (model != null)
-                return ShowStn(model);
+                return await ShowStn(model);
             else
                 return View("Error", str);
         }
 
-        private ActionResult ShowStn(StnModel stn)
+        private async Task<ActionResult> ShowStn(StnModel stn)
         {
             ViewBag.Line = db.Lines.Where(l => l.Name.Equals(stn.Line)).SingleOrDefault();
+
+            DataSet ds = await Task<DataSet>.Run(() =>
+            {
+                BizRequest request = ClientMgr.Instance.CreateRequest("config", "MES", "", "GETUSRAPS", new Dictionary<string, string>(){
+                    { "uid", HttpContext.User.Identity.Name},
+                    { "modid", "STADMIN"}
+                });
+                request.UserId = HttpContext.User.Identity.Name;
+                DataSet ds = null;
+                try
+                {
+                    ds = ClientMgr.Instance.RunDbCmd(request.CmdName, request);
+                }
+                catch (Exception ex)
+                {
+                }
+                return ds;
+            });
+
+            if (null != ds)
+            {
+                Dictionary<String, String> Features = new Dictionary<string, string>();
+                foreach (DataRow r in ds.Tables["APP_MASTDATA"].Rows)
+                {
+                    Dictionary<string, string> f = new Dictionary<string, string>();
+                    Features[(String)r["APP_ID"]] = (String)r["APP_DESCRIPTION"];
+                }
+                ViewBag.Features = Features;
+            }
+            ViewBag.User = User.Identity.Name;
+
             return View(stn);
         }
     }

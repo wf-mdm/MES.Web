@@ -3,11 +3,20 @@
         <div class="box-header with-border">
             <h3 class="box-title">工站功能</h3>
         </div>
+        {{#if info.features}}
         <div class="box-body row" id="fn-list">
             {{#each info.features}}
-            <div class="col-sm-2"><a href="#{{APP_ID}}" class="btn btn-primary btn-block btn-flat">{{APP_DESCRIPTION}}</a></div>
+            <div class="col-sm-2"><a href="#{{@key}}" class="btn btn-primary btn-block btn-flat">{{@value}}</a></div>
             {{/each}}
         </div>
+        {{else}}
+        <div class="box-body callout callout-danger">
+            <h4>出错了!</h4>
+            <p>
+                用户没有权限，请重试。
+            </p>
+        </div>
+        {{/if}}
         {{#if Status.PROCINFO}}
         <div class="box-header with-border">
             <h3 class="box-title">工站信息</h3>
@@ -88,6 +97,9 @@
         </div>
         <div class="box-header">
             <h3 class="box-title">已扫描</h3>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-danger btn-box-tool" id="stn-scan-reset"><i class="fa fa-times"></i>清除</a>
+            </div>
         </div>
         <div class="box-body" id="stn-cstart-scaned">
             <table class="table compact">
@@ -135,7 +147,35 @@
                         {{/each}}
                     </select>
                 </div>
-                <button class="btn btn-primary btn-block"">提交</button>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-oprs">
+        <div class="box-header with-border">
+            <h3 class="box-title">操作工</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form id="opr-form">
+                <div class="form-group">
+                    <label>账号</label>
+                    <input type="text" name="uid" class="form-control" placeholder="账号" />
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" name="pwd" class="form-control" placeholder="密码" />
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary btn-block" data-cmd="OprLogin">登录</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-danger btn-block" data-cmd="OprLogout">登出</button>
+                    </div>
+                </div>
             </form>
         </div>
     </script>
@@ -176,8 +216,8 @@
                         <td>{{INLINE_Q}}</td>
                         <td>{{MRP_Q}}</td>
                         <td>{{R_Q}}</td>
-                        <td></td>
-                        <td>{{ISS_DT}}</td>
+                        <td><input type="text" /></td>
+                        <td>{{dt ISS_DT}}</td>
                         <td><a href="#" class="btn btn-danger" data-pn="{{COMP_PARTNO}}">缺料请求</a></td>
                     </tr>
                     {{/each}}

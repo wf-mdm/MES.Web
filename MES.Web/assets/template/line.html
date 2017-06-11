@@ -96,30 +96,28 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body">
-            <div class="line-form">
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
-                        {{#if Status.LINEINFO}}
-                        <p>
-                            OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
-                        </p>
-                        {{/if}}
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-line-chart"></i>
-                    </div>
-                    <a href="#" class="smll-box-footer">&nbsp;</a>
+        <div class="box-body line-form">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
+                    {{#if Status.LINEINFO}}
+                    <p>
+                        OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
+                    </p>
+                    {{/if}}
                 </div>
-                <div class="row" id="line-admin">
+                <div class="icon">
+                    <i class="fa fa-line-chart"></i>
+                </div>
+                <div class="row" class="smll-box-footer" id="line-admin">
                     <div class="col-sm-offset-2 col-sm-3">
-                        <button class="btn btn-lg btn-primary btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
+                        <button class="btn btn-lg btn-success btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
                     </div>
                     <div class="col-sm-offset-1 col-sm-3">
                         <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
                     </div>
                 </div>
+                <a href="#" class="smll-box-footer">&nbsp;</a>
             </div>
         </div>
         <div class="box-header with-border">
@@ -327,6 +325,119 @@
             <h3 class="box-title">物料清单</h3>
         </div>
         <div class="box-body lot-list" id="lot-list">
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+
+    <script type="text/plain" id="temp-scrap">
+        <div class="box-header">
+            <h3 class="box-title">报废</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">报废原因代码</label>
+                    <select name="code" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Codes}}
+                        <option value="{{@key}}">{{@key}} - {{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+
+    <script type="text/plain" id="temp-downgrade">
+        <div class="box-header">
+            <h3 class="box-title">降级</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">降级代码</label>
+                    <select name="code" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Downgrade.Codes}}
+                        <option value="{{@key}}">{{@key}} - {{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">目的工单</label>
+                    <select name="wo" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Status.WOLIST}}
+                        <option value="{{WOID}}">{{WOID}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+    <script type="text/plain" id="temp-rwk">
+        <div class="box-header">
+            <h3 class="box-title">返工</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">返工原因代码</label>
+                    <select name="code" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Rwk.Codes}}
+                        <option value="{{@key}}">{{@key}} - {{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">返工到</label>
+                    <select name="wo" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each Ops}}
+                        <option value="{{Op}}">{{Op}} -- {{Name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
         </div>
         <div class="box-header with-border">
             <h3 class="box-title">产线日志</h3>

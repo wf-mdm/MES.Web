@@ -94,15 +94,7 @@
                 op: "@Html.DisplayFor(model => model.Op)",
                 stn: "@Html.DisplayFor(model => model.Stn)",
                 name: "@Html.DisplayFor(model => model.Name)",
-                features:[
-                    { APP_ID: "Cstart", APP_DESCRIPTION: "生产申报" },
-                    { APP_ID: "Cng", APP_DESCRIPTION: "不良申报" },
-                    { APP_ID: "Scrap", APP_DESCRIPTION: "报废" },
-                    { APP_ID: "Mwait", APP_DESCRIPTION: "缺料请求" },
-                    { APP_ID: "Opr", APP_DESCRIPTION: "员工签到" },
-                    { APP_ID: "Lprint", APP_DESCRIPTION: "打印标签" },
-                    { APP_ID: "Lprint2", APP_DESCRIPTION: "标签补打" },
-                ],
+                features: @Json.Encode(ViewBag.Features),
                 app: "@Url.Content("~/")"
             },
             Status: {}

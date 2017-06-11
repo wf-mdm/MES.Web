@@ -16,6 +16,11 @@ Stn.Cstart = {
         Stn.loadTemp("temp-cstart", function ($temp) {
             Stn.updateMain($temp({}));
             $("#stn-scan-form").submit(doScanSubmit).find("input[name=bc]").focus();
+            $("#stn-scan-reset").click(function (event) {
+                if (event) event.preventDefault();
+                $this.resetScans();
+                $this.updateScans();
+            });
         });
         Stn.run("ACQIDCOMPS", "", { wo: $this.woid }, function (d) {
             $this.parseIds(d.Data);
@@ -59,7 +64,7 @@ Stn.Cstart = {
             args[this.IDS[i].name] = this.IDS[i].bc;
         args.wo = this.woid; 
         Stn.Progress.show();
-        Stn.run("CSTART", args["SN"], args, function () {
+        Stn.run("CSTART", args["SID"], args, function () {
         }).always(function () {
             Stn.updateStatus();
             $this.resetScans();
@@ -71,7 +76,12 @@ Stn.Cstart = {
             delete this.IDS[i].bc;
     },
     updateScans: function () {
-        var $this = this;
+        var $this = this, i;
+        for (i in $this.IDS) {
+            if (!$this.IDS[i].bc) break;
+        }
+        if (i)
+            $("#stn-scan-form input[name=bc]").attr({ placeholder: $this.IDS[i].name });
         Stn.loadTemp("temp-cstart-scans", function ($temp) {
             $("#stn-cstart-scaned tbody").html($temp($this.IDS));
         });

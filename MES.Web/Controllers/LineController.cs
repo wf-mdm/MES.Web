@@ -17,34 +17,49 @@ namespace MES.Web.Controllers
     {
         MESDbContext db = new MESDbContext();
 
-        public ActionResult Index(String id)
+        public async Task<ActionResult> Index(String id)
         {
             String line = String.IsNullOrEmpty(id) ? (String.IsNullOrEmpty(Request.Url.Query) ? "" : Request.Url.Query.Substring(1)) : id;
 
             var lines = db.Lines.Where(l => String.IsNullOrEmpty(line) ? true : l.Name.Equals(line, StringComparison.OrdinalIgnoreCase));
             if (lines.Count() == 1)
-                return ShowLine(lines.Single());
+                return await ShowLine(lines.Single());
             else
                 return View("List", lines);
         }
 
-        private ActionResult ShowLine(LineModel line)
+        private async Task<ActionResult> ShowLine(LineModel line)
         {
-            BizRequest req = ClientMgr.Instance.CreateRequest("mes", line.Name, line.Name, "GETUSRLNFNS", new Dictionary<String, String> {
-                { "uid", User.Identity.Name}
-            });
-            req.UserId = User.Identity.Name;
-            DataSet ds = ClientMgr.Instance.RunDbCmd(req.CmdName, req);
-
-            ViewBag.Features = ds.Tables["APP_MASTDATA"].Rows;
-            StringBuilder sb = new StringBuilder();
-            foreach(var r in ViewBag.Features)
+            DataSet ds = await Task<DataSet>.Run(() =>
             {
+                BizRequest request = ClientMgr.Instance.CreateRequest("config", "MES", "", "GETUSRAPS", new Dictionary<string, string>(){
+                    { "uid", HttpContext.User.Identity.Name},
+                    { "modid", "STADMIN"}
+                });
+                request.UserId = HttpContext.User.Identity.Name;
+                DataSet ds = null;
+                try
+                {
+                    ds = ClientMgr.Instance.RunDbCmd(request.CmdName, request);
+                }
+                catch (Exception ex)
+                {
+                }
+                return ds;
+            });
+
+            if (null != ds)
+            {
+                ViewBag.Features = ds.Tables["APP_MASTDATA"].Rows;
+                StringBuilder sb = new StringBuilder();
+                foreach (var r in ViewBag.Features)
+                {
+                    sb.Append("#");
+                    sb.Append(r["APP_ID"]);
+                }
                 sb.Append("#");
-                sb.Append(r["APP_ID"]);
+                ViewBag.FeatureStr = sb.ToString();
             }
-            sb.Append("#");
-            ViewBag.FeatureStr = sb.ToString();
             ViewBag.User = User.Identity.Name;
 
             return View(line);

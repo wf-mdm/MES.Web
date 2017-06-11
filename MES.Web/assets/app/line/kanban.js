@@ -52,9 +52,10 @@ Line.Kanban = {
     },
 
     show: function () {
-        var $main = $("#line-main");
+        var $mainWrap = $("#line-content"),
+            $main = $("#line-main");
         $main.attr({ class: "" });
-        this.$el = $main.html("<div></div>").find("div");
+        this.$el = $main.html("<div></div>").css({ "min-height": $mainWrap.height() - 30}).find("div");
         this.$el.css({ height: $main.height() });
         this.charts = echarts.init(this.$el[0]);
         this.doUpdate();

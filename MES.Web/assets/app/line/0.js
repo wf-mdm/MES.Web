@@ -67,6 +67,19 @@ $(function () {
         }
     };
 
+    Line.getOps = function () {
+        var $def = $.Deferred()
+        if (!Line.Ops) {
+            return $.post("Line/Ops/" + Line.info.name, function (d) {
+                Line.Ops = d;
+                $def.resolve(Line.Ops);
+            });
+        } else {
+            $def.resolve(Line.Ops);
+        }
+        return $def;
+    };
+
     Line.updateStatus = function () {
         var timeid;
         if (timeid) clearTimeout(timeid);
