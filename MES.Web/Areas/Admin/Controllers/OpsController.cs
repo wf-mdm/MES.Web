@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Ops")]
     public class OpsController : Controller
     {
         private static String ModelName = "工序";

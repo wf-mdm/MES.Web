@@ -236,6 +236,7 @@
     <Compile Include="Controllers\StnController.cs" />
     <Compile Include="Controllers\LineController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
+    <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -272,6 +273,8 @@
     <Content Include="assets\app\stn\Cng.js" />
     <Content Include="assets\app\stn\Cstart.js" />
     <Content Include="assets\app\stn\kanban.js" />
+    <Content Include="assets\app\wh\0.js" />
+    <Content Include="assets\app\wh\kanban.js" />
     <Content Include="assets\css\AdminLTE.css" />
     <Content Include="assets\css\AdminLTE.min.css" />
     <Content Include="assets\css\alt\AdminLTE-bootstrap-social.css" />
@@ -1224,6 +1227,7 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\template\wh.html" />
     <Content Include="assets\template\stn.html" />
     <Content Include="assets\template\line.html" />
     <Content Include="favicon.ico" />
@@ -1252,6 +1256,7 @@
     <Content Include="Views\Stn\Error.cshtml" />
     <Content Include="Views\Admin\Menu.cshtml" />
     <Content Include="Views\Admin\MenuError.cshtml" />
+    <Content Include="Views\Warehouse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

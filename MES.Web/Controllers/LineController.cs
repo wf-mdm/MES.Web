@@ -34,18 +34,17 @@ namespace MES.Web.Controllers
             {
                 BizRequest request = ClientMgr.Instance.CreateRequest("config", "MES", "", "GETUSRAPS", new Dictionary<string, string>(){
                     { "uid", HttpContext.User.Identity.Name},
-                    { "modid", "STADMIN"}
+                    { "modid", "LINEADMIN"}
                 });
                 request.UserId = HttpContext.User.Identity.Name;
-                DataSet ds = null;
                 try
                 {
-                    ds = ClientMgr.Instance.RunDbCmd(request.CmdName, request);
+                    return ClientMgr.Instance.RunDbCmd(request.CmdName, request);
                 }
                 catch (Exception ex)
                 {
                 }
-                return ds;
+                return null;
             });
 
             if (null != ds)

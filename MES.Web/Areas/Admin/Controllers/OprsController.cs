@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Oprs")]
     public class OprsController : Controller
     {
         private static String ModelName = "HR_OPERATORS";

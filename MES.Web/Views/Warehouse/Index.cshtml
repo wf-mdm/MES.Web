@@ -1,9 +1,8 @@
-﻿@using System.Data;
-@model MES.Web.Models.LineModel
+﻿@using System.Data
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MES - 产线</title>
+    <title>MES - 仓库管理</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -17,7 +16,7 @@
                     <li class="dropdown messages-menu">
                         <a href="#" class="logo dropdown-toggel" data-toggle="control-sidebar">MES Admin<i class="fa fa-angle-down pull-right"></i></a>
                     </li>
-                    <li class="title">@Html.DisplayFor(m => m.DispName)</li>
+                    <li class="title">仓库管理</li>
                 </ul>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -70,32 +69,29 @@
                         </div>
                     </li>
                 }
-                <li class="treeview"><a href="Line"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
+                <li class="treeview"><a href="@Url.Action("Index", "Admin")"><i class="fa fa-circle-o"></i><span>返回系统主页</span></a></li>
             </ul>
         </aside>
         <div class="control-sidebar-bg"></div>
 
-        <div class="content-wrapper" id="line-content">
-            <section class="content line-admin">
-                <div class="box box-primary box-solid" id="line-main"></div>
+        <div class="content-wrapper" id="wh-content">
+            <section class="content wh-admin">
+                <div class="box box-primary box-solid" id="wh-main"></div>
             </section>
         </div>
         @Html.Partial("_Foot")
     </div>
     <script>
-        var Line = {
+        var WH = {
             info: {
                 user:"@ViewBag.User",
-                name: "@Html.DisplayFor(model => model.Name)",
-                disp: "@Html.DisplayFor(model => model.DispName)",
-                features:"@ViewBag.FeatureStr",
+                name: "WH",
                 app: "@Url.Content("~/")"
-            },
-            Status: {}
+            }
         };
     </script>
     @Scripts.Render("~/assets/js/base")
-    @Scripts.Render("~/assets/js/line")
+    @Scripts.Render("~/assets/js/wh")
 </body>
 
 </html>

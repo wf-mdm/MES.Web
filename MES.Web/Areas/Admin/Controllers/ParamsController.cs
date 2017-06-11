@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Params")]
     public class ParamsController : Controller
     {
 		private static String ModelName = "工艺参数";

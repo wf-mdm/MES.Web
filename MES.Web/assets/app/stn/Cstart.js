@@ -9,9 +9,6 @@ Stn.Cstart = {
             if (event) event.preventDefault();
             $this.scan();
         }
-        if (this.woid) return;
-        this.woid = Stn.getWoid()
-        if (!this.woid) return;
 
         Stn.loadTemp("temp-cstart", function ($temp) {
             Stn.updateMain($temp({}));
@@ -22,14 +19,19 @@ Stn.Cstart = {
                 $this.updateScans();
             });
         });
-        Stn.run("ACQIDCOMPS", "", { wo: $this.woid }, function (d) {
-            $this.parseIds(d.Data);
+        if ($this.woid == Stn.getWoid() && $this.IDS) {
             $this.updateScans();
-        }).fail(function () {
-            $this.Comps = [];
-        }).always(function () {
-            Stn.Progress.hide();
-        });
+        } else {
+            $this.woid = Stn.getWoid();
+            Stn.run("ACQIDCOMPS", "", { wo: Stn.getWoid() }, function (d) {
+                $this.parseIds(d.Data);
+                $this.updateScans();
+            }).fail(function () {
+                $this.Comps = [];
+            }).always(function () {
+                Stn.Progress.hide();
+            });
+        }
     },
     parseIds: function (data) {
         var tmp = data.IDS.split(","), ids = [];
@@ -62,12 +64,13 @@ Stn.Cstart = {
         var args = {}, $this = this;
         for (var i in this.IDS)
             args[this.IDS[i].name] = this.IDS[i].bc;
-        args.wo = this.woid; 
+        args.wo = Stn.getWoid();
         Stn.Progress.show();
         Stn.run("CSTART", args["SID"], args, function () {
         }).always(function () {
             Stn.updateStatus();
             $this.resetScans();
+            $this.updateScans();
             Stn.Progress.hide();
         });
     },
@@ -87,6 +90,5 @@ Stn.Cstart = {
         });
     },
     uninit: function () {
-        delete this.woid;
     }
 };

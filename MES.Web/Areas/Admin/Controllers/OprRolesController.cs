@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "OprRoles")]
     public class OprRolesController : Controller
     {
 		private static String ModelName = "用户角色";

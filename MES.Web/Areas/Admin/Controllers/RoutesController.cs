@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Routes")]
     public class RoutesController : Controller
     {
 		private static String ModelName = "路由";

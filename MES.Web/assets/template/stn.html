@@ -6,7 +6,7 @@
         {{#if info.features}}
         <div class="box-body row" id="fn-list">
             {{#each info.features}}
-            <div class="col-sm-2"><a href="#{{@key}}" class="btn btn-primary btn-block btn-flat">{{@value}}</a></div>
+            <div class="col-sm-3"><a href="#{{@key}}" class="btn btn-primary btn-block btn-flat">{{this}}</a></div>
             {{/each}}
         </div>
         {{else}}

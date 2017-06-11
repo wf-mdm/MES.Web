@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MES.Web.Controllers
 {
@@ -46,15 +47,14 @@ namespace MES.Web.Controllers
                     { "modid", "STADMIN"}
                 });
                 request.UserId = HttpContext.User.Identity.Name;
-                DataSet ds = null;
                 try
                 {
-                    ds = ClientMgr.Instance.RunDbCmd(request.CmdName, request);
+                    return ClientMgr.Instance.RunDbCmd(request.CmdName, request);
                 }
                 catch (Exception ex)
                 {
                 }
-                return ds;
+                return null;
             });
 
             if (null != ds)
@@ -65,7 +65,8 @@ namespace MES.Web.Controllers
                     Dictionary<string, string> f = new Dictionary<string, string>();
                     Features[(String)r["APP_ID"]] = (String)r["APP_DESCRIPTION"];
                 }
-                ViewBag.Features = Features;
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                ViewBag.Features = jss.Serialize(Features);
             }
             ViewBag.User = User.Identity.Name;
 

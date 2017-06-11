@@ -87,6 +87,7 @@
 
         return Stn.runDb("GETSTNINFO", "", "", function (rs) {
             Stn.Status = rs;
+            updateCurWo();
             delete Stn.Status.Error;
         }).fail(function (e) {
             Stn.Status.Error = e;
@@ -96,6 +97,16 @@
             if (Stn.onUpdate) Stn.onUpdate.apply(curFeature);
         });
     };
+
+    var curWo;
+    function updateCurWo() {
+        if (Stn.Status && Stn.Status.STINFO) {
+            if (Stn.Status.STINFO[0].WOID != curWo) {
+                $("#stn-sop .box-title").html("工单: " + Stn.Status.STINFO[0].WOID);
+            }
+            curWo = Stn.Status.STINFO[0].WOID;
+        }
+    }
 
     function switchWo(event) {
         if (event) event.preventDefault();

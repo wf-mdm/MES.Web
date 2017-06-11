@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "OprCaps")]
     public class OprCapsController : Controller
     {
 		private static String ModelName = "操作权限";

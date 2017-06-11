@@ -40,6 +40,10 @@ namespace MES.Web
                 "~/assets/js/handlebars.js",
                 "~/assets/app/stn/*.js"
                 ));
+            bundles.Add(new ScriptBundle("~/assets/js/wh").Include(
+                "~/assets/js/handlebars.js",
+                "~/assets/app/wh/*.js"
+                ));
         }
     }
 }

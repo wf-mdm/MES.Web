@@ -1,0 +1,72 @@
+﻿<div>
+    <script type="text/plain" id="temp-kanban">
+        <div class="box-header with-border">
+            <h3 class="box-title">缺料警报</h3>
+        </div>
+        <div class="box-body" id="wh-mwait-list">
+            <table class="table compact">
+                <thead>
+                    <tr>
+                        <th>生产线</th>
+                        <th>请求序号</th>
+                        <th>图标（工序）</th>
+                        <th>工单号</th>
+                        <th>料号 / 名称</th>
+                        <th>请求数量</th>
+                        <th>请求时间</th>
+                        <th>请求人</th>
+                        <th>发出数量</th>
+                        <th>批次号</th>
+                        <th>发料人</th>
+                        <th>确认</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">发料</h3>
+        </div>
+        <div class="box-footer">
+            <form class="form-inline" id="wh-form">
+                <input type="hidden" name="pn" />
+                <input type="hidden" name="whno" />
+                <input type="hidden" name="locno" />
+                <input type="hidden" name="isno" />
+                <input type="hidden" name="rcpno" />
+                <input type="hidden" name="linename" />
+                <div class="form-group">
+                    <label>数量</label>
+                    <input type="text" name="qty" class="form-control" placeholder="数量" />
+                </div>
+                <div class="form-group">
+                    <label>批次号</label>
+                    <input type="text" name="lot" class="form-control" placeholder="批次号" />
+                </div>
+                <button type="submit" class="btn btn-primary btn">提交</button>
+            </form>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-mwait-list">
+        {{#each MRQTB}}
+        {{#eq REC_ID ../ActiveId}}
+        <tr class="active">
+            {{else}}
+        <tr>
+            {{/eq}}
+            <td>{{LINENAME}}</td>
+            <td>{{REC_ID}}</td>
+            <td>{{OPNO}}</td>
+            <td>{{WOID}}</td>
+            <td>{{COMPPARTNO}}</td>
+            <td>{{COMPDESC}}</td>
+            <td>{{REQDT}}</td>
+            <td>{{REQOPER}}</td>
+            <td>{{RLSQTY}}</td>
+            <td>{{LOTLIST}}</td>
+            <td>{{RLSOPER}}</td>
+            <td><a href="#" class="btn btn-success">解除警报</a></td>
+        </tr>
+        {{/each}}
+    </script>
+</div>

@@ -11,6 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Lines")]
     public class LinesController : Controller
     {
 		private static String ModelName = "产线";

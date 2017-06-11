@@ -11,7 +11,7 @@ using MES.Web.Areas.Admin.Models;
 
 namespace MES.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "RwkCodes")]
+    [Authorize(Roles = "RwkCodes")]
     public class RwkCodesController : Controller
     {
         private static String ModelName = "质量代码";
