@@ -65,8 +65,12 @@
     </script>
     <script type="text/plain" id="temp-sop-img">
         {{#each SOPINFO}}
+        {{#eq @index 1}}
+        <div class="item active">
+        {{else}}
         <div class="item">
-            <img class="img-responsive pad" src="{{SOPURL}}{{SOPPREFIX}}{{@index}}.{{SOPEXT}}" />
+        {{/eq}}
+            <img class="img-responsive pad" src="{{SOPURL}}" />
         </div>
         {{/each}}
     </script>

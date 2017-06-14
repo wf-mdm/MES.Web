@@ -14,7 +14,7 @@ namespace MES.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Boms")]
     public class BomsController : Controller
     {
-		private static String ModelName = "BOMS";
+		private static String ModelName = "BOM";
         private MESDbContext db = new MESDbContext();
 
         private async Task InitSelect(String RT_NAME, String DEFAULT_CONFNAME)

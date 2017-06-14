@@ -128,7 +128,7 @@
 
         return Stn.runDb("GETSTNWOS", "", {}, function (rs) {
             Stn.loadTemp("temp-sop-img", function ($temp) {
-                $("#stn-sop div.carousel-inner").html($temp(rs));
+                $("#stn-sop-img div.carousel-inner").html($temp(rs));
             });
             Stn.loadTemp("temp-wo-list", function ($temp) {
                 $("#stn-wo-list").html($temp(rs)).find("a").click(switchWo);

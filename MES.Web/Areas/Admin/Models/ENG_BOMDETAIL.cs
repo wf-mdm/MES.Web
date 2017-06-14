@@ -8,6 +8,10 @@ namespace MES.Web.Areas.Admin.Models
 
     public partial class ENG_BOMDETAIL
     {
+        public ENG_BOMDETAIL()
+        {
+            UPDATETIME = DateTime.Now;
+        }
         [Key]
         [Column(TypeName = "numeric")]
         public decimal ITEMID { get; set; }
@@ -55,49 +59,49 @@ namespace MES.Web.Areas.Admin.Models
         [StringLength(12)]
         [Display(Name = "半成品来源流程段")]
         public string SEMILINEGRP { get; set; }
+
+        public DateTime UPDATETIME { get; set; }
         /*
-                        [StringLength(1)]
-                        public string ITEMTYPE { get; set; }
+            [StringLength(1)]
+            public string ITEMTYPE { get; set; }
 
-                        [StringLength(30)]
-                        public string ORG_PARTNO { get; set; }
+            [StringLength(30)]
+            public string ORG_PARTNO { get; set; }
 
-                        [StringLength(4)]
-                        public string COMP_PARTVER { get; set; }
+            [StringLength(4)]
+            public string COMP_PARTVER { get; set; }
 
-                        [StringLength(30)]
-                        public string SN_PATTERN { get; set; }
+            [StringLength(30)]
+            public string SN_PATTERN { get; set; }
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? REPEATLIMIT { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? REPEATLIMIT { get; set; }
 
-                        [StringLength(255)]
-                        public string NLANG_DESC { get; set; }
+            [StringLength(255)]
+            public string NLANG_DESC { get; set; }
 
-                        [StringLength(12)]
-                        public string COMP_UNIT { get; set; }
+            [StringLength(12)]
+            public string COMP_UNIT { get; set; }
 
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? DEFAULTLOTQTY { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? DEFAULTLOTQTY { get; set; }
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? WARNINGQTY { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? WARNINGQTY { get; set; }
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? BLOCKQTY { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? BLOCKQTY { get; set; }
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? WARNTIMES { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? WARNTIMES { get; set; }
 
-                        public DateTime UPDATETIME { get; set; }
+            [Column(TypeName = "numeric")]
+            public decimal? BUFFERQTY { get; set; }
 
-                        [Column(TypeName = "numeric")]
-                        public decimal? BUFFERQTY { get; set; }
+            [StringLength(1)]
+            public string EMPTYRUN { get; set; }
 
-                        [StringLength(1)]
-                        public string EMPTYRUN { get; set; }
-
-                */
+            */
     }
 }

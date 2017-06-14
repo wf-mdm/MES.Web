@@ -8,6 +8,7 @@ namespace MES.Web.Areas.Admin.Models
 
     public partial class ENG_LINESTATION
     {
+        [NotMapped]
         public string CodeName { get { return String.Format("{0}:{1}", L_STNO, DISPLAYNAME); } }
 
         [Key]

@@ -13,6 +13,9 @@ namespace MES.Web.Areas.Admin.Models
         {
             PARTVER = DEFAULT_PARTVER;
         }
+        [NotMapped]
+        public String Name { get { return String.Format("{0}:{1}", PARTNO, DESCRIPTION); } }
+
 
         [Key]
         [Column(Order = 0)]

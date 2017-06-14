@@ -36,7 +36,7 @@
 
         <aside class="main-sidebar">
             <section class="sidebar">
-                @Html.Action("Menu", "Admin", new { Area = ""})
+                @Html.Action("Menu", "Admin", new { Area = "" })
             </section>
         </aside>
 
@@ -47,7 +47,10 @@
                     <li><a href="#"><i class="fa fa-dashboard"></i>系统管理</a></li>
                     @if (ViewBag.SubTitle == null)
                     {
-                        <li class="active">@ViewBag.Title</li>
+                        if (ViewBag.Title != null)
+                        {
+                            <li class="active">@ViewBag.Title</li>
+                        }
                     }
                     else
                     {

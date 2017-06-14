@@ -7,7 +7,7 @@
 <div class="box data-list">
     <div class="box-header with-border">
         <form class="form-inline" method="post">
-            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+            <a href="Create" class="btn btn-success">增加</a>
         </form>
     </div>
     <div class="box-body">
@@ -80,8 +80,8 @@
                         @Html.DisplayFor(modelItem => item.SEMILINEGRP)
                     </td>
                     <td>
-                        @Html.ActionLink("编辑", String.Format("Edit/{0}_{1}", item.PARTNO, item.PARTVER), new { id = item.ITEMID }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("删除", String.Format("Delete/{0}_{1}", item.PARTNO, item.PARTVER), new { id = item.ITEMID }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("编辑", "Edit", new { id = item.ITEMID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { id = item.ITEMID }, new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }

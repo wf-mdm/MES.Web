@@ -30,6 +30,7 @@ namespace MES.Web
                 "~/assets/js/app.js"
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/admin").Include(
+                "~/assets/js/handlebars.js",
                 "~/assets/admin/*.js"
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/line").Include(

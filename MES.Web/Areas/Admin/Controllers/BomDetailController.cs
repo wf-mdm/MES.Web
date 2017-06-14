@@ -14,7 +14,7 @@ namespace MES.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Boms")]
     public class BomDetailController : Controller
     {
-        private static String ModelName = "ENG_BOMDETAIL";
+        private static String ModelName = "BOM";
         private MESDbContext db = new MESDbContext();
 
         private async Task InitSelect(String GRP)
@@ -37,6 +37,9 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
             return View(await db.ENG_BOMDETAIL.Where(d =>
                 PN.Equals(d.PARTNO) && d.PARTVER.Equals(d.PARTVER)
             ).ToListAsync());
@@ -51,6 +54,9 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "新建";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
 
             ENG_BOMDETAIL eNG_BOMDETAIL = new ENG_BOMDETAIL()
             {
@@ -74,6 +80,10 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "新建";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
+
             if (ModelState.IsValid)
             {
                 db.ENG_BOMDETAIL.Add(eNG_BOMDETAIL);
@@ -94,6 +104,10 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "编辑";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -120,6 +134,10 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "编辑";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
+
             if (ModelState.IsValid)
             {
                 db.Entry(eNG_BOMDETAIL).State = EntityState.Modified;
@@ -139,6 +157,10 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "删除";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -162,6 +184,9 @@ namespace MES.Web.Areas.Admin.Controllers
             }
             ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
             ViewBag.SubTitle = "删除";
+            ViewBag.PN = PN;
+            ViewBag.VER = VER;
+            ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
 
             ENG_BOMDETAIL eNG_BOMDETAIL = await db.ENG_BOMDETAIL.FindAsync(id);
             db.ENG_BOMDETAIL.Remove(eNG_BOMDETAIL);

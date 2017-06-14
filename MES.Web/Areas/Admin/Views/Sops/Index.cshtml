@@ -1,0 +1,161 @@
+﻿@model MES.Web.Areas.Admin.Models.SopRequest
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="row">
+    <div class="col-md-5">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">SOP上传</h3>
+            </div>
+            <div class="box-body">
+                @using (Html.BeginForm("Index", "Sops", FormMethod.Post, htmlAttributes: new { @id = "sop-form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LINE, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.LINE, null, "-- 请选择 --", new { @class = "form-control select2", style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.LINE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.STN, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.STN, null, "-- 请选择 --", new { @class = "form-control select2", style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.STN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PARTNO, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.PARTNO, null, "-- ALL --", new { @class = "form-control select2", style = "width:100%;" })
+                                @Html.ValidationMessageFor(model => model.PARTNO, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FILE, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.FILE, new { type = "file", name = "FILE", accept = "application/pdf", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FILE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-4">
+                                <button class="btn btn-primary btn-block">提交</button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-info btn-block" id="btn-preview">预览<i class="fa fa-angle-right pull-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">预览</h3>
+            </div>
+            <div class="box-body" id="sop-preview">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    {
+        function initLineStn(stns) {
+            var url = /.*\/app\/Admin\/[^\/]+/i.exec(window.location.pathname)[0] + "/OPSTN";
+            stns.each(function () {
+                var $stn = $(this),
+                    $form = $stn.parents("form"),
+                    $line = $form.find("select[name=LINE]");
+                $line.change(function () {
+                    $.get(url, { LINENAME: $line.val() }, function (datas) {
+                        var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option>-- 请选择 --</option>";
+                        for (var i in datas.STN)
+                            tmp += "<option value=\"" + datas.STN[i].L_STNO + "\">" + datas.STN[i].CodeName + "</option>";
+                        $stn.html(tmp);
+                    }, "json");
+                });
+            });
+        }
+
+        var $tempPreview;
+        function sopPreview() {
+            var $form = $("#sop-form"),
+                argArray = $form.serializeArray(),
+                args = {};
+            for (var i in argArray)
+                args[argArray[i].name] = argArray[i].value;
+
+            if (!$tempPreview)
+                $tempPreview = Handlebars.compile($("#temp-sop-preview").html());
+            if (!(args.LINE && args.STN)) {
+                $("#sop-preview").html($tempPreview()).find(".item:eq(0)").addClass("active");
+                return;
+            }
+            var url = /.*\/app\/Admin\/[^\/]+/i.exec(window.location.pathname)[0] + "/Sops";
+            $.ajax({ type: "POST", url: url, data: args, dataType: "json" }).then(function (rs) {
+                var imgs = [];
+                for (var i in rs.Data) {
+                    imgs.push(rs.Data[i])
+                }
+                $("#sop-preview").html($tempPreview(imgs));
+            });
+        }
+        window.onload = function () {
+            var $stn = $("select[name=STN]");
+            initLineStn($stn);
+            sopPreview();
+            $("#btn-preview").click(function (event) {
+                if (event) event.preventDefault();
+                sopPreview();
+            });
+        }
+    };
+</script>
+
+<script type="text/plain" id="temp-sop-preview">
+    {{#if this}}
+    <div id="stn-sop-img" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            {{#each this}}
+            <div class="active item">
+                <img class="img-responsive pad" src="{{this}}" />
+            </div>
+            {{/each}}
+        </div>
+        <a class="left carousel-control" href="#stn-sop-img" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">上一章</span>
+        </a>
+        <a class="right carousel-control" href="#stn-sop-img" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">下一章</span>
+        </a>
+    </div>
+    {{else}}
+    <div class="callout callout-info">
+        <h4>当前没有SOP信息</h4>
+        <p>
+            请点击左边[预览]按钮，预览当前SOP
+        </p>
+    </div>
+    {{/if}}
+</script>

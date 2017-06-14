@@ -1,4 +1,52 @@
 ﻿<div>
+    <script type="text/plain" id="temp-kanban2">
+        <div class="line-kanban2">
+            <div class="line-kanban2-item box box-solid stn-status">
+                <table class="table table-striped compact" style="width:inherit;">
+                    <thead>
+                        <tr>
+                            <th width="100px">工站</th>
+                            <th width="30px">人</th>
+                            <th width="30px">机</th>
+                            <th width="30px">料</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Status.STINFO}}
+                        <tr>
+                            <th>{{L_STNO}}</th>
+                            {{#if OPRLST}}
+                            <td><i class="fa fa-circle stn2-R"></i></td>
+                            {{else}}
+                            <td><i class="fa fa-circle stn2-F"></i></td>
+                            {{/if}}
+                            <td><i class="fa fa-circle stn2-{{STATUS}}"></i></td>
+                            {{#if WARNINFO}}
+                            <td><i class="fa fa-circle stn2-F"></i></td>
+                            {{else}}
+                            <td><i class="fa fa-circle stn2-R"></i></td>
+                            {{/if}}
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="line-kanban2-item line-kanban2-item-main">
+                <div class="box box-solid bg-yellow" id="line-kanban2-info">
+                    <div class="box-header">
+                        <h3 class="box-title">警告!</h3>
+                    </div>
+                    <div class="box-body">
+                        <p>XXXX XXX XXXX</p>
+                    </div>
+                </div>
+                <div class="box box-solid" id="line-kanban2-proc">
+
+                </div>
+            </div>
+        </div>
+    </script>
+
     <script type="text/plain" id="temp-kanban-tooltip">
         {{DISPLAYNAME}}
         <br />工单:{{WOID}}
