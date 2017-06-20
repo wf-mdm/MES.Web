@@ -47,7 +47,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.FILE, htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-8">
-                                @Html.TextBoxFor(model => model.FILE, new { type = "file", name = "FILE", accept = "application/pdf", @class = "form-control" })
+                                @Html.TextBoxFor(model => model.FILE, new { type = "file", name = "FILE", accept = "image/*, application/pdf, application/msword, application/vnd.ms-powerpoint, application/vnd.ms-excel", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.FILE, "", new { @class = "text-danger" })
                             </div>
                         </div>

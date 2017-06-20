@@ -42,7 +42,7 @@
         for (var i in argArray)
             args[argArray[i].name] = argArray[i].value;
         if (!args.bc) return;
-        args.rwk = "S";
+        args.rwk = "0";
         Line.Progress.show();
         Line.run("RWK", args["bc"], args, function () {
         }).always(function () {

@@ -1,56 +1,65 @@
 ﻿<div>
     <script type="text/plain" id="temp-kanban2">
-        <div class="line-kanban2">
-            <div class="line-kanban2-item box box-solid stn-status">
-                <table class="table table-striped compact" style="width:inherit;">
-                    <thead>
-                        <tr>
-                            <th width="100px">工站</th>
-                            <th width="30px">人</th>
-                            <th width="30px">机</th>
-                            <th width="30px">料</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each Status.STINFO}}
-                        <tr>
-                            <th>{{L_STNO}}</th>
-                            {{#if OPRLST}}
-                            <td><i class="fa fa-circle stn2-R"></i></td>
-                            {{else}}
-                            <td><i class="fa fa-circle stn2-F"></i></td>
-                            {{/if}}
-                            <td><i class="fa fa-circle stn2-{{STATUS}}"></i></td>
-                            {{#if WARNINFO}}
-                            <td><i class="fa fa-circle stn2-F"></i></td>
-                            {{else}}
-                            <td><i class="fa fa-circle stn2-R"></i></td>
-                            {{/if}}
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+        <div class="box box-solid">
+            <div class="box-header" id="line-status">
             </div>
-            <div class="line-kanban2-item line-kanban2-item-main">
-                <div class="box box-solid bg-yellow" id="line-kanban2-info">
-                    <div class="box-header">
-                        <h3 class="box-title">警告!</h3>
-                    </div>
-                    <div class="box-body">
-                        <p>XXXX XXX XXXX</p>
-                    </div>
-                </div>
-                <div class="box box-solid" id="line-kanban2-proc">
-
+            <div class="box-body">
+                <div class="row" id="line-chart">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6"></div>
                 </div>
             </div>
+            <table class="table table-bordered" style="width:inherit;" id="stn-status">
+                <thead>
+                    <tr>
+                        <th width="80px">工站</th>
+                        <th width="250px">现场员工</th>
+                        <th width="80px">设备状态</th>
+                        <th width="320px">物料状态</th>
+                        <th width="320px">过程数据</th>
+                        <th width="150px">在制品序列号</th>
+                        <th width="80px">放行状态</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </script>
-
+    <script type="text/plain" id="temp-kanban2-line">
+        {{#each Line}}
+        <span class="label">{{n}}</span>
+        <span class="value">{{v}}</span>
+        {{/each}}
+    </script>
+    <script type="text/plain" id="temp-kanban2-stns">
+        {{#each Stns}}
+        <tr>
+            <th>{{L_STNO}}</th>
+            {{#if OPRLST}}
+            <td class="opr-1">{{OPRLST}}</td>
+            {{else}}
+            <td class="opr-0">{{OPRLST}}</td>
+            {{/if}}
+            <td class="stn-{{STATUS}}">{{STATINFO}}</td>
+            <td class="warn-{{WARNSTAT}}">{{WARNINFO}}</td>
+            <td class="proc-{{PROCRESULT}}">{{PROCINFO}}</td>
+            <td>{{SN}}</td>
+            <td class="sn-{{SN_STAT}}"></td>
+        </tr>
+        {{/each}}
+    </script>
     <script type="text/plain" id="temp-kanban-tooltip">
-        {{DISPLAYNAME}}
-        <br />工单:{{WOID}}
-        <br />投入数:{{IWIP}}
+        <table class="table compact kanban-tooltip">
+            <tbody>
+                <tr><th colspan="2">{{DISPLAYNAME}}</th></tr>
+                <tr><th>工单</th><td>{{woinfo WOID}}</td></tr>
+                <tr><th>投入数</th><td>{{ISUM}}</td></tr>
+                <tr><th>产出数</th><td>{{OSUM}}</td></tr>
+                <tr class="sn-{{SN_STAT}}"><th>序列号</th><td>{{SN}}</td></tr>
+                <tr class="warn-{{WARNSTAT}}"><th>物料状态</th><td>{{WARNINFO}}</td></tr>
+                <tr class="proc-{{PROCRESULT}}"><th>过程数据</th><td>{{PROCINFO}}</td></tr>
+            </tbody>
+        </table>
     </script>
     <script type="text/plain" id="temp-stn-list">
         <table class="table compact table-hover">
@@ -144,29 +153,9 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body line-form">
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>{{info.name}}&nbsp;<small class="text-white">{{info.disp}}</small></h3>
-                    {{#if Status.LINEINFO}}
-                    <p>
-                        OEE: &nbsp;{{Status.LINEINFO.0.OEE}}
-                    </p>
-                    {{/if}}
-                </div>
-                <div class="icon">
-                    <i class="fa fa-line-chart"></i>
-                </div>
-                <div class="row" class="smll-box-footer" id="line-admin">
-                    <div class="col-sm-offset-2 col-sm-3">
-                        <button class="btn btn-lg btn-success btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
-                    </div>
-                    <div class="col-sm-offset-1 col-sm-3">
-                        <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
-                    </div>
-                </div>
-                <a href="#" class="smll-box-footer">&nbsp;</a>
-            </div>
+        <div class="box-body line-form" id="line-admin">
+            <button class="btn btn-lg btn-success btn-block" {{#if Status.Error}} {{else}} disabled="disabled" {{/if}}><i class="fa fa-play"></i> 启动</button>
+            <button class="btn btn-lg btn-danger btn-block" {{#if Status.Error}} disabled="disabled" {{/if}}><i class="fa fa-stop"></i> 停止</button>
         </div>
         <div class="box-header with-border">
             <h3 class="box-title">产线日志</h3>
@@ -437,7 +426,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">目的工单</label>
-                    <select name="wo" class="form-control select2">
+                    <select name="towo" class="form-control select2">
                         <option value="">-- 请选择 --</option>
                         {{#each Status.WOLIST}}
                         <option value="{{WOID}}">{{WOID}}</option>

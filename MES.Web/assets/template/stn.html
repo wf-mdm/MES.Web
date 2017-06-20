@@ -19,7 +19,7 @@
         {{/if}}
         {{#if Status.PROCINFO}}
         <div class="box-header with-border">
-            <h3 class="box-title">工站信息</h3>
+            <h3 class="box-title">工艺信息</h3>
         </div>
         <div class="row box-body">
             {{#each Status.PROCINFO}}
@@ -40,9 +40,28 @@
         </div>
         <div class="box-body">
             <table class="table compact table-hover">
-                {{#each Status.MRQINFO}}
-                <tr><td>{{COMP_PARTNO}}</td><td>{{DESCRIPTION}}</td></tr>
-                {{/each}}
+                <thead>
+                    <tr>
+                        <th>料号</th>
+                        <th>描述</th>
+                        <th>在线余数</th>
+                        <th>请求数</th>
+                        <th>给料数</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Status.MRQINFO}}
+                    <tr style="background-color:{{COLOR}}">
+                        <td>{{COMP_PARTNO}}</td>
+                        <td>{{DESCRIPTION}}</td>
+                        <td>{{INLINE_Q}}</td>
+                        <td>{{R_Q}}</td>
+                        <td>{{ISS_Q}}</td>
+                        <td>{{dt ISS_DT}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
         </div>
         {{/if}}
@@ -67,12 +86,12 @@
         {{#each SOPINFO}}
         {{#eq @index 1}}
         <div class="item active">
-        {{else}}
-        <div class="item">
-        {{/eq}}
-            <img class="img-responsive pad" src="{{SOPURL}}" />
-        </div>
-        {{/each}}
+            {{else}}
+            <div class="item">
+                {{/eq}}
+                <img class="img-responsive pad" src="{{SOPURL}}" />
+            </div>
+            {{/each}}
     </script>
     <script type="text/plain" id="temp-wo-list">
         {{#each WOLIST}}
@@ -106,7 +125,7 @@
             </div>
         </div>
         <div class="box-body" id="stn-cstart-scaned">
-            <table class="table compact">
+            <table class="table table-hover selectable compact">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -120,8 +139,12 @@
         </div>
     </script>
     <script type="text/plain" id="temp-cstart-scans">
-        {{#each this}}
-        <tr>
+        {{#each IDS}}
+        {{#eq @index ../Idx}}
+        <tr class="active" data-idx="{{@index}}">
+        {{else}}
+        <tr data-idx="{{@index}}">
+        {{/eq}}
             <td>{{@index}}</td>
             <td>{{bc}}</td>
             <td>{{name}}</td>

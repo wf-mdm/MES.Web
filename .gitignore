@@ -26,3 +26,5 @@ temp/
 /referenceDLL/Log
 /packages
 /MES.Web/Log
+/MES.Web/OUTPUT
+/MES.Web/Log_Backup

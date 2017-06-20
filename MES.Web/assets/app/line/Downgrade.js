@@ -40,9 +40,8 @@
         for (var i in argArray)
             args[argArray[i].name] = argArray[i].value;
         if (!args.bc) return;
-        args.rwk = "S";
         Line.Progress.show();
-        Line.run("RWK", args["bc"], args, function () {
+        Line.run("DownGrade", args["bc"], args, function () {
         }).always(function () {
             Line.updateStatus();
             $("#stn-scan-form :input").val("");

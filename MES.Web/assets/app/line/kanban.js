@@ -2,6 +2,8 @@ Line.Kanban = {
     init: function (line) {
         Line.onUpdate = this.doUpdate;
         if (this.option) return;
+
+        // 在foot显示日志
         this.option = {
             animation: false,
             tooltip: {},
@@ -29,6 +31,7 @@ Line.Kanban = {
                         { name: "F", itemStyle: { normal: { color: "red" } } },
                     ],
                     tooltip: {
+                        confine:true,
                         formatter: function (data) {
                             if (data.dataType != "node") return;
                             var stn, stns = Line.Status["STINFO"];

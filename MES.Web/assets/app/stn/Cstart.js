@@ -1,6 +1,7 @@
 Stn.Cstart = {
     init: function () {
-        Stn.onUpdate = this.show;
+        Stn.onUpdate = this.show2;
+        this.index = 0;
     },
 
     show: function () {
@@ -19,6 +20,9 @@ Stn.Cstart = {
                 $this.updateScans();
             });
         });
+    },
+    show2: function () {
+        var $this = this;
         if ($this.woid == Stn.getWoid() && $this.IDS) {
             $this.updateScans();
         } else {
@@ -47,17 +51,13 @@ Stn.Cstart = {
             bc = $bc.val();
         if (!bc) return;
         $bc.focus().val("");
-        var pos = 0;
-        for (; pos < this.IDS.length; pos++) {
-            if (this.IDS[pos].bc) continue;
-            this.IDS[pos].bc = bc;
-            break;
-        }
-
+        this.IDS[this.index].bc = bc;
+        for (var i = 0; i < this.IDS.length; i++)
+            if (!this.IDS[i].bc) break;
+        this.index = parseInt(i);
         this.updateScans();
-        if (pos >= this.IDS.length - 1) {
+        if (this.index >= this.IDS.length)
             this.submit();
-        }
     },
 
     submit: function () {
@@ -74,19 +74,26 @@ Stn.Cstart = {
             Stn.Progress.hide();
         });
     },
+
+    setCurId: function (idx) {
+        this.index = idx;
+        this.updateScans();
+    },
     resetScans: function () {
         for (var i in this.IDS)
             delete this.IDS[i].bc;
+        this.index = 0;
     },
     updateScans: function () {
         var $this = this, i;
-        for (i in $this.IDS) {
-            if (!$this.IDS[i].bc) break;
-        }
-        if (i)
-            $("#stn-scan-form input[name=bc]").attr({ placeholder: $this.IDS[i].name });
+        if ($this.IDS[$this.index])
+            $("#stn-scan-form input[name=bc]").attr({ placeholder: $this.IDS[$this.index].name });
         Stn.loadTemp("temp-cstart-scans", function ($temp) {
-            $("#stn-cstart-scaned tbody").html($temp($this.IDS));
+            $("#stn-cstart-scaned tbody").html($temp({ Idx: $this.index + 1, IDS: $this.IDS }))
+                .find("tr").click(function () {
+                    var idx = parseInt($(this).data("idx")) - 1;
+                    $this.setCurId(idx);
+                });
         });
     },
     uninit: function () {

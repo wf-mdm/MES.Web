@@ -1,4 +1,4 @@
-.progress-modal .modal-body {
+﻿.progress-modal .modal-body {
     text-align: center;
     padding-top: 100px;
     height: 100%;
@@ -55,9 +55,11 @@ section.line-admin {
     padding: 3px;
     overflow: hidden;
 }
-
-tr.active, tr.active td {
-    background-color: #3c8dbc !important;
+.table.selectable tbody{
+    cursor: pointer;
+}
+.table.selectable tr.active, tr.active td {
+    background-color: #398439 !important;
     color: #fff !important;
 }
 
@@ -136,6 +138,47 @@ tr.active, tr.active td {
             width: 100%;
         }
 
+.kanban-tooltip {
+    background-color: #fff;
+    color: #000;
+    margin-bottom: 0;
+}
+
+    .kanban-tooltip td {
+        max-width: 500px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .kanban-tooltip .warn-OK {
+        background-color: green;
+        color: #fff;
+    }
+
+    .kanban-tooltip .warn-NG {
+        background-color: red;
+        color: #fff;
+    }
+
+    .kanban-tooltip .proc-P {
+        background-color: green;
+        color: #fff;
+    }
+
+    .kanban-tooltip .proc-F {
+        background-color: red;
+        color: #fff;
+    }
+
+    .kanban-tooltip .sn-P {
+        background-color: green;
+        color: #fff;
+    }
+
+    .kanban-tooltip .sn-F {
+        background-color: red;
+        color: #fff;
+    }
 
 .kanban-toggel {
     position: absolute;
@@ -227,48 +270,102 @@ tr.active, tr.active td {
     overflow: auto;
 }
 
-.line-kanban2 {
-    display: flex;
-    flex-direction: row;
+#line-status {
+    text-align: center;
+    font-size: 130%;
 }
 
-.line-kanban2-item {
-    margin: 5px;
-    width: inherit !important;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 1;
+    #line-status .label {
+        color: #000;
+        margin: auto 5px auto 15px;
+    }
+
+    #line-status .value {
+        color: #000;
+        font-size: 130%;
+        margin: auto 5px;
+    }
+
+#line-chart {
+    margin: 0;
 }
 
-.line-kanban2-item-main {
-    flex-grow: 1;
-}
+    #line-chart > div {
+        height: 120px;
+        padding: 0 15px;
+    }
 
-.stn-status th {
-    background-color: gray;
-    color: #fff;
-}
-
-.stn-status table {
+#stn-status {
     margin-bottom: 0;
 }
 
-.stn-status th, .stn-status td {
-    border: none !important;
-}
+    #stn-status th {
+        background-color: #000;
+        color: #ff0;
+    }
 
-.stn-status .fa {
-    font-size: 150%;
-}
+    #stn-status thead th {
+        text-align: center;
+    }
 
-.stn2-F {
-    color: red;
-}
+    #stn-status .opr-0 {
+        background-color: lightcoral;
+    }
 
-.stn2-R {
-    color: green;
-}
+    #stn-status .opr-1 {
+        background-color: #000;
+        color: yellow;
+    }
 
-.stn2-I {
-    color: yellow;
-}
+    #stn-status .stn-F {
+        background-color: red;
+        color: #fff;
+    }
+
+    #stn-status .stn-R {
+        background-color: green;
+        color: #fff;
+    }
+
+    #stn-status .stn-M, #stn-status .stn-I {
+        background-color: yellow;
+        color: #000;
+    }
+
+    #stn-status .warn-OK {
+        background-color: green;
+        color: #fff;
+    }
+
+    #stn-status .warn-NG {
+        background-color: red;
+        color: #fff;
+    }
+
+    #stn-status .proc-P {
+        background-color: green;
+        color: #fff;
+    }
+
+    #stn-status .proc-F {
+        background-color: red;
+        color: #fff;
+    }
+
+    #stn-status .sn-P {
+        background-color: green;
+        color: #fff;
+    }
+
+        #stn-status .sn-P:after {
+            content: "允许"
+        }
+
+    #stn-status .sn-F {
+        background-color: red;
+        color: #fff;
+    }
+
+        #stn-status .sn-F:after {
+            content: "禁止"
+        }
