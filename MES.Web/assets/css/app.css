@@ -307,6 +307,9 @@ section.line-admin {
     #stn-status thead th {
         text-align: center;
     }
+    #stn-status tbody td {
+        background-color: lightgray;
+    }
 
     #stn-status .opr-0 {
         background-color: lightcoral;

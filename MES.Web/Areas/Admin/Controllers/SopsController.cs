@@ -61,7 +61,9 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Title = ModelName;
             await InitSelect(request.LINE, request.STN, request.PARTNO);
 
-            String path = Path.GetTempFileName() + ".pdf";
+            int p = request.FILE.FileName.LastIndexOf(".");
+            String fileExt = request.FILE.FileName.Substring(p);
+            String path = Path.GetTempFileName() + fileExt;
 
             ENG_LINESTATION stn = await db.ENG_LINESTATION
                 .Where(s => s.LINENAME.Equals(request.LINE) && s.L_STNO.Equals(request.STN))

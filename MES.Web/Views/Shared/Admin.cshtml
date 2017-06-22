@@ -61,14 +61,14 @@
             </section>
 
             <section class="content">
+                @Scripts.Render("~/assets/js/base")
+                @Scripts.Render("~/assets/js/admin")
                 @RenderBody()
             </section>
         </div>
 
         @Html.Partial("_Foot")
     </div>
-    @Scripts.Render("~/assets/js/base")
-    @Scripts.Render("~/assets/js/admin")
 </body>
 
 </html>

@@ -233,6 +233,9 @@
     <Compile Include="Areas\Admin\Models\MESEnums.cs" />
     <Compile Include="Areas\Admin\Models\SopRequest.cs" />
     <Compile Include="Areas\Admin\Models\V_USERANDROLES.cs" />
+    <Compile Include="Areas\Rpt\Controllers\TraceabilityController.cs" />
+    <Compile Include="Areas\Rpt\Models\RequestModels.cs" />
+    <Compile Include="Areas\Rpt\RptAreaRegistration.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\MESHtml.cs" />
     <Compile Include="Controllers\StnController.cs" />
@@ -395,6 +398,8 @@
     <Content Include="Areas\Admin\Views\BomDetail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BomDetail\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Sops\Index.cshtml" />
+    <Content Include="Areas\Rpt\Views\web.config" />
+    <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.min.js" />
@@ -1263,9 +1268,9 @@
     <Content Include="Views\Warehouse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Rpt\Views\Shared\" />
     <Folder Include="obj\" />
     <Folder Include="ReportPages\" />
   </ItemGroup>

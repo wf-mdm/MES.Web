@@ -27,7 +27,8 @@
     });
 
     function initLineOp(ops) {
-        var url = /.*\/app\/Admin\/[^\/]+/i.exec(window.location.pathname)[0] + "/OPSTN";
+        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname),
+            url = m[0] + "/OPSTN";
         ops.each(function () {
             var $op = $(this);
                 $form = $op.parents("form"),
@@ -45,7 +46,8 @@
         });
     }
     function initLineStn(stns) {
-        var url = /.*\/app\/Admin\/[^\/]+/i.exec(window.location.pathname)[0] + "/OPSTN";
+        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname),
+            url = m[0] + "/OPSTN";
         stns.each(function () {
             var $stn = $(this),
                 $form = $stn.parents("form"),
