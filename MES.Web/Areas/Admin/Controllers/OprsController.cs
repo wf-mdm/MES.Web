@@ -25,7 +25,9 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Query = Query;
             var hR_OPERATORS = db.HR_OPERATORS.Include(h => h.BU);
             return View(await hR_OPERATORS.Where(o =>
-                String.IsNullOrEmpty(Query.OPERNAME) || o.OPERNAME.IndexOf(Query.OPERNAME) > -1
+                String.IsNullOrEmpty(Query.OPERNAME) || 
+                o.OPERID.IndexOf(Query.OPERNAME) > -1 || 
+                o.OPERNAME.IndexOf(Query.OPERNAME) > -1
             ).ToListAsync());
         }
 
@@ -50,7 +52,7 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
 
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME");
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName");
             return View();
         }
 
@@ -70,7 +72,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", hR_OPERATORS.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", hR_OPERATORS.BUNO);
             return View(hR_OPERATORS);
         }
 
@@ -88,7 +90,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", hR_OPERATORS.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", hR_OPERATORS.BUNO);
             return View(hR_OPERATORS);
         }
 
@@ -107,7 +109,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", hR_OPERATORS.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", hR_OPERATORS.BUNO);
             return View(hR_OPERATORS);
         }
 

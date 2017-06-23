@@ -8,7 +8,7 @@
     <div class="box-header with-border">
         <form class="form-inline" method="post">
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.OPERNAME)
+                <label>用户</label>
                 <input type="text" name="OPERNAME" value="@ViewBag.Query.OPERNAME" />
             </div>
             <button type="submit" class="btn btn-primary">查询</button>
@@ -27,9 +27,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.OPERNAME)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PWD)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DEPTNO)
@@ -53,16 +50,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.BU.BUNAME)
+                        @Html.DisplayFor(modelItem => item.BU.CodeName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.OPERID)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.OPERNAME)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PWD)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DEPTNO)

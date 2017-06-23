@@ -14,19 +14,21 @@ namespace MES.Web.Areas.Admin.Controllers
     [Authorize(Roles = "OprRoles")]
     public class OprRolesController : Controller
     {
-		private static String ModelName = "用户角色";
+        private static String ModelName = "用户角色";
         private MESDbContext db = new MESDbContext();
 
         // GET: Admin/OprRoles
         public async Task<ActionResult> Index(HR_ROLES Querys)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "查询";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "查询";
             ViewBag.Query = Querys;
             var hR_ROLES = db.HR_ROLES.Include(h => h.User);
             return View(await hR_ROLES
                 .Where(r =>
-                    (String.IsNullOrEmpty(Querys.USERID) || r.User.OPERNAME.IndexOf(Querys.USERID) > -1)
+                    (String.IsNullOrEmpty(Querys.USERID) ||
+                    r.USERID.IndexOf(Querys.USERID) > -1 ||
+                    r.User.OPERNAME.IndexOf(Querys.USERID) > -1)
                     && (String.IsNullOrEmpty(Querys.ROLEID) || r.ROLEID == Querys.ROLEID)
                  )
                 .ToListAsync());
@@ -50,10 +52,10 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/OprRoles/Create
         public ActionResult Create()
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
 
-            ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "OPERNAME");
+            ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "Name");
             return View();
         }
 
@@ -64,8 +66,8 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "USERID,ROLEID")] HR_ROLES hR_ROLES)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
             if (ModelState.IsValid)
             {
                 db.HR_ROLES.Add(hR_ROLES);
@@ -73,15 +75,15 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "OPERNAME", hR_ROLES.USERID);
+            ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "Name", hR_ROLES.USERID);
             return View(hR_ROLES);
         }
 
         // GET: Admin/OprRoles/Delete/5
         public async Task<ActionResult> Delete([Bind(Include = "USERID,ROLEID")] HR_ROLES hR_ROLES)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
 
             HR_ROLES role = await db.HR_ROLES
                 .Include(r1 => r1.User)
@@ -94,8 +96,8 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed([Bind(Include = "USERID,ROLEID")] HR_ROLES hR_ROLES)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
 
             HR_ROLES role = await db.HR_ROLES
                 .Where(r => r.USERID.Equals(hR_ROLES.USERID) && r.ROLEID.Equals(hR_ROLES.ROLEID)).SingleOrDefaultAsync();

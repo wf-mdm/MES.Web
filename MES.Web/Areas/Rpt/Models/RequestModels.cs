@@ -15,9 +15,9 @@ namespace MES.Web.Areas.Rpt.Models
         [Display(Name = "包装号")]
         public String Pack { get; set; }
         [Display(Name = "日期时间")]
-        public DateTime Dt1 { get; set; }
+        public DateTime? Dt1 { get; set; }
         [Display(Name = "~")]
-        public DateTime Dt2 { get; set; }
+        public DateTime? Dt2 { get; set; }
         [Display(Name = "反追溯?")]
         public Boolean IsRevert { get; set; }
     }

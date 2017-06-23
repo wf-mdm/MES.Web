@@ -48,7 +48,7 @@ namespace MES.Web.Areas.Admin.Controllers
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "新建";
 
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME");
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", eNG_PRDLINE.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", eNG_PRDLINE.BUNO);
             return View(eNG_PRDLINE);
         }
 
@@ -86,7 +86,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", eNG_PRDLINE.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", eNG_PRDLINE.BUNO);
             return View(eNG_PRDLINE);
         }
 
@@ -105,7 +105,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "BUNAME", eNG_PRDLINE.BUNO);
+            ViewBag.BUNO = new SelectList(db.ENG_BU, "BUNO", "CodeName", eNG_PRDLINE.BUNO);
             return View(eNG_PRDLINE);
         }
 

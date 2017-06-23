@@ -14,10 +14,20 @@ namespace MES.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Params")]
     public class ParamsController : Controller
     {
-		private static String ModelName = "工艺参数";
+        private static String ModelName = "工艺参数";
+        private static String PARAM_TYPE = "PRD";
         private MESDbContext db = new MESDbContext();
 
-        private async Task InitSelect(String LINENAME, String OP = "", String STN = "", String DataType="", String ParamType="")
+        private ENG_LINEOPPARAMCONF Prepare(ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
+        {
+            eNG_LINEOPPARAMCONF.PARAM_TYPE = PARAM_TYPE;
+            if (String.IsNullOrEmpty(eNG_LINEOPPARAMCONF.LINENAME)) eNG_LINEOPPARAMCONF.LINENAME = "ALL";
+            if (String.IsNullOrEmpty(eNG_LINEOPPARAMCONF.L_OPNO)) eNG_LINEOPPARAMCONF.L_OPNO = "ALL";
+            if (String.IsNullOrEmpty(eNG_LINEOPPARAMCONF.L_STNO)) eNG_LINEOPPARAMCONF.L_STNO = "ALL";
+            return eNG_LINEOPPARAMCONF;
+        }
+
+        private async Task InitSelect(String LINENAME, String OP = "", String STN = "", String DataType = "", String ParamType = "")
         {
             ViewBag.LINENAME = new SelectList(await db.ENG_PRDLINE
                 .ToListAsync(), "LINENAME", "CodeName", LINENAME);
@@ -42,17 +52,18 @@ namespace MES.Web.Areas.Admin.Controllers
             }
 
             ViewBag.DATA_TYPE = new SelectList(await db.ENG_CODECFG.Where(e => "ENGPARDTYPE".Equals(e.CODENAME)).ToListAsync(), "CODEID", "Name", DataType);
-            ViewBag.PARAM_TYPE = new SelectList(await db.ENG_CODECFG.Where(e => "ENGPARMTYPE".Equals(e.CODENAME)).ToListAsync(), "CODEID", "Name", ParamType);
         }
 
         // GET: Admin/Params
         public async Task<ActionResult> Index(ENG_LINEOPPARAMCONF Query)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "查询";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
             return View(await db.ENG_LINEOPPARAMCONF
-                .Where(e=> String.IsNullOrEmpty(Query.CONFNAME) || Query.CONFNAME.Equals(e.CONFNAME))
+                .Where((e =>
+                    (String.IsNullOrEmpty(Query.CONFNAME) || Query.CONFNAME.Equals(e.CONFNAME))
+                    && PARAM_TYPE.Equals(e.PARAM_TYPE)))
                 .ToListAsync());
         }
 
@@ -74,8 +85,8 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/Params/Create
         public ActionResult Create()
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
 
             return View();
         }
@@ -85,10 +96,11 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,PARAM_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
+        public async Task<ActionResult> Create([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
+            Prepare(eNG_LINEOPPARAMCONF);
             if (ModelState.IsValid)
             {
                 db.ENG_LINEOPPARAMCONF.Add(eNG_LINEOPPARAMCONF);
@@ -103,8 +115,8 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/Params/Edit/5
         public async Task<ActionResult> Edit(string CONFNAME, decimal CONFID)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "编辑";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "编辑";
             ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF = await db.ENG_LINEOPPARAMCONF.FindAsync(CONFNAME, CONFID);
             if (eNG_LINEOPPARAMCONF == null)
             {
@@ -119,10 +131,11 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,PARAM_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
+        public async Task<ActionResult> Edit([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "编辑";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "编辑";
+            Prepare(eNG_LINEOPPARAMCONF);
             if (ModelState.IsValid)
             {
                 db.Entry(eNG_LINEOPPARAMCONF).State = EntityState.Modified;
@@ -136,8 +149,8 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/Params/Delete/5
         public async Task<ActionResult> Delete(string CONFNAME, decimal CONFID)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
             ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF = await db.ENG_LINEOPPARAMCONF.FindAsync(CONFNAME, CONFID);
             if (eNG_LINEOPPARAMCONF == null)
             {
@@ -151,8 +164,8 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string CONFNAME, decimal CONFID)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
 
             ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF = await db.ENG_LINEOPPARAMCONF.FindAsync(CONFNAME, CONFID);
             db.ENG_LINEOPPARAMCONF.Remove(eNG_LINEOPPARAMCONF);

@@ -61,7 +61,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "LINENAME,L_STNO,L_OPNO,CodeName")] ENG_LINESTATION eNG_LINESTATION)
+        public async Task<ActionResult> Create([Bind(Include = "LINENAME,L_STNO,L_OPNO,DISPLAYNAME")] ENG_LINESTATION eNG_LINESTATION)
         {
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "新建";
@@ -99,7 +99,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "LINENAME,L_STNO,L_OPNO,CodeName")] ENG_LINESTATION eNG_LINESTATION)
+        public async Task<ActionResult> Edit([Bind(Include = "LINENAME,L_STNO,L_OPNO, DISPLAYNAME")] ENG_LINESTATION eNG_LINESTATION)
         {
 			ViewBag.Title = ModelName;
 			ViewBag.SubTitle = "编辑";

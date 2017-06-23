@@ -8,6 +8,13 @@
 <div>
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.PARTNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTNO)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.RT_NAME)
         </dt>
 
@@ -35,7 +42,8 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+        @Html.HiddenFor(m => m.PARTNO)
+        @Html.HiddenFor(m => m.PARTVER)
         <div class="form-actions no-color">
             <input type="submit" value="删除" class="btn btn-danger" />
             @Html.ActionLink("取消", "Index", "", new { @class="btn btn-success"})

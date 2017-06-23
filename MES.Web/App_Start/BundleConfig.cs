@@ -13,7 +13,7 @@ namespace MES.Web
                 "~/assets/css/AdminLTE.css",
                 "~/assets/css/skins/_all-skins.css",
                 "~/assets/plugins/iCheck/square/blue.css",
-                "~/assets/plugins/datatables/dataTables.bootstrap.css",
+                "~/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css",
                 "~/assets/plugins/select2/select2.min.css",
                 "~/assets/css/app.css"
                 ));
@@ -25,7 +25,8 @@ namespace MES.Web
                 "~/assets/plugins/slimScroll/jquery.slimscroll.min.js",
                 "~/assets/plugins/fastclick/fastclick.js",
                 "~/assets/plugins/select2/select2.min.js",
-                "~/assets/plugins/datatables/jquery.dataTables.js",
+                "~/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js",
+                "~/assets/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
                 "~/assets/js/routie.js",
                 "~/assets/js/app.js"
                 ));
@@ -44,6 +45,10 @@ namespace MES.Web
             bundles.Add(new ScriptBundle("~/assets/js/wh").Include(
                 "~/assets/js/handlebars.js",
                 "~/assets/app/wh/*.js"
+                ));
+            bundles.Add(new ScriptBundle("~/assets/js/rpt").Include(
+                "~/assets/js/handlebars.js",
+                "~/assets/rpt/*.js"
                 ));
         }
     }

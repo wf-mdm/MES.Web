@@ -94,7 +94,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "LINENAME,L_OPNO,CodeName,OPDEFAULTSEQ,STDYIELDRATE,CYCLETIME")] ENG_LINEOP eNG_LINEOP)
+        public async Task<ActionResult> Edit([Bind(Include = "LINENAME,L_OPNO,DISPLAYNAME,OPDEFAULTSEQ,STDYIELDRATE,CYCLETIME")] ENG_LINEOP eNG_LINEOP)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "编辑";

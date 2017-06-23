@@ -14,7 +14,7 @@ namespace MES.Web.Areas.Admin.Controllers
     [Authorize(Roles = "OprCaps")]
     public class OprCapsController : Controller
     {
-		private static String ModelName = "操作权限";
+        private static String ModelName = "操作权限";
         private MESDbContext db = new MESDbContext();
         private async Task InitSelect(String OPERID, String LINENAME, String OP = "", String STN = "")
         {
@@ -39,18 +39,25 @@ namespace MES.Web.Areas.Admin.Controllers
                 }
             }
 
-            ViewBag.OPERID= new SelectList(await db.V_USERANDROLES.ToListAsync(), "OPERID", "Name", OPERID);
+            ViewBag.OPERID = new SelectList(await db.V_USERANDROLES.ToListAsync(), "OPERID", "Name", OPERID);
+        }
+
+        private void Prepare(HR_OPERCAPBMATRIX o)
+        {
+            if (String.IsNullOrEmpty(o.LINENAME)) o.LINENAME = "ALL";
+            if (String.IsNullOrEmpty(o.L_OPNO)) o.L_OPNO= "ALL";
+            if (String.IsNullOrEmpty(o.L_STNO)) o.L_STNO = "ALL";
         }
 
         // GET: Admin/OprCaps
         public async Task<ActionResult> Index(HR_OPERCAPBMATRIX Query)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "查询";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
             await InitSelect("", "");
             var hR_OPERCAPBMATRIX = db.HR_OPERCAPBMATRIX.Include(h => h.Oper)
-                .Where(d=>
+                .Where(d =>
                     String.IsNullOrEmpty(Query.OPERID) || Query.OPERID.Equals(d.OPERID)
                     && String.IsNullOrEmpty(Query.LINENAME) || Query.OPERID.Equals(d.LINENAME)
                 );
@@ -75,8 +82,8 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/OprCaps/Create
         public async Task<ActionResult> Create()
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
 
             await InitSelect("", "");
             return View();
@@ -89,10 +96,11 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "OPERID,LINENAME,L_OPNO,L_STNO,CAPBLEVEL,COMMENTS")] HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "新建";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "新建";
             if (ModelState.IsValid)
             {
+                Prepare(hR_OPERCAPBMATRIX);
                 db.HR_OPERCAPBMATRIX.Add(hR_OPERCAPBMATRIX);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -105,9 +113,9 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/OprCaps/Edit/5
         public async Task<ActionResult> Edit(String OPERID, String LINENAME, String L_OPNO)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "编辑";
-            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME, L_OPNO);
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "编辑";
+            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME);
             if (hR_OPERCAPBMATRIX == null)
             {
                 return HttpNotFound();
@@ -123,10 +131,11 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "OPERID,LINENAME,L_OPNO,L_STNO,CAPBLEVEL,COMMENTS")] HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "编辑";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "编辑";
             if (ModelState.IsValid)
             {
+                Prepare(hR_OPERCAPBMATRIX);
                 db.Entry(hR_OPERCAPBMATRIX).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -138,9 +147,9 @@ namespace MES.Web.Areas.Admin.Controllers
         // GET: Admin/OprCaps/Delete/5
         public async Task<ActionResult> Delete(String OPERID, String LINENAME, String L_OPNO)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
-            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME, L_OPNO);
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
+            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME);
             if (hR_OPERCAPBMATRIX == null)
             {
                 return HttpNotFound();
@@ -153,13 +162,21 @@ namespace MES.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(String OPERID, String LINENAME, String L_OPNO)
         {
-			ViewBag.Title = ModelName;
-			ViewBag.SubTitle = "删除";
+            ViewBag.Title = ModelName;
+            ViewBag.SubTitle = "删除";
 
-            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME, L_OPNO);
+            HR_OPERCAPBMATRIX hR_OPERCAPBMATRIX = await db.HR_OPERCAPBMATRIX.FindAsync(OPERID, LINENAME);
             db.HR_OPERCAPBMATRIX.Remove(hR_OPERCAPBMATRIX);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+        public async Task<JsonResult> OPSTN(String LINENAME, String L_OPNO)
+        {
+            if (L_OPNO == null)
+                return Json(new { OP = await db.ENG_LINEOP.Where(op => op.LINENAME.Equals(LINENAME)).ToListAsync() }, JsonRequestBehavior.AllowGet);
+
+            else
+                return Json(new { STN = await db.ENG_LINESTATION.Where(stn => stn.LINENAME.Equals(LINENAME) && stn.L_OPNO.Equals(L_OPNO)).ToListAsync() }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

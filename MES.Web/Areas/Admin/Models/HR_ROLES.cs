@@ -10,7 +10,7 @@ namespace MES.Web.Areas.Admin.Models
     {
         [Key]
         [Column(Order = 0)]
-        [Required, Display(Name = "用户")]
+        [Required, Display(Name = "用户ID")]
         [StringLength(20)]
         public string USERID { get; set; }
 

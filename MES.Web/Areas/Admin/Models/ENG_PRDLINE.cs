@@ -8,6 +8,7 @@ namespace MES.Web.Areas.Admin.Models
 
     public partial class ENG_PRDLINE
     {
+        [NotMapped]
         public string CodeName { get { return String.Format("{0}:{1}", LINENAME, DISPLAYNAME); } }
 
         [Key]
@@ -20,7 +21,7 @@ namespace MES.Web.Areas.Admin.Models
         public string BUNO { get; set; }
 
         [Display(Name = "¹«Ë¾")]
-        [Required, ForeignKey("BUNO")]
+        [ForeignKey("BUNO")]
         public virtual ENG_BU BU { get; set; }
 
         [StringLength(80)]

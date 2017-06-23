@@ -7,80 +7,102 @@
 
 <div class="box data-form">
     <div class="box-body">
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.OPERID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("OPERID",null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style="width:100%", @readonly = "readonly" })
+        @using (Html.BeginForm("Edit", null, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.OPERID)
+            @Html.HiddenFor(m => m.LINENAME)
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <fieldset disabled>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OPERID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-5">
+                            @Html.DropDownList("OPERID", null, htmlAttributes: new { @class = "form-control", style = "width:100%" })
+                        </div>
+                        <div class="col-md-5 error-msg">
+                            @Html.ValidationMessageFor(model => model.OPERID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LINENAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-5">
+                            @Html.DropDownList("LINENAME", null, "-- ALL --", htmlAttributes: new { @class = "form-control", style = "width:100%" })
+                        </div>
+                        <div class="col-md-5 error-msg">
+
+                            @Html.ValidationMessageFor(model => model.LINENAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.L_OPNO, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("L_OPNO", null, "-- ALL --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
                     </div>
                     <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.OPERID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LINENAME, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.LINENAME, new { htmlAttributes = new { @class = "form-control", @readonly="readonly"} })
+                        @Html.ValidationMessageFor(model => model.L_OPNO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.L_STNO, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("L_STNO", null, "-- ALL --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
                     </div>
                     <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.LINENAME, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.L_OPNO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.L_OPNO, new { htmlAttributes = new { @class = "form-control", @readonly="readonly"} })
+                        @Html.ValidationMessageFor(model => model.L_STNO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CAPBLEVEL, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        <div class="radio col-md-4">
+                            <label>
+                                @Html.RadioButtonFor(m => m.CAPBLEVEL, "A", Model.CAPBLEVEL) A
+                            </label>
+                        </div>
+                        <div class="radio col-md-4">
+                            <label>
+                                @Html.RadioButtonFor(m => m.CAPBLEVEL, "B", Model.CAPBLEVEL) B
+                            </label>
+                        </div>
+                        <div class="radio col-md-4">
+                            <label>
+                                @Html.RadioButtonFor(m => m.CAPBLEVEL, "C", Model.CAPBLEVEL) C
+                            </label>
+                        </div>
                     </div>
                     <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.L_OPNO, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.L_STNO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.L_STNO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CAPBLEVEL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.COMMENTS, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.COMMENTS, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                     <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.L_STNO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CAPBLEVEL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.CAPBLEVEL, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.COMMENTS, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.CAPBLEVEL, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.COMMENTS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.COMMENTS, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="保存" class="btn btn-primary" />
+                        @Html.ActionLink("取消", "Index", new { }, new { @class = "btn btn-default" })
                     </div>
-                    <div class="col-md-5 error-msg">
-                @Html.ValidationMessageFor(model => model.COMMENTS, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="保存" class="btn btn-primary" />
-			    @Html.ActionLink("取消", "Index", new {}, new {@class = "btn btn-default"})
-            </div>
-        </div>
+        }
     </div>
-}
-	</div>
 </div>
+<script>
+    var DEFAULT_OPTION = "<option value=\"ALL\">-- ALL --</option>";
+</script>
 

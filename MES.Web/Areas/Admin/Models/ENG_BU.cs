@@ -8,6 +8,8 @@ namespace MES.Web.Areas.Admin.Models
 
     public partial class ENG_BU
     {
+        [NotMapped]
+        public string CodeName { get { return String.Format("{0}:{1}", BUNO, BUNAME); } }
         [Key]
         [StringLength(12)]
         [Column(Order = 0)]

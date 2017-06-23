@@ -52,7 +52,7 @@
                     <td>
                         @Html.ActionLink("清单", String.Format("{0}/{1}/Index", item.PARTNO, item.PARTVER), "BomDetail", null, new { @class = "btn btn-success" })
                         @Html.ActionLink("编辑", "Edit", new { PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("删除", "Delete", new { id = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("删除", "Delete", new { PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }

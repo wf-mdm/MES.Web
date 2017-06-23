@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MES - Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/assets/css/all")
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a class="logo" href="#">
+                <span class="logo-mini">MES</span>
+                <span class="logo-lg">MES Admin</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        @Html.Partial("_UserMenu")
+                        <li>
+                            <a href="#" class="text-yellow">
+                                <i class="fa fa-info-circle"></i><span class="hidden-xs"> 帮助</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                @Html.Action("Menu", "Admin", new { Area = "" })
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>@ViewBag.Title</h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i>查询报表</a></li>
+                    @if (ViewBag.SubTitle == null)
+                    {
+                        if (ViewBag.Title != null)
+                        {
+                            <li class="active">@ViewBag.Title</li>
+                        }
+                    }
+                    else
+                    {
+                        <li><a href="#">@ViewBag.Title</a></li>
+                        <li class="active">@ViewBag.SubTitle</li>
+                    }
+                </ol>
+            </section>
+
+            <section class="content">
+                @Scripts.Render("~/assets/js/base")
+                @Scripts.Render("~/assets/js/rpt")
+                @RenderBody()
+            </section>
+        </div>
+
+        @Html.Partial("_Foot")
+    </div>
+</body>
+
+</html>

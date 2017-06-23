@@ -8,7 +8,7 @@
     <div class="box-header with-border">
         <form class="form-inline" method="post">
             <div class="form-group">
-                @Html.Label("用户名")
+                @Html.Label("用户")
                 <input type="text" name="USERID" value="@ViewBag.Query.USERID" />
             </div>
             <div class="form-group">
@@ -24,6 +24,9 @@
         <table class="table compact table-bordered table-hover">
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.USERID)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.User.OPERNAME)
                 </th>
                 <th>
@@ -35,6 +38,9 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.USERID)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.User.OPERNAME)
                     </td>

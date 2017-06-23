@@ -16,8 +16,22 @@ namespace MES.Web.Areas.Admin.Controllers
     {
         private static String ModelName = "BOM";
         private MESDbContext db = new MESDbContext();
+        private static List<SelectListItem> SERIALCONTROL_LIST = new List<SelectListItem>();
+        static BomDetailController()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                String t = ((char)(i + (int)'1')).ToString();
+                SERIALCONTROL_LIST.Add(new SelectListItem() { Text = t, Value = t });
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                String t = ((char)(i + (int)'A')).ToString();
+                SERIALCONTROL_LIST.Add(new SelectListItem() { Text = t, Value = t });
+            }
+        }
 
-        private async Task InitSelect(String GRP)
+        private async Task InitSelect(String GRP, String SERIALCONTROL)
         {
             IList<SelectListItem> grps = await db.ENG_PRDLINE.Select(e => new SelectListItem()
             {
@@ -25,6 +39,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 Value = e.LINEGRP
             }).Distinct().ToListAsync();
             ViewBag.SEMILINEGRP = new SelectList(grps, "Value", "Text", GRP);
+            ViewBag.SERIALCONTROL = new SelectList(SERIALCONTROL_LIST, "Value", "Text", SERIALCONTROL);
         }
 
         // GET: Admin/BomDetail
@@ -63,7 +78,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 PARTNO = PN,
                 PARTVER = VER
             };
-            await InitSelect("");
+            await InitSelect("", "");
             return View(eNG_BOMDETAIL);
         }
 
@@ -91,7 +106,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP);
+            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP, eNG_BOMDETAIL.SERIALCONTROL);
             return View(eNG_BOMDETAIL);
         }
 
@@ -117,7 +132,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP);
+            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP, eNG_BOMDETAIL.SERIALCONTROL);
             return View(eNG_BOMDETAIL);
         }
 
@@ -144,7 +159,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP);
+            await InitSelect(eNG_BOMDETAIL.SEMILINEGRP, eNG_BOMDETAIL.SERIALCONTROL);
             return View(eNG_BOMDETAIL);
         }
 
