@@ -101,6 +101,7 @@ namespace MES.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                eNG_BOMDETAIL.ITEMID = db.ENG_BOMDETAIL.Max(b => b.ITEMID) + 1;
                 db.ENG_BOMDETAIL.Add(eNG_BOMDETAIL);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

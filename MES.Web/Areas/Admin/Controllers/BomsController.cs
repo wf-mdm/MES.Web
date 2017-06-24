@@ -150,6 +150,10 @@ namespace MES.Web.Areas.Admin.Controllers
 
             ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(PARTNO, PARTVER);
             db.ENG_BOMHEADER.Remove(eNG_BOMHEADER);
+            foreach(ENG_BOMDETAIL d in await db.ENG_BOMDETAIL.Where(b=> b.PARTNO.Equals(eNG_BOMHEADER.PARTNO)).ToListAsync())
+            {
+                db.ENG_BOMDETAIL.Remove(d);
+            }
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

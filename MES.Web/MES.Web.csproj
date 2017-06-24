@@ -1324,7 +1324,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="obj\" />
-    <Folder Include="ReportPages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

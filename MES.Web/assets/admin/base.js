@@ -27,15 +27,16 @@
     });
 
     function initLineOp(ops) {
-        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname),
-            url = m[0] + "/OPSTN";
+        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname);
+        if (!m) return;
+        var url = m[0] + "/OPSTN";
         ops.each(function () {
             var $op = $(this);
-                $form = $op.parents("form"),
+            $form = $op.parents("form"),
                 $line = $form.find("select[name=LINENAME]"),
                 $stn = $form.find("select[name=L_STNO]");
             $op.parents("form").find("select[name=LINENAME]").change(function () {
-                $.get(url, { LINENAME: $(this).val()}, function (datas) {
+                $.get(url, { LINENAME: $(this).val() }, function (datas) {
                     var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option>-- 请选择 --</option>";
                     $stn.html(tmp);
                     for (var i in datas.OP)
@@ -46,8 +47,9 @@
         });
     }
     function initLineStn(stns) {
-        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname),
-            url = m[0] + "/OPSTN";
+        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname);
+        if (!m) return;
+        var url = m[0] + "/OPSTN";
         stns.each(function () {
             var $stn = $(this),
                 $form = $stn.parents("form"),

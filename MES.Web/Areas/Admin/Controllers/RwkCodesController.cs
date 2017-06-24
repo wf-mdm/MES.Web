@@ -90,7 +90,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            await InitSelect(eNG_RWKSCRCODE.QCCODE, eNG_RWKSCRCODE.LINENAME);
+            await InitSelect(eNG_RWKSCRCODE.QCTYPE, eNG_RWKSCRCODE.LINENAME, eNG_RWKSCRCODE.DEFAULTOOP, eNG_RWKSCRCODE.FROMOP);
             return View(eNG_RWKSCRCODE);
         }
 
@@ -108,7 +108,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            await InitSelect(eNG_RWKSCRCODE.QCCODE, eNG_RWKSCRCODE.LINENAME);
+            await InitSelect(eNG_RWKSCRCODE.QCTYPE, eNG_RWKSCRCODE.LINENAME, eNG_RWKSCRCODE.DEFAULTOOP, eNG_RWKSCRCODE.FROMOP);
             return View(eNG_RWKSCRCODE);
         }
 
@@ -127,7 +127,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            await InitSelect(eNG_RWKSCRCODE.QCCODE, eNG_RWKSCRCODE.LINENAME);
+            await InitSelect(eNG_RWKSCRCODE.QCTYPE, eNG_RWKSCRCODE.LINENAME, eNG_RWKSCRCODE.DEFAULTOOP, eNG_RWKSCRCODE.FROMOP);
             return View(eNG_RWKSCRCODE);
         }
 

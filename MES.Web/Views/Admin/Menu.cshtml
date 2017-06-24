@@ -1,5 +1,10 @@
 ﻿@model System.Data.DataSet
 @using System.Data
+@helper GetAppPath(DataRow r)
+{
+var appPath = DBNull.Value.Equals(r["APP_PATH"]) ? "/app/Admin/" + r["APP_ID"] : r["APP_PATH"];
+    @appPath;
+}
 <ul class="sidebar-menu">
     <li class="treeview">
         <a href="@Url.Action("Index", "Line")">
@@ -23,7 +28,7 @@
                         if (r["APP_ID"].Equals(r1["PARENT_ID"]))
                         {
                             <li>
-                                <a href="@Url.Action("Index", (String)r1["APP_ID"], new { Area="Admin"})">
+                                <a href="@GetAppPath(r1)">
                                     <i class="fa fa-circle-o"></i> <span>@r1["APP_DESCRIPTION"]</span>
                                 </a>
                             </li>

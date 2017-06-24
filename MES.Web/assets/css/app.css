@@ -106,6 +106,9 @@ section.line-admin {
 .logo i {
     line-height: 50px;
 }
+.user-header i.fa{
+    font-size: 500%!important;
+}
 
 .navbar-nav .title {
     line-height: 50px;
