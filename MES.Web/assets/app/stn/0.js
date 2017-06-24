@@ -94,6 +94,7 @@
         }).always(function () {
             timeid = setTimeout(Stn.updateStatus, UPDATE_INTERVAL);
             Stn.updateLogs();
+            Stn.updateStnInfo();
             if (Stn.onUpdate) Stn.onUpdate.apply(curFeature);
         });
     };
@@ -128,7 +129,9 @@
 
         return Stn.runDb("GETSTNWOS", "", {}, function (rs) {
             Stn.loadTemp("temp-sop-img", function ($temp) {
-                $("#stn-sop-img div.carousel-inner").html($temp(rs));
+                $("#stn-sop-img div.carousel-inner").html($temp(rs)).find("img").dblclick(function () {
+                    window.open(this.src);
+                });
             });
             Stn.loadTemp("temp-wo-list", function ($temp) {
                 $("#stn-wo-list").html($temp(rs)).find("a").click(switchWo);
@@ -141,6 +144,10 @@
         this.loadTemp("temp-log-list", function ($temp) {
             $("#log-list").html($temp(Stn));
         });
+    };
+    Stn.updateStnInfo = function () {
+        $("header.main-header").attr("class", "main-header stn-status-" + Stn.Status.STINFO[0].STATUS);
+        $("header .extinfo").html(Stn.Status.STINFO[0].SN);
     };
 
     function getClient() {

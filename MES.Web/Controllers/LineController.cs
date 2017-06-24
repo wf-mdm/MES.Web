@@ -43,6 +43,7 @@ namespace MES.Web.Controllers
                 }
                 catch (Exception ex)
                 {
+                    ViewBag.Exception = ex;
                 }
                 return null;
             });

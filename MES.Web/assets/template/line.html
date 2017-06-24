@@ -33,6 +33,7 @@
     </script>
     <script type="text/plain" id="temp-kanban2-stns">
         {{#each Stns}}
+        {{#if show}}
         <tr>
             <th>{{L_STNO}}</th>
             {{#if OPRLST}}
@@ -46,6 +47,7 @@
             <td>{{SN}}</td>
             <td class="sn-{{SN_STAT}}"></td>
         </tr>
+        {{/if}}
         {{/each}}
     </script>
     <script type="text/plain" id="temp-kanban-tooltip">

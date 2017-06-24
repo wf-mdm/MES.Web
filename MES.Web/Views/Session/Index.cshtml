@@ -16,22 +16,22 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            MES LOGO
-        </div>
         <div class="login-box-body">
+            <p class="login-box-msg"><img src="~/assets/img/logo.png"/></p>
             <p class="login-box-msg">登录到系统</p>
-            @using (Html.BeginForm("Index", "Session", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Login", "Session", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                if (String.IsNullOrEmpty(ViewBag.ReturnUrl)) { 
-                <div class="form-group">
-                    @Html.LabelFor((m => m.AppId), new { @class = "col-sm-4 control-label"})
-                    <div class="col-sm-8">
-                        @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
+                @Html.Hidden("ReturnUrl")
+                if (String.IsNullOrEmpty(Model.ReturnUrl))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor((m => m.AppId), new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
                 }
                 <div class="form-group has-feedback">
                     @Html.LabelFor((m => m.UserId), new { @class = "col-sm-4 control-label" })

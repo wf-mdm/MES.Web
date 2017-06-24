@@ -198,37 +198,37 @@ section.line-admin {
 }
 
 /**Idle**/
-.stn-status-I {
-    background-color: yellow;
-    color: #000;
+.stn-status-I, .stn-status-I * {
+    background-color: yellow!important;
+    color: #000!important;
 }
 /**Stop**/
-.stn-status-S {
-    background-color: gray;
-    color: #fff;
+.stn-status-S, .stn-status-S * {
+    background-color: gray!important;
+    color: #fff!important;
 }
 /**Run**/
-.stn-status-R {
-    background-color: green;
-    color: #fff;
+.stn-status-R, .stn-status-R *  {
+    background-color: green!important;
+    color: #fff!important;
 }
 /**Debug**/
-.stn-status-D {
-    background-color: brown;
-    color: #fff;
+.stn-status-D, .stn-status-D * {
+    background-color: brown!important;
+    color: #fff!important;
 }
 /**Maintain**/
-.stn-status-M {
-    background-color: brown;
-    color: #fff;
+.stn-status-M, .stn-status-M * {
+    background-color: brown!important;
+    color: #fff!important;
 }
 /**Other**/
 .stn-status-O {
 }
 /**Fault**/
-.stn-status-F {
-    background-color: red;
-    color: #fff;
+.stn-status-F, .stn-status-F * {
+    background-color: red!important;
+    color: #fff!important;
 }
 
     .stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {

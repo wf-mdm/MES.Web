@@ -13,8 +13,10 @@ namespace MES.Web.Models
     public class LoginModel
     {
         [Display(Name = "登录到")]
-        [Required]
         public String AppId { get; set; }
+
+        public String ReturnUrl { get; set; }
+
         /// <summary>
         /// 用户名
         /// </summary>

@@ -49,11 +49,11 @@ namespace MES.Web.Controllers
             }
         }
 
-        private ActionResult RedirectToLocal(string returnUrl, LoginModel m)
+        private ActionResult RedirectToLocal(LoginModel m)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (Url.IsLocalUrl(m.ReturnUrl))
             {
-                return Redirect(returnUrl);
+                return Redirect(m.ReturnUrl);
             }
             return RedirectToAction("Index", m.AppId);
         }
@@ -73,16 +73,18 @@ namespace MES.Web.Controllers
 
         // GET: Session
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(LoginModel model)
         {
+            if ("/app/Admin".Equals(model.ReturnUrl, StringComparison.OrdinalIgnoreCase))
+                model.ReturnUrl = null;
             InitApps(null);
-            return View();
+            return View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(LoginModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginModel model)
         {
             InitApps(model);
             if (!ModelState.IsValid)
@@ -94,7 +96,7 @@ namespace MES.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl, model);
+                    return RedirectToLocal(model);
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "用户名或者密码错误。");

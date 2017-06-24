@@ -83,15 +83,21 @@
         </table>
     </script>
     <script type="text/plain" id="temp-sop-img">
+        {{#if SOPINFO}}
         {{#each SOPINFO}}
         {{#eq @index 1}}
         <div class="item active">
-            {{else}}
-            <div class="item">
-                {{/eq}}
-                <img class="img-responsive pad" src="{{SOPURL}}" />
+        {{else}}
+        <div class="item">
+            {{/eq}}
+            <img class="img-responsive pad" src="{{SOPURL}}" alt="{{SOPURL}}"/>
+        </div>
+        {{/each}}
+        {{else}}
+            <div class="callout callout-info" style="margin:10px 0 200px;">
+                <p>没有相关SOP信息</p>
             </div>
-            {{/each}}
+        {{/if}}
     </script>
     <script type="text/plain" id="temp-wo-list">
         {{#each WOLIST}}

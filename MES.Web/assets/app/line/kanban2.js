@@ -13,8 +13,10 @@
 
 Line.Kanban2 = {
     init: function (line) {
-        $("#line-main").attr({ class: "" });
+        this.height = $("#line-main").attr({ class: "" }).height();
+        $("#line-main").css({ "max-height": this.height, "overflow":"hidden" });
         Line.onUpdate = this.show2;
+        this.stnPos = 0;
     },
 
     show: function () {
@@ -86,8 +88,12 @@ Line.Kanban2 = {
         ];
         // Stn List
         for (var i = 0; i < Line.Status.STINFO.length; i++) {
+            Line.Status.STINFO[i].show = i >= this.stnPos;
             data.Stns.push(Line.Status.STINFO[i]);
         }
+        this.stnPos += 5;
+        if (this.stnPos > Line.Status.STINFO.length - 5)
+            this.stnPos = 0;
 
         // chart2
         this.chart1.series[0].data[0].value = Line.Status.LINEINFO[0].ISUM;
