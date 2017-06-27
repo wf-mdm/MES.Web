@@ -196,6 +196,9 @@ section.line-admin {
 #stn-sop {
     padding-left: 0;
 }
+#stn-sop div.box{
+    overflow:hidden;
+}
 
 /**Idle**/
 .stn-status-I, .stn-status-I * {

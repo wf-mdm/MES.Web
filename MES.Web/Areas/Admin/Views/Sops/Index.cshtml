@@ -116,7 +116,7 @@
                 for (var i in rs.Data) {
                     imgs.push(rs.Data[i])
                 }
-                $("#sop-preview").html($tempPreview(imgs));
+                $("#sop-preview").html($tempPreview(imgs)).find(".item:eq(0)").addClass("active");
             });
         }
         window.onload = function () {
@@ -136,7 +136,7 @@
     <div id="stn-sop-img" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             {{#each this}}
-            <div class="active item">
+            <div class="item">
                 <img class="img-responsive pad" src="{{this}}" />
             </div>
             {{/each}}

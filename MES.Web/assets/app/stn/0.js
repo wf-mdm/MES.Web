@@ -55,7 +55,7 @@
             $main = $("#stn-content"),
             $content = $("#stn-main-content");
         if (txt) $content.html(txt);
-        $stnSop.find(">.box").css({ "min-height": $main.height() - 33 });
+        $stnSop.find(">.box").css({ "max-height": $main.height() - 33 });
         $stnMain.find(">.box").css({ "min-height": $main.height() - 33 });
         if (hideSop) {
             $stnSop.hide();

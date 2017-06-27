@@ -19,6 +19,7 @@ Stn.Cstart = {
                 $this.resetScans();
                 $this.updateScans();
             });
+            $this.show2();
         });
     },
     show2: function () {
@@ -52,6 +53,10 @@ Stn.Cstart = {
         if (!bc) return;
         $bc.focus().val("");
         this.IDS[this.index].bc = bc;
+        var args = {};
+        args[this.IDS[this.index].name] = this.IDS[this.index].bc;
+        Stn.run("SENDSID", bc, args);
+
         for (var i = 0; i < this.IDS.length; i++)
             if (!this.IDS[i].bc) break;
         this.index = parseInt(i);

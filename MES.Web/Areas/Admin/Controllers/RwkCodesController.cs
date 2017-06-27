@@ -85,6 +85,9 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.SubTitle = "新建";
             if (ModelState.IsValid)
             {
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.LINENAME)) eNG_RWKSCRCODE.LINENAME = "ALL";
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.FROMOP)) eNG_RWKSCRCODE.FROMOP = "ALL";
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.DEFAULTOOP)) eNG_RWKSCRCODE.DEFAULTOOP = "ALL";
                 db.ENG_RWKSCRCODE.Add(eNG_RWKSCRCODE);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -123,6 +126,9 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.SubTitle = "编辑";
             if (ModelState.IsValid)
             {
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.LINENAME)) eNG_RWKSCRCODE.LINENAME = "ALL";
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.FROMOP)) eNG_RWKSCRCODE.FROMOP = "ALL";
+                if (String.IsNullOrEmpty(eNG_RWKSCRCODE.DEFAULTOOP)) eNG_RWKSCRCODE.DEFAULTOOP = "ALL";
                 db.Entry(eNG_RWKSCRCODE).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

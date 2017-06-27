@@ -6,13 +6,13 @@ using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MES.Web.Controllers
 {
-    [Authorize]
     public class SessionController : Controller
     {
         private MESSignInManager _signInManager;
@@ -71,11 +71,12 @@ namespace MES.Web.Controllers
             ViewBag.AppList = sl;
         }
 
+        static Regex DEFAULT_URL = new Regex("^/app/Admin/?$", RegexOptions.IgnoreCase);
         // GET: Session
         [AllowAnonymous]
         public ActionResult Index(LoginModel model)
         {
-            if ("/app/Admin".Equals(model.ReturnUrl, StringComparison.OrdinalIgnoreCase))
+            if (!String.IsNullOrEmpty(model.ReturnUrl) && DEFAULT_URL.IsMatch(model.ReturnUrl))
                 model.ReturnUrl = null;
             InitApps(null);
             return View(model);
@@ -83,7 +84,6 @@ namespace MES.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
             InitApps(model);

@@ -22,11 +22,11 @@ namespace MES.Web.Areas.Admin.Models
         public string DESCRIPTION { get; set; }
 
         [StringLength(20)]
-        [Required, Display(Name = "产线")]
+        [Display(Name = "产线")]
         public string LINENAME { get; set; }
 
         [StringLength(10)]
-        [Required, Display(Name = "返工到")]
+        [Display(Name = "返工到")]
         public string DEFAULTOOP { get; set; }
 
         [StringLength(10)]

@@ -25,5 +25,6 @@
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' // optional
     });
-    $("input.datetime").datetimepicker({ language: "zh-CN", autoclose: true, todayBtn: "linked", todayHighlight: true, keyboardNavigation: true, forceParse: true });
+    $("input.datetime").attr("readonly", "readonly")
+        .datetimepicker({ language: "zh-CN", autoclose: true, todayBtn: "linked", todayHighlight: true, keyboardNavigation: true, forceParse: true });
 });
