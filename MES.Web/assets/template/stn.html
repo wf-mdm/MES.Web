@@ -17,17 +17,37 @@
             </p>
         </div>
         {{/if}}
+    </script>
+    <script type="text/plain" id="temp-stn-status">
+        <div class="box-header with-border">
+            <h3 class="box-title">工站日志</h3>
+        </div>
+        <div class="box-body" id="log-list">
+            <table class="table compact">
+                <colgroup>
+                    <col width="150" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    {{#each Status.LOGTAB}}
+                    <tr class="log-{{LEVEL}}">
+                        <td>{{dt CTIME}}</td>
+                        <td>{{CONTENT}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
         {{#if Status.PROCINFO}}
         <div class="box-header with-border">
             <h3 class="box-title">工艺信息</h3>
         </div>
-        <div class="row box-body">
+        <div class="row box-body stn-proc">
             {{#each Status.PROCINFO}}
             <div class="col-sm-3">
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3>{{PARAMVAL}}</h3>
-                        <p>{{PARAMNAME}}</p>
+                <div class="box box-solid bg-aqua">
+                    <div class="box-body">
+                        <p>{{PARAMNAME}}: <strong>{{PARAMVAL}}</strong></p>
                     </div>
                 </div>
             </div>
@@ -66,38 +86,22 @@
         </div>
         {{/if}}
     </script>
-    <script type="text/plain" id="temp-log-list">
-        <table class="table compact">
-            <colgroup>
-                <col width="150" />
-                <col />
-            </colgroup>
-            <tbody>
-                {{#each Status.LOGTAB}}
-                <tr class="log-{{LEVEL}}">
-                    <td>{{dt CTIME}}</td>
-                    <td>{{CONTENT}}</td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </script>
     <script type="text/plain" id="temp-sop-img">
         {{#if SOPINFO}}
         {{#each SOPINFO}}
         {{#eq @index 1}}
         <div class="item active">
-        {{else}}
-        <div class="item">
-            {{/eq}}
-            <img class="img-responsive pad" src="{{SOPURL}}" alt="{{SOPURL}}"/>
-        </div>
-        {{/each}}
-        {{else}}
+            {{else}}
+            <div class="item">
+                {{/eq}}
+                <img class="img-responsive pad" src="{{SOPURL}}" alt="{{SOPURL}}" />
+            </div>
+            {{/each}}
+            {{else}}
             <div class="callout callout-info" style="margin:10px 0 200px;">
                 <p>没有相关SOP信息</p>
             </div>
-        {{/if}}
+            {{/if}}
     </script>
     <script type="text/plain" id="temp-wo-list">
         {{#each WOLIST}}
@@ -148,9 +152,9 @@
         {{#each IDS}}
         {{#eq @index ../Idx}}
         <tr class="active" data-idx="{{@index}}">
-        {{else}}
+            {{else}}
         <tr data-idx="{{@index}}">
-        {{/eq}}
+            {{/eq}}
             <td>{{@index}}</td>
             <td>{{bc}}</td>
             <td>{{name}}</td>

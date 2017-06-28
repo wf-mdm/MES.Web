@@ -80,12 +80,18 @@ section.line-admin {
 }
 
 .box.box-solid.box-primary {
-    border: 1px solid #3c8dbc;
+    border-radius: 0;
+    border: 1px solid #d2d6de;
 }
 
     .box.box-solid.box-primary .box-header {
-        color: #fff;
-        background-color: #3c8dbc;
+        color: #000;
+        background-color: #d2d6de;
+    }
+
+    .box .box-header .box-title{
+        font-size: 100%;
+        font-weight: bold;
     }
 
         .box.box-solid.box-primary .box-header a {
@@ -134,7 +140,7 @@ section.line-admin {
         width: 100%;
     }
 
-        #line-main div.box-header, #line-main div.box-footer, #line-main div.log-list, #log-stn-wrap, #wh-content > .content > .box > .box-header, #wh-content > .content > .box > .box-footer {
+        #line-main div.box-header, #line-main div.box-footer, #line-main div.log-list, #stn-status-wrap, #wh-content > .content > .box > .box-header, #wh-content > .content > .box > .box-footer {
             flex-grow: 0;
             flex-shrink: 1;
             flex-basis: auto;
@@ -378,3 +384,7 @@ section.line-admin {
         #stn-status .sn-F:after {
             content: "禁止"
         }
+
+.stn-proc p {
+    font-size: 150%;
+}

@@ -1,5 +1,6 @@
 Stn.Mwait = {
     init: function () {
+        $("#stn-status-wrap>div:lt(4)").hide();
     },
     show: function () {
         var $this = this;
@@ -32,5 +33,6 @@ Stn.Mwait = {
             });
     },
     uninit: function () {
+        $("#stn-status-wrap>div:lt(4)").show();
     }
 };

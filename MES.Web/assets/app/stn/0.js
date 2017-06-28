@@ -93,7 +93,6 @@
             Stn.Status.Error = e;
         }).always(function () {
             timeid = setTimeout(Stn.updateStatus, UPDATE_INTERVAL);
-            Stn.updateLogs();
             Stn.updateStnInfo();
             if (Stn.onUpdate) Stn.onUpdate.apply(curFeature);
         });
@@ -140,14 +139,12 @@
         });
     };
 
-    Stn.updateLogs = function () {
-        this.loadTemp("temp-log-list", function ($temp) {
-            $("#log-list").html($temp(Stn));
-        });
-    };
     Stn.updateStnInfo = function () {
         $("header.main-header").attr("class", "main-header stn-status-" + Stn.Status.STINFO[0].STATUS);
         $("header .extinfo").html(Stn.Status.STINFO[0].SN);
+        this.loadTemp("temp-stn-status", function ($temp) {
+            $("#stn-status-wrap").html($temp(Stn));
+        });
     };
 
     function getClient() {
