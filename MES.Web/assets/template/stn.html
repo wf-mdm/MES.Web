@@ -63,7 +63,7 @@
                 <thead>
                     <tr>
                         <th>料号</th>
-                        <th>描述</th>
+                        <th width="40%">描述</th>
                         <th>在线余数</th>
                         <th>请求数</th>
                         <th>给料数</th>
@@ -105,7 +105,7 @@
     </script>
     <script type="text/plain" id="temp-wo-list">
         {{#each WOLIST}}
-        <li><a href="#" data-woid="{{WOID}}">{{WOID}}</a></li>
+        <li><a href="#" data-woid="{{WOID}}">{{WOID}}: {{PARTNO}} - {{DESCRIPTION}}</a></li>
         {{/each}}
     </script>
     <script type="text/plain" id="temp-cstart">

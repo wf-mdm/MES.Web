@@ -321,6 +321,10 @@ section.line-admin {
     }
     #stn-status tbody td {
         background-color: lightgray;
+        height: 60px;
+        max-width: 350px;
+        overflow:hidden;
+        text-overflow: ellipsis;
     }
 
     #stn-status .opr-0 {

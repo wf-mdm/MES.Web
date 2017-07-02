@@ -1,7 +1,9 @@
 ﻿WH.Kanban = {
     UpdateId: 0,
     INTERVAL: 1000 * 60,
+    ActiveData: undefined,
     init: function () {
+        WH.onUpdae = this.show2;
     },
 
     show: function () {
@@ -57,13 +59,17 @@
         $row.addClass("active").siblings().removeClass("active");
         var pn = $row.find("td:eq(4)").text(),
             whno = $row.find("td:eq(0)").text(),
+            op = $row.find("td:eq(2)").text(),
             locno = $row.find("td:eq(2)").text(),
-            args = { pn: pn, locno: locno, whno: whno, isno: this.ActiveId, rcpno: this.ActiveId, linename: whno },
+            args = { pn: pn, locno: locno, whno: whno, isno: this.ActiveId, rcpno: this.ActiveId, linename: whno, op: op },
             $form = $("#wh-form");
 
         for (var i in args) {
             $form.find("input[name=" + i + "]").val(args[i]);
         }
+
+        this.ActiveData = args;
+        this.updateLog();
     },
     mwaitClear: function ($row) {
         var $this = this,
@@ -80,8 +86,25 @@
             dataType: "json"
         }).always(function (rs) {
             $this.show2();
+            $this.updateLog();
         });
 
+    },
+
+    updateLog: function () {
+        if (!this.ActiveData) return;
+
+        $.ajax({
+            type: "POST",
+            url: "/api/Cmd/RunDb",
+            data: JSON.stringify({ Server: "WMS1", Client: this.ActiveData.linename + ";" + this.ActiveData.op, Entity: "", Cmd: "LOADLOG", Args: {} }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).then(function (rs) {
+            WH.loadTemp("temp-log-list", function ($temp) {
+                $("#log-list").html($temp(rs));
+            });
+        });
     },
 
     feedlot: function ($form) {
@@ -105,10 +128,12 @@
 
         }).always(function () {
             $this.show2();
+            $this.updateLog();
         });
     },
 
     uninit: function () {
+        delete WH.onUpdae;
         if ($this.UpdateId) clearTimeout($this.UpdateId);
     }
 };

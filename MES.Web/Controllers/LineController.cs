@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MES.Web.Controllers
 {
@@ -50,15 +51,14 @@ namespace MES.Web.Controllers
 
             if (null != ds)
             {
-                ViewBag.Features = ds.Tables["APP_MASTDATA"].Rows;
-                StringBuilder sb = new StringBuilder();
-                foreach (var r in ViewBag.Features)
+                Dictionary<String, String> Features = new Dictionary<string, string>();
+                foreach (DataRow r in ds.Tables["APP_MASTDATA"].Rows)
                 {
-                    sb.Append("#");
-                    sb.Append(r["APP_ID"]);
+                    Dictionary<string, string> f = new Dictionary<string, string>();
+                    Features[(String)r["APP_ID"]] = (String)r["APP_DESCRIPTION"];
                 }
-                sb.Append("#");
-                ViewBag.FeatureStr = sb.ToString();
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                ViewBag.Features = jss.Serialize(Features);
             }
             ViewBag.User = User.Identity.Name;
 

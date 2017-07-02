@@ -9,7 +9,7 @@
                     <tr>
                         <th>生产线</th>
                         <th>请求序号</th>
-                        <th>图标（工序）</th>
+                        <th>工序</th>
                         <th>工单号</th>
                         <th>料号 / 名称</th>
                         <th>请求数量</th>
@@ -35,6 +35,7 @@
                 <input type="hidden" name="isno" />
                 <input type="hidden" name="rcpno" />
                 <input type="hidden" name="linename" />
+                <input type="hidden" name="op" />
                 <div class="form-group">
                     <label>数量</label>
                     <input type="text" name="qty" class="form-control" placeholder="数量" />
@@ -46,7 +47,29 @@
                 <button type="submit" class="btn btn-primary btn">提交</button>
             </form>
         </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
     </script>
+    <script type="text/plain" id="temp-log-list">
+        <table class="table compact">
+            <colgroup>
+                <col width="150px" />
+                <col />
+            </colgroup>
+            <tbody>
+                {{#each LOGTAB}}
+                <tr class="log-{{LEVEL}}">
+                    <td>{{dt CTIME}}</td>
+                    <td>{{CONTENT}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+
     <script type="text/plain" id="temp-mwait-list">
         {{#each MRQTB}}
         {{#eq REC_ID ../ActiveId}}

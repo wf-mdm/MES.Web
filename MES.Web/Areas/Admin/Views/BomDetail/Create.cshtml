@@ -42,7 +42,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.L_OPNO, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.L_OPNO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.L_OPNO, null, "-- 请选择 -- ", new { @class = "form-control select2" })
                     </div>
                     <div class="col-md-5 error-msg">
 
@@ -137,7 +137,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="提交" class="btn btn-primary" />
-                        @Html.ActionLink("取消", String.Format("Index/{0}_{1}", Model.PARTNO, Model.PARTVER), null, new { @class = "btn btn-info" })
+                        @Html.ActionLink("取消", String.Format("Index"), null, new { @class = "btn btn-info" })
                     </div>
                 </div>
             </div>

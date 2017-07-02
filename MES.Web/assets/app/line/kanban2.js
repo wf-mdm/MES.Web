@@ -13,9 +13,11 @@
 
 Line.Kanban2 = {
     init: function (line) {
+        if (this.intervalId) clearInterval(this.intervalId);
         this.height = $("#line-main").attr({ class: "" }).height();
-        $("#line-main").css({ "max-height": this.height, "overflow":"hidden" });
+        $("#line-main").css({ "max-height": this.height, "overflow": "hidden" });
         Line.onUpdate = this.show2;
+        this.stnStep = Math.floor((this.height - 53 - 130 - 40) / 60);
         this.stnPos = 0;
     },
 
@@ -50,7 +52,7 @@ Line.Kanban2 = {
                 labelLine: { normal: { show: false } },
                 data: [
                     { value: 90, name: '良品', itemStyle: { normal: { color: "green" } } },
-                    { value: 10, name: '不良品', itemStyle: { normal: { color: "red" } } } ]
+                    { value: 10, name: '不良品', itemStyle: { normal: { color: "red" } } }]
             }
             ]
         };
@@ -59,41 +61,31 @@ Line.Kanban2 = {
             $this.echart1 = echarts.init($("#line-chart>div")[0]);
             $this.echart2 = echarts.init($("#line-chart>div")[1]);
             $this.show2();
+            $this.intervalId = setInterval(function () {
+                $this.updateStnList(true);
+            }, 5000);
         });
     },
 
     show2: function () {
         if (!this.echart2) return;
-        var $this = this,
-            data = $this.prepare();
-        Line.loadTemp("temp-kanban2-line", function ($temp) {
-            $("#line-status").html($temp(data));
-        });
-        Line.loadTemp("temp-kanban2-stns", function ($temp) {
-            $("#stn-status tbody").html($temp(data));
-        });
-        $this.echart1.setOption($this.chart1);
-        $this.echart2.setOption($this.chart2);
+        this.updateSummary();
+        this.updateStnList();
     },
-    prepare: function () {
-        var data = { Stns: [], Proc: [] };
+    updateSummary: function () {
         if (!(Line.Status && Line.Status.LINEINFO))
             return;
         // Summary
-        data.Line = [
+        var data = [
             { n: "投入数", v: Line.Status.LINEINFO[0].ISUM },
             { n: "产出数", v: Line.Status.LINEINFO[0].OSUM },
             { n: "不良数", v: Line.Status.LINEINFO[0].NGSUM },
             { n: "不良率", v: Line.Status.LINEINFO[0].NGRATE + "%" },
         ];
-        // Stn List
-        for (var i = 0; i < Line.Status.STINFO.length; i++) {
-            Line.Status.STINFO[i].show = i >= this.stnPos;
-            data.Stns.push(Line.Status.STINFO[i]);
-        }
-        this.stnPos += 5;
-        if (this.stnPos > Line.Status.STINFO.length - 5)
-            this.stnPos = 0;
+
+        Line.loadTemp("temp-kanban2-line", function ($temp) {
+            $("#line-status").html($temp(data));
+        });
 
         // chart2
         this.chart1.series[0].data[0].value = Line.Status.LINEINFO[0].ISUM;
@@ -101,10 +93,31 @@ Line.Kanban2 = {
 
         this.chart2.series[0].data[0].value = Line.Status.LINEINFO[0].ISUM - Line.Status.LINEINFO[0].NGSUM;
         this.chart2.series[0].data[1].value = Line.Status.LINEINFO[0].NGSUM;
-        return data;
+
+        this.echart1.setOption(this.chart1);
+        this.echart2.setOption(this.chart2);
+    },
+
+    updateStnList: function (next) {
+        var data = [];
+        if (!(Line.Status && Line.Status.LINEINFO))
+            return;
+        // Stn List
+        for (var i = this.stnPos; i < Line.Status.STINFO.length && i < this.stnPos + this.stnStep; i++) {
+            data.push(Line.Status.STINFO[i]);
+        }
+        Line.loadTemp("temp-kanban2-stns", function ($temp) {
+            $("#stn-status tbody").html($temp(data));
+        });
+        if (next) {
+            this.stnPos += this.stnStep;
+            if (this.stnPos > Line.Status.STINFO.length)
+                this.stnPos = 0;
+        }
     },
 
     uninit: function () {
+        if (this.intervalId) clearInterval(this.intervalId);
         delete Line.onUpdate;
         $("#line-main").attr({ class: "box box-primary box-solid" });
     }

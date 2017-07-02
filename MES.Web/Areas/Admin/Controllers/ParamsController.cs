@@ -83,11 +83,12 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Params/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
 
+            await InitSelect("");
             return View();
         }
 
@@ -108,7 +109,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            await InitSelect("");
+            await InitSelect(eNG_LINEOPPARAMCONF.LINENAME);
             return View(eNG_LINEOPPARAMCONF);
         }
 

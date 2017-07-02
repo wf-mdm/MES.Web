@@ -38,6 +38,11 @@ namespace MES.Web.Areas.Admin.Controllers
                 Text = e.LINEGRP,
                 Value = e.LINEGRP
             }).Distinct().ToListAsync();
+            ViewBag.L_OPNO = await db.ENG_LINEOP.Select(e => new SelectListItem()
+            {
+                Text = e.L_OPNO,
+                Value = e.L_OPNO
+            }).Distinct().ToListAsync();
             ViewBag.SEMILINEGRP = new SelectList(grps, "Value", "Text", GRP);
             ViewBag.SERIALCONTROL = new SelectList(SERIALCONTROL_LIST, "Value", "Text", SERIALCONTROL);
         }

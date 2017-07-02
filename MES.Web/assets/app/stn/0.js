@@ -12,7 +12,7 @@
     }
 
     Stn.switch = function (appid) {
-        //if (Stn.info.features.indexOf("#" + appid + "#") == -1) return;
+        //if (!Stn.info.features[appid]) return;
 
         var f = Stn[appid];
         if (f === curFeature) return;
@@ -55,7 +55,7 @@
             $main = $("#stn-content"),
             $content = $("#stn-main-content");
         if (txt) $content.html(txt);
-        $stnSop.find(">.box").css({ "max-height": $main.height() - 33 });
+        $stnSop.find(">.box").css({ "min-height": $main.height() - 33 });
         $stnMain.find(">.box").css({ "min-height": $main.height() - 33 });
         if (hideSop) {
             $stnSop.hide();
@@ -81,8 +81,8 @@
         }
     };
 
+    var timeid;
     Stn.updateStatus = function () {
-        var timeid;
         if (timeid) clearTimeout(timeid);
 
         return Stn.runDb("GETSTNINFO", "", "", function (rs) {
@@ -98,13 +98,16 @@
         });
     };
 
-    var curWo;
     function updateCurWo() {
-        if (Stn.Status && Stn.Status.STINFO) {
-            if (Stn.Status.STINFO[0].WOID != curWo) {
-                $("#stn-sop .box-title").html("工单: " + Stn.Status.STINFO[0].WOID);
+        if (Stn.Status && Stn.WOLIST) {
+            var tmp = Stn.Status.STINFO[0].WOID;
+            for (var i in Stn.WOLIST.WOLIST) {
+                if (tmp == Stn.WOLIST.WOLIST[i].WOID) {
+                    tmp = Stn.WOLIST.WOLIST[i].WOID + " :" + Stn.WOLIST.WOLIST[i].PARTNO + " - " + Stn.WOLIST.WOLIST[i].DESCRIPTION
+                    break;
+                }
             }
-            curWo = Stn.Status.STINFO[0].WOID;
+            $("#stn-sop .box-title").html("工单: " + tmp);
         }
     }
 
@@ -127,6 +130,7 @@
         $("#stn-sop .box-header .box-title").html(woid ? "工单: " + woid : "无工单");
 
         return Stn.runDb("GETSTNWOS", "", {}, function (rs) {
+            Stn.WOLIST = rs;
             Stn.loadTemp("temp-sop-img", function ($temp) {
                 $("#stn-sop-img div.carousel-inner").html($temp(rs)).find("img").dblclick(function () {
                     window.open(this.src);
@@ -199,9 +203,9 @@
         return new Handlebars.SafeString(d ? new Date(d).Format("yyyy-MM-dd hh:mm:ss") : "");
     });
     Stn.loadTemp("", function () {
-        Stn.updateStatus().then(function () {
-            Stn.updateSop();
+        Stn.updateSop().then(function () {
+            Stn.updateStatus();
+            routie("*", doSwitch);
         });
-        routie("*", doSwitch);
     });
 });

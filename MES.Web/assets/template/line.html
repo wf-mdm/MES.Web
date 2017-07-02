@@ -26,14 +26,13 @@
         </div>
     </script>
     <script type="text/plain" id="temp-kanban2-line">
-        {{#each Line}}
+        {{#each this}}
         <span class="label">{{n}}</span>
         <span class="value">{{v}}</span>
         {{/each}}
     </script>
     <script type="text/plain" id="temp-kanban2-stns">
-        {{#each Stns}}
-        {{#if show}}
+        {{#each this}}
         <tr>
             <th>{{L_STNO}}</th>
             {{#if OPRLST}}
@@ -47,7 +46,6 @@
             <td>{{SN}}</td>
             <td class="sn-{{SN_STAT}}"></td>
         </tr>
-        {{/if}}
         {{/each}}
     </script>
     <script type="text/plain" id="temp-kanban-tooltip">
@@ -468,7 +466,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">返工到</label>
-                    <select name="wo" class="form-control select2">
+                    <select name="op" class="form-control select2">
                         <option value="">-- 请选择 --</option>
                         {{#each Ops}}
                         <option value="{{Op}}">{{Op}} -- {{Name}}</option>

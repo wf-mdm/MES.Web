@@ -93,7 +93,7 @@
                 user:"@ViewBag.User",
                 name: "@Html.DisplayFor(model => model.Name)",
                 disp: "@Html.DisplayFor(model => model.DispName)",
-                features:"@ViewBag.FeatureStr",
+                features: @Html.Raw(ViewBag.Features),
                 app: "@Url.Content("~/")"
             },
             Status: {}

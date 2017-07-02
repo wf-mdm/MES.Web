@@ -1,5 +1,5 @@
 $(function () {
-    var curFeature = undefined,
+    var curFeature,
         UPDATE_INTERVAL = 1000 * 30,
         $templates;
 
@@ -12,7 +12,7 @@ $(function () {
     }
 
     WH.switch = function (appid) {
-        //if (WH.info.features.indexOf("#" + appid + "#") == -1) return;
+        if (!WH.info.features[appid]) return;
 
         var f = WH[appid];
         if (f === curFeature) return;
@@ -115,6 +115,7 @@ $(function () {
     Handlebars.registerHelper("dt", function (d) {
         return new Handlebars.SafeString(d ? new Date(d).Format("yyyy-MM-dd hh:mm:ss") : "");
     });
-    WH.loadTemp("");
-    routie("*", doSwitch);
+    WH.loadTemp("", function () {
+        routie("*", doSwitch);
+    });
 });

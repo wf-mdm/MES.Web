@@ -12,7 +12,7 @@ $(function () {
     }
 
     Line.switch = function (appid) {
-        //if (Line.info.features.indexOf("#" + appid + "#") == -1) return;
+        if (!Line.info.features[appid]) return;
 
         var f = Line[appid];
         if (f === curFeature) return;

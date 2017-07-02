@@ -50,12 +50,16 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/OprRoles/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
 
             ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "Name");
+            ViewBag.ROLEID = new SelectList(await db.HR_PERMISSIONS.Select(
+                e => new SelectListItem() { Value = e.USERID }).Distinct().Where(
+                e => null == db.HR_OPERATORS.FirstOrDefault(o => o.OPERID.Equals(e.Value))
+            ).ToListAsync(), "Value", "Value");
             return View();
         }
 
@@ -76,6 +80,10 @@ namespace MES.Web.Areas.Admin.Controllers
             }
 
             ViewBag.USERID = new SelectList(db.HR_OPERATORS, "OPERID", "Name", hR_ROLES.USERID);
+            ViewBag.ROLEID = new SelectList(await db.HR_PERMISSIONS.Select(
+                e => new SelectListItem() { Value = e.USERID }).Distinct().Where(
+                e => null == db.HR_OPERATORS.FirstOrDefault(o => o.OPERID.Equals(e.Value))
+            ).ToListAsync(), "Value", "Value", hR_ROLES.ROLEID);
             return View(hR_ROLES);
         }
 
