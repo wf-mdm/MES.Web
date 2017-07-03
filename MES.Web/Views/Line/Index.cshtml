@@ -56,7 +56,7 @@
                                     {
                                         if (r["APP_ID"].Equals(r1["parent_id"]))
                                         {
-                                            <li><a href="#@r1["APP_ID"]"><i class="fa fa-circle-o"></i>@r1["APP_DESCRIPTION"]</a></li>
+                                            <li><a href="@r1["APP_PATH"]"><i class="fa fa-circle-o"></i>@r1["APP_DESCRIPTION"]</a></li>
                                         }
                                     }
                                 </ul>
@@ -93,7 +93,7 @@
                 user:"@ViewBag.User",
                 name: "@Html.DisplayFor(model => model.Name)",
                 disp: "@Html.DisplayFor(model => model.DispName)",
-                features: @Html.Raw(ViewBag.Features),
+                features: @Html.Raw(ViewBag.FeatureStr),
                 app: "@Url.Content("~/")"
             },
             Status: {}

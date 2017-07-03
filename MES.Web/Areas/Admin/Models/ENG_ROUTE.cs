@@ -17,7 +17,7 @@ namespace MES.Web.Areas.Admin.Models
         [Key]
         [Column(Order = 1, TypeName = "numeric")]
         [Required, Display(Name = "Ë³Ðò")]
-        public decimal SEQNO { get; set; }
+        public Int32 SEQNO { get; set; }
 
         [StringLength(20)]
         [Required, Display(Name = "²úÏß´úÂë")]

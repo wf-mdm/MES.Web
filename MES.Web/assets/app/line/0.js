@@ -12,7 +12,16 @@ $(function () {
     }
 
     Line.switch = function (appid) {
-        if (!Line.info.features[appid]) return;
+        var found = "Kanban" == appid, path = "#" + appid;
+        if (!found) {
+            for (var i in Line.info.features) {
+                if (path == Line.info.features[i].p) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) return;
+        }
 
         var f = Line[appid];
         if (f === curFeature) return;

@@ -205,11 +205,11 @@ section.line-admin {
 #stn-sop div.box{
     overflow:hidden;
 }
-
+#stn-sop-img img{width: 100%;}
 /**Idle**/
 .stn-status-I, .stn-status-I * {
-    background-color: yellow!important;
-    color: #000!important;
+    background-color: yellow !important;
+    color: #000 !important;
 }
 /**Stop**/
 .stn-status-S, .stn-status-S * {

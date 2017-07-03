@@ -35,5 +35,7 @@ namespace MES.Web.Areas.Admin.Models
         [StringLength(12)]
         [Required, Display(Name = "ฒ๚ฯ฿ื้")]
         public string LINEGRP { get; set; }
+
+        public string LINETYPE{ get; set; }
     }
 }

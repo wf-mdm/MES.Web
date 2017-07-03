@@ -37,14 +37,14 @@ namespace MES.Web.Controllers
 
             if (null != ds)
             {
-                Dictionary<String, String> Features = new Dictionary<string, string>();
+                ViewBag.Features = ds.Tables["APP_MASTDATA"].Rows;
+                Dictionary<object, object> Features = new Dictionary<object, object>();
                 foreach (DataRow r in ds.Tables["APP_MASTDATA"].Rows)
                 {
-                    Dictionary<string, string> f = new Dictionary<string, string>();
-                    Features[(String)r["APP_ID"]] = (String)r["APP_DESCRIPTION"];
+                    Features[r["APP_ID"]] = new { p = r["APP_PATH"], n = r["APP_DESCRIPTION"] };
                 }
                 JavaScriptSerializer jss = new JavaScriptSerializer();
-                ViewBag.Features = jss.Serialize(Features);
+                ViewBag.FeatureStr = jss.Serialize(Features);
             }
             ViewBag.User = User.Identity.Name;
             return View();

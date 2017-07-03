@@ -482,4 +482,62 @@
         <div class="box-body log-list" id="log-list">
         </div>
     </script>
+
+    <script type="text/plain" id="temp-binding">
+        <div class="box-header">
+            <h3 class="box-title">返工 - 解绑</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <button class="btn btn-primary btn-block">查询</button>
+            </form>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">子件清单</h3>
+        </div>
+        <div class="box-body" id="comps-list">
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+    <script type="text/plain" id="temp-binding-comps">
+        {{#if Data}}
+        <table class="table compact table-striped">
+            <thead>
+                <tr>
+                    <th width="50px"></th>
+                    <th>ID名称</th>
+                    <th>ID值</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each Data}}
+                <tr>
+                    <td><input type="checkbox" name="{{@key}}" value="{{this}}" /></td>
+                    <td>{{@key}}</td>
+                    <td>{{this}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <br />
+        <div class="line-form">
+            <button class="btn btn-warning btn-block">解绑</button>
+        </div>
+        {{else}}
+        <div class="callout callout-danger">
+            <p>没有找到绑定信息</p>
+        </div>
+        {{/if}}
+    </script>
 </div>

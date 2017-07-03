@@ -32,7 +32,7 @@ namespace MES.Web.Areas.Admin.Models
 
         [Column(TypeName = "numeric")]
         [Display(Name = "序号")]
-        public decimal? OPDEFAULTSEQ { get; set; }
+        public Int32? OPDEFAULTSEQ { get; set; }
 
         [Column(TypeName = "numeric")]
         [Display(Name = "标准小时产出")]

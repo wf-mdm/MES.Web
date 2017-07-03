@@ -16,7 +16,7 @@ namespace MES.Web.Areas.Admin.Models
 
         [Key]
         [Column(Order = 1, TypeName = "numeric")]
-        [Required, Display(Name = "流水码")]
+        [Display(Name = "流水码")]
         public decimal CONFID { get; set; }
 
         [StringLength(20)]

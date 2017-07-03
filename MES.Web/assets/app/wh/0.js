@@ -12,7 +12,16 @@ $(function () {
     }
 
     WH.switch = function (appid) {
-        if (!WH.info.features[appid]) return;
+        var found = "Kanban" == appid, path = "#" + appid;
+        if (!found) {
+            for (var i in WH.info.features) {
+                if (path == WH.info.features[i].p) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) return;
+        }
 
         var f = WH[appid];
         if (f === curFeature) return;

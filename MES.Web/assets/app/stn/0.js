@@ -12,8 +12,16 @@
     }
 
     Stn.switch = function (appid) {
-        //if (!Stn.info.features[appid]) return;
-
+        var found = "Kanban" == appid, path = "#" + appid;
+        if (!found) {
+            for (var i in Stn.info.features) {
+                if (path == Stn.info.features[i].p) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) return;
+        }
         var f = Stn[appid];
         if (f === curFeature) return;
         delete Stn.onUpdate;

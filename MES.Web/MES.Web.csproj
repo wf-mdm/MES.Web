@@ -233,6 +233,7 @@
     <Compile Include="Areas\Admin\Models\MESEnums.cs" />
     <Compile Include="Areas\Admin\Models\SopRequest.cs" />
     <Compile Include="Areas\Admin\Models\V_USERANDROLES.cs" />
+    <Compile Include="Areas\Rpt\Controllers\ProdController.cs" />
     <Compile Include="Areas\Rpt\Controllers\TraceabilityController.cs" />
     <Compile Include="Areas\Rpt\Models\RequestModels.cs" />
     <Compile Include="Areas\Rpt\RptAreaRegistration.cs" />
@@ -261,6 +262,7 @@
     <Content Include="assets\admin\base.js" />
     <Content Include="assets\app\line\0.js" />
     <Content Include="assets\app\line\kanban2.js" />
+    <Content Include="assets\app\line\Binding.js" />
     <Content Include="assets\app\line\Rwk.js" />
     <Content Include="assets\app\line\echarts.js" />
     <Content Include="assets\app\line\kanban.js" />
@@ -403,6 +405,7 @@
     <Content Include="Areas\Rpt\Views\web.config" />
     <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
     <Content Include="Areas\Rpt\Views\Shared\Rpt.cshtml" />
+    <Content Include="Areas\Rpt\Views\Prod\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.min.js" />
@@ -1290,6 +1293,7 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="assets\rpt\base.js" />
+    <Content Include="assets\rpt\echarts.js" />
     <Content Include="assets\template\wh.html" />
     <Content Include="assets\template\stn.html" />
     <Content Include="assets\template\line.html" />

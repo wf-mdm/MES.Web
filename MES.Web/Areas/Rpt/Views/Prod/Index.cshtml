@@ -1,0 +1,182 @@
+﻿@using System.Data
+@{
+    Layout = "~/Areas/Rpt/Views/Shared/Rpt.cshtml";
+}
+<div class="box data-list box-solid">
+    <form class="box-body form-horizontal" id="rpt-form">
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.Label("开始时间", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.Editor("dt1", new { htmlAttributes = new { @class = "form-control datetime" } })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="col-md-1">~</div>
+                <div class="col-md-8">
+                    @Html.Editor("dt2", new { htmlAttributes = new { @class = "form-control datetime" } })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.Label("料号", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("pns", (SelectList)ViewBag.pns, "-- ALL --", new { @class = "form-control select2" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.Label("生产线", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("ln", ((SelectList)ViewBag.ln), "-- ALL --", new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.Label("子生产线", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("subno", (SelectList)ViewBag.subno, "-- ALL --", new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                @Html.Label("工单", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("wos", (SelectList)ViewBag.wos, "-- ALL --", new { @class = "form-control select2" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.Label("统计方式", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("stype", ((SelectList)ViewBag.stype), "-- ALL --", new { @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="form-group col-offset-md-4 col-md-4">
+                <button class="btn btn-primary">查询</button>
+            </div>
+        </div>
+    </form>
+    <div class="box-body" id="rpt-progress" style="display:none;">
+        <div class="callout callout-info">
+            <p>正在查询</p>
+        </div>
+    </div>
+    <div class="box-body" id="rpt-empty" style="display:none;">
+        <div class="callout callout-warning">
+            <p>没有数据</p>
+        </div>
+    </div>
+    <div class="box-body" id="rpt-pn-chart">
+
+    </div>
+    <div class="box-body" id="rpt-unit-chart">
+
+    </div>
+</div>
+<script>
+    $(function () {
+        var $form = $("#rpt-form");
+
+        function getArgs() {
+            var datas = {}, tmp = $form.serializeArray();
+            for (var i in tmp)
+                datas[tmp[i].name] = tmp[i].value;
+            return datas;
+        }
+        // 日期变化后，更新pn和wo
+        $form.find("input.datetime").change(function () {
+            var args = getArgs();
+            $.post("./Prod/Pns", args, function (rs) {
+                for (var n in rs) {
+                    var $elem = $form.find("select[name=" + n + "]");
+                    if ($elem.length) {
+                        var tmp = "<option>-- ALL --</option>";
+                        for (var i in rs[n]) {
+                            tmp += "<option value=\"" + rs[n][i].Value + "\">" + rs[n][i].Text + "</option>";
+                        }
+                        $elem.html(tmp);
+                    }
+                }
+            });
+        });
+
+        // 查询
+        $form.submit(function (event) {
+            if (event) event.preventDefault();
+            var args = getArgs();
+            if (!(args.dt1 && args.dt2)) {
+                alert("请选择开始和结束时间");
+                return;
+            }
+            if (!args.stype) {
+                alert("请选择统计方式");
+                return;
+            }
+            for (var n in args) if (!args[n]) delete args[n];
+
+            $("#rpt-empty, #rpt-pn-chart, #rpt-unit-chart").hide();
+            $("#rpt-progress").show();
+
+            $.post("../../api/Cmd/RunDb", { Server: "MES", Cmd: "GETLPRDSUM", Args: args }, function (rs) {
+                $("#rpt-progress").hide();
+                if (rs.SUMBYPN && rs.SUMBYPN.length) {
+                    showSumByPn(rs);
+                    showSumByUnit(rs);
+                } else {
+                    $("#rpt-empty").show();
+                }
+            });
+        });
+        var ChartNames = { "OKQTY": "OK数", "NGQTY": "不良数", "IQTY": "投入数", "OQTY": "产出数" };
+        var pnChart;
+        function showSumByPn(d) {
+            if (!pnChart)
+                pnChart = echarts.init($("#rpt-pn-chart")[0]);
+            var options = {
+                legend: { data: [] },
+                xAxis: [{ type: 'category', data: [] }],
+                yAxis: [{ type: 'value' }],
+                series: []
+            }, seriesData = {};
+            for (var i in d.SUMBYPN) {
+                options.xAxis.data.push(d.SUMBYPN[i].PARTNO);
+                for (var n in ChartNames) {
+                    if (!seriesData[n])
+                        seriesData[n] = { name: ChartNames[n], type: "bar", datas: [] };
+                    seriesData[n].datas.push(d.SUMBYPN[i][n]);
+                }
+            }
+            for (var n in ChartNames) {
+                options.legend.data.push[ChartNames[n]];
+                options.series.push(seriesData[n]);
+            }
+            $("#rpt-pn-chart").show();
+            pnChart.setOption(options);
+        }
+        var unitChart;
+        function showSumByUnit(d) {
+            if (!unitChart)
+                unitChart = echarts.init($("#rpt-unit-chart")[0]);
+            var options = {
+                legend: { data: [] },
+                xAxis: [{ type: 'category', data: [] }],
+                yAxis: [{ type: 'value' }],
+                series: []
+            }, seriesData = {};
+            for (var i in d.SUMBYUNIT) {
+                options.xAxis.data.push(d.SUMBYUNIT[i].TIMENO);
+                for (var n in ChartNames) {
+                    if (!seriesData[n])
+                        seriesData[n] = { name: ChartNames[n], type: "bar", datas: [] };
+                    seriesData[n].datas.push(d.SUMBYUNIT[i][n]);
+                }
+            }
+            for (var n in ChartNames) {
+                options.legend.data.push[ChartNames[n]];
+                options.series.push(seriesData[n]);
+            }
+            $("#rpt-pn-chart").show();
+            unitChart.setOption(options);
+        }
+    });
+</script>
