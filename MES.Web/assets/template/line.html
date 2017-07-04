@@ -490,13 +490,17 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body line-form">
-            <form id="line-scan-form">
-                <div class="form-group">
-                    <label class="control-label">扫码</label>
-                    <input type="text" name="bc" class="form-control input-lg" />
+        <div class="box-footer line-form">
+            <form class="form-horizontal" id="line-scan-form">
+                <div class="row form-group">
+                    <label class="control-label col-sm-2">扫码</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="bc" class="form-control input-lg" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-lg btn-block">查询</button>
+                    </div>
                 </div>
-                <button class="btn btn-primary btn-block">查询</button>
             </form>
         </div>
         <div class="box-header with-border">
@@ -515,29 +519,87 @@
         <table class="table compact table-striped">
             <thead>
                 <tr>
-                    <th width="50px"></th>
                     <th>ID名称</th>
                     <th>ID值</th>
+                    <th width="150px">操作</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each Data}}
                 <tr>
-                    <td><input type="checkbox" name="{{@key}}" value="{{this}}" /></td>
                     <td>{{@key}}</td>
                     <td>{{this}}</td>
+                    <td><button class="btn btn-warning">解绑</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
-        <br />
-        <div class="line-form">
-            <button class="btn btn-warning btn-block">解绑</button>
-        </div>
         {{else}}
         <div class="callout callout-danger">
             <p>没有找到绑定信息</p>
         </div>
         {{/if}}
+    </script>
+
+    <script type="text/plain" id="temp-rwkcomp">
+        <div class="box-header">
+            <h3 class="box-title">不良品子件处理</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-footer line-form">
+            <form class="form-horizontal" id="line-scan-form">
+                <div class="row form-group">
+                    <label class="control-label col-sm-2">扫码</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="bc" class="form-control input-lg" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-lg btn-block">查询</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">子件清单</h3>
+        </div>
+        <div class="box-body" id="comps-list">
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+    <script type="text/plain" id="temp-rwkcomp-list">
+        <table class="table compact table-striped">
+            <thead>
+                <tr>
+                    <th>工序</th>
+                    <th>料号</th>
+                    <th>说明</th>
+                    <th>序列号/批次号</th>
+                    <th>数量</th>
+                    <th width="150px">重用数</th>
+                    <th width="150px">报废数</th>
+                    <th width="150px">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each SUBCOMPS}}
+                <tr>
+                    <td>{{OPNO}}</td>
+                    <td>{{COMPPARTNO}}</td>
+                    <td>{{COMPDESC}}</td>
+                    <td>{{COMPSN}}</td>
+                    <td>{{QTY}}</td>
+                    <td><input type="text" value="1"/></td>
+                    <td><input type="text" value="0"/></td>
+                    <td><button class="btn btn-primary">提交</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </script>
 </div>

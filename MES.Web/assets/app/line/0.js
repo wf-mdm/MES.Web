@@ -13,6 +13,7 @@ $(function () {
 
     Line.switch = function (appid) {
         var found = "Kanban" == appid, path = "#" + appid;
+        found = true;
         if (!found) {
             for (var i in Line.info.features) {
                 if (path == Line.info.features[i].p) {

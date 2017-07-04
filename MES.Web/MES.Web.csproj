@@ -261,6 +261,10 @@
   <ItemGroup>
     <Content Include="assets\admin\base.js" />
     <Content Include="assets\app\line\0.js" />
+    <Content Include="assets\app\line\0.min.js">
+      <DependentUpon>0.js</DependentUpon>
+    </Content>
+    <Content Include="assets\app\line\RWKComp.js" />
     <Content Include="assets\app\line\kanban2.js" />
     <Content Include="assets\app\line\Binding.js" />
     <Content Include="assets\app\line\Rwk.js" />
@@ -1374,6 +1378,7 @@
     <Content Include="CodeTemplates\MvcView\List.vb.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
+    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <PropertyGroup>

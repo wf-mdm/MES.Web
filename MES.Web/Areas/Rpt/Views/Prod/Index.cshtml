@@ -112,7 +112,12 @@
                 alert("请选择统计方式");
                 return;
             }
-            for (var n in args) if (!args[n]) delete args[n];
+            args.start = args.dt1 + ":00";
+            args.end = args.dt2 + ":00";
+            delete args.dt1;
+            delete args.dt2;
+            for (var n in args) if (!args[n] || "-- ALL --" == args[n]) delete args[n];
+
 
             $("#rpt-empty, #rpt-pn-chart, #rpt-unit-chart").hide();
             $("#rpt-progress").show();

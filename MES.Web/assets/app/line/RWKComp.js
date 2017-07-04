@@ -1,11 +1,11 @@
-﻿Line.Binding = {
+﻿Line.RWKComp = {
     init: function () {
         Line.onUpdate = this.show2;
     },
 
     show: function () {
         var $this = this;
-        Line.loadTemp("temp-binding", function ($temp) {
+        Line.loadTemp("temp-rwkcomp", function ($temp) {
             Line.updateMain($temp());
             $("#line-scan-form").submit(function (event) {
                 if (event) event.preventDefault();
@@ -30,12 +30,12 @@
         if (!args.bc) return;
         Line.Progress.show();
         this.bc = args.bc;
-        Line.run("GetWIPIDVAL", args.bc, {}, function (rs) {
-            Line.loadTemp("temp-binding-comps", function ($temp) {
+        Line.runDb("GetWIPCOMPS", args.bc, {}, function (rs) {
+            Line.loadTemp("temp-rwkcomp-list", function ($temp) {
                 var $list = $("#comps-list").html($temp(rs));
                 $list.find("button").click(function (event) {
                     if (event) event.preventDefault();
-                    $this.unbind(this);
+                    $this.rwkComp(this);
                 });
             });
         }).always(function () {
@@ -43,15 +43,18 @@
         });
     },
 
-    unbind: function (btn) {
-        var $btn = $(btn),
+    rwkComp: function (btn) {
+        var $this = this,
+            $btn = $(btn),
             $tr = $btn.parents("tr"),
-            id = $tr.find("td:eq(0)").html();
+            pn = $tr.find("td:eq(1)").html(),
+            reuse = $tr.find("input:eq(0)").val(),
+            scrap = $tr.find("input:eq(1)").val();
         Line.Progress.show();
-        Line.run("ReleaseSNID", this.bc, { IDVALUES: id, Forced: "Y" })
+        Line.run("RWKComp", this.bc, { sns: this.bc, comppn: pn, reuse: reuse, scrap: scrap })
             .then(function (rs) {
                 if ("OK" == rs.Code) {
-                    $tr.remove();
+                    $this.submit({ name: "bc", value: $this.bc });
                 }
             })
             .always(function () {

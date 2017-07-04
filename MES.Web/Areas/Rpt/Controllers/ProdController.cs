@@ -47,7 +47,7 @@ namespace MES.Web.Areas.Rpt.Controllers
             }
             if (dt2.HasValue)
             {
-                sql += " AND RUNDT >= @" + idx;
+                sql += " AND RUNDT <= @" + idx;
                 args.Add(dt2.Value);
             }
             DataTable dt = await db1.QueryAsync(sql, args.ToArray());
