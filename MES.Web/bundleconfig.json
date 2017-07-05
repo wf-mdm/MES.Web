@@ -1,8 +1,10 @@
 [
+  /*
   {
-    "outputFileName": "assets/app/line/0.min.js",
+    "outputFileName": "assets/app/line.js",
     "inputFiles": [
-      "assets/app/line/0.js"
+      "assets/app/line/*.js"
     ]
   }
+  */
 ]

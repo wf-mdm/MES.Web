@@ -57,7 +57,7 @@
     mwaitSelect: function ($row) {
         this.ActiveId = $row.find("td:eq(1)").text();
         $row.addClass("active").siblings().removeClass("active");
-        var pn = $row.find("td:eq(4)").text(),
+        var pn = $row.find("td:eq(4)").data("pn"),
             whno = $row.find("td:eq(0)").text(),
             op = $row.find("td:eq(2)").text(),
             locno = $row.find("td:eq(2)").text(),

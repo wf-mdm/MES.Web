@@ -33,6 +33,11 @@
         Line.run("GetWIPIDVAL", args.bc, {}, function (rs) {
             Line.loadTemp("temp-binding-comps", function ($temp) {
                 var $list = $("#comps-list").html($temp(rs));
+                $list.find("input[type=checkbox]").iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                });
                 $list.find("button").click(function (event) {
                     if (event) event.preventDefault();
                     $this.unbind(this);
@@ -46,9 +51,10 @@
     unbind: function (btn) {
         var $btn = $(btn),
             $tr = $btn.parents("tr"),
-            id = $tr.find("td:eq(0)").html();
+            force = $tr.find("input[type=checkbox]")[0].checked,
+            id = $tr.find("td:eq(1)").html();
         Line.Progress.show();
-        Line.run("ReleaseSNID", this.bc, { IDVALUES: id, Forced: "Y" })
+        Line.run("ReleaseSNID", this.bc, { IDVALUES: id, Forced: force ? "Y" : "N" })
             .then(function (rs) {
                 if ("OK" == rs.Code) {
                     $tr.remove();

@@ -52,13 +52,8 @@
             scrap = $tr.find("input:eq(1)").val();
         Line.Progress.show();
         Line.run("RWKComp", this.bc, { sns: this.bc, comppn: pn, reuse: reuse, scrap: scrap })
-            .then(function (rs) {
-                if ("OK" == rs.Code) {
-                    $this.submit({ name: "bc", value: $this.bc });
-                }
-            })
             .always(function () {
-                Line.Progress.hide();
+                $this.submit([{ name: "bc", value: $this.bc }]);
                 Line.updateStatus();
             });
     },
