@@ -66,10 +66,9 @@
             <p>没有数据</p>
         </div>
     </div>
-    <div class="box-body" id="rpt-pn-chart">
-
+    <div class="box-body" id="rpt-pn-chart" style="height:200px">
     </div>
-    <div class="box-body" id="rpt-unit-chart">
+    <div class="box-body" id="rpt-unit-chart" style="height:200px">
 
     </div>
 </div>
@@ -127,60 +126,70 @@
                 if (rs.SUMBYPN && rs.SUMBYPN.length) {
                     showSumByPn(rs);
                     showSumByUnit(rs);
+                    //showTest();
                 } else {
                     $("#rpt-empty").show();
                 }
             });
         });
-        var ChartNames = { "OKQTY": "OK数", "NGQTY": "不良数", "IQTY": "投入数", "OQTY": "产出数" };
+        var ChartNames = { "OKQTY": "OK数", "NGQTY": "不良数", "OQTY": "产出数", "IQTY": "投入数" };
         var pnChart;
+
         function showSumByPn(d) {
-            if (!pnChart)
-                pnChart = echarts.init($("#rpt-pn-chart")[0]);
             var options = {
+                tooltip: { show: true },
+                grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
                 legend: { data: [] },
                 xAxis: [{ type: 'category', data: [] }],
                 yAxis: [{ type: 'value' }],
                 series: []
             }, seriesData = {};
             for (var i in d.SUMBYPN) {
-                options.xAxis.data.push(d.SUMBYPN[i].PARTNO);
+                options.xAxis[0].data.push(d.SUMBYPN[i].PARTNO);
                 for (var n in ChartNames) {
                     if (!seriesData[n])
-                        seriesData[n] = { name: ChartNames[n], type: "bar", datas: [] };
-                    seriesData[n].datas.push(d.SUMBYPN[i][n]);
+                        seriesData[n] = { name: ChartNames[n], type: "bar", barGap: 0, data: [] };
+                    seriesData[n].data.push(d.SUMBYPN[i][n]);
                 }
             }
             for (var n in ChartNames) {
-                options.legend.data.push[ChartNames[n]];
+                options.legend.data.push(ChartNames[n]);
                 options.series.push(seriesData[n]);
             }
+            options.series[0].stack = "STACK1";
+            options.series[1].stack = "STACK1";
             $("#rpt-pn-chart").show();
+            if (!pnChart)
+                pnChart = echarts.init($("#rpt-pn-chart")[0]);
             pnChart.setOption(options);
         }
         var unitChart;
         function showSumByUnit(d) {
-            if (!unitChart)
-                unitChart = echarts.init($("#rpt-unit-chart")[0]);
             var options = {
+                tooltip: { show: true },
+                grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
                 legend: { data: [] },
                 xAxis: [{ type: 'category', data: [] }],
                 yAxis: [{ type: 'value' }],
                 series: []
             }, seriesData = {};
-            for (var i in d.SUMBYUNIT) {
-                options.xAxis.data.push(d.SUMBYUNIT[i].TIMENO);
+            for (var i in d.SUMBYTUNIT) {
+                options.xAxis[0].data.push(d.SUMBYTUNIT[i].TIMENO);
                 for (var n in ChartNames) {
                     if (!seriesData[n])
-                        seriesData[n] = { name: ChartNames[n], type: "bar", datas: [] };
-                    seriesData[n].datas.push(d.SUMBYUNIT[i][n]);
+                        seriesData[n] = { name: ChartNames[n], type: "bar", barGap: 0, data: [] };
+                    seriesData[n].data.push(d.SUMBYTUNIT[i][n]);
                 }
             }
             for (var n in ChartNames) {
-                options.legend.data.push[ChartNames[n]];
+                options.legend.data.push(ChartNames[n]);
                 options.series.push(seriesData[n]);
             }
-            $("#rpt-pn-chart").show();
+            options.series[0].stack = "STACK1";
+            options.series[1].stack = "STACK1";
+            $("#rpt-unit-chart").show();
+            if (!unitChart)
+                unitChart = echarts.init($("#rpt-unit-chart")[0]);
             unitChart.setOption(options);
         }
     });

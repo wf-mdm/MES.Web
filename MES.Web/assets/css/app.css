@@ -55,9 +55,11 @@ section.line-admin {
     padding: 3px;
     overflow: hidden;
 }
-.table.selectable tbody{
+
+.table.selectable tbody {
     cursor: pointer;
 }
+
 .table.selectable tr.active, tr.active td {
     background-color: #398439 !important;
     color: #fff !important;
@@ -89,14 +91,14 @@ section.line-admin {
         background-color: #d2d6de;
     }
 
-    .box .box-header .box-title{
-        font-size: 100%;
-        font-weight: bold;
-    }
+.box .box-header .box-title {
+    font-size: 100%;
+    font-weight: bold;
+}
 
-        .box.box-solid.box-primary .box-header a {
-            color: #fff;
-        }
+.box.box-solid.box-primary .box-header a {
+    color: #fff;
+}
 
 .box-footer .box-title {
     display: inline-block;
@@ -112,8 +114,9 @@ section.line-admin {
 .logo i {
     line-height: 50px;
 }
-.user-header i.fa{
-    font-size: 500%!important;
+
+.user-header i.fa {
+    font-size: 500% !important;
 }
 
 .navbar-nav .title {
@@ -202,10 +205,14 @@ section.line-admin {
 #stn-sop {
     padding-left: 0;
 }
-#stn-sop div.box{
-    overflow:hidden;
+
+    #stn-sop div.box {
+        overflow: hidden;
+    }
+
+#stn-sop-img img {
+    width: 100%;
 }
-#stn-sop-img img{width: 100%;}
 /**Idle**/
 .stn-status-I, .stn-status-I * {
     background-color: yellow !important;
@@ -213,31 +220,31 @@ section.line-admin {
 }
 /**Stop**/
 .stn-status-S, .stn-status-S * {
-    background-color: gray!important;
-    color: #fff!important;
+    background-color: gray !important;
+    color: #fff !important;
 }
 /**Run**/
-.stn-status-R, .stn-status-R *  {
-    background-color: green!important;
-    color: #fff!important;
+.stn-status-R, .stn-status-R * {
+    background-color: green !important;
+    color: #fff !important;
 }
 /**Debug**/
 .stn-status-D, .stn-status-D * {
-    background-color: brown!important;
-    color: #fff!important;
+    background-color: brown !important;
+    color: #fff !important;
 }
 /**Maintain**/
 .stn-status-M, .stn-status-M * {
-    background-color: brown!important;
-    color: #fff!important;
+    background-color: brown !important;
+    color: #fff !important;
 }
 /**Other**/
 .stn-status-O {
 }
 /**Fault**/
 .stn-status-F, .stn-status-F * {
-    background-color: red!important;
-    color: #fff!important;
+    background-color: red !important;
+    color: #fff !important;
 }
 
     .stn-status-S a, .stn-status-R a, .stn-status-D a, .stn-status-M a, .stn-status-F a {
@@ -265,6 +272,16 @@ section.line-admin {
     .line-form > * {
         margin: 10px auto;
         width: 38%;
+        text-align: left;
+    }
+
+.line-form-h {
+    text-align: left;
+}
+
+    .line-form-h > * {
+        margin: 10px 0;
+        width: 50%;
         text-align: left;
     }
 
@@ -319,11 +336,12 @@ section.line-admin {
     #stn-status thead th {
         text-align: center;
     }
+
     #stn-status tbody td {
         background-color: lightgray;
         height: 60px;
         max-width: 350px;
-        overflow:hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
 
