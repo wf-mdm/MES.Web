@@ -87,9 +87,9 @@ namespace MES.Web.Areas.Admin.Controllers
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
-
+            ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF = new ENG_LINEOPPARAMCONF();
             await InitSelect("");
-            return View();
+            return View(eNG_LINEOPPARAMCONF);
         }
 
         // POST: Admin/Params/Create
@@ -97,13 +97,15 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
+        public async Task<ActionResult> Create([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_UPPER,PARAM_LOWER,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
             Prepare(eNG_LINEOPPARAMCONF);
             if (ModelState.IsValid)
             {
+                decimal? confId = await db.ENG_LINEOPPARAMCONF.Where(p => p.CONFNAME.Equals(eNG_LINEOPPARAMCONF.CONFNAME)).MaxAsync(p => p.CONFID);
+                eNG_LINEOPPARAMCONF.CONFID = (confId.HasValue ? confId.Value + 1 : 1);
                 db.ENG_LINEOPPARAMCONF.Add(eNG_LINEOPPARAMCONF);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -132,7 +134,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
+        public async Task<ActionResult> Edit([Bind(Include = "CONFNAME,CONFID,LINENAME,L_OPNO,L_STNO,PARAM_ID,PARAM_VAL,PARAM_UPPER,PARAM_LOWER,PARAM_TEXT,DATA_TYPE,COMMENTS")] ENG_LINEOPPARAMCONF eNG_LINEOPPARAMCONF)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "编辑";

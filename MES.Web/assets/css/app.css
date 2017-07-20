@@ -202,6 +202,28 @@ section.line-admin {
     line-height: 40px;
 }
 
+.kanban-info {
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+}
+
+#kanban2-toggel {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 110%;
+}
+
+#line-status .label-dt {
+    display: none;
+}
+
+#line-status .value-dt {
+    position: absolute;
+    left: 0;
+}
+
 #stn-sop {
     padding-left: 0;
 }

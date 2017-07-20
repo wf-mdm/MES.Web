@@ -65,8 +65,9 @@
             });
         });
     }
-    window.DEFAULT_OPTION = "-- ALL --";
+    window.DEFAULT_OPTION = "<option>-- ALL --</option>";
     initLineOp($("select[name=L_OPNO]"));
     initLineStn($("select[name=L_STNO]"));
-    initLineOp($("select[name*=OP]"));
+    initLineOp($("select[name=DEFAULTOOP]"));
+    initLineOp($("select[name=FROMOP]"));
 });

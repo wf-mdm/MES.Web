@@ -264,6 +264,12 @@
     <Content Include="assets\app\line\0.min.js">
       <DependentUpon>0.js</DependentUpon>
     </Content>
+    <Content Include="assets\app\line\echarts.min.js">
+      <DependentUpon>echarts.js</DependentUpon>
+    </Content>
+    <Content Include="assets\app\line\kanban.min.js">
+      <DependentUpon>kanban.js</DependentUpon>
+    </Content>
     <Content Include="assets\app\line\RWKComp.js" />
     <Content Include="assets\app\line\kanban2.js" />
     <Content Include="assets\app\line\Binding.js" />

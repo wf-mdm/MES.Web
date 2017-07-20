@@ -1,10 +1,20 @@
 [
-  /*
   {
-    "outputFileName": "assets/app/line.js",
+    "outputFileName": "assets/app/line/0.min.js",
     "inputFiles": [
-      "assets/app/line/*.js"
+      "assets/app/line/0.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/app/line/kanban.min.js",
+    "inputFiles": [
+      "assets/app/line/kanban.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/app/line/echarts.min.js",
+    "inputFiles": [
+      "assets/app/line/echarts.js"
     ]
   }
-  */
 ]

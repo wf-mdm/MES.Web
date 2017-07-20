@@ -17,7 +17,7 @@ namespace MES.Web.Areas.Admin.Models
         [Key]
         [Column(Order = 1, TypeName = "numeric")]
         [Display(Name = "流水码")]
-        public decimal CONFID { get; set; }
+        public decimal? CONFID { get; set; }
 
         [StringLength(20)]
         [Display(Name = "产线")]
@@ -38,6 +38,14 @@ namespace MES.Web.Areas.Admin.Models
         [Column(TypeName = "numeric")]
         [Display(Name = "值")]
         public decimal? PARAM_VAL { get; set; }
+
+        [Column(TypeName = "numeric")]
+        [Display(Name = "值上限")]
+        public decimal? PARAM_UPPER { get; set; }
+
+        [Column(TypeName = "numeric")]
+        [Display(Name = "值下限")]
+        public decimal? PARAM_LOWER{ get; set; }
 
         [StringLength(120)]
         [Display(Name = "文本值")]

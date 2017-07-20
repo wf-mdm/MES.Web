@@ -109,7 +109,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 eNG_BOMDETAIL.ITEMID = db.ENG_BOMDETAIL.Max(b => b.ITEMID) + 1;
                 db.ENG_BOMDETAIL.Add(eNG_BOMDETAIL);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("/Index");
             }
 
             await InitSelect(eNG_BOMDETAIL.SEMILINEGRP, eNG_BOMDETAIL.SERIALCONTROL);
@@ -163,7 +163,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 db.Entry(eNG_BOMDETAIL).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("/Index");
             }
             await InitSelect(eNG_BOMDETAIL.SEMILINEGRP, eNG_BOMDETAIL.SERIALCONTROL);
             return View(eNG_BOMDETAIL);
@@ -212,7 +212,7 @@ namespace MES.Web.Areas.Admin.Controllers
             ENG_BOMDETAIL eNG_BOMDETAIL = await db.ENG_BOMDETAIL.FindAsync(id);
             db.ENG_BOMDETAIL.Remove(eNG_BOMDETAIL);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("/Index");
         }
 
         protected override void Dispose(bool disposing)

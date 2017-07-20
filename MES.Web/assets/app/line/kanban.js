@@ -76,6 +76,7 @@ Line.Kanban = {
             }
         });
         $main.append("<a href=\"#Summary\" class=\"btn btn-info kanban-toggel\" title=\"切换到表格显示\"><i class=\"fa fa-list\"></i></a>");
+        $main.append("<p class=\"alert alert-info alert-dismissible kanban-info\"><i class=\"fa fa-info\"></i> 双击工站图标进入工站操作页面</p>");
     },
 
     doUpdate: function () {

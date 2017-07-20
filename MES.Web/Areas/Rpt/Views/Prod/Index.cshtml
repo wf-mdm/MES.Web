@@ -121,14 +121,21 @@
             $("#rpt-empty, #rpt-pn-chart, #rpt-unit-chart").hide();
             $("#rpt-progress").show();
 
-            $.post("../../api/Cmd/RunDb", { Server: "MES", Cmd: "GETLPRDSUM", Args: args }, function (rs) {
-                $("#rpt-progress").hide();
-                if (rs.SUMBYPN && rs.SUMBYPN.length) {
-                    showSumByPn(rs);
-                    showSumByUnit(rs);
-                    //showTest();
-                } else {
-                    $("#rpt-empty").show();
+            $.ajax({
+                type: "POST",
+                url: "../../api/Cmd/RunDb",
+                data: JSON.stringify({ Server: "MES", Cmd: "GETLPRDSUM", Args: args }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (rs) {
+                    $("#rpt-progress").hide();
+                    if (rs.SUMBYPN && rs.SUMBYPN.length) {
+                        showSumByPn(rs);
+                        showSumByUnit(rs);
+                        //showTest();
+                    } else {
+                        $("#rpt-empty").show();
+                    }
                 }
             });
         });

@@ -26,5 +26,5 @@
         increaseArea: '20%' // optional
     });
     $("input.datetime").attr("readonly", "readonly")
-        .datetimepicker({ language: "zh-CN", autoclose: true, todayBtn: "linked", todayHighlight: true, keyboardNavigation: true, forceParse: true });
+        .datetimepicker({ language: "zh-CN", format:"yyyy/mm/dd HH:ii", autoclose: true, todayBtn: "linked", todayHighlight: true, keyboardNavigation: true, forceParse: true });
 });

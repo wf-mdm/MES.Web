@@ -27,9 +27,10 @@
     </script>
     <script type="text/plain" id="temp-kanban2-line">
         {{#each this}}
-        <span class="label">{{n}}</span>
-        <span class="value">{{v}}</span>
+        <span class="label label-{{c}}">{{n}}</span>
+        <span class="value value-{{c}}">{{v}}</span>
         {{/each}}
+        <a href="#" id="kanban2-toggel" class="btn btn-info" title="切换到全屏显示"><i class="fa fa-window-maximize"></i></a>
     </script>
     <script type="text/plain" id="temp-kanban2-stns">
         {{#each this}}
@@ -81,7 +82,7 @@
                     <td>{{WOID}}</td>
                     <td>{{OPRLST}}</td>
                     <td>{{ISUM}}</td>
-                    <td>{{STATUS}}</td>
+                    <td>{{STATINFO}}</td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -409,7 +410,7 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body line-form-h">
+        <div class="box-body line-form">
             <form id="line-scan-form">
                 <div class="form-group">
                     <label class="control-label">扫码</label>
@@ -449,7 +450,7 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body line-form-h">
+        <div class="box-body line-form">
             <form id="line-scan-form">
                 <div class="form-group">
                     <label class="control-label">扫码</label>
