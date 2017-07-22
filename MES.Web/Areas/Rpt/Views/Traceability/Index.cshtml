@@ -26,6 +26,10 @@ if ("1".Equals(d, StringComparison.OrdinalIgnoreCase) || "Y".Equals(d, StringCom
 {
     r = "成功";
 }
+else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
+{
+    r = "已报废";
+}
     @r;
 }
 @helper ShowProcResult(object rs)
@@ -150,7 +154,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                 <p class="box-tools">共有 @ViewBag.History.Rows.Count 条</p>
             </div>
             <div class="box-body">
-                <table class="table compact table-striped table-hover table-hover">
+                <table class="table compact table-striped table-hover table-hover" id="list-history">
                     <thead>
                         <tr>
                             <th>序列号/批次号</th>
@@ -199,7 +203,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                 <p class="box-tools">共有 @ViewBag.CompData.Rows.Count 条</p>
             </div>
             <div class="box-body">
-                <table class="table compact table-striped table-hover">
+                <table class="table compact table-striped table-hover" id="list-comps">
                     <thead>
                         <tr>
                             <th>序列号/批次号</th>
@@ -219,7 +223,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                     <tbody>
                         @foreach (DataRow r in ViewBag.CompData.Rows)
                         {
-                            <tr>
+                            <tr data-sn="@r["prdsn"]" data-line="@r["LINENAME"]" data-op="@r["L_OPNO"]">
                                 <td>@r["prdsn"]</td>
                                 <td>@r["WO_ID"]</td>
                                 <td>@r["PARTNO"]</td>
@@ -245,7 +249,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                 <p class="box-tools">共有 @ViewBag.ProcData.Rows.Count 条</p>
             </div>
             <div class="box-body">
-                <table class="table compact table-striped table-hover">
+                <table class="table compact table-striped table-hover" id="list-procdatas">
                     <thead>
                         <tr>
                             <th>序列号/批次号</th>
@@ -264,7 +268,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                     <tbody>
                         @foreach (DataRow r in ViewBag.ProcData.Rows)
                     {
-                            <tr>
+                            <tr data-sn="@r["prdsn"]" data-line="@r["LINENAME"]" data-op="@r["L_OPNO"]">
                                 <td>@r["prdsn"]</td>
                                 <td>@r["WO_ID"]</td>
                                 <td>@r["PARTNO"]</td>
@@ -317,7 +321,7 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
         if (null != ViewBag.TicketData)
         {
             <div class="box-header with-border bg-gray">
-                <h3 class="box-title">过程数据</h3>
+                <h3 class="box-title">单据数据</h3>
                 <p class="box-tools">共有 @ViewBag.TicketData.Rows.Count 条</p>
             </div>
             <div class="box-body">
@@ -357,3 +361,22 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
 
     }
 </div>
+<script>
+    $(function () {
+        $("#list-history tbody tr").click(function () {
+            $("#list-history tbody tr.active").removeClass("active");
+            var $row = $(this).addClass("active"),
+                sn = $row.find("td:eq(0)").text(),
+                line = $row.find("td:eq(4)").text(),
+                op = $row.find("td:eq(5)").text();
+
+            $("#list-comp1 tbody tr, #list-procdatas tbody tr").each(function () {
+                var $row = $(this),
+                    sn1 = $row.data("sn"),
+                    line1 = $row.data("line"),
+                    op1 = $row.data("op");
+                if (sn == sn1 && line == line1 && op == op1) $row.show(); else $row.hide();
+            });
+        });
+    });
+</script>

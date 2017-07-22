@@ -11,7 +11,7 @@ Line.Kanban = {
                 {
                     type: 'graph',
                     layout: 'none',
-                    symbol: "rect",
+                    symbol: "roundRect",
                     symbolSize: 60,
                     edgeSymbol: ['none', 'arrow'],
                     edgeSymbolSize: [1, 8],

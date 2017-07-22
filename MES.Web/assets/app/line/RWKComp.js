@@ -48,10 +48,11 @@
             $btn = $(btn),
             $tr = $btn.parents("tr"),
             pn = $tr.find("td:eq(1)").html(),
+            csn = $tr.find("td:eq(3)").html(),
             reuse = $tr.find("input:eq(0)").val(),
             scrap = $tr.find("input:eq(1)").val();
         Line.Progress.show();
-        Line.run("RWKComp", this.bc, { sns: this.bc, comppn: pn, reuse: reuse, scrap: scrap })
+        Line.run("RWKComp", this.bc, { sns: this.bc, comppn: pn, compsn:csn, reuse: reuse, scrap: scrap })
             .always(function () {
                 $this.submit([{ name: "bc", value: $this.bc }]);
                 Line.updateStatus();
