@@ -6,11 +6,13 @@ var appPath = DBNull.Value.Equals(r["APP_PATH"]) ? "/app/Admin/" + r["APP_ID"] :
     @appPath;
 }
 <ul class="sidebar-menu">
+    <!--
     <li class="treeview">
         <a href="@Url.Action("Index", "Line")">
             <i class="fa fa-dashboard"></i> <span>现场管理</span>
         </a>
     </li>
+    -->
     @foreach (DataRow r in Model.Tables[0].Rows)
     {
         if ("MESADMIN".Equals(r["PARENT_ID"]))

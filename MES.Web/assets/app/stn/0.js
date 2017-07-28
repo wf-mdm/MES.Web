@@ -148,6 +148,9 @@
                 $("#stn-wo-list").html($temp(rs)).find("a").click(switchWo);
             });
         }).fail(function (e) {
+            Stn.loadTemp("temp-sop-img", function ($temp) {
+                $("#stn-sop-img div.carousel-inner").html($temp({}));
+            });
         });
     };
 

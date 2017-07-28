@@ -16,11 +16,11 @@ namespace MES.Web.Areas.Admin.Models
         [Column(TypeName = "numeric")]
         public decimal ITEMID { get; set; }
 
-        [Required]
+        [Required, Display(Name = "¡œ∫≈")]
         [StringLength(30)]
         public string PARTNO { get; set; }
 
-        [StringLength(4)]
+        [StringLength(4), Display(Name = "∞Ê±æ")]
         public string PARTVER { get; set; }
 
         [StringLength(10)]

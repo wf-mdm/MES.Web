@@ -4,12 +4,12 @@
         if (Line.Status && Line.Status.WOLIST) {
             for (var i in Line.Status.WOLIST) {
                 if (Line.Status.WOLIST[i].WOID == d) {
-                    tmp = Line.Status.WOLIST[i].WOID + "/" + Line.Status.WOLIST[i].PARTNO + "/" + Line.Status.WOLIST[i].DESCRIPTION;
+                    t = Line.Status.WOLIST[i].WOID + "/" + Line.Status.WOLIST[i].PARTNO + "/" + Line.Status.WOLIST[i].DESCRIPTION;
                     break;
                 }
             }
         }
-        return new Handlebars.SafeString(tmp);
+        return new Handlebars.SafeString(t);
     });
 
     function fullscreen(full) {
