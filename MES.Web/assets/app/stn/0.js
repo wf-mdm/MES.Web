@@ -1,6 +1,7 @@
 ﻿$(function () {
     var curFeature = undefined,
         UPDATE_INTERVAL = 1000 * 30,
+        SOP_AUTO_MAX = 1000 * 30,
         $templates;
 
     function doSwitch(path) {
@@ -154,6 +155,26 @@
         });
     };
 
+    Stn.switchSop = function (isShow) {
+        if (isShow) {
+            var $wnd = $("#sop-window");
+            if ($wnd.length == 0) {
+                $wnd = $("<div id=\"sop-window\"></div>");
+            }
+            var $btn = $("<a href=\"#\" id=\"sop-minimize\" class=\"btn btn-info\"><i class=\"fa fa-close\"></i></a>");
+            var tmp = $("#stn-sop div.box-body").html();
+            tmp = tmp.replace(/stn-sop-img/ig, "stn-sop-img-2");
+            $wnd.html(tmp).append($btn);
+            $wnd.modal();
+            $btn.click(function (event) {
+                if (event) event.preventDefault();
+                Stn.switchSop(false);
+            });
+        } else {
+            $("#sop-window").modal("hide");
+        }
+    };
+
     Stn.updateStnInfo = function () {
         $("header.main-header").attr("class", "main-header stn-status-" + Stn.Status.STINFO[0].STATUS);
         $("header .extinfo").html(Stn.Status.STINFO[0].SN);
@@ -218,5 +239,25 @@
             Stn.updateStatus();
             routie("*", doSwitch);
         });
+        $("#btn-sop-maximize").click(function (event) {
+            if (event) event.preventDefault();
+            Stn.switchSop(true);
+        })
     });
+
+    // 对齐弹出菜单
+    $("a[data-toggle='control-sidebar']").click(function () {
+        $("aside.control-sidebar").css("padding-top", $("header.main-header").height() + "px");
+    })
+
+    // 一段时间不操作，自动进入SOP全屏幕
+    var SCREENSAVE_HANDLER = 0;
+    function doMoseMove() {
+        if (SCREENSAVE_HANDLER) clearTimeout(SCREENSAVE_HANDLER);
+        SCREENSAVE_HANDLER = setTimeout(function () {
+            Stn.switchSop(true);
+        }, SOP_AUTO_MAX);
+    }
+    $("body").mousemove(doMoseMove);
+    doMoseMove();
 });

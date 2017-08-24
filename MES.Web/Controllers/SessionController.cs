@@ -89,7 +89,7 @@ namespace MES.Web.Controllers
             InitApps(model);
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Index", model);
             }
 
             var result = await SignInManager.PasswordSignInAsync(model.UserId, model.Password, model.RememberMe, shouldLockout: false);
@@ -100,7 +100,7 @@ namespace MES.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "用户名或者密码错误。");
-                    return View(model);
+                    return View("Index", model);
             }
         }
 

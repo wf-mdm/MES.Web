@@ -242,6 +242,36 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                 </table>
             </div>
         }
+        if (null != ViewBag.IDData)
+        {
+            <div class="box-header with-border bg-gray">
+                <h3 class="box-title">关联ID</h3>
+                <p class="box-tools">共有 @ViewBag.IDData.Rows.Count 条</p>
+            </div>
+            <div class="box-body">
+                <table class="table compact table-striped table-hover" id="list-ids">
+                    <thead>
+                        <tr>
+                            <th>序列号</th>
+                            <th>关联ID编码</th>
+                            <th>关联ID名称</th>
+                            <th>ID值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow r in ViewBag.IDData.Rows)
+                        {
+                            <tr data-sn="@r["prdsn"]">
+                                <td>@r["prdsn"]</td>
+                                <td>@r["IDTYPE"]</td>
+                                <td>@r["IDNAME"]</td>
+                                <td>@r["IDVAL"]</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
         if (null != ViewBag.ProcData)
         {
             <div class="box-header with-border bg-gray">
@@ -370,12 +400,17 @@ else if ("S".Equals(d, StringComparison.OrdinalIgnoreCase))
                 line = $row.find("td:eq(4)").text(),
                 op = $row.find("td:eq(5)").text();
 
-            $("#list-comp1 tbody tr, #list-procdatas tbody tr").each(function () {
+            $("#list-comps tbody tr, #list-procdatas tbody tr").each(function () {
                 var $row = $(this),
                     sn1 = $row.data("sn"),
                     line1 = $row.data("line"),
                     op1 = $row.data("op");
                 if (sn == sn1 && line == line1 && op == op1) $row.show(); else $row.hide();
+            });
+            $("#list-ids tbody tr").each(function () {
+                var $row = $(this),
+                    sn1 = $row.data("sn");
+                if (sn == sn1) $row.show(); else $row.hide();
             });
         });
     });

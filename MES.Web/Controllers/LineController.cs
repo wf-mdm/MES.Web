@@ -60,6 +60,10 @@ namespace MES.Web.Controllers
                 JavaScriptSerializer jss = new JavaScriptSerializer();
                 ViewBag.FeatureStr = jss.Serialize(Features);
             }
+            else
+            {
+                ViewBag.FeatureStr = "[]";
+            }
             ViewBag.User = User.Identity.Name;
 
             return View(line);

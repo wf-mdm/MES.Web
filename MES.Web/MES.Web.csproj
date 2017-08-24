@@ -340,6 +340,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\img\bg.jpg" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\js\app.js" />
     <Content Include="assets\js\app.min.js" />
@@ -1376,7 +1377,6 @@
     <Content Include="CodeTemplates\MvcView\List.vb.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
-    <None Include="bundleconfig.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

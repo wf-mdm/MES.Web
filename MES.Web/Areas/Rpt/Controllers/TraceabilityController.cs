@@ -42,6 +42,7 @@ namespace MES.Web.Areas.Rpt.Controllers
                 if (ViewBag.History.Rows.Count > 0)
                 {
                     List<String> prdsns = GetPrdsns(ViewBag.History);
+                    ViewBag.IDData = await GetWipIDData(prdsns);
                     ViewBag.CompData = await GetCompData(prdsns);
                     ViewBag.ContainerData = await GetContainerData(prdsns);
                     ViewBag.ProcData = await GetProcData(prdsns);
@@ -65,19 +66,19 @@ namespace MES.Web.Areas.Rpt.Controllers
             }
             string cntrsql = "";
             if (!string.IsNullOrEmpty(tr.Pack))
-                cntrsql = " or (prdsn in (select SUBCONTAINERNO from WMS_CONTAINERSUB where CONTAINERNO='" + tr.Pack + "') )";
+                cntrsql = " and ( prdsn in (select SUBCONTAINERNO from WMS_CONTAINERSUB where CONTAINERNO='" + tr.Pack + "') OR prdsn in (SELECT R1.IDVAL FROM WIP_IDLIST R1 WHERE R1.PRDSN IN  (select SUBCONTAINERNO from WMS_CONTAINERSUB where CONTAINERNO='" + tr.Pack + "')) )";
             string wosql = "";
             if (!string.IsNullOrEmpty(tr.Wo))
-                wosql = " wo_id = '" + tr.Wo + "' and ";
+                wosql = " (wo_id = '" + tr.Wo + "' OR PRDSN IN  (SELECT R3.IDVAL FROM WIP_IDLIST R3 WHERE R3.WO_ID= '" + tr.Wo + "') ) and ";
             if (tr.IsRevert)
             {
                 if (!string.IsNullOrEmpty(tr.Sn))
                 {
-                    sql = "select * from V_RPT_WIP_PrdHistory where ( " + wosql + " startdt >= @1 and enddt <=@2 and prdsn in (SELECT PRDSN FROM WIP_PRDCOMPS WHERE COMPSN='" + tr.Sn + "') ) " + cntrsql + " order by startdt DESC";
+                    sql = "select * from V_RPT_WIP_PrdHistory where " + wosql  + " ( (startdt>=@1 and enddt<=@2) OR PRDSN IN ( SELECT R4.IDVAL  FROM WIP_IDLIST R4 WHERE R4.PRDSN IN ( SELECT RA.PRDSN FROM WIP_PRDHISTORY RA WHERE RA.startdt>=@1 and RA.enddt<=@2 )  ) )" + cntrsql + " and (prdsn in (SELECT PRDSN FROM WIP_PRDCOMPS WHERE COMPSN='" + tr.Sn + "') or prdsn in ( SELECT R2.IDVAL FROM WIP_IDLIST R2 WHERE R2.PRDSN IN  (SELECT PRDSN FROM WIP_PRDCOMPS WHERE COMPSN='" + tr.Sn + "')  ) ) " + " order by startdt DESC";
                 }
                 else
                 {
-                    sql = "select * from V_RPT_WIP_PrdHistory where ( " + wosql + "  startdt >= @1 and enddt <=@2 )  " + cntrsql + " order by startdt DESC";
+                    sql = "select * from V_RPT_WIP_PrdHistory where " + wosql  + " ( (startdt>=@1 and enddt<=@2) OR PRDSN IN ( SELECT R4.IDVAL  FROM WIP_IDLIST R4 WHERE R4.PRDSN IN ( SELECT RA.PRDSN FROM WIP_PRDHISTORY RA WHERE RA.startdt>=@1 and RA.enddt<=@2 )  ) )" + cntrsql + "  order by startdt DESC";
 
                 }
 
@@ -86,13 +87,11 @@ namespace MES.Web.Areas.Rpt.Controllers
             {
                 if (!String.IsNullOrEmpty(tr.Sn))
                 {
-                    sql = "select * from V_RPT_WIP_PrdHistory where ( prdsn='" + tr.Sn +
-                        "' or lotno='" +
-                        tr.Sn + "') " + cntrsql + " order by startdt DESC";
+                    sql = "select * from V_RPT_WIP_PrdHistory where ( prdsn='" + tr.Sn + "' or lotno='" + tr.Sn + "' OR PRDSN IN ( SELECT R4.IDVAL  FROM WIP_IDLIST R4 WHERE R4.PRDSN='" + tr.Sn + "') )  " + cntrsql + "  order by startdt DESC";
                 }
                 else
                 {
-                    sql = "select * from V_RPT_WIP_PrdHistory where ( " + wosql + "  startdt >= @1 and enddt <=@2 ) " + cntrsql + " order by startdt DESC";
+                    sql = "select * from V_RPT_WIP_PrdHistory where " + wosql + " ( (startdt>=@1 and enddt<=@2) OR PRDSN IN ( SELECT R4.IDVAL  FROM WIP_IDLIST R4 WHERE R4.PRDSN IN ( SELECT RA.PRDSN FROM WIP_PRDHISTORY RA WHERE RA.startdt>=@1 and RA.enddt<=@2 )  ) )"  + cntrsql + " order by startdt DESC";
                 }
             }
 
@@ -119,6 +118,60 @@ namespace MES.Web.Areas.Rpt.Controllers
 
             }
             return listPrdsn;
+        }
+
+
+        public async Task<DataTable> GetWipIDData(List<String> listPrdsn)
+        {
+            int loopcounter = 100;
+
+            string where = "";
+            if (listPrdsn.Count == 0)
+            {
+                return new DataTable();
+            }
+            DataTable dt = null;
+
+            for (int i = 0; i < listPrdsn.Count; i++)
+            {
+                where += "'" + listPrdsn[i] + "',";
+                if (i == (listPrdsn.Count - 1))
+                {
+                    where = where.Substring(0, where.Length - 1);
+                    where = "prdsn in (" + where + ")";
+                    string sql = "select * from V_WIPIDLIST where " + where + " order by prdsn ";
+                    DataTable dt2 = await db.QueryAsync(sql);
+                    if (dt == null)
+                    {
+                        dt = dt2;
+                    }
+                    else
+                    {
+                        dt.Merge(dt2);
+                    }
+                }
+                else if (i == loopcounter)
+                {
+                    where = where.Substring(0, where.Length - 1);
+                    where = "prdsn in (" + where + ")";
+                    string sql = "select * from V_WIPIDLIST where " + where + " order by prdsn ";
+                    DataTable dt3 = await db.QueryAsync(sql);
+                    dt = dt3;
+                    where = "";
+                }
+                else if ((i % loopcounter) == 0 && i > 0)
+                {
+                    where = where.Substring(0, where.Length - 1);
+                    where = "prdsn in (" + where + ")";
+                    string sql = "select * from V_WIPIDLIST where " + where + " order by prdsn ";
+                    DataTable dt3 = await db.QueryAsync(sql);
+                    dt.Merge(dt3);
+                    where = "";
+                }
+            }
+            if (dt == null)
+                dt = new DataTable();
+            return (dt);
         }
 
         public async Task<DataTable> GetCompData(List<String> listPrdsn)

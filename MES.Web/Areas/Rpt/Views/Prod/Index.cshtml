@@ -68,10 +68,65 @@
     </div>
     <div class="box-body" id="rpt-pn-chart" style="height:200px">
     </div>
+    <div class="box-body" id="rpt-pn-list">
+    </div>
     <div class="box-body" id="rpt-unit-chart" style="height:200px">
-
+    </div>
+    <div class="box-body" id="rpt-unit-list">
     </div>
 </div>
+<script type="text/template" id="temp-pn-list">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>零件号</th>
+                <th>OK数</th>
+                <th>不良数</th>
+                <th>产出数</th>
+                <th>投入数</th>
+                <th>返工数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each SUMBYPN}}
+            <tr>
+                <td>{{PARTNO}}</td>
+                <td>{{OKQTY}}</td>
+                <td>{{NGQTY}}</td>
+                <td>{{OQTY}}</td>
+                <td>{{IQTY}}</td>
+                <td>{{RWKQTY}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+<script type="text/template" id="temp-unit-list">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>时间</th>
+                <th>OK数</th>
+                <th>不良数</th>
+                <th>产出数</th>
+                <th>投入数</th>
+                <th>返工数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each SUMBYTUNIT}}
+            <tr>
+                <td>{{TIMENO}}</td>
+                <td>{{OKQTY}}</td>
+                <td>{{NGQTY}}</td>
+                <td>{{OQTY}}</td>
+                <td>{{IQTY}}</td>
+                <td>{{RWKQTY}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
 <script>
     $(function () {
         var $form = $("#rpt-form");
@@ -118,7 +173,7 @@
             for (var n in args) if (!args[n] || "-- ALL --" == args[n]) delete args[n];
 
 
-            $("#rpt-empty, #rpt-pn-chart, #rpt-unit-chart").hide();
+            $("#rpt-empty, #rpt-pn-chart, #rpt-pn-list, #rpt-unit-chart, #rpt-unit-list").hide();
             $("#rpt-progress").show();
 
             $.ajax({
@@ -132,7 +187,7 @@
                     if (rs.SUMBYPN && rs.SUMBYPN.length) {
                         showSumByPn(rs);
                         showSumByUnit(rs);
-                        //showTest();
+                        showList(rs);
                     } else {
                         $("#rpt-empty").show();
                     }
@@ -199,5 +254,15 @@
                 unitChart = echarts.init($("#rpt-unit-chart")[0]);
             unitChart.setOption(options);
         }
+        function showList(d) {
+            var lists = ["pn-list", "unit-list"]
+            for (var i in lists) {
+                var t = lists[i],
+                    temp = $("#temp-" + t).html(),
+                    $temp = Handlebars.compile(temp);
+                $("#rpt-" + t).html($temp(d)).show()
+            }
+        }
     });
+
 </script>

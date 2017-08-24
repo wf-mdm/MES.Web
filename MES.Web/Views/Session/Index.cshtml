@@ -12,42 +12,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @Styles.Render("~/assets/css/all")
+    <style type="text/css">
+        html, body{width:100%; height: 100%; margin: 0; padding: 0;}
+        body {
+            background: url(@Url.Content("~/assets/img/bg.jpg"));
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #login-form{
+            position: absolute;
+            right: 10%;
+            top: 30%;
+            background: #fff;
+            opacity: 0.9;
+            width: 320px;
+            padding-top: 10px;
+        }
+    </style>
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-box-body">
-            <p class="login-box-msg"><img src="~/assets/img/logo.png"/></p>
-            <p class="login-box-msg">登录到系统</p>
-            @using (Html.BeginForm("Login", "Session", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<body>
+    <div id="login-form">
+        <p class="login-box-msg">登录到系统</p>
+        @using (Html.BeginForm("Login", "Session", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.Hidden("ReturnUrl")
-                if (String.IsNullOrEmpty(Model.ReturnUrl))
-                {
-                    <div class="form-group">
-                        @Html.LabelFor((m => m.AppId), new { @class = "col-sm-4 control-label" })
-                        <div class="col-sm-8">
-                            @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
-                        </div>
-                    </div>
-                }
-                <div class="form-group has-feedback">
-                    @Html.LabelFor((m => m.UserId), new { @class = "col-sm-4 control-label" })
-                    <div class="col-sm-8">
-                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
-                </div>
-                <div class="form-group has-feedback">
-                    @Html.LabelFor((m => m.Password), new { @class = "col-sm-4 control-label" })
-                    <div class="col-sm-8">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
-                </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("ReturnUrl")
+            if (String.IsNullOrEmpty(Model.ReturnUrl))
+            {
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
+                    @Html.LabelFor((m => m.AppId), new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-8">
+                        @Html.DropDownList("AppId", ViewData["AppList"] as SelectList, new { @class = "form-control" })
+                    </div>
+                </div>
+            }
+            <div class="form-group has-feedback">
+                @Html.LabelFor((m => m.UserId), new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.LabelFor((m => m.Password), new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-8">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-8">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe, new { @class = "col-sm-4 control-label" })
                             @Html.LabelFor(m => m.RememberMe)
@@ -55,14 +70,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
+                    <div class="col-sm-offset-3 col-sm-8">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                     </div>
                 </div>
-            }
-        </div>
+        }
     </div>
-
     @Scripts.Render("~/assets/js/base")
     <script>
         $(function () {
@@ -71,6 +84,7 @@
                 radioClass: 'iradio_square-blue',
                 increaseArea: '20%' // optional
             });
+            $("html,body").css("height", "100%");
         });
     </script>
 </body>

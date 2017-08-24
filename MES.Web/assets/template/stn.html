@@ -91,17 +91,17 @@
         {{#each SOPINFO}}
         {{#eq @index 1}}
         <div class="item active">
-            {{else}}
-            <div class="item">
-                {{/eq}}
-                <img class="img-responsive pad" src="{{SOPURL}}" alt="{{SOPURL}}" />
-            </div>
-            {{/each}}
-            {{else}}
-            <div class="callout callout-info" style="margin:10px 0 200px;">
-                <p>没有相关SOP信息</p>
-            </div>
-            {{/if}}
+        {{else}}
+        <div class="item">
+        {{/eq}}
+            <img class="center-block" src="{{SOPURL}}" alt="{{SOPURL}}" />
+        </div>
+        {{/each}}
+        {{else}}
+        <div class="callout callout-info" style="margin:20%;">
+            <p>没有相关SOP信息</p>
+        </div>
+        {{/if}}
     </script>
     <script type="text/plain" id="temp-wo-list">
         {{#each WOLIST}}

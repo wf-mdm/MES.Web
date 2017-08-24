@@ -22,8 +22,10 @@
                             </span>
                         </a>
                     </li>
-                    <li class="title">@ViewBag.Line.DispName <i class="fa fa-angle-right"></i> @Html.DisplayFor(m => m.Stn) [ @Html.DisplayFor(m => m.Name) ]</li>
-                    <li class="title extinfo"></li>
+                    <li class="title">
+                        @ViewBag.Line.DispName <i class="fa fa-angle-right"></i> @Html.DisplayFor(m => m.Stn) [ @Html.DisplayFor(m => m.Name) ]
+                        <span class="extinfo"></span>
+                    </li>
                 </ul>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -63,6 +65,7 @@
                             <div class="box-tools">
                                 <a class="btn btn-warning dropdown-toggel" data-toggle="dropdown" href="#">切换工单 &nbsp;<i class="fa fa-angle-right"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-right dropdown-menu-primary" id="stn-wo-list"></ul>
+                                <a class="btn btn-info" id="btn-sop-maximize" href="#"><i class="fa fa-window-maximize"></i></a>
                             </div>
                         </div>
                         <div class="box-body">

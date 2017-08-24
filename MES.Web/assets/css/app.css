@@ -1,4 +1,8 @@
-﻿.progress-modal .modal-body {
+﻿.login-page {
+    height: 100%;
+}
+
+.progress-modal .modal-body {
     text-align: center;
     padding-top: 100px;
     height: 100%;
@@ -232,9 +236,19 @@ section.line-admin {
         overflow: hidden;
     }
 
-#stn-sop-img img {
-    width: 100%;
+#stn-sop-img img, #stn-sop-img-2 img {
+    max-width: 100%;
+    max-height: 100%;
 }
+#sop-window .carousel,
+#stn-sop-img .carousel-inner,
+#stn-sop-img .item,
+#stn-sop-img-2 .carousel-inner,
+#stn-sop-img-2 .item {
+    height: 100%;
+    overflow: hidden;
+}
+
 /**Idle**/
 .stn-status-I, .stn-status-I * {
     background-color: yellow !important;
@@ -431,4 +445,20 @@ section.line-admin {
 
 .stn-proc p {
     font-size: 150%;
+}
+
+#sop-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    z-index: 1050;
+}
+
+#sop-minimize {
+    position: fixed;
+    right: 50px;
+    top: 50px;
 }
