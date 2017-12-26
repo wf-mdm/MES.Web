@@ -55,7 +55,8 @@ namespace MES.Web.Areas.Rpt.Controllers
             List<String> wos = new List<string>();
             foreach (DataRow r in dt.Rows)
             {
-                wos.Add((String)r["WO_ID"]);
+                String woid = (String)r["WO_ID"];
+                if (!wos.Contains(woid)) wos.Add(woid);
                 String pn = (String)r["PARTNO"];
                 if (!pns.Contains(pn)) pns.Add(pn);
             };
