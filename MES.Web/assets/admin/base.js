@@ -37,7 +37,7 @@
                 $stn = $form.find("select[name=L_STNO]");
             $op.parents("form").find("select[name=LINENAME]").change(function () {
                 $.get(url, { LINENAME: $(this).val() }, function (datas) {
-                    var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option>-- 请选择 --</option>";
+                    var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option value>-- 请选择 --</option>";
                     $stn.html(tmp);
                     for (var i in datas.OP)
                         tmp += "<option value=\"" + datas.OP[i].L_OPNO + "\">" + datas.OP[i].CodeName + "</option>";
@@ -57,7 +57,7 @@
                 $op = $form.find("select[name=L_OPNO]");
             $op.change(function () {
                 $.get(url, { LINENAME: $line.val(), L_OPNO: $op.val() }, function (datas) {
-                    var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option>-- 请选择 --</option>";
+                    var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option value>-- 请选择 --</option>";
                     for (var i in datas.STN)
                         tmp += "<option value=\"" + datas.STN[i].L_STNO + "\">" + datas.STN[i].CodeName + "</option>";
                     $stn.html(tmp);
@@ -65,7 +65,7 @@
             });
         });
     }
-    window.DEFAULT_OPTION = "<option>-- ALL --</option>";
+    window.DEFAULT_OPTION = "<option value>-- ALL --</option>";
     initLineOp($("select[name=L_OPNO]"));
     initLineStn($("select[name=L_STNO]"));
     initLineOp($("select[name=DEFAULTOOP]"));

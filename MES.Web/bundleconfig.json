@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "assets-r/js/workshop.js",
+    "inputFiles": [
+      "assets/app/workshop/*.js"
+    ]
+  },
+  {
+    "outputFileName": "assets-r/js/line.js",
+    "inputFiles": [
+      "assets/app/line/*.js"
+    ]
+  },
+  {
+    "outputFileName": "assets-r/js/stn.js",
+    "inputFiles": [
+      "assets/app/stn/*.js"
+    ]
+  },
+  {
+    "outputFileName": "assets-r/js/wh.js",
+    "inputFiles": [
+      "assets/app/wh/*.js"
+    ]
+  },
+  {
+    "outputFileName": "assets-r/js/admin.js",
+    "inputFiles": [
+      "assets/admin/*.js"
+    ]
+  },
+  {
+    "outputFileName": "assets-r/js/rpt.js",
+    "inputFiles": [
+      "assets/rpt/*.js"
+    ]
+  }
+]

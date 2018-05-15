@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -259,8 +260,33 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets-r\js\admin.js" />
+    <Content Include="assets-r\js\admin.min.js">
+      <DependentUpon>admin.js</DependentUpon>
+    </Content>
+    <Content Include="assets-r\js\line.js" />
+    <Content Include="assets-r\js\line.min.js">
+      <DependentUpon>line.js</DependentUpon>
+    </Content>
+    <Content Include="assets-r\js\rpt.js" />
+    <Content Include="assets-r\js\rpt.min.js">
+      <DependentUpon>rpt.js</DependentUpon>
+    </Content>
+    <Content Include="assets-r\js\stn.js" />
+    <Content Include="assets-r\js\stn.min.js">
+      <DependentUpon>stn.js</DependentUpon>
+    </Content>
+    <Content Include="assets-r\js\wh.js" />
+    <Content Include="assets-r\js\wh.min.js">
+      <DependentUpon>wh.js</DependentUpon>
+    </Content>
+    <Content Include="assets-r\js\workshop.js" />
+    <Content Include="assets-r\js\workshop.min.js">
+      <DependentUpon>workshop.js</DependentUpon>
+    </Content>
     <Content Include="assets\admin\base.js" />
     <Content Include="assets\app\line\0.js" />
+    <Content Include="assets\app\line\layout.js" />
     <Content Include="assets\app\line\RWKComp.js" />
     <Content Include="assets\app\line\kanban2.js" />
     <Content Include="assets\app\line\Binding.js" />
@@ -285,6 +311,9 @@
     <Content Include="assets\app\stn\kanban.js" />
     <Content Include="assets\app\wh\0.js" />
     <Content Include="assets\app\wh\kanban.js" />
+    <Content Include="assets\app\workshop\0.js" />
+    <Content Include="assets\app\common\layout.js" />
+    <Content Include="assets\layout\data.js" />
     <Content Include="assets\css\AdminLTE.css" />
     <Content Include="assets\css\AdminLTE.min.css" />
     <Content Include="assets\css\alt\AdminLTE-bootstrap-social.css" />
@@ -308,6 +337,7 @@
     <Content Include="assets\css\bootstrap.min.css.map" />
     <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\layout.css" />
     <Content Include="assets\css\skins\skin-black-light.css" />
     <Content Include="assets\css\skins\skin-black-light.min.css" />
     <Content Include="assets\css\skins\skin-black.css" />
@@ -415,6 +445,7 @@
     <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="assets\js\routie.js" />
     <Content Include="assets\js\routie.min.js" />
+    <Content Include="assets\layout\PlantLayout.png" />
     <Content Include="assets\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="assets\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
     <Content Include="assets\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
@@ -1326,11 +1357,14 @@
     <Content Include="Views\Admin\Menu.cshtml" />
     <Content Include="Views\Admin\MenuError.cshtml" />
     <Content Include="Views\Warehouse\Index.cshtml" />
+    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Line\List-1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="assets\layout\line1\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>

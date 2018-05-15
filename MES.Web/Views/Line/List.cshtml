@@ -7,6 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @Styles.Render("~/assets/css/all")
+    @Styles.Render("~/assets/css/layout")
+    <style>
+        #panel-msg {
+            position:absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: red;
+        }
+            #panel-msg p {
+                line-height: 50px;
+                color:#fff;
+                margin: auto 10px;
+            }
+    </style>
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
     <div class="wrapper">
@@ -31,43 +47,17 @@
         </header>
 
         <div class="content-wrapper">
-            <section class="content-header">
-                <h1>产线列表</h1>
-            </section>
             <section class="content">
-                @if (Model.Count() == 0)
-            {
-                    <div class="callout callout-danger">
-                        <h4>出错了!</h4>
-                        <p>
-                            您要查看的产线没有配置或者不存在!
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <div class="row">
-                        @foreach (var item in Model)
-                {
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="info-box bg-green">
-                                    <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text"><a href="Line?@item.Name" class="text-white">@item.Name</a></span>
-                                        <span class="info-box-text"><a href="Line?@item.Name" class="text-white">@item.DispName</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                    </div>
-                }
-                </section>
-            </div>
-
-            @Html.Partial("_Foot")
+            </section>
         </div>
-        @Scripts.Render("~/assets/js/base")
+        @Html.Partial("_Foot")
+        <div id="panel-msg" style="display:none;">
+            <p>AAA</p>
+        </div>
+    </div>
+    @Scripts.Render("~/assets/js/base")
+    @Scripts.Render("~/assets/js/layout")
+    @Scripts.Render("~/assets/js/common")
+    @Scripts.Render("~/assets/js/workshop")
     </body>
-
 </html>

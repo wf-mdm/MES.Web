@@ -14,7 +14,9 @@
     <item name="program">Test</item>
     <resource name="listener">
       <item name="1">tcp:121.196.217.189:3802</item>
+      <!--
       <item name="2">wcf:121.196.217.189:3800</item>
+      -->
     </resource>
   </resource>
 </resources>

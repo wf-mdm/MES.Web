@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MES.Web.Models.LineModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MES - Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/assets/css/all")
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="logo">MES Admin</a>
+                    </li>
+                </ul>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        @Html.Partial("_UserMenu")
+                        <li>
+                            <a href="#" class="text-yellow">
+                                <i class="fa fa-info-circle"></i><span class="hidden-xs"> 帮助</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>产线列表</h1>
+            </section>
+            <section class="content">
+                @if (Model.Count() == 0)
+            {
+                    <div class="callout callout-danger">
+                        <h4>出错了!</h4>
+                        <p>
+                            您要查看的产线没有配置或者不存在!
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        @foreach (var item in Model)
+                {
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box bg-green">
+                                    <span class="info-box-icon"><i class="fa fa-envelope-o"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><a href="Line?@item.Name" class="text-white">@item.Name</a></span>
+                                        <span class="info-box-text"><a href="Line?@item.Name" class="text-white">@item.DispName</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                }
+                </section>
+            </div>
+
+            @Html.Partial("_Foot")
+        </div>
+        @Scripts.Render("~/assets/js/base")
+    </body>
+
+</html>

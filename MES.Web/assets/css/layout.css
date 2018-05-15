@@ -1,0 +1,136 @@
+﻿#layout-hint {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    min-width: 300px;
+    width: 300px;
+    z-index: 10000;
+}
+
+    #layout-hint .box-header {
+        cursor: move;
+    }
+
+    #layout-hint .box-body {
+        padding: 0;
+    }
+
+        #layout-hint .box-body .btn {
+            display: block;
+            margin: 10px;
+        }
+
+    #layout-hint.Yellow .box {
+        border: 1px solid yellow;
+    }
+
+        #layout-hint.Yellow .box .box-header {
+            background-color: yellow;
+        }
+
+    #layout-hint.Green .box {
+        border: 1px solid green;
+    }
+
+        #layout-hint.Green .box .box-header {
+            background-color: green;
+        }
+
+            #layout-hint.Green .box .box-header * {
+                color: #fff;
+                font-weight: bold;
+            }
+
+
+    #layout-hint.Gray .box {
+        border: 1px solid gray;
+    }
+
+        #layout-hint.Gray .box .box-header {
+            background-color: gray;
+        }
+
+            #layout-hint.Gray .box .box-header * {
+                color: #fff;
+                font-weight: bold;
+            }
+
+    #layout-hint.Red .box {
+        border: 1px solid red;
+    }
+
+        #layout-hint.Red .box .box-header {
+            background-color: red;
+        }
+
+            #layout-hint.Red .box .box-header * {
+                color: #fff;
+                font-weight: bold;
+            }
+
+
+#workshop-layout div.workshop {
+    position: relative;
+    overflow: hidden;
+}
+
+#workshop-layout div.line {
+    position: absolute;
+    cursor: pointer;
+}
+
+    #workshop-layout div.line.hot {
+        background-color: blue;
+        opacity: 0.1;
+    }
+
+#workshop-layout div.stn {
+    position: absolute;
+    /* border: 1px solid transparent;*/
+    background-size: 100%;
+    cursor: pointer;
+}
+
+    #workshop-layout div.stn.rect.Gray {
+        background-color: Gray;
+    }
+
+    #workshop-layout div.stn.rect.Yellow {
+        background-color: yellow;
+    }
+
+    #workshop-layout div.stn.rect.Green {
+        background-color: Green;
+    }
+
+    #workshop-layout div.stn.rect.Red {
+        background-color: red;
+    }
+
+    #workshop-layout div.stn.hot {
+        border: 1px solid blue;
+    }
+
+    #workshop-layout div.stn.Green, #workshop-layout div.stn.Yellow {
+        animation: kftwinkle 1s infinite;
+    }
+
+@keyframes kftwinkle {
+    0% {
+        transform: none;
+    }
+
+    50% {
+        transform: scale(0.5, 0.5);
+    }
+}
+
+@keyframes kfrotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

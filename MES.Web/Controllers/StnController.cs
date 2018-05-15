@@ -28,7 +28,7 @@ namespace MES.Web.Controllers
 
             var model = db.Stns.Where(s =>
                 s.Line.Equals(line, StringComparison.OrdinalIgnoreCase)
-                && s.Op.Equals(op, StringComparison.OrdinalIgnoreCase)
+                && (String.IsNullOrEmpty(op) || s.Op.Equals(op, StringComparison.OrdinalIgnoreCase))
                 && s.Stn.Equals(stn, StringComparison.OrdinalIgnoreCase)).SingleOrDefault();
             if (model != null)
                 return await ShowStn(model);
