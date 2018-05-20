@@ -29,5 +29,7 @@ namespace MES.Web.Areas.Admin.Models
         public virtual DbSet<HR_PERMISSIONS> HR_PERMISSIONS { get; set; }
         public virtual DbSet<ENG_CODECFG> ENG_CODECFG { get; set; }
         public virtual DbSet<V_USERANDROLES> V_USERANDROLES { get; set; }
+
+        public virtual DbSet<ENG_VARIABLES> ENG_VARIABLES { get; set; }
     }
 }

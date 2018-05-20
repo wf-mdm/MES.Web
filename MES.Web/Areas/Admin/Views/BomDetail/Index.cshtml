@@ -14,6 +14,9 @@
         <table class="table compact table-bordered table-hover">
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.KEYINFO)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.COMP_PARTNO)
                 </th>
                 <th>
@@ -48,42 +51,45 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.COMP_PARTNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.L_OPNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UNITCONSUMEQTY)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LotControl)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SERIALCONTROL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsKeyID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CNTCONTROL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ISSEMI)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SEMILINEGRP)
-                    </td>
-                    <td>
-                        @Html.ActionLink("编辑", "Edit", new { id = item.ITEMID }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("删除", "Delete", new { id = item.ITEMID }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KEYINFO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.COMP_PARTNO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.L_OPNO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UNITCONSUMEQTY)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LotControl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SERIALCONTROL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsKeyID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNTCONTROL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISSEMI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SEMILINEGRP)
+                </td>
+                <td>
+                    @Html.ActionLink("编辑", "Edit", new { id = item.ITEMID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("删除", "Delete", new { id = item.ITEMID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
             }
 
         </table>

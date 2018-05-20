@@ -92,7 +92,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(String PN, String VER, [Bind(Include = "ITEMID,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
+        public async Task<ActionResult> Create(String PN, String VER, [Bind(Include = "ITEMID,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
         {
             if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
@@ -147,7 +147,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(String PN, String VER, [Bind(Include = "ITEMID,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
+        public async Task<ActionResult> Edit(String PN, String VER, [Bind(Include = "ITEMID,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
         {
             if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {

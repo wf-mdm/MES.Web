@@ -125,6 +125,16 @@ $(function () {
             success: proc
         });
     };
+    Line.Query = function (sql, proc) {
+        return $.ajax({
+            type: "POST",
+            url: "/api/Cmd/Query",
+            data: JSON.stringify({ Sql: sql }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: proc
+        });
+    }
 
     Handlebars.registerHelper("eq", function (v1, v2, options) {
         return v1 == v2 ? options.fn(this) : options.inverse(this);

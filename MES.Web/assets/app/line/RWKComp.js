@@ -31,6 +31,7 @@
         Line.Progress.show();
         this.bc = args.bc;
         Line.runDb("GetWIPCOMPS", args.bc, {}, function (rs) {
+            $this.SUBCOMPS = rs.SUBCOMPS;
             Line.loadTemp("temp-rwkcomp-list", function ($temp) {
                 var $list = $("#comps-list").html($temp(rs));
                 $list.find("button").click(function (event) {
@@ -44,6 +45,7 @@
     },
 
     rwkComp: function (btn) {
+        /*
         var $this = this,
             $btn = $(btn),
             $tr = $btn.parents("tr"),
@@ -53,6 +55,19 @@
             scrap = $tr.find("input:eq(1)").val();
         Line.Progress.show();
         Line.run("RWKComp", this.bc, { sns: this.bc, comppn: pn, compsn:csn, reuse: reuse, scrap: scrap })
+            .always(function () {
+                $this.submit([{ name: "bc", value: $this.bc }]);
+                Line.updateStatus();
+            });
+        */
+        var $this = this,
+            $btn = $(btn),
+            idx = $btn.data("idx"),
+            row = this.SUBCOMPS[idx],
+            reuse = $tr.find("input:eq(0)").val(),
+            scrap = $tr.find("input:eq(1)").val();
+        Line.Progress.show();
+        Line.run("RWKComp", this.bc, { sns: this.bc, comppn: row.COMPPARTNO, compsn: row.COMPSN, reuse: reuse, scrap: scrap, keyinfo: row.KEYINFO, recid:row.REC_ID })
             .always(function () {
                 $this.submit([{ name: "bc", value: $this.bc }]);
                 Line.updateStatus();

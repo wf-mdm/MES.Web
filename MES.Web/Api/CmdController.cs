@@ -1,5 +1,6 @@
 ﻿using Intelli.MidW.BizClient;
 using Intelli.MidW.Interface;
+using MES.Web.Controllers;
 using MES.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace MES.Web.Api
             {
                 Code = resp.ErrorCode,
                 Msg = resp.ErrorMessage,
+                Code2 = resp.ReturnCode,
+                Msg2 = resp.ReturnMessage,
                 Data = resp.Data
             };
 
@@ -54,6 +57,15 @@ namespace MES.Web.Api
             {
                 return this.InternalServerError(ex);
             }
+        }
+
+        DBHelper db = new DBHelper();
+
+        [HttpPost]
+        [ResponseType(typeof(DataTable))]
+        public async Task<IHttpActionResult> Query([FromBody]MES.Web.Models.QueryRequest request)
+        {
+            return Ok(await db.QueryAsync(request.SQL));
         }
     }
 }

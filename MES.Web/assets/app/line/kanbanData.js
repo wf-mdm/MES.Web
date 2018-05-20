@@ -1,91 +1,61 @@
-﻿Line.KanbanData = {
-    "YHT30A": {
+﻿Line.KanbanData = {};
+{
+    var LINE_STNS = {
+        "ASSY01": {
+            "ST010": "半成品投入",
+            "ST020": "烧录",
+            "ST030": "FCT",
+        },
+        "SMT01":{
+            "ST010": "激光刻码",
+            "ST020": "SPI",
+            "ST030": "贴片",
+            "ST040": "AOI",
+            "ST050": "X-RAY",
+            "ST060": "3坐标",
+            "ST070": "ICT",
+            "ST080": "目检",
+        }
+    };
+    for (var l in LINE_STNS) {
+        var line = { data: [], links: [] },
+            i = 0;
+        for (var stn in LINE_STNS[l]) {
+            line.data.push({ name: stn, label: LINE_STNS[l][stn], x: 25 * i, y: 25 });
+            if (i++ > 0) {
+                line.links.push({ source: line.data[i - 1].name, target:stn })
+            }
+        }
+        Line.KanbanData[l] = line;
+    }
+}
+/*
+"ASSY01": {
         data: [
-            { name: "ST010", label: "总装1-底托吊装", x: 25 * 1, y: 15 },
-            { name: "ST020", label: "总装2-电堆组件分装", x: 25 * 2, y: 15 + 15*2 },
-            { name: "ST030", label: "总装3-电堆组件机器人吊装", x: 25 * 2, y: 15 },
-            { name: "ST040", label: "总装4-电堆组件安装", x: 25 * 3, y: 15 },
-            { name: "ST050", label: "总装5-辅助系统组装", x: 25 * 4, y: 15 },
-            { name: "ST060", label: "总装6-气密检测", x: 25 * 5, y: 15 },
-            { name: "ST070", label: "总装7-缓存工位", x: 25 * 6, y: 15 },
-            { name: "ST080", label: "总装8-侧板尾排组装", x: 25 * 7, y: 15 },
-            { name: "ST090", label: "总装9-前端板组件安装", x: 25 * 8, y: 15 },
-            { name: "ST100", label: "总装10-线束1安装", x: 25 * 9, y: 15 },
-            { name: "ST110", label: "总装11:线束2安装", x: 25 * 9, y: 15 + 15*1 },
-            { name: "ST120", label: "总装12:缓存工位", x: 25 * 9, y: 15 + 15*2 },
-            { name: "ST130", label: "总装13:程序编写", x: 25 * 9, y: 15 + 15*3},
-            { name: "ST140", label: "总装14:下线前测试", x: 25 * 9, y: 15+ 15*4 },
-            { name: "ST150", label: "总装15:上盖安装", x: 25 * 9, y: 15+ 15*5 },
-            { name: "ST160", label: "总装16:整机精饰", x: 25 * 8, y: 15 + 15*5},
-            { name: "ST170", label: "总装17:下线工位", x: 25 * 6, y: 15 + 15*4},
-            { name: "ST180", label: "分装1:辅助系统分装A", x: 25 * 3, y: 15  + 15*3 },
-            { name: "ST190", label: "分装2:辅助系统分装B", x: 25 * 3, y: 15  + 15*2 },
-            { name: "ST200", label: "分装3:辅助系统清洗测漏", x: 25 * 3, y: 15  + 15*1},
-            { name: "ST210", label: "小分装1:电气侧板组件分装", x: 25 * 8, y: 15 + 15*3 },
-            { name: "ST220", label: "小分装2:进气尾排组件分装前面板组件分装", x: 25 * 7, y: 15 + 15*3 },
-            { name: "ST230", label: "小分装3:电气组件分装", x: 25 * 6, y: 15 + 15*3 },
-            { name: "ST240", label: "小分装4:硅胶管件分装", x: 25 * 5, y: 15 + 15*3 },
-            { name: "ST250", label: "小分装5:小组件分装", x: 25 * 4, y: 15 + 15*3 },
-            { name: "ST260", label: "预处理1:电堆预处理", x: 25 * 2, y: 15 + 15*6 },
-            { name: "ST270-1", label: "电堆测试:工位1", x: 25 * 1, y: 15+ 15*5 },
-            { name: "ST270-2", label: "电堆测试:工位2", x: 25 + 16*1, y: 15+ 15*5 },
-            { name: "ST270-3", label: "电堆测试:工位3", x: 25 + 16*2, y: 15+ 15*5 },
-            { name: "ST270-4", label: "电堆测试:工位4", x: 25 + 16*3, y: 15+ 15*5 },
-            { name: "ST280-1", label: "整机测试:工位1", x: 35 + 16*5, y: 15+ 15*5 },
-            { name: "ST280-2", label: "整机测试:工位2", x: 35 + 16*6, y: 15+ 15*5 },
-            { name: "ST280-3", label: "整机测试:工位3", x: 35 + 16*7, y: 15+ 15*5 },
-            { name: "ST280-4", label: "整机测试:工位4", x: 35 + 16*8, y: 15+ 15*5 }
+            { name: "ST010", label: "半成品投入", x: 25 * 1, y: 15 },
+            { name: "ST020", label: "烧录", x: 25 * 2, y: 15 },
+            { name: "ST030", label: "FCT", x: 25 * 3, y: 15 }
         ],
         links: [
-            { source: "ST010", target: "ST030" },
-            { source: "ST020", target: "ST030" },
-            { source: "ST030", target: "ST040" },
-            { source: "ST040", target: "ST050" },
-            { source: "ST050", target: "ST060" },
-            { source: "ST060", target: "ST070" },
-            { source: "ST070", target: "ST080" },
-            { source: "ST080", target: "ST090" },
-            { source: "ST090", target: "ST100" },
-            { source: "ST100", target: "ST110" },
-            { source: "ST110", target: "ST120" },
-            { source: "ST120", target: "ST130" },
-            { source: "ST130", target: "ST140" },
-            { source: "ST140", target: "ST150" },
-            { source: "ST150", target: "ST160" },
-            { source: "ST160", target: "ST170" },
-            { source: "ST170", target: "ST280-1" },
-            { source: "ST170", target: "ST280-2" },
-            { source: "ST170", target: "ST280-3" },
-            { source: "ST170", target: "ST280-4" },
-            { source: "ST180", target: "ST190" },
-            { source: "ST190", target: "ST200" },
-            { source: "ST200", target: "ST040" },
-            { source: "ST260", target: "ST270-1" },
-            { source: "ST260", target: "ST270-2" },
-            { source: "ST260", target: "ST270-3" },
-            { source: "ST260", target: "ST270-4" },
-            { source: "ST270-1", target: "ST020" },
-            { source: "ST270-2", target: "ST020" },
-            { source: "ST270-3", target: "ST020" },
-            { source: "ST270-4", target: "ST020" },
-            { source: "ST250", target: "ST080" },
-            { source: "ST240", target: "ST080" },
-            { source: "ST230", target: "ST080" },
-            { source: "ST250", target: "ST060" },
-            { source: "ST240", target: "ST060" },
-            { source: "ST230", target: "ST060" },
-            { source: "ST220", target: "ST080" },
-            { source: "ST220", target: "ST090" },
-            { source: "ST210", target: "ST080" }
-
+            { source: "ST010", target: "ST020" },
+            { source: "ST020", target: "ST030" }
         ]
     },
-    "YHT30AOP250": {
+    "SMT01": {
         data: [
-            { name: "ST250", label: "小分装5:小组件分装", x: 25 * 4, y: 15 + 15*3 }
+            { name: "ST010", label: "激光刻码", x: 25 * 1, y: 15 },
+            { name: "ST020", label: "SPI", x: 25 * 2, y: 15 },
+            { name: "ST030", label: "贴片", x: 25 * 3, y: 15 },
+            { name: "ST040", label: "AOI", x: 25 * 4, y: 15 },
+            { name: "ST050", label: "X-RAY", x: 25 * 5, y: 15 },
+            { name: "ST060", label: "3坐标", x: 25 * 6, y: 15 },
+            { name: "ST070", label: "ICT", x: 25 * 7,y: 15 },
+            { name: "ST080", label: "目检", x: 25 * 8, y: 15 }
         ],
         links: [
-            { source: "ST250", target: "ST250" }
+            { source: "ST010", target: "ST020" },
+            { source: "ST020", target: "ST030" }
         ]
     }
 };
+*/

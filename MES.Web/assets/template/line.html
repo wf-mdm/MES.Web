@@ -112,6 +112,7 @@
                 <tr>
                     <th>料号</th>
                     <th>名称</th>
+                    <th>关键信息说明</th>
                     <th>单耗量</th>
                     <th>当前已经扫描投入数量</th>
                     <th>在线批次号</th>
@@ -125,6 +126,7 @@
                 <tr>
                     <td>{{ COMPPN }}</td>
                     <td>{{ DESCRIPTION }}</td>
+                    <td>{{ KEYINFO }}</td>
                     <td>{{ UNITCONSUME }}</td>
                     <td>{{ INQTY }}</td>
                     <td>{{ LOTNO }}</td>
@@ -327,31 +329,8 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">批次号</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="lot" class="form-control" placeholder="批次号" />
-                    </div>
+                <div id="ldmtl-form-pars">
                 </div>
-                <!--
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">料号</label>
-                                            <div class="col-sm-9">
-                                                <select name="pn" class="form-control select2" style="width:100%">
-                                                    <option value="">--请选择--</option>
-                                                    {{#each Pns}}
-                                                    <option value="{{PARTNO}}">{{PARTNO}} - {{DESCRIPTION}}</option>
-                                                    {{/each}}
-                                                </select>
-                                            </div>
-                                            </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">数量</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="qty" class="form-control" placeholder="数量" />
-                                            </div>
-                                        </div>
-                -->
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
                         <button type="submit" class="btn btn-primary btn-block" data-cmd="MSCAN">提交</button>
@@ -369,6 +348,17 @@
         </div>
         <div class="box-body log-list" id="log-list">
         </div>
+    </script>
+
+    <script type="text/plain" id="temp-ldmtl-form-pars">
+        {{#each PARS}}
+        <div class="form-group">
+            <label class="col-sm-3 control-label">{{PAR_CAPTION}}</label>
+            <div class="col-sm-9">
+                <input type="text" name="{{PAR_ID}}" class="form-control" placeholder="{{PAR_CAPTION}}" />
+            </div>
+        </div>
+        {{/each}}
     </script>
 
     <script type="text/plain" id="temp-scrap">
@@ -484,6 +474,125 @@
         </div>
     </script>
 
+    <script type="text/plain" id="temp-rwkqa">
+        <div class="box-header">
+            <h3 class="box-title">品质确认</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form">
+                <div class="form-group">
+                    <label class="control-label">扫码</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
+            </form>
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">产线日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+
+    <script type="text/plain" id="temp-cntrmgr">
+        <div class="box-header">
+            <h3 class="box-title">包装管理</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body line-form">
+            <form id="line-scan-form" class="form-horizontal">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" style="margin-bottom:10px;">
+                        <li role="presentation" class="active" data-cmd="ADDTOCNTR"><a href="#">放入</a></li>
+                        <li role="presentation" data-cmd="RMFRMCNTR"><a href="#">取出</a></li>
+                        <li role="presentation" data-cmd="DELCNTR"><a href="#">拆箱</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="form-group ADDTOCNTR">
+                            <label class="control-label col-sm-2">包装类型</label>
+                            <div class="col-sm-7">
+                                <select name="type" class="form-control select2">
+                                    <option value="">--请选择--</option>
+                                    {{#each CntrMgr.Types}}
+                                    <option value="{{id}}">{{text}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-info btn-block" data-cmd="CRTCID">生成箱号</button>
+                            </div>
+                        </div>
+                        <div class="form-group ADDTOCNTR RMFRMCNTR DELCNTR">
+                            <label class="control-label col-sm-2">包装箱号</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="boxno" class="form-control" />
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-info btn-block" data-cmd="PRINTCONTAINER">打印箱标签</button>
+                            </div>
+                        </div>
+                        <div class="form-group ADDTOCNTR RMFRMCNTR">
+                            <label class="control-label col-sm-2">子件号</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="sn" class="form-control col-sm-9" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="cntrmgr-ctnr-info">
+
+        </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">包装日志</h3>
+        </div>
+        <div class="box-body log-list" id="log-list">
+        </div>
+    </script>
+
+    <script type="text/plain" id="temp-cntrmgr-info">
+        {{#if Info}}
+        <div class="box-header">
+            <h3 class="box-title">箱号:{{Info.Info.CONTAINERNO}} 包装数: {{Info.Info.CONTAINEDQTY}}</h3>
+        </div>
+        <table class="table compact table-striped">
+            <tbody>
+                {{#each Info.Datas}}
+                <tr>
+                    <td>{{SUBCONTAINERNO}}</td>
+                    <td>{{PARTNO}} - {{DESCRIPTION}}</td>
+                    <td>{{CONTAINEDQTY}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/if}}
+    </script>
+
+    <script type="text/plain" id="temp-cntrmgr-log">
+        <table class="table compact">
+            <colgroup>
+                <col width="150px" />
+                <col />
+            </colgroup>
+            <tbody>
+                {{#each Logs}}
+                <tr class="log-{{LEVEL}}">
+                    <td>{{dt CTIME}}</td>
+                    <td>{{CONTENT}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+
     <script type="text/plain" id="temp-binding">
         <div class="box-header">
             <h3 class="box-title">返工 - 解绑</h3>
@@ -531,7 +640,7 @@
                 <tr>
                     <td>{{@key}}</td>
                     <td>{{this}}</td>
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" /></td>
                     <td><button class="btn btn-warning">解绑</button></td>
                 </tr>
                 {{/each}}
@@ -582,6 +691,7 @@
                     <th>工序</th>
                     <th>料号</th>
                     <th>说明</th>
+                    <th>关键信息说明</th>
                     <th>序列号/批次号</th>
                     <th>数量</th>
                     <th width="150px">重用数</th>
@@ -595,11 +705,12 @@
                     <td>{{OPNO}}</td>
                     <td>{{COMPPARTNO}}</td>
                     <td>{{COMPDESC}}</td>
+                    <td>{{KEYINFO}}</td>
                     <td>{{COMPSN}}</td>
                     <td>{{QTY}}</td>
-                    <td><input type="text" value="1"/></td>
-                    <td><input type="text" value="0"/></td>
-                    <td><button class="btn btn-primary">提交</button></td>
+                    <td><input type="text" value="1" /></td>
+                    <td><input type="text" value="0" /></td>
+                    <td><button class="btn btn-primary" data-idx="@index">提交</button></td>
                 </tr>
                 {{/each}}
             </tbody>

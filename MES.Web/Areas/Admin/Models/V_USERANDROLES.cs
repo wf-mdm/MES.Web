@@ -13,6 +13,7 @@ namespace MES.Web.Areas.Admin.Models
         public string OPERID { get; set; }
 
         [StringLength(80)]
+        [Display(Name="”√ªß")]
         public string OPERNAME { get; set; }
 
         [NotMapped]

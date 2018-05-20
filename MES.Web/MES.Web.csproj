@@ -226,6 +226,7 @@
     <Compile Include="Areas\Admin\Models\ENG_PRDLINE.cs" />
     <Compile Include="Areas\Admin\Models\ENG_ROUTE.cs" />
     <Compile Include="Areas\Admin\Models\ENG_RWKSCRCODE.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_VARIABLES.cs" />
     <Compile Include="Areas\Admin\Models\HR_OPERATORS.cs" />
     <Compile Include="Areas\Admin\Models\HR_OPERCAPBMATRIX.cs" />
     <Compile Include="Areas\Admin\Models\HR_PERMISSIONS.cs" />
@@ -260,33 +261,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets-r\js\admin.js" />
-    <Content Include="assets-r\js\admin.min.js">
-      <DependentUpon>admin.js</DependentUpon>
-    </Content>
-    <Content Include="assets-r\js\line.js" />
-    <Content Include="assets-r\js\line.min.js">
-      <DependentUpon>line.js</DependentUpon>
-    </Content>
-    <Content Include="assets-r\js\rpt.js" />
-    <Content Include="assets-r\js\rpt.min.js">
-      <DependentUpon>rpt.js</DependentUpon>
-    </Content>
-    <Content Include="assets-r\js\stn.js" />
-    <Content Include="assets-r\js\stn.min.js">
-      <DependentUpon>stn.js</DependentUpon>
-    </Content>
-    <Content Include="assets-r\js\wh.js" />
-    <Content Include="assets-r\js\wh.min.js">
-      <DependentUpon>wh.js</DependentUpon>
-    </Content>
-    <Content Include="assets-r\js\workshop.js" />
-    <Content Include="assets-r\js\workshop.min.js">
-      <DependentUpon>workshop.js</DependentUpon>
-    </Content>
     <Content Include="assets\admin\base.js" />
+    <Content Include="assets\app\common\FormUtils.js" />
     <Content Include="assets\app\line\0.js" />
     <Content Include="assets\app\line\layout.js" />
+    <Content Include="assets\app\line\CntrMgr.js" />
+    <Content Include="assets\app\line\RWKQA.js" />
     <Content Include="assets\app\line\RWKComp.js" />
     <Content Include="assets\app\line\kanban2.js" />
     <Content Include="assets\app\line\Binding.js" />
@@ -440,9 +420,7 @@
     <Content Include="Areas\Rpt\Views\Prod\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
-    <Content Include="assets\js\jquery.validate.min.js" />
     <Content Include="assets\js\jquery.validate.unobtrusive.js" />
-    <Content Include="assets\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="assets\js\routie.js" />
     <Content Include="assets\js\routie.min.js" />
     <Content Include="assets\layout\PlantLayout.png" />
@@ -1357,13 +1335,12 @@
     <Content Include="Views\Admin\Menu.cshtml" />
     <Content Include="Views\Admin\MenuError.cshtml" />
     <Content Include="Views\Warehouse\Index.cshtml" />
-    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Views\Line\List-1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Views\Variables\" />
     <Folder Include="assets\layout\line1\" />
     <Folder Include="obj\" />
   </ItemGroup>
@@ -1411,6 +1388,9 @@
     <Content Include="CodeTemplates\MvcView\List.vb.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

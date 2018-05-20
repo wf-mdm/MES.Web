@@ -40,6 +40,13 @@ namespace MES.Web.Models
     {
         public string Code { get; set; }
         public string Msg { get; set; }
+        public string Code2 { get; set; }
+        public string Msg2 { get; set; }
         public Dictionary<string, string> Data { get; set; }
+    }
+
+    public class QueryRequest
+    {
+        public String SQL { get; set; }
     }
 }

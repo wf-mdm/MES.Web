@@ -20,6 +20,10 @@ namespace MES.Web.Areas.Admin.Models
         [StringLength(30)]
         public string PARTNO { get; set; }
 
+        [Required, Display(Name = "关键信息定义")]
+        [StringLength(300)]
+        public string KEYINFO { get; set; }
+
         [StringLength(4), Display(Name = "版本")]
         public string PARTVER { get; set; }
 
