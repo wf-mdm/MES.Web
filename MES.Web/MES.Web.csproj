@@ -215,6 +215,7 @@
     <Compile Include="Areas\Admin\Controllers\RwkCodesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SopsController.cs" />
     <Compile Include="Areas\Admin\Controllers\StnsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VariablesController.cs" />
     <Compile Include="Areas\Admin\Models\APP_MASTDATA.cs" />
     <Compile Include="Areas\Admin\Models\ENG_BOMDETAIL.cs" />
     <Compile Include="Areas\Admin\Models\ENG_BOMHEADER.cs" />
@@ -418,6 +419,13 @@
     <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
     <Content Include="Areas\Rpt\Views\Shared\Rpt.cshtml" />
     <Content Include="Areas\Rpt\Views\Prod\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Variables\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Variables\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Variables\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Variables\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Variables\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.unobtrusive.js" />
@@ -1308,7 +1316,11 @@
     <Content Include="assets\template\wh.html" />
     <Content Include="assets\template\stn.html" />
     <Content Include="assets\template\line.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1316,6 +1328,8 @@
     <Content Include="index.html" />
     <Content Include="Resources\Message_cn.xml" />
     <Content Include="Resources\System.config.xml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1325,22 +1339,38 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Admin.cshtml" />
-    <Content Include="Views\Session\Index.cshtml" />
-    <Content Include="Views\Stn\Index.cshtml" />
-    <Content Include="Views\Stn\Error.cshtml" />
+    <Content Include="Scripts\Views\Web.config" />
+    <Content Include="Scripts\Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\Views\Shared\Error.cshtml" />
+    <Content Include="Scripts\Views\Shared\Admin.cshtml" />
+    <Content Include="Scripts\Views\Session\Index.cshtml" />
+    <Content Include="Scripts\Views\Stn\Index.cshtml" />
+    <Content Include="Scripts\Views\Stn\Error.cshtml" />
+    <Content Include="Scripts\Views\Admin\Menu.cshtml" />
+    <Content Include="Scripts\Views\Admin\MenuError.cshtml" />
+    <Content Include="Scripts\Views\Warehouse\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Menu.cshtml" />
     <Content Include="Views\Admin\MenuError.cshtml" />
+    <Content Include="Views\Line\Index.cshtml" />
+    <Content Include="Views\Line\List.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Shared\Admin.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Foot.cshtml" />
+    <Content Include="Views\Shared\_UserMenu.cshtml" />
+    <Content Include="Views\Stn\Error.cshtml" />
+    <Content Include="Views\Stn\Index.cshtml" />
     <Content Include="Views\Warehouse\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Admin\Views\Variables\" />
     <Folder Include="assets\layout\line1\" />
     <Folder Include="obj\" />
   </ItemGroup>
@@ -1348,22 +1378,22 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Scripts\Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Line\Index.cshtml" />
+    <Content Include="Scripts\Views\Line\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Foot.cshtml" />
+    <Content Include="Scripts\Views\Shared\_Foot.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_UserMenu.cshtml" />
+    <Content Include="Scripts\Views\Shared\_UserMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Default.log.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Line\List.cshtml" />
+    <Content Include="Scripts\Views\Line\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\fontawesome-webfont.eot" />

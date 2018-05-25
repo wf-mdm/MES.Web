@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.ENG_VARIABLES>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box box-primary data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.LINENAME)</label>
+                @Html.DropDownList("LINENAME", null, "-- ALL --", htmlAttributes: new { @class = "form-control select2", style = "width:200px" })
+            </div>
+            <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.VARNAME)</label>
+                <input type="text" name="VARNAME" value="@ViewBag.Query.VARNAME" />
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+            <span class="separator" />
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LINENAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PARTNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VARNAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VARTYPE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.L_STNO)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VARDESC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VARVALUE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UPDATETIME)
+                </th>
+                <th>维护</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LINENAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PARTNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VARNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VARTYPE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.L_STNO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VARDESC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VARVALUE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UPDATETIME)
+                    </td>
+                    <td>
+                        @Html.ActionLink("编辑", "Edit", new { LINENAME=item.LINENAME, PARTNO=item.PARTNO, VARNAME=item.VARNAME }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, PARTNO = item.PARTNO, VARNAME = item.VARNAME }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

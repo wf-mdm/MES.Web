@@ -62,7 +62,8 @@
         */
         var $this = this,
             $btn = $(btn),
-            idx = $btn.data("idx"),
+            $tr = $btn.parents("tr"),
+            idx = $btn.data("idx") - 1,
             row = this.SUBCOMPS[idx],
             reuse = $tr.find("input:eq(0)").val(),
             scrap = $tr.find("input:eq(1)").val();

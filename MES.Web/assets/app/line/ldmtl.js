@@ -64,26 +64,7 @@ Line.Ldmtl = {
             var t = $temp($this);
             $("#ldmtl-form-pars").html(t);
         });
-        $form.find(":input").keypress(function (e) {
-            if (e.which == 13) {
-                var val = $(this).val();
-                if (!val) {
-                    return false;
-                }
-                var inputs = $(this).parents("form").eq(0).find(":input");
-                var idx = inputs.index(this);
-
-                if (idx == inputs.length - 1) {
-                    idx = 0
-                }
-
-                if (inputs[idx + 1].select) {
-                    inputs[idx + 1].focus();
-                    inputs[idx + 1].select();
-                    return false;
-                }
-            }
-        })
+        FormUtils.enter2tab($form);
     },
     doListLots: function () {
         var $this = this,

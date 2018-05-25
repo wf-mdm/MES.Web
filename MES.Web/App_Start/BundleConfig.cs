@@ -24,7 +24,7 @@ namespace MES.Web
                 "~/assets/plugins/jQuery/jquery-2.2.3.min.js",
                 "~/assets/plugins/jQueryUI/jquery-ui.min.js",
                 "~/assets/js/bootstrap.js",
-                "~/assets/js/jquery.validate*",
+                "~/assets/js/jquery.validate.js",
                 "~/assets/plugins/iCheck/icheck.js",
                 "~/assets/plugins/slimScroll/jquery.slimscroll.min.js",
                 "~/assets/plugins/fastclick/fastclick.js",
@@ -40,7 +40,7 @@ namespace MES.Web
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/common").Include(
                 "~/assets/js/handlebars.js",
-                "~/assets/app/common/*.js"
+                "~/assets/app/common/FormUtils.js"
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/workshop").Include(
                 "~/assets/app/workshop/*.js"

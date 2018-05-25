@@ -15,6 +15,10 @@ namespace MES.Web.Areas.Admin.Models
         [StringLength(20)]
         public String LINENAME { get; set; }
 
+        [Display(Name = "产线")]
+        [ForeignKey("LINENAME")]
+        public virtual ENG_PRDLINE Line { get; set; }
+
         [Key]
         [Column(Order = 1)]
         [Required, Display(Name = "料号")]
