@@ -1,0 +1,155 @@
+﻿@model MES.Web.Areas.Admin.Models.WMS_CONTNRTYPE
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<div class="box box-primary data-form">
+    <div class="box-body">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTNRTYPE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.CONTNRTYPE, new { htmlAttributes = new { @class = "form-control", @readonly="readonly"} })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.CONTNRTYPE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTAINERDESC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.CONTAINERDESC, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.CONTAINERDESC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PARTGRP2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("PARTGRP2", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
+            </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.PARTGRP2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VOLUMEQTY, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.VOLUMEQTY, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.VOLUMEQTY, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VOL_UNIT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.VOL_UNIT, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.VOL_UNIT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTAINSUBQTY, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.CONTAINSUBQTY, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.CONTAINSUBQTY, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OVERLIMIT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.OVERLIMIT, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.OVERLIMIT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CONTRLBY, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("CONTRLBY", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
+            </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.CONTRLBY, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SUBCONTNRTYPE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("SUBCONTNRTYPE", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
+            </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.SUBCONTNRTYPE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PARENTTYPE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownList("PARENTTYPE", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:100%" })
+            </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.PARENTTYPE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SINGLEPART, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <div class="radio col-md-6">
+                    <label>
+                        @Html.RadioButtonFor(m => m.SINGLEPART, "Y", Model.SINGLEPART) Y
+                    </label>
+                </div>
+                <div class="radio col-md-6">
+                    <label>
+                        @Html.RadioButtonFor(m => m.SINGLEPART, "N", Model.SINGLEPART) N
+                    </label>
+                </div>
+            </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.SINGLEPART, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.COMMENTS, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.COMMENTS, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-5 error-msg">
+                @Html.ValidationMessageFor(model => model.COMMENTS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存" class="btn btn-primary" />
+			    @Html.ActionLink("取消", "Index", new {}, new {@class = "btn btn-default"})
+            </div>
+        </div>
+    </div>
+}
+	</div>
+</div>
+

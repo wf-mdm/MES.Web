@@ -19,11 +19,7 @@
     }
 
     // form
-    $("select.select2").each(function () {
-        var $elem = $(this),
-            readonly = $elem.attr("readonly");
-        $elem.select2();
-    });
+    $("select.select2").select2();
     $('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',
         radioClass: 'iradio_square-blue',

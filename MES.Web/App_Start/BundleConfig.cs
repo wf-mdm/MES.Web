@@ -48,6 +48,7 @@ namespace MES.Web
             bundles.Add(new ScriptBundle("~/assets/js/layout").Include(
                 "~/assets/layout/data.js"
                 ));
+
             bundles.Add(new ScriptBundle("~/assets/js/line").Include(
                 "~/assets/app/line/*.js"
                 ));

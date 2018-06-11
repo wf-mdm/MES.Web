@@ -12,6 +12,7 @@ namespace MES.Web.Areas.Admin.Models
         {
         }
 
+        public virtual DbSet<WMS_PARTDATA> WMS_PARTDATA { get; set; }
         public virtual DbSet<ENG_BOMDETAIL> ENG_BOMDETAIL { get; set; }
         public virtual DbSet<ENG_BOMHEADER> ENG_BOMHEADER { get; set; }
 
@@ -31,5 +32,12 @@ namespace MES.Web.Areas.Admin.Models
         public virtual DbSet<V_USERANDROLES> V_USERANDROLES { get; set; }
 
         public virtual DbSet<ENG_VARIABLES> ENG_VARIABLES { get; set; }
+        public virtual DbSet<WMS_CONTNRTYPE> WMS_CONTNRTYPE { get; set; }
+        public virtual DbSet<WMS_CONTAINERTYPEATTR> WMS_CONTAINERTYPEATTR { get; set; }
+
+        public virtual DbSet<WMS_CONTNRPARTMAP> WMS_CONTNRPARTMAP { get; set; }
+
+
+        public System.Data.Entity.DbSet<MES.Web.Areas.Admin.Models.ENG_LINEPARTCONF> ENG_LINEPARTCONF { get; set; }
     }
 }

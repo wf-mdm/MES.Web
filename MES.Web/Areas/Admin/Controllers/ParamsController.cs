@@ -104,7 +104,7 @@ namespace MES.Web.Areas.Admin.Controllers
             Prepare(eNG_LINEOPPARAMCONF);
             if (ModelState.IsValid)
             {
-                decimal? confId = await db.ENG_LINEOPPARAMCONF.Where(p => p.CONFNAME.Equals(eNG_LINEOPPARAMCONF.CONFNAME)).MaxAsync(p => p.CONFID);
+                decimal? confId = await db.ENG_LINEOPPARAMCONF.MaxAsync(p => p.CONFID);
                 eNG_LINEOPPARAMCONF.CONFID = (confId.HasValue ? confId.Value + 1 : 1);
                 db.ENG_LINEOPPARAMCONF.Add(eNG_LINEOPPARAMCONF);
                 await db.SaveChangesAsync();

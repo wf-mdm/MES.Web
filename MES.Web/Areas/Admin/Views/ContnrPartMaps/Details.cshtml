@@ -1,0 +1,70 @@
+﻿@model MES.Web.Areas.Admin.Models.WMS_CONTNRPARTMAP
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTGRP2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTGRP2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VOLUMEQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VOLUMEQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VOL_UNIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VOL_UNIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTAINSUBQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTAINSUBQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OVERLIMIT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OVERLIMIT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTRLBY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTRLBY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUBCONTNRTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUBCONTNRTYPE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.CONTNRTYPE }) |
+    @Html.ActionLink("返回", "Index")
+</p>

@@ -136,7 +136,7 @@ Line.CntrMgr = {
             alert("请输入包装箱号");
             return;
         }
-        this.run("PRINTCONTAINER", form.types, {}, function (rs) {
+        this.run("PRINTCONTAINER", form.boxno, {}, function (rs) {
         }).always(function () {
             $this.doUpdateLog();
             $this.doUpdateInfo();

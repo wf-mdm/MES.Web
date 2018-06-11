@@ -1,0 +1,87 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_LINEPARTCONF
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LINENAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Line.CodeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTVER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTVER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SETTINGType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SETTINGType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTNRTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTNRTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDHEADCOUNTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDHEADCOUNTS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEFAULT_CONFNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEFAULT_CONFNAME)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.LINENAME)
+        @Html.HiddenFor(model => model.PARTVER)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", "Index", "", new { @class = "btn btn-success" })
+        </div>
+    }
+</div>

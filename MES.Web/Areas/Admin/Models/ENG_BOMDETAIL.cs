@@ -27,6 +27,14 @@ namespace MES.Web.Areas.Admin.Models
         [StringLength(4), Display(Name = "版本")]
         public string PARTVER { get; set; }
 
+        [StringLength(20)]
+        [Required, Display(Name = "产线代码")]
+        public string LINENAME { get; set; }
+
+        [Display(Name = "产线")]
+        [ForeignKey("LINENAME")]
+        public virtual ENG_PRDLINE Line { get; set; }
+
         [StringLength(10)]
         [Required, Display(Name = "工序号")]
         public string L_OPNO { get; set; }

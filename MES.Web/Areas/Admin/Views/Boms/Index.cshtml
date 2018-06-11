@@ -8,6 +8,10 @@
     <div class="box-header with-border">
         <form class="form-inline" method="post">
             <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.LINENAME)</label>
+                @Html.DropDownList("LINENAME", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width:200px" })
+            </div>
+            <div class="form-group">
                 <label>@Html.DisplayNameFor(model => model.PARTNO)</label>
                 <input type="text" name="PARTNO" value="@ViewBag.Query.PARTNO" />
             </div>
@@ -19,6 +23,9 @@
     <div class="box-body">
         <table class="table compact table-bordered table-hover">
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LINENAME)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PARTNO)
                 </th>
@@ -36,25 +43,28 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PARTNO)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RT_NAME)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DEFAULT_CONFNAME)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                    </td>
-                    <td>
-                        @Html.ActionLink("清单", String.Format("{0}/{1}/Index", item.PARTNO, item.PARTVER), "BomDetail", null, new { @class = "btn btn-success" })
-                        @Html.ActionLink("编辑", "Edit", new { PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("删除", "Delete", new { PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LINENAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PARTNO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RT_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DEFAULT_CONFNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                </td>
+                <td>
+                    @Html.ActionLink("清单", String.Format("/{0}/{1}/{2}/Index", item.LINENAME, item.PARTNO, item.PARTVER), "BomDetail", null, new { @class = "btn btn-success" })
+                    @Html.ActionLink("编辑", "Edit", new { LINENAME = item.LINENAME, PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, PARTNO = item.PARTNO, PARTVER = item.PARTVER }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
             }
 
         </table>

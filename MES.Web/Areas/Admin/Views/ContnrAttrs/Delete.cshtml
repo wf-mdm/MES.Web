@@ -1,0 +1,36 @@
+﻿@model MES.Web.Areas.Admin.Models.WMS_CONTAINERTYPEATTR
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPERTYNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPERTYNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPERTYVALUE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPERTYVALUE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", "Index", "", new { @class="btn btn-success"})
+        </div>
+    }
+</div>

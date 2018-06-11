@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "assets/template/line.html",
+    "inputFiles": [
+      "assets/template/line/*.html"
+    ]
+  }
+]

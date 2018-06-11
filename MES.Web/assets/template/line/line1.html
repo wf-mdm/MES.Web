@@ -1,0 +1,191 @@
+﻿<script type="text/plain" id="temp-qchkcfm">
+    <div class="box-header">
+        <h3 class="box-title">首件确认</h3>
+        <div class="box-tools pull-right">
+            <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="box-body line-form">
+        <form id="line-scan-form">
+            <div class="form-group">
+                <label class="control-label">扫码</label>
+                <input type="text" name="bc" class="form-control input-lg" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">确认方式</label>
+                <select name="stat" class="form-control select2">
+                    <option value="">--请选择--</option>
+                    {{#each QCHKCFM.Types}}
+                    <option value="{{ID}}">{{ID}} - {{TEXT}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">说明</label>
+                <input type="text" name="res" class="form-control" />
+            </div>
+            <button class="btn btn-primary btn-block">提交</button>
+        </form>
+    </div>
+    <div class="box-header with-border">
+        <h3 class="box-title">产线日志</h3>
+    </div>
+    <div class="box-body log-list" id="log-list">
+    </div>
+</script>
+<script type="text/plain" id="temp-book1stpcs">
+    <div class="box-header">
+        <h3 class="box-title">首件登记</h3>
+        <div class="box-tools pull-right">
+            <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="box-body line-form">
+        <form id="line-scan-form">
+            <div class="form-group">
+                <label class="control-label">扫码</label>
+                <input type="text" name="bc" class="form-control input-lg" />
+            </div>
+            <button class="btn btn-primary btn-block">提交</button>
+        </form>
+    </div>
+    <div class="box-header with-border">
+        <h3 class="box-title">产线日志</h3>
+    </div>
+    <div class="box-body log-list" id="log-list">
+    </div>
+</script>
+
+<script type="text/plain" id="temp-qdprepare">
+    <div class="box-header">
+        <h3 class="box-title">质量数据录入</h3>
+        <div class="box-tools pull-right">
+            <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="box-body line-form">
+        <form id="line-scan-form" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">检验配置</label>
+                <div class="col-md-10">
+                    <select name="dtyp" class="form-control select2" style="width: 100%;">
+                        <option value="">--请选择--</option>
+                        {{#each QDPREPARE.Types}}
+                        <option value="{{id}}">{{text}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">生产线</label>
+                <div class="col-md-4">
+                    <select name="LINE" class="form-control select2">
+                        <option value="">--请选择--</option>
+                    </select>
+                </div>
+                <label class="control-label col-md-2">工序</label>
+                <div class="col-md-4">
+                    <select name="OP" class="form-control select2">
+                        <option value="">--请选择--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">工站</label>
+                <div class="col-md-4">
+                    <select name="STN" class="form-control select2">
+                        <option value="">--请选择--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">扫码</label>
+                <div class="col-md-8">
+                    <input type="text" name="bc" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">查询</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">料号</label>
+                <div class="col-md-4">
+                    <input type="text" name="PN" class="form-control" readonly="readonly" />
+                </div>
+                <label class="control-label col-md-2">说明</label>
+                <div class="col-md-4">
+                    <input type="text" name="DESC" class="form-control" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">规格</label>
+                <div class="col-md-4">
+                    <input type="text" name="SPEC" class="form-control" readonly="readonly" />
+                </div>
+                <label class="control-label col-md-2">数量</label>
+                <div class="col-md-4">
+                    <input type="text" name="QTY" class="form-control" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">最终确认</label>
+                <div class="col-md-4">
+                    <div class="radio col-sm-6">
+                        <label>
+                            <input type="radio" name="QCHKCFM" value="OK" />
+                            OK
+                        </label>
+                    </div>
+                    <div class="radio col-sm-6">
+                        <label>
+                            <input type="radio" name="QCHKCFM" value="NOK" />
+                            NOK
+                        </label>
+                    </div>
+                </div>
+                <label class="control-label col-md-2">数据记录ID</label>
+                <div class="col-md-4">
+                    <input type="text" name="RID" class="form-control" readonly="readonly" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="box-body" id="qdprepare-list"></div>
+    <div class="box-header with-border">
+        <h3 class="box-title">产线日志</h3>
+    </div>
+    <div class="box-body log-list" id="log-list">
+    </div>
+</script>
+<script type="text/plain" id="temp-qdprepare-list">
+    <table class="table table-bordered" style="width:inherit;">
+        <thead>
+            <tr>
+                <th>参数ID</th>
+                <th>参数说明</th>
+                <th width="150px">上限</th>
+                <th width="150px">下限</th>
+                <th width="150px">参考值</th>
+                <th width="150px">录入值</th>
+                <th width="150px">校验结果</th>
+                <th width="150px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+            <tr>
+                <td>{{PARAMID}}</td>
+                <td>{{PARAMDESC}}</td>
+                <td>{{UPPERLMT}}</td>
+                <td>{{LOWERLMT}}</td>
+                <td>{{CENTREVAL}}</td>
+                <td>
+                    <input type="text" class="form-control" value="{{PARAMVAL}}" />
+                </td>
+                <td>{{RESULT}}</td>
+                <td><button class="btn btn-primary">保存</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>

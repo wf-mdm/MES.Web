@@ -17,7 +17,7 @@ namespace MES.Web.Areas.Admin.Controllers
         private static String ModelName = "BOM";
         private MESDbContext db = new MESDbContext();
 
-        private async Task InitSelect(String RT_NAME, String DEFAULT_CONFNAME)
+        private async Task InitSelect(String LINENAME, String RT_NAME, String DEFAULT_CONFNAME)
         {
             IList<SelectListItem> routes = await db.ENG_ROUTE.Select(e => new SelectListItem()
             {
@@ -31,6 +31,21 @@ namespace MES.Web.Areas.Admin.Controllers
                     Text = e.CONFNAME,
                     Value = e.CONFNAME
                 }).Distinct().ToListAsync();
+            IList<ENG_PRDLINE> lines1 = await db.ENG_PRDLINE.ToListAsync();
+            IList<SelectListItem> lines = lines1.Select(l => {
+                return new SelectListItem()
+                {
+                    Value = l.LINENAME,
+                    Text = l.CodeName
+                };
+            }).ToList();
+            lines.Add(new SelectListItem()
+            {
+                Value = "ALL",
+                Text = "ALL"
+            });
+
+            ViewBag.LINENAME = new SelectList(lines, "Value", "Text", LINENAME);
             ViewBag.RT_NAME = new SelectList(routes, "Value", "Text", RT_NAME);
             ViewBag.DEFAULT_CONFNAME = new SelectList(confs, "Value", "Text", DEFAULT_CONFNAME);
         }
@@ -41,8 +56,27 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
+            IList<ENG_PRDLINE> lines1 = await db.ENG_PRDLINE.ToListAsync();
+            IList<SelectListItem> lines = lines1.Select(l => {
+                return new SelectListItem()
+                {
+                    Value = l.LINENAME,
+                    Text = l.CodeName
+                };
+            }).ToList();
+            lines.Insert(0, new SelectListItem()
+            {
+                Value = "ALL",
+                Text = "ALL"
+            });
+
+            ViewBag.LINENAME = new SelectList(lines, "Value", "Text", Query.LINENAME);
             return View(await db.ENG_BOMHEADER
-                .Where(d => String.IsNullOrEmpty(Query.PARTNO) || d.PARTNO.IndexOf(Query.PARTNO) > -1)
+                .Where(d =>
+                    (String.IsNullOrEmpty(Query.LINENAME)
+                        || d.LINENAME.IndexOf(Query.LINENAME) > -1) &&
+                    (String.IsNullOrEmpty(Query.PARTNO)
+                        || d.PARTNO.IndexOf(Query.PARTNO) > -1))
                 .ToListAsync());
         }
 
@@ -67,7 +101,7 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
 
-            await InitSelect("", "");
+            await InitSelect("", "", "");
             return View();
         }
 
@@ -76,7 +110,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PARTNO,RT_NAME,DEFAULT_CONFNAME,DESCRIPTION")] ENG_BOMHEADER eNG_BOMHEADER)
+        public async Task<ActionResult> Create([Bind(Include = "LINENAME,PARTNO,RT_NAME,DEFAULT_CONFNAME,DESCRIPTION")] ENG_BOMHEADER eNG_BOMHEADER)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "新建";
@@ -89,21 +123,21 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            await InitSelect(eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
+            await InitSelect(eNG_BOMHEADER.LINENAME, eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
             return View(eNG_BOMHEADER);
         }
 
         // GET: Admin/Boms/Edit/5
-        public async Task<ActionResult> Edit(string PARTNO, String PARTVER)
+        public async Task<ActionResult> Edit(string LINENAME, string PARTNO, String PARTVER)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "编辑";
-            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(PARTNO, PARTVER);
+            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(LINENAME, PARTNO, PARTVER);
             if (eNG_BOMHEADER == null)
             {
                 return HttpNotFound();
             }
-            await InitSelect(eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
+            await InitSelect(eNG_BOMHEADER.LINENAME, eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
             return View(eNG_BOMHEADER);
         }
 
@@ -112,7 +146,7 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PARTNO,PARTVER,RT_NAME,DEFAULT_CONFNAME,DESCRIPTION")] ENG_BOMHEADER eNG_BOMHEADER)
+        public async Task<ActionResult> Edit([Bind(Include = "LINENAME,PARTNO,PARTVER,RT_NAME,DEFAULT_CONFNAME,DESCRIPTION")] ENG_BOMHEADER eNG_BOMHEADER)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "编辑";
@@ -123,16 +157,16 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            await InitSelect(eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
+            await InitSelect(eNG_BOMHEADER.LINENAME, eNG_BOMHEADER.RT_NAME, eNG_BOMHEADER.DEFAULT_CONFNAME);
             return View(eNG_BOMHEADER);
         }
 
         // GET: Admin/Boms/Delete/5
-        public async Task<ActionResult> Delete(string PARTNO, String PARTVER)
+        public async Task<ActionResult> Delete(String LINENAME, string PARTNO, String PARTVER)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "删除";
-            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(PARTNO, PARTVER);
+            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(LINENAME, PARTNO, PARTVER);
             if (eNG_BOMHEADER == null)
             {
                 return HttpNotFound();
@@ -143,14 +177,14 @@ namespace MES.Web.Areas.Admin.Controllers
         // POST: Admin/Boms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string PARTNO, String PARTVER)
+        public async Task<ActionResult> DeleteConfirmed(string LINENAME, string PARTNO, String PARTVER)
         {
             ViewBag.Title = ModelName;
             ViewBag.SubTitle = "删除";
 
-            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(PARTNO, PARTVER);
+            ENG_BOMHEADER eNG_BOMHEADER = await db.ENG_BOMHEADER.FindAsync(LINENAME, PARTNO, PARTVER);
             db.ENG_BOMHEADER.Remove(eNG_BOMHEADER);
-            foreach(ENG_BOMDETAIL d in await db.ENG_BOMDETAIL.Where(b=> b.PARTNO.Equals(eNG_BOMHEADER.PARTNO)).ToListAsync())
+            foreach (ENG_BOMDETAIL d in await db.ENG_BOMDETAIL.Where(b => (b.LINENAME.Equals(eNG_BOMHEADER.LINENAME) && b.PARTNO.Equals(eNG_BOMHEADER.PARTNO))).ToListAsync())
             {
                 db.ENG_BOMDETAIL.Remove(d);
             }

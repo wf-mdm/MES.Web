@@ -19,12 +19,22 @@ namespace MES.Web.Areas.Admin.Models
 
         [Key]
         [Column(Order = 0)]
+        [StringLength(20)]
+        [Required, Display(Name = "产线代码")]
+        public string LINENAME { get; set; }
+
+        [Display(Name = "产线")]
+        [ForeignKey("LINENAME")]
+        public virtual ENG_PRDLINE Line { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
         [StringLength(30)]
         [Required, Display(Name = "料号")]
         public string PARTNO { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 2)]
         [StringLength(4)]
         public string PARTVER { get; set; }
 

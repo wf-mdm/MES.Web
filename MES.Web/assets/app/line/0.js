@@ -45,7 +45,7 @@ $(function () {
         } else {
             $.get(Line.info.app + "assets/template/line.html", function (data, status) {
                 $templates = {};
-                $(data).find("script").each(function () {
+                $("<div></div>").html(data).find("script").each(function () {
                     var $tmp = $(this),
                         $id = $tmp.attr("id"),
                         $txt = $tmp.html();

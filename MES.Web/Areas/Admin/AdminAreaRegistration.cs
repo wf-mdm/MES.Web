@@ -16,9 +16,15 @@ namespace MES.Web.Areas.Admin
         {
             context.MapRoute(
                 "Admin_BomDetail",
-                "app/Admin/{controller}/{PN}/{VER}/{action}/{id}",
+                "app/Admin/{controller}/{LINENAME}/{PN}/{VER}/{action}/{id}",
                 new { action = "Index", controller = "BomDetail", id = UrlParameter.Optional },
                 new { controller = "BomDetail" }
+            );
+            context.MapRoute(
+                "Admin_ContnrAttrs",
+                "app/Admin/{controller}/{CONTNRTYPE}/{action}/{id}",
+                new { action = "Index", controller = "ContnrAttrs", id = UrlParameter.Optional },
+                new { controller = "ContnrAttrs" }
             );
             context.MapRoute(
                 "Admin_default",

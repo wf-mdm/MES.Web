@@ -1,0 +1,78 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_LINEPARTCONF
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Line.BUNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Line.BUNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PARTVER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PARTVER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SETTINGType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SETTINGType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONTNRTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONTNRTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDHEADCOUNTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDHEADCOUNTS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEFAULT_CONFNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEFAULT_CONFNAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("返回", "Index")
+</p>

@@ -1,0 +1,22 @@
+﻿@model MES.Web.Areas.Admin.Models.WMS_CONTAINERTYPEATTR
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPERTYVALUE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPERTYVALUE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("返回", "Index")
+</p>

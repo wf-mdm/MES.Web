@@ -48,31 +48,31 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/BomDetail
-        public async Task<ActionResult> Index(String PN, String VER, ENG_BOMDETAIL Query)
+        public async Task<ActionResult> Index(String LINENAME, String PN, String VER, ENG_BOMDETAIL Query)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "查询";
             ViewBag.Query = Query;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
             return View(await db.ENG_BOMDETAIL.Where(d =>
-                PN.Equals(d.PARTNO) && d.PARTVER.Equals(d.PARTVER)
+                d.LINENAME.Equals(LINENAME) && PN.Equals(d.PARTNO) && d.PARTVER.Equals(d.PARTVER)
             ).ToListAsync());
         }
 
         // GET: Admin/BomDetail/Create
-        public async Task<ActionResult> Create(String PN, String VER)
+        public async Task<ActionResult> Create(String LINENAME, String PN, String VER)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "新建";
             ViewBag.PN = PN;
             ViewBag.VER = VER;
@@ -80,6 +80,7 @@ namespace MES.Web.Areas.Admin.Controllers
 
             ENG_BOMDETAIL eNG_BOMDETAIL = new ENG_BOMDETAIL()
             {
+                LINENAME = LINENAME,
                 PARTNO = PN,
                 PARTVER = VER
             };
@@ -92,14 +93,15 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(String PN, String VER, [Bind(Include = "ITEMID,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
+        public async Task<ActionResult> Create(String LINENAME, String PN, String VER, [Bind(Include = "ITEMID,LINENAME,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "新建";
+            ViewBag.LINENAME = LINENAME;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
@@ -117,14 +119,15 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/BomDetail/Edit/5
-        public async Task<ActionResult> Edit(String PN, String VER, Decimal id)
+        public async Task<ActionResult> Edit(String LINENAME, String PN, String VER, Decimal id)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "编辑";
+            ViewBag.LINENAME = LINENAME;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
@@ -147,14 +150,15 @@ namespace MES.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(String PN, String VER, [Bind(Include = "ITEMID,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
+        public async Task<ActionResult> Edit(String LINENAME, String PN, String VER, [Bind(Include = "ITEMID,LINENAME,KEYINFO,PARTNO,PARTVER,L_OPNO,COMP_PARTNO,DESCRIPTION,UNITCONSUMEQTY,LotControl,SERIALCONTROL,IsKeyID,CNTCONTROL,ISSEMI,SEMILINEGRP")] ENG_BOMDETAIL eNG_BOMDETAIL)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "编辑";
+            ViewBag.LINENAME = LINENAME;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
@@ -170,14 +174,15 @@ namespace MES.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/BomDetail/Delete/5
-        public async Task<ActionResult> Delete(String PN, String VER, Decimal id)
+        public async Task<ActionResult> Delete(String LINENAME, String PN, String VER, Decimal id)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "删除";
+            ViewBag.LINENAME = LINENAME;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);
@@ -197,14 +202,15 @@ namespace MES.Web.Areas.Admin.Controllers
         // POST: Admin/BomDetail/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(String PN, String VER, Decimal id)
+        public async Task<ActionResult> DeleteConfirmed(String LINENAME, String PN, String VER, Decimal id)
         {
-            if (String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
+            if (String.IsNullOrEmpty(LINENAME) || String.IsNullOrEmpty(PN) || String.IsNullOrEmpty(VER))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.Title = String.Format("物料{0}@{1}", PN, VER);
+            ViewBag.Title = String.Format("产线:{0}, 物料{1}@{2}", LINENAME, PN, VER);
             ViewBag.SubTitle = "删除";
+            ViewBag.LINENAME = LINENAME;
             ViewBag.PN = PN;
             ViewBag.VER = VER;
             ViewBag.PATH = String.Format("/{0}.{1}/", PN, VER);

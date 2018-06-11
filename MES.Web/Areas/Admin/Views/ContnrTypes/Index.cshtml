@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.WMS_CONTNRTYPE>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box box-primary data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            <button type="submit" class="btn btn-primary">查询</button>
+            <span class="separator" />
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTNRTYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTAINERDESC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PARTGRP2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VOLUMEQTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VOL_UNIT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTAINSUBQTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OVERLIMIT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTRLBY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUBCONTNRTYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PARENTTYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SINGLEPART)
+        </th>
+        <th width="280px">维护</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTNRTYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTAINERDESC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PARTGRP2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VOLUMEQTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VOL_UNIT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTAINSUBQTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OVERLIMIT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTRLBY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUBCONTNRTYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PARENTTYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SINGLEPART)
+        </td>
+        <td>
+            @Html.ActionLink("属性", String.Format("/{0}/Index", item.CONTNRTYPE), "ContnrAttrs", null, new { @class = "btn btn-success" })
+            @Html.ActionLink("编辑", "Edit", new { id = item.CONTNRTYPE }, new { @class = "btn btn-info" })
+            @Html.ActionLink("删除", "Delete", new { id = item.CONTNRTYPE }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>
+</div>

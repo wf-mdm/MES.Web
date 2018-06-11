@@ -205,6 +205,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BomDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\BomsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContnrAttrsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContnrPartMapsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContnrTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinePartConfsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\OprCapsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OprRolesController.cs" />
@@ -217,12 +221,14 @@
     <Compile Include="Areas\Admin\Controllers\StnsController.cs" />
     <Compile Include="Areas\Admin\Controllers\VariablesController.cs" />
     <Compile Include="Areas\Admin\Models\APP_MASTDATA.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_LINEOPPARTCONF.cs" />
     <Compile Include="Areas\Admin\Models\ENG_BOMDETAIL.cs" />
     <Compile Include="Areas\Admin\Models\ENG_BOMHEADER.cs" />
     <Compile Include="Areas\Admin\Models\ENG_BU.cs" />
     <Compile Include="Areas\Admin\Models\ENG_CODECFG.cs" />
     <Compile Include="Areas\Admin\Models\ENG_LINEOP.cs" />
     <Compile Include="Areas\Admin\Models\ENG_LINEOPPARAMCONF.cs" />
+    <Compile Include="Areas\Admin\Models\ENG_LINEPARTCONF.cs" />
     <Compile Include="Areas\Admin\Models\ENG_LINESTATION.cs" />
     <Compile Include="Areas\Admin\Models\ENG_PRDLINE.cs" />
     <Compile Include="Areas\Admin\Models\ENG_ROUTE.cs" />
@@ -236,6 +242,10 @@
     <Compile Include="Areas\Admin\Models\MESEnums.cs" />
     <Compile Include="Areas\Admin\Models\SopRequest.cs" />
     <Compile Include="Areas\Admin\Models\V_USERANDROLES.cs" />
+    <Compile Include="Areas\Admin\Models\WMS_CONTAINERTYPEATTR.cs" />
+    <Compile Include="Areas\Admin\Models\WMS_CONTNRPARTMAP.cs" />
+    <Compile Include="Areas\Admin\Models\WMS_CONTNRTYPE.cs" />
+    <Compile Include="Areas\Admin\Models\WMS_PARTDATA.cs" />
     <Compile Include="Areas\Rpt\Controllers\ProdController.cs" />
     <Compile Include="Areas\Rpt\Controllers\TraceabilityController.cs" />
     <Compile Include="Areas\Rpt\Models\RequestModels.cs" />
@@ -267,6 +277,10 @@
     <Content Include="assets\app\line\0.js" />
     <Content Include="assets\app\line\layout.js" />
     <Content Include="assets\app\line\CntrMgr.js" />
+    <Content Include="assets\app\line\BOOK1STPCS.js" />
+    <Content Include="assets\app\stn\MCSTART.js" />
+    <Content Include="assets\app\line\QDPREPARE.js" />
+    <Content Include="assets\app\line\QCHKCFM.js" />
     <Content Include="assets\app\line\RWKQA.js" />
     <Content Include="assets\app\line\RWKComp.js" />
     <Content Include="assets\app\line\kanban2.js" />
@@ -358,32 +372,66 @@
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\handlebars.js" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Oprs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Oprs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Oprs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Oprs\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Oprs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\OprRoles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\OprRoles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\OprRoles\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\OprRoles\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\OprRoles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BomDetail\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BomDetail\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BomDetail\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BomDetail\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BomDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Boms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Boms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Boms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Boms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Boms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrAttrs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrAttrs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrAttrs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrAttrs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrAttrs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrPartMaps\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrPartMaps\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrPartMaps\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrPartMaps\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrPartMaps\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ContnrTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LinePartConfs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LinePartConfs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LinePartConfs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LinePartConfs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LinePartConfs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Lines\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Lines\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Lines\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Lines\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Lines\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OprCaps\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OprCaps\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OprCaps\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OprCaps\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OprCaps\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OprRoles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Oprs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Ops\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Ops\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Ops\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Ops\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Ops\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Stns\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Stns\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Stns\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Stns\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Stns\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Params\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Params\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Params\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Params\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Params\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Routes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Routes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Routes\Details.cshtml" />
@@ -394,38 +442,24 @@
     <Content Include="Areas\Admin\Views\RwkCodes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\RwkCodes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\RwkCodes\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Params\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Params\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Params\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Params\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Params\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\OprCaps\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\OprCaps\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\OprCaps\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\OprCaps\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\OprCaps\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Boms\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Boms\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Boms\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Boms\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Boms\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\BomDetail\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\BomDetail\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\BomDetail\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\BomDetail\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\BomDetail\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Sops\Index.cshtml" />
-    <Content Include="Areas\Rpt\Views\web.config" />
-    <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
-    <Content Include="Areas\Rpt\Views\Shared\Rpt.cshtml" />
-    <Content Include="Areas\Rpt\Views\Prod\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Sops\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Stns\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Variables\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Variables\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Variables\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Variables\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Variables\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Rpt\Views\Prod\Index.cshtml" />
+    <Content Include="Areas\Rpt\Views\Shared\Rpt.cshtml" />
+    <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
+    <Content Include="Areas\Rpt\Views\web.config" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.unobtrusive.js" />
@@ -1313,9 +1347,14 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="assets\rpt\base.js" />
     <Content Include="assets\rpt\echarts.js" />
+    <Content Include="assets\template\line.html" />
+    <Content Include="assets\template\line.min.html">
+      <DependentUpon>line.html</DependentUpon>
+    </Content>
+    <Content Include="assets\template\line\line1.html" />
     <Content Include="assets\template\wh.html" />
     <Content Include="assets\template\stn.html" />
-    <Content Include="assets\template\line.html" />
+    <Content Include="assets\template\line\line0.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -1339,19 +1378,10 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\Views\Web.config" />
-    <Content Include="Scripts\Views\_ViewStart.cshtml" />
-    <Content Include="Scripts\Views\Shared\Error.cshtml" />
-    <Content Include="Scripts\Views\Shared\Admin.cshtml" />
-    <Content Include="Scripts\Views\Session\Index.cshtml" />
-    <Content Include="Scripts\Views\Stn\Index.cshtml" />
-    <Content Include="Scripts\Views\Stn\Error.cshtml" />
-    <Content Include="Scripts\Views\Admin\Menu.cshtml" />
-    <Content Include="Scripts\Views\Admin\MenuError.cshtml" />
-    <Content Include="Scripts\Views\Warehouse\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Menu.cshtml" />
@@ -1378,22 +1408,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Views\Admin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Views\Line\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Views\Shared\_Foot.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Views\Shared\_UserMenu.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\Default.log.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\Views\Line\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
