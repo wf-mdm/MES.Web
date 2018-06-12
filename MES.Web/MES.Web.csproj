@@ -208,6 +208,7 @@
     <Compile Include="Areas\Admin\Controllers\ContnrAttrsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContnrPartMapsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContnrTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LineOpPartsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinePartConfsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinesController.cs" />
     <Compile Include="Areas\Admin\Controllers\OprCapsController.cs" />
@@ -278,6 +279,7 @@
     <Content Include="assets\app\line\layout.js" />
     <Content Include="assets\app\line\CntrMgr.js" />
     <Content Include="assets\app\line\BOOK1STPCS.js" />
+    <Content Include="assets\app\line\LineTraceability.js" />
     <Content Include="assets\app\stn\MCSTART.js" />
     <Content Include="assets\app\line\QDPREPARE.js" />
     <Content Include="assets\app\line\QCHKCFM.js" />
@@ -460,6 +462,11 @@
     <Content Include="Areas\Rpt\Views\Shared\Rpt.cshtml" />
     <Content Include="Areas\Rpt\Views\Traceability\Index.cshtml" />
     <Content Include="Areas\Rpt\Views\web.config" />
+    <Content Include="Areas\Admin\Views\LineOpParts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LineOpParts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\LineOpParts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\LineOpParts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LineOpParts\Index.cshtml" />
     <None Include="assets\js\jquery.validate-vsdoc.js" />
     <Content Include="assets\js\jquery.validate.js" />
     <Content Include="assets\js\jquery.validate.unobtrusive.js" />

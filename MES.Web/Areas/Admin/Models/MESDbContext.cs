@@ -39,5 +39,7 @@ namespace MES.Web.Areas.Admin.Models
 
 
         public System.Data.Entity.DbSet<MES.Web.Areas.Admin.Models.ENG_LINEPARTCONF> ENG_LINEPARTCONF { get; set; }
+
+        public System.Data.Entity.DbSet<MES.Web.Areas.Admin.Models.ENG_LINEOPPARTCONF> ENG_LINEOPPARTCONF { get; set; }
     }
 }
