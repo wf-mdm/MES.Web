@@ -1,12 +1,7 @@
 ﻿@model MES.Web.Areas.Admin.Models.ENG_VARIABLES
-
 @{
-                /**/
-
-                Layout = "~/Views/Shared/Admin.cshtml";
+    Layout = "~/Views/Shared/Admin.cshtml";
 }
-
-
 <div class="box box-primary data-form">
     <div class="box-body">
         @using (Html.BeginForm())
@@ -18,7 +13,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.LINENAME, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.LINENAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownList("LINENAME", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width: 100%" })
                     </div>
                     <div class="col-md-5 error-msg">
 
@@ -29,7 +24,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.PARTNO, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.PARTNO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownList("PARTNO", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width: 100%" })
                     </div>
                     <div class="col-md-5 error-msg">
 
@@ -62,7 +57,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.L_STNO, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-5">
-                        @Html.EditorFor(model => model.L_STNO, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownList("L_STNO", null, "-- 请选择 --", htmlAttributes: new { @class = "form-control select2", style = "width: 100%" })
                     </div>
                     <div class="col-md-5 error-msg">
 
@@ -114,3 +109,23 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var m = /.*\/app\/[^\/]+\/[^\/]+/i.exec(window.location.pathname);
+        if (!m) return;
+        var url = m[0] + "/OPSTN";
+        $("#L_STNO").each(function () {
+            var $stn = $(this),
+                $form = $stn.parents("form"),
+                $line = $form.find("select[name=LINENAME]");
+            $line.change(function () {
+                $.get(url, { LINENAME: $line.val()}, function (datas) {
+                    var tmp = window.DEFAULT_OPTION ? window.DEFAULT_OPTION : "<option value>-- 请选择 --</option>";
+                    for (var i in datas.STN)
+                        tmp += "<option value=\"" + datas.STN[i].L_STNO + "\">" + datas.STN[i].CodeName + "</option>";
+                    $stn.html(tmp);
+                }, "json");
+            });
+        });
+    });
+</script>

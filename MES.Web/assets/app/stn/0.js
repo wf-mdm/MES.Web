@@ -13,6 +13,7 @@
     }
 
     Stn.switch = function (appid) {
+/*
         var found = "Kanban" == appid, path = "#" + appid;
         if (!found) {
             for (var i in Stn.info.features) {
@@ -23,6 +24,7 @@
             }
             if (!found) return;
         }
+*/
         var f = Stn[appid];
         if (f === curFeature) return;
         delete Stn.onUpdate;
@@ -187,25 +189,42 @@
         return Stn.info.line + ";" + Stn.info.op + ";" + Stn.info.stn;
     }
     Stn.run = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred()
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/Run",
             data: JSON.stringify({ Server: "mes", Client: getClient(), Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            if ("OK" != d.Code) {
+                MsgUtils.show(d.Msg);
+            }
+            $d.resolve(d);
+        }).fail(function (e) {
+            MsgUtils.show("系统错误");
+            $d.reject(e);
         });
+        return $d.promise();
     };
 
     Stn.runDb = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred()
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/RunDb",
             data: JSON.stringify({ Server: "mes", Client: getClient(), Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            $d.resolve(d);
+        }).fail(function (e) {
+            $d.reject(e);
+            MsgUtils.show("系统错误");
         });
+        return $d.promise();
     };
 
     Handlebars.registerHelper("eq", function (v1, v2, options) {

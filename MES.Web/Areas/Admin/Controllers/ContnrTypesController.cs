@@ -78,7 +78,7 @@ namespace MES.Web.Areas.Admin.Controllers
             ViewBag.SubTitle = "新建";
 
             await InitSelect("", "", "", "");
-            return View();
+            return View(new WMS_CONTNRTYPE());
         }
 
         // POST: Admin/ContnrTypes/Create

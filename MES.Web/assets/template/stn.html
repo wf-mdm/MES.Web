@@ -223,7 +223,7 @@
                 <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="lot-list">
             <table class="table compact">
                 <thead>
                     <tr>
@@ -295,6 +295,38 @@
                 <div class="form-group">
                     <button class="btn btn-primary btn-lg btn-block">提交</button>
                 </div>
+            </form>
+        </div>
+    </script>
+    <script type="text/plain" id="temp-setstattr">
+        <div class="box-header">
+            <h3 class="box-title">工站设定变更</h3>
+            <div class="box-tools pull-right">
+                <a href="#Kanban" class="btn btn-box-tool"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="box-body">
+            <form id="stn-scan-form">
+                <div class="form-group">
+                    <label class="control-label">变更设定项</label>
+                    <select name="code" class="form-control select2">
+                        <option value="">-- 请选择 --</option>
+                        {{#each SETSTATTR.Codes}}
+                        <option value="{{@key}}">{{@key}} - {{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">设定值</label>
+                    <input type="text" name="bc" class="form-control input-lg" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="applyall" value="y">
+                        应用到所有工站
+                    </label>
+                </div>
+                <button class="btn btn-primary btn-block">提交</button>
             </form>
         </div>
     </script>

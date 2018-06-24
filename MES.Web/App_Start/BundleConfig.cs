@@ -40,7 +40,8 @@ namespace MES.Web
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/common").Include(
                 "~/assets/js/handlebars.js",
-                "~/assets/app/common/FormUtils.js"
+                "~/assets/app/common/FormUtils.js",
+                "~/assets/app/common/MsgUtils.js"
                 ));
             bundles.Add(new ScriptBundle("~/assets/js/workshop").Include(
                 "~/assets/app/workshop/*.js"

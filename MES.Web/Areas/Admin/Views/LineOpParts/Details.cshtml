@@ -1,0 +1,110 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_LINEOPPARTCONF
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SETTINGType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SETTINGType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_OPNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_STNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_STNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PREPARETIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PREPARETIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSTTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSTTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CYCLETIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CYCLETIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDHEADS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDHEADS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCFGLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDCFGLIST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGIDUNBINDLST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGIDUNBINDLST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPLIST)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("返回", "Index")
+</p>

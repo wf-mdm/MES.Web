@@ -1,0 +1,116 @@
+﻿@model MES.Web.Areas.Admin.Models.ENG_LINEOPPARTCONF
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h3>确认要删除该数据吗?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SETTINGType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SETTINGType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_OPNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.L_STNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.L_STNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDYIELDRATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PREPARETIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PREPARETIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSTTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSTTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CYCLETIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CYCLETIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STDHEADS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STDHEADS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCFGLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDCFGLIST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGIDUNBINDLST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGIDUNBINDLST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROPLIST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROPLIST)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-danger" />
+            @Html.ActionLink("取消", "Index", "", new { @class="btn btn-success"})
+        </div>
+    }
+</div>

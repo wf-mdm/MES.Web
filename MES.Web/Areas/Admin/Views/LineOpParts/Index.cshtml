@@ -1,0 +1,116 @@
+﻿@model IEnumerable<MES.Web.Areas.Admin.Models.ENG_LINEOPPARTCONF>
+
+@{
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="box box-primary data-list">
+    <div class="box-header with-border">
+        <form class="form-inline" method="post">
+            <button type="submit" class="btn btn-primary">查询</button>
+            <span class="separator" />
+            @Html.ActionLink("增加", "Create", "", new { @class = "btn btn-success" })
+        </form>
+    </div>
+    <div class="box-body">
+        <table class="table compact table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LINENAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PARTNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SETTINGType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.L_OPNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.L_STNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STDYIELDRATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PREPARETIME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POSTTIME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CYCLETIME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STDHEADS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCFGLIST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMMENT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGIDUNBINDLST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROPLIST)
+        </th>
+        <th>维护</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LINENAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PARTNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SETTINGType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.L_OPNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.L_STNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STDYIELDRATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PREPARETIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POSTTIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CYCLETIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STDHEADS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCFGLIST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMMENT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGIDUNBINDLST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROPLIST)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new {  LINENAME=item.LINENAME, PARTNO = item.PARTNO }, new { @class="btn btn-info"})
+            @Html.ActionLink("删除", "Delete", new { LINENAME = item.LINENAME, PARTNO = item.PARTNO }, new { @class="btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>
+    </div>
+</div>

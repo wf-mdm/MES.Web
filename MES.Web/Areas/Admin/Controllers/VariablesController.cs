@@ -13,15 +13,38 @@ namespace MES.Web.Areas.Admin.Controllers
 {
     public class VariablesController : Controller
     {
-        private static String ModelName = "ENG_VARIABLES";
+        private static String ModelName = "工程变量";
         private MESDbContext db = new MESDbContext();
 
-        private async Task InitSelect(String LINENAME = "", String PARTNO = "")
+        private async Task InitSelect(String LINENAME = "", String PARTNO = "", String STN = "")
         {
-            ViewBag.LINENAME = new SelectList(await db.ENG_PRDLINE
-                .ToListAsync(), "LINENAME", "CodeName", LINENAME);
-            ViewBag.PARTNO = new SelectList(await db.ENG_BOMHEADER
-                .ToListAsync(), "PARTNO", "Name", PARTNO);
+            IList<ENG_PRDLINE> lines1 = await db.ENG_PRDLINE.ToListAsync();
+            IList<SelectListItem> lines = lines1.Select(l => {
+                return new SelectListItem()
+                {
+                    Value = l.LINENAME,
+                    Text = l.CodeName
+                };
+            }).ToList();
+            lines.Insert(0, new SelectListItem()
+            {
+                Value = "ALL",
+                Text = "ALL"
+            });
+
+            ViewBag.LINENAME = new SelectList(lines, "Value", "Text", LINENAME);
+
+            ViewBag.PARTNO = new SelectList(await db.WMS_PARTDATA
+                .ToListAsync(), "PARTNO", "CodeName", PARTNO);
+
+            List<ENG_LINESTATION> STNS = await db.ENG_LINESTATION.Where(
+                s => s.LINENAME.Equals(LINENAME)).ToListAsync();
+            STNS.Insert(0, new ENG_LINESTATION()
+            {
+                LINENAME = "ALL",
+                L_STNO = "ALL"
+            });
+            ViewBag.L_STNO = new SelectList(STNS, "L_STNO", "CodeName", STN);
         }
 
         // GET: Admin/Variable
@@ -33,7 +56,7 @@ namespace MES.Web.Areas.Admin.Controllers
             await InitSelect(Query.LINENAME);
             return View(await db.ENG_VARIABLES
                 .Where(l => (String.IsNullOrEmpty(Query.LINENAME) || l.LINENAME.Equals(Query.LINENAME)) &&
-                (String.IsNullOrEmpty(Query.VARNAME) || (l.VARNAME != null && l.VARNAME.IndexOf(Query.VARNAME) > -17773)))
+                (String.IsNullOrEmpty(Query.VARNAME) || (l.VARNAME != null && l.VARNAME.IndexOf(Query.VARNAME) > -1)))
                 .ToListAsync());
         }
 
@@ -75,7 +98,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            await InitSelect(eNG_VARIABLES.LINENAME, eNG_VARIABLES.PARTNO);
+            await InitSelect(eNG_VARIABLES.LINENAME, eNG_VARIABLES.PARTNO, eNG_VARIABLES.L_STNO);
             return View(eNG_VARIABLES);
         }
 
@@ -89,7 +112,7 @@ namespace MES.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            await InitSelect(eNG_VARIABLES.LINENAME, eNG_VARIABLES.PARTNO);
+            await InitSelect(eNG_VARIABLES.LINENAME, eNG_VARIABLES.PARTNO, eNG_VARIABLES.L_STNO);
             return View(eNG_VARIABLES);
         }
 
@@ -110,7 +133,7 @@ namespace MES.Web.Areas.Admin.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            await InitSelect(eNG_VARIABLES.LINENAME);
+            await InitSelect(eNG_VARIABLES.LINENAME, eNG_VARIABLES.PARTNO, eNG_VARIABLES.L_STNO);
             return View(eNG_VARIABLES);
         }
 
@@ -139,6 +162,20 @@ namespace MES.Web.Areas.Admin.Controllers
             db.ENG_VARIABLES.Remove(eNG_VARIABLES);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public async Task<JsonResult> OPSTN(String LINENAME)
+        {
+            List< ENG_LINESTATION>  STNS = await db.ENG_LINESTATION.Where(stn => stn.LINENAME.Equals(LINENAME)).ToListAsync();
+            STNS.Insert(0, new ENG_LINESTATION()
+            {
+                LINENAME = "ALL",
+                L_STNO = "ALL"
+            });
+            return Json(new
+            {
+                STN = STNS
+            }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

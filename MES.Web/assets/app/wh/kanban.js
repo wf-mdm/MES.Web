@@ -41,11 +41,22 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).then(function (rs) {
+            var $whc = $("#wh-content"),
+                $list = $("#wh-mwait-list");
+            $list.css("maxHeight", "auto");
             rs.ActiveId = $this.ActiveId;
             WH.loadTemp("temp-mwait-list", function ($temp) {
                 $("#wh-mwait-list tbody").html($temp(rs))
                     .find("tr").click(doSelectMwait).end()
                     .find("a").click(doMwaitClear);
+
+                var h1 = $whc.height(),
+                    h2 = parseInt($whc.css("minHeight")),
+                    h3 = $list.height();
+                if (h2 < h1) {
+                    h3 -= (h1 - h2);
+                    $list.css({ maxHeight: h3, overflow: "scroll" });
+                }
             });
         }).always(function () {
             WH.Progress.hide();

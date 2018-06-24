@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
     var curFeature = undefined,
         UPDATE_INTERVAL = 1000 * 30,
         $templates;
@@ -105,25 +105,42 @@ $(function () {
     };
 
     Line.run = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred()
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/Run",
             data: JSON.stringify({ Server: "mes", Client: Line.info.name, Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            if ("OK" != d.Code) {
+                MsgUtils.show(d.Msg);
+            }
+            $d.resolve(d);
+        }).fail(function (e) {
+            MsgUtils.show("系统错误");
+            $d.reject(e);
         });
+        return $d.promise();
     };
 
     Line.runDb = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred()
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/RunDb",
             data: JSON.stringify({ Server: "mes", Client: Line.info.name, Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            $d.resolve(d);
+        }).fail(function (e) {
+            $d.reject(e);
+            MsgUtils.show("系统错误");
         });
+        return $d.promise();
     };
     Line.Query = function (sql, proc) {
         return $.ajax({

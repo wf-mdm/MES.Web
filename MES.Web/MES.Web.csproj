@@ -274,12 +274,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\admin\base.js" />
+    <Content Include="assets\app\common\MsgUtils.js" />
     <Content Include="assets\app\common\FormUtils.js" />
     <Content Include="assets\app\line\0.js" />
     <Content Include="assets\app\line\layout.js" />
     <Content Include="assets\app\line\CntrMgr.js" />
     <Content Include="assets\app\line\BOOK1STPCS.js" />
     <Content Include="assets\app\line\LineTraceability.js" />
+    <Content Include="assets\app\stn\SETSTATTR.js" />
     <Content Include="assets\app\stn\MCSTART.js" />
     <Content Include="assets\app\line\QDPREPARE.js" />
     <Content Include="assets\app\line\QCHKCFM.js" />

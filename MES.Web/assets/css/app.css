@@ -29,6 +29,18 @@
     right: auto;
 }
 
+.msg-info {
+    position: fixed;
+    top: 65px;
+    left: 20%;
+    right: 20%;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 3px;
+    z-index: 10000;
+}
+
 section.line-admin {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -142,7 +154,7 @@ section.line-admin {
 
     #line-content > .content, #line-main, #line-main div.box-body, #stn-main-content, #wh-content > .content, #wh-content > .content > .box, #wh-content > .content > .box .box-body {
         flex-grow: 1;
-        flex-shrink: 0;
+        flex-shrink: 1;
         flex-basis: auto;
         width: 100%;
     }
@@ -461,4 +473,9 @@ section.line-admin {
     position: fixed;
     right: 50px;
     top: 50px;
+}
+
+#comps-list, #lot-list {
+    max-height: 180px;
+    overflow: scroll;
 }

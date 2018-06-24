@@ -77,25 +77,42 @@ $(function () {
     };
 
     WH.run = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred();
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/Run",
             data: JSON.stringify({ Server: "WMS1", Client: WH.info.name, Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            if ("OK" != d.Code) {
+                MsgUtils.show(d.Msg);
+            }
+            $d.resolve(d);
+        }).fail(function (e) {
+            $d.reject(e);
+            MsgUtils.show("系统错误");
         });
+        return $d.promise();
     };
 
     WH.runDb = function (cmd, entity, args, proc) {
-        return $.ajax({
+        var $d = $.Deferred();
+        $.ajax({
             type: "POST",
             url: "/api/Cmd/RunDb",
             data: JSON.stringify({ Server: "WMS1", Client: WH.info.name, Entity: entity, Cmd: cmd, Args: args }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: proc
+        }).then(function (d) {
+            $d.resolve(d);
+        }).fail(function (e) {
+            $d.reject(e);
+            MsgUtils.show("系统错误");
         });
+        return $d.promise();
     };
 
     Handlebars.registerHelper("eq", function (v1, v2, options) {
