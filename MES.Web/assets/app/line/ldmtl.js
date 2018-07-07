@@ -10,7 +10,9 @@ Line.Ldmtl = {
         Line.getOps().then(function () {
             Line.loadTemp("temp-ldmtl", function ($temp) {
                 Line.updateMain($temp(Line));
-                $("#ldmtl-form").submit($this.doMscan).find("select").select2().end();
+                $("#ldmtl-form").submit(function (event) {
+                    $this.doMscan(event, this);
+                }).find("select").select2().end();
                 $("#ldmtl-form select").change(function (event) {
                     if (event) event.preventDefault();
                     var name = $(this).attr("name");
@@ -81,9 +83,9 @@ Line.Ldmtl = {
         });
     },
 
-    doMscan: function (event) {
+    doMscan: function (event, form) {
         if (event) event.preventDefault();
-        var $form = $(this),
+        var $form = $(form),
             args = {}, args1 = $form.serializeArray();
         for (var i in args1)
             args[args1[i].name] = args1[i].value;
